@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subreporttambahans" pageWidth="934" pageHeight="612" whenNoDataType="AllSectionsNoDetail" columnWidth="934" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="0.9313819845887331"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="idTambahan" class="java.lang.String"/>
+	<field name="jenisTambahan" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="tmtPeriode" class="java.lang.String"/>
+	<field name="nilai1" class="java.lang.String"/>
+	<field name="nilai2" class="java.lang.String"/>
+	<field name="idNip" class="java.lang.String"/>
+	<field name="hitungTambahan" class="java.lang.String"/>
+	<field name="nilaiTambahan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="42">
+			<line>
+				<reportElement x="563" y="2" width="1" height="39"/>
+			</line>
+			<line>
+				<reportElement x="826" y="2" width="1" height="39"/>
+			</line>
+			<staticText>
+				<reportElement x="30" y="2" width="269" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[II. TUGAS TAMBAHAN DAN KREATIFITAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="885" y="2" width="43" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NILAI CAPAIAN SKP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="2" width="264" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TARGET]]></text>
+			</staticText>
+			<line>
+				<reportElement x="885" y="2" width="1" height="39"/>
+			</line>
+			<staticText>
+				<reportElement x="827" y="2" width="58" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PENGHITUNGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="563" y="2" width="264" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REALISASI]]></text>
+			</staticText>
+			<line>
+				<reportElement x="31" y="2" width="1" height="39"/>
+			</line>
+			<line>
+				<reportElement x="299" y="2" width="1" height="39"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="2" width="22" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="1" width="919" height="1"/>
+			</line>
+			<line>
+				<reportElement x="8" y="2" width="1" height="39"/>
+			</line>
+			<line>
+				<reportElement x="928" y="3" width="1" height="37"/>
+			</line>
+			<line>
+				<reportElement x="10" y="41" width="919" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="563" y="0" width="263" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nilai2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="828" y="3" width="57" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{hitungTambahan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="886" y="3" width="42" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nilaiTambahan}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="563" y="0" width="1" height="23"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="299" y="0" width="264" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nilai1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="299" y="1" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="31" y="0" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="8" y="0" width="1" height="23"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement x="8" y="0" width="22" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="826" y="-1" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="886" y="1" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="9" y="23" width="919" height="1"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="34" y="0" width="267" height="22"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="927" y="1" width="1" height="23"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

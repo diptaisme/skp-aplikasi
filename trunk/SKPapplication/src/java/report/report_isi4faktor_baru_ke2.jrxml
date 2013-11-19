@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_isi4faktor" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NAMAPNSCETAK" class="java.lang.String"/>
+	<parameter name="NIPPNSCETAK" class="java.lang.String"/>
+	<parameter name="GOLRUPNSCETAK" class="java.lang.String"/>
+	<parameter name="JABATANPNSCETAK" class="java.lang.String"/>
+	<parameter name="UNKERPNSCETAK" class="java.lang.String"/>
+	<parameter name="rf" class="java.lang.String"/>
+	<parameter name="NAMAPNSCETAK2" class="java.lang.String"/>
+	<parameter name="NIPPNSCETAK2" class="java.lang.String"/>
+	<parameter name="GOLRUPNSCETAK2" class="java.lang.String"/>
+	<parameter name="JABATANPNSCETAK2" class="java.lang.String"/>
+	<parameter name="UNKERPNSCETAK2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="NOMORTUPOKSI" class="java.lang.String"/>
+	<field name="NAMATUPOKSI" class="java.lang.String"/>
+	<field name="KUANTITAS4" class="java.lang.String"/>
+	<field name="KUALITAS4" class="java.lang.String"/>
+	<field name="WAKTU4" class="java.lang.String"/>
+	<field name="BIAYA4" class="java.lang.String"/>
+	<field name="kuantitas_label" class="java.lang.String"/>
+	<field name="waktu_label" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="842" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[FORMULIR SASARAN KERJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="24" width="166" height="20"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[PEGAWAI NEGERI SIPIL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="176" splitType="Stretch">
+			<rectangle>
+				<reportElement x="4" y="137" width="826" height="39"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="4" y="3" width="826" height="120"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="3" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="3" width="392" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ I. PEJABAT PENILAI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="3" width="388" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ II. PEGAWAI NEGERI SIPIL YANG DINILAI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="3" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="23" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="43" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="63" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Pangkat/Gol.Ruang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="83" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="103" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Unit Kerja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="23" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="43" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="63" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 3.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="83" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 4.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="103" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 5.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="64" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Pangkat/Gol.Ruang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="104" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Unit Kerja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="83" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 4.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="44" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="103" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 5.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="43" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="23" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="63" width="22" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 3.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="24" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="84" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="137" width="410" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[III. KEGIATAN TUGAS POKOK JABATAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="137" width="22" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="137" width="394" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TARGET]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="156" width="112" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KUANT/OUTPUT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="548" y="156" width="95" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KUAL/MUTU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="643" y="156" width="78" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WAKTU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="721" y="156" width="109" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BIAYA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="563" y="43" width="267" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{NIPPNSCETAK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="563" y="23" width="267" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{NAMAPNSCETAK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="563" y="63" width="267" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{GOLRUPNSCETAK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="563" y="83" width="267" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{JABATANPNSCETAK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="563" y="103" width="267" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{UNKERPNSCETAK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="23" width="272" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{NAMAPNSCETAK2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="43" width="272" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{NIPPNSCETAK2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="63" width="272" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{GOLRUPNSCETAK2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="83" width="272" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{JABATANPNSCETAK2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="104" width="272" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{UNKERPNSCETAK2}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="23" width="826" height="1"/>
+			</line>
+			<line>
+				<reportElement x="4" y="43" width="826" height="1"/>
+			</line>
+			<line>
+				<reportElement x="4" y="63" width="826" height="1"/>
+			</line>
+			<line>
+				<reportElement x="4" y="83" width="826" height="1"/>
+			</line>
+			<line>
+				<reportElement x="4" y="102" width="826" height="1"/>
+			</line>
+			<line>
+				<reportElement x="25" y="3" width="1" height="120"/>
+			</line>
+			<line>
+				<reportElement x="145" y="24" width="1" height="99"/>
+			</line>
+			<line>
+				<reportElement x="418" y="4" width="1" height="120"/>
+			</line>
+			<line>
+				<reportElement x="441" y="4" width="1" height="120"/>
+			</line>
+			<line>
+				<reportElement x="562" y="25" width="1" height="99"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="9" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="2" width="22" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMORTUPOKSI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="1" width="410" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NAMATUPOKSI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="2" width="30" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{KUANTITAS4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="568" y="2" width="47" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{KUALITAS4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="654" y="2" width="32" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{WAKTU4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="733" y="0" width="87" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{BIAYA4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="2" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{kuantitas_label}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="686" y="2" width="23" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{waktu_label}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement x="145" y="7" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pejabat Penilai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="563" y="7" width="52" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jakarta, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="563" y="27" width="204" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pegawai Negeri Sipil Yang Dinilai]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="615" y="7" width="152" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{rf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="89" width="194" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{NAMAPNSCETAK2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="557" y="89" width="210" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{NAMAPNSCETAK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
