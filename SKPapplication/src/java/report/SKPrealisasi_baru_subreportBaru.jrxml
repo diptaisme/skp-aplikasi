@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SKPrealisasi" pageWidth="935" pageHeight="612" orientation="Landscape" columnWidth="935" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.2396694214876032"/>
+	<property name="ireport.x" value="123"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NAMAPNSCETAK" class="java.lang.String"/>
+	<parameter name="NIPPNSCETAK" class="java.lang.String"/>
+	<parameter name="GOLRUPNSCETAK" class="java.lang.String"/>
+	<parameter name="JABATANPNSCETAK" class="java.lang.String"/>
+	<parameter name="UNKERPNSCETAK" class="java.lang.String"/>
+	<parameter name="rf" class="java.lang.String"/>
+	<parameter name="NAMAPNSCETAK2" class="java.lang.String"/>
+	<parameter name="NIPPNSCETAK2" class="java.lang.String"/>
+	<parameter name="GOLRUPNSCETAK2" class="java.lang.String"/>
+	<parameter name="JABATANPNSCETAK2" class="java.lang.String"/>
+	<parameter name="UNKERPNSCETAK2" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Sony\\Documents\\NetBeansProjects\\SKPapplication\\src\\java\\report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tugasTambahan" class="java.util.List"/>
+	<parameter name="realkesiServlet" class="java.util.List"/>
+	<parameter name="NILAIHURUF" class="java.lang.String"/>
+	<parameter name="TOTAL_SKP" class="java.lang.String"/>
+	<parameter name="kratifitasTambahan" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="NOMORTUPOKSI" class="java.lang.String"/>
+	<field name="NAMATUPOKSI" class="java.lang.String"/>
+	<field name="KUANTITAS4" class="java.lang.String"/>
+	<field name="KUALITAS4" class="java.lang.String"/>
+	<field name="WAKTU4" class="java.lang.String"/>
+	<field name="BIAYA4" class="java.lang.String"/>
+	<field name="KUANTITASR" class="java.lang.String"/>
+	<field name="KUALITASR" class="java.lang.String"/>
+	<field name="WAKTUR" class="java.lang.String"/>
+	<field name="BIAYAR" class="java.lang.String"/>
+	<field name="PENGHITUNGAN" class="java.lang.String"/>
+	<field name="NILAICAPAIANSKP" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="935" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[PENILAIAN CAPAIAN SASARAN KERJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="24" width="935" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[PEGAWAI NEGERI SIPIL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="127" splitType="Stretch">
+			<subreport>
+				<reportElement positionType="Float" x="3" y="46" width="347" height="38"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanArrayDataSource($P{tugasTambahan}.toArray())]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["subreporttambahansBaruSept.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="3" y="4" width="347" height="42"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanArrayDataSource($P{realkesiServlet}.toArray())]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["subreportRealisasiBaru.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="3" y="84" width="347" height="43"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanArrayDataSource($P{kratifitasTambahan}.toArray())]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["subreportKreatifitasBaruSept.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="176">
+			<staticText>
+				<reportElement x="642" y="58" width="236" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pegawai Negeri Sipil Yang Dinilai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="610" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NILAI CAPAIAN    SKP]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="612" y="0" width="112" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{TOTAL_SKP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="724" y="1" width="120" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NILAIHURUF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="642" y="38" width="152" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{rf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="644" y="114" width="234" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NAMAPNSCETAK}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="53" y="58" width="197" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pejabat Penilai]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="116" width="197" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NAMAPNSCETAK2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="575" y="38" width="52" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jakarta, ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="136" width="197" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["NIP. " + $P{NIPPNSCETAK2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="644" y="136" width="232" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["NIP. "+$P{NIPPNSCETAK2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
