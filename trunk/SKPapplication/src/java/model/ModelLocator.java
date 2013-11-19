@@ -14,6 +14,6 @@ public class ModelLocator
 {
     public boolean statusUpdate = false;
     
-
+    public boolean statusUpdate2 = false;
     
 }
