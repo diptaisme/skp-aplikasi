@@ -61,7 +61,7 @@ document.getElementById("button1").style.backgroundColor = '#FFFF00';
                                             <th rowspan="2" >
                                     <img src="images/burung_garuda7.png"/></th>
                                             <td>
-                                    SASARAN KERJA PEGAWAI
+                                    SASARAN KINERJA PEGAWAI
 				</td>
                                         </tr>
                                         <tr><td>
