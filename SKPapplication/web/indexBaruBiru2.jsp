@@ -47,7 +47,7 @@
                                         </td>
                                         <tr>
                                             <td id="merah" width="500" hidden="true" align="LEFT"> &nbsp;Login <c:out value="${sessionScope.user}" /> </td>
-                                            <td id="merah" width="414" hidden="true" align="right">&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
+                                            <td id="merah" width="414" hidden="false" align="right">&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
                                         </tr> 
                                     </table>
                                   
