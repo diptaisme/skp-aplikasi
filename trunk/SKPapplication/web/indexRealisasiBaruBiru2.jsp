@@ -61,14 +61,14 @@ document.getElementById("button1").style.backgroundColor = '#FFFF00';
                                             <th rowspan="2" >
                                     <img src="images/burung_garuda7.png"/></th>
                                             <td>
-                                    SASARAN KINERJA PEGAWAI
+                                    SASARAN KERJA PEGAWAI
 				</td>
                                         </tr>
                                         <tr><td>
                                                 BKN
                                             </td>
-                                            <td width="100" hidden="true" align="left"> &nbsp;&nbsp;&nbsp;&nbsp;Login <c:out value="${sessionScope.user}" /> </td>
-                                          <td width="414" hidden="true" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
+                                            <td width="100"  align="left"> &nbsp;&nbsp;&nbsp;&nbsp;Login <c:out value="${sessionScope.user}" /> </td>
+                                          <td width="414"  align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
                                      </tr>
                                         
                      </table>
