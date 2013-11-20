@@ -45,8 +45,7 @@ function showComboBox(value)
         alert ("Browser does not support HTTP Request")  
         return  ;
     } 
-    var url="RequestServlet?page=validasi"  
-    url=url+"?jenis_tambahan="+value
+    var url="RequestServlet?page=validasi&jenis_tambahan="+value;
     xmlHttp.onreadystatechange=stateChange  
     xmlHttp.open("GET",url,true)  
     xmlHttp.send(null)  
@@ -164,7 +163,7 @@ function GetXmlHttpObject()
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp; </td>
+                  
                     <td>&nbsp; </td>
                     <td>
                         <div align="center">  
@@ -298,6 +297,7 @@ function myPopupUnor()
 </script>
 
 <SCRIPT TYPE="text/javascript">
+    
 function popup(mylink, windowname)
 {
     if (! window.focus)return true;

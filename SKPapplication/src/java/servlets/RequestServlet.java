@@ -36,13 +36,21 @@ public class RequestServlet extends HttpServlet {
         if (page == null) {
             cetakNotAvailable(response);
         } else {
-            page = "/WEB-INF/jsp/" + page + ".jsp";
-            try {
-                RequestDispatcher rd = request.getRequestDispatcher(page);
-                rd.forward(request, response);
-            } catch (Exception e) {
-                e.printStackTrace();
-                cetakNotAvailable(response);
+            if (page.equalsIgnoreCase("validasi")) {
+                if (request.getParameter("jenis_tambahan").toString().equals("Keterampilan")) {
+                    PrintWriter out = response.getWriter();
+                    out.print("<select name='koef_kreatifitas'><option value='10'>Unit Organisasi</option><option value='20'>Instansi</option><option value='30'>Nasional</option> </select>");
+                    out.close();
+                }
+            } else {
+                page = "/WEB-INF/jsp/" + page + ".jsp";
+                try {
+                    RequestDispatcher rd = request.getRequestDispatcher(page);
+                    rd.forward(request, response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    cetakNotAvailable(response);
+                }
             }
         }
     }
@@ -70,14 +78,14 @@ public class RequestServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
     private void cetakNotAvailable(HttpServletResponse response) throws IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<HTML><HEAD><TITLE>SKP</TITLE>"
-				+ "</HEAD><BODY>Maaf anda tidak dapat mengakses halaman ini. Klik <a href='"
-				+ "/SKPapplication"
-				+ "'>link ini </a> untuk kembali</BODY></HTML>");
-		out.close();
-	}
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<HTML><HEAD><TITLE>SKP</TITLE>"
+                + "</HEAD><BODY>Maaf anda tidak dapat mengakses halaman ini. Klik <a href='"
+                + "/SKPapplication"
+                + "'>link ini </a> untuk kembali</BODY></HTML>");
+        out.close();
+    }
 }
