@@ -1394,7 +1394,7 @@ String tuko = tukesiDomain.getNamaTupoksi()+ "(" + tmp2 +")";
             getTugasTambahan(request, response);
 
             //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
-            RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru.jsp");
             dis.forward(request, response);
         }
         else if (id == null || id == "" || id == " ")
@@ -1455,7 +1455,7 @@ String tuko = tukesiDomain.getNamaTupoksi()+ "(" + tmp2 +")";
             //kirim ke jsp lagi
             //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
             //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
-            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
             dis.forward(request, response);   
         }
  }

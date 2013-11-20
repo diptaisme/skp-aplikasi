@@ -189,7 +189,7 @@ String P_nipbaru;
                 //kirim ke jsp lagi
                 //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
                 //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                 dis.forward(request, response);
             }else  if (idTupoksi4 != null && nipnilai4 != null)
             {
@@ -211,7 +211,7 @@ String P_nipbaru;
                   request.setAttribute("_getidUnor4jsp", _getidUnor4); 
 
                 //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
-                RequestDispatcher dis=request.getRequestDispatcher("isi4faktorBaru.jsp");
+                RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
                 dis.forward(request, response); 
             }
             else if (idTupoksiR != null && nipnilaiR != null && action == null)
@@ -251,7 +251,7 @@ String P_nipbaru;
                     request.setAttribute("_pilih_session", _pilih_session4);   
 
                     //RequestDispatcher dis=request.getRequestDispatcher("realisasi.jsp");
-                    RequestDispatcher dis=request.getRequestDispatcher("realisasiBaru2.jsp");
+                    RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/realisasiBaru2.jsp");
                     dis.forward(request, response); 
                 }
                 else if("-".equals(kuantitas4) && "-".equals(kualitas4) && "-".equals(waktu4) && "0".equals(biaya4))
@@ -336,12 +336,12 @@ String P_nipbaru;
                         }
 
                         //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
-                        RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
+                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
                         dis.forward(request, response);
                     }
                     else if (id == null || "".equals(id) || " ".equals(id))
                     {
-                        RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
+                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
                         dis.forward(request, response);
                     }
                     else
@@ -399,7 +399,7 @@ String P_nipbaru;
             request.setAttribute("nipAtasan", idNipTambahan);
             request.setAttribute("nipdimonitoring", P_nipbaru);
              request.setAttribute("nipsendiri",nipsendiriMonitoring);           
-            RequestDispatcher dis = request.getRequestDispatcher("monitoring.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
             dis.forward(request, response);
             
             
@@ -431,7 +431,7 @@ String P_nipbaru;
                 //  request.setAttribute("idtupoksidijsp", idtupoksidijsp); 
 
                 //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
-                RequestDispatcher dis=request.getRequestDispatcher("isi4faktorBaru.jsp");
+                RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
                 dis.forward(request, response); 
          }     
     }
@@ -504,7 +504,7 @@ String P_nipbaru;
                         }
  request.setAttribute("alerting", _Isi4Faktor);
                         //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
-                        RequestDispatcher dis=request.getRequestDispatcher("isi4faktorBaru.jsp");
+                        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
                         //PrintWriter out = response.getWriter();
                         dis.include(request, response); 
                         //out.println(_Isi4Faktor);
@@ -533,7 +533,7 @@ String P_nipbaru;
                         }
 
                         //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
-                        RequestDispatcher dis=request.getRequestDispatcher("isi4faktorBaru.jsp");
+                        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
                         PrintWriter out = response.getWriter();
                         dis.include(request, response);
                         out.println("Pilih Jenis Kuantitas");        
@@ -575,7 +575,7 @@ String P_nipbaru;
                         }
 
                         //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
-                        RequestDispatcher dis=request.getRequestDispatcher("isi4faktorBaru.jsp");
+                        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
                         PrintWriter out = response.getWriter();
                         dis.include(request, response); 
                      
@@ -596,7 +596,7 @@ String P_nipbaru;
                     request.setAttribute("pns", pns);
                     request.setAttribute("tupoksiobjek", tupoksiobjek);    
 
-                    RequestDispatcher dis=request.getRequestDispatcher("tabeltupoksi.jsp");
+                    RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tabeltupoksi.jsp");
                     dis.forward(request, response); 
                     // PnsSkp UnorAts=new GoIndex().getUnorAtasan(unorAtasan);      
                 }
@@ -683,7 +683,7 @@ String P_nipbaru;
                         
 
                         //RequestDispatcher dis=request.getRequestDispatcher("realisasi.jsp");
-                        RequestDispatcher dis=request.getRequestDispatcher("realisasiBaru2.jsp");
+                        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/realisasiBaru2.jsp");
                         PrintWriter out = response.getWriter();
                         dis.include(request, response); 
                         out.println(_realisasi);
@@ -707,7 +707,7 @@ String P_nipbaru;
                           request.setAttribute("realisasiIsi4faktorTupoksiId", realisasiIsi4faktorTupoksi);
                        
                         //RequestDispatcher dis=request.getRequestDispatcher("realisasi.jsp");
-                        RequestDispatcher dis=request.getRequestDispatcher("realisasiBaru2.jsp");
+                        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/realisasiBaru2.jsp");
                         PrintWriter out = response.getWriter();
                         dis.include(request, response); 
                         out.println(_hitungan);
@@ -732,7 +732,7 @@ String P_nipbaru;
                                 request.setAttribute("idtupoksidijsp",idtupoksidijsp); 
                                 request.setAttribute("namaTupoksijsp", namaTupoksijsp);   
 
-                        RequestDispatcher dis=request.getRequestDispatcher("realisasiBaru2.jsp");
+                        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/realisasiBaru2.jsp");
                         dis.forward(request, response); 
                 }
                 else if(paramRealisasi.equalsIgnoreCase("CARI TUPOKSI"))
@@ -782,7 +782,7 @@ String P_nipbaru;
             request.setAttribute("tupoksiKeIsi4Faktor", tupoksiKeIsi4Faktor);
 
             //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
-            RequestDispatcher dis=request.getRequestDispatcher("isi4faktorBaru.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
             PrintWriter out = response.getWriter();
             dis.include(request, response); 
             out.println(_Isi4Faktor);
@@ -802,7 +802,7 @@ String P_nipbaru;
         request.setAttribute("pns", pns);
         request.setAttribute("tupoksiobjek", tupoksiobjek);    
 
-        RequestDispatcher dis=request.getRequestDispatcher("tabeltupoksi.jsp");
+        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tabeltupoksi.jsp");
         dis.forward(request, response); 
         // PnsSkp UnorAts=new GoIndex().getUnorAtasan(unorAtasan);      
     }

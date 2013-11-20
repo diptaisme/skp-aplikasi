@@ -96,7 +96,7 @@ public class updateServlets extends HttpServlet {
 
             request.setAttribute("tukesiServlet", tukesiServlet);
             request.setAttribute("unosiServlet", unosiServlet);
-             RequestDispatcher dis=request.getRequestDispatcher("updateMenu.jsp");
+             RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/updateMenu.jsp");
             dis.forward(request, response);
         }else if(instansiAtasan != null && instansiAtasan != "" && instansiAtasan != " "){
              List<PnsSkp> pnsList=new GoIndex().getDBqueryPNSInstansiList(instansiAtasan);
@@ -104,12 +104,12 @@ public class updateServlets extends HttpServlet {
              request.setAttribute("instansiAtasan", instansiAtasan);
              request.setAttribute("instansiIdpns", instansiIdpns);
              request.setAttribute("instansiIdunorbwhan", instansiIdunorbwhan);
-             RequestDispatcher dis=request.getRequestDispatcher("UpdateAtasan.jsp");
+             RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/UpdateAtasan.jsp");
              dis.forward(request, response);
         }
         else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " "))
         {
-            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
             dis.forward(request, response);
         }
     }
@@ -163,7 +163,7 @@ public class updateServlets extends HttpServlet {
             request.setAttribute("tukesiServlet", tukesiServlet);
             request.setAttribute("unosiServlet", unosiServlet);
            
-            RequestDispatcher dis=request.getRequestDispatcher("updateMenu.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/updateMenu.jsp");
             dis.forward(request, response); 
         }
        }else if(submitCari.equalsIgnoreCase("CARINAMA")){
@@ -173,13 +173,13 @@ public class updateServlets extends HttpServlet {
              request.setAttribute("instansiIdpns",instansiIdpns);
              request.setAttribute("instansiIdunorbwhan",instansiIdunorbwhan);
              request.setAttribute("instansiAtasan",getinstansiId);
-             RequestDispatcher dis=request.getRequestDispatcher("UpdateAtasan.jsp");
+             RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/UpdateAtasan.jsp");
              dis.forward(request, response);
            
        }
        else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " "))
         {
-            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
             dis.forward(request, response);
         }
         

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author diptaisme
  */
-public class profilePnsServlet extends HttpServlet {
+public class ProfilePnsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP

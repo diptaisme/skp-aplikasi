@@ -69,7 +69,7 @@ public class operatorTupoksiServlet extends HttpServlet {
         List<instansiri> instansies  = new GoIndex().getCariInstansi(SnamaInstansi);
         request.setAttribute("instansies", instansies);
         //RequestDispatcher dis=request.getRequestDispatcher("insertTupoksi.jsp");
-        RequestDispatcher dis=request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
         dis.forward(request, response);
     }
 
@@ -90,7 +90,7 @@ public class operatorTupoksiServlet extends HttpServlet {
         List<instansiri> instansies  = new GoIndex().getCariInstansi(SnamaInstansi);
         request.setAttribute("instansies", instansies);
         //RequestDispatcher dis=request.getRequestDispatcher("insertTupoksi.jsp");
-        RequestDispatcher dis=request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+        RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
         dis.forward(request, response);
 
     }

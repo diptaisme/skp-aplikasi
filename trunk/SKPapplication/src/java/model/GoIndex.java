@@ -25,13 +25,11 @@ import servlets.ModelLocatorSKP;
  */
 public class GoIndex {
 
-    private Image image;
-
     public GoIndex() {
     }
 
     public loginweb getLoginPass(String username, String password) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         loginweb ipns = new loginweb();
         DBqueryLogin dBqueryLogin = new DBqueryLogin(dbConn.getConnection());
 
@@ -54,7 +52,7 @@ public class GoIndex {
     }
 
     public void getUpdateUnorPns(String nipbaru, String AtasanBaru, String UnorBaru, String NamaUnor, String NamaJabatanBaru) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
 
@@ -76,7 +74,7 @@ public class GoIndex {
     }
 
     public List<unorskp> getCariUnorByInstansi(String snamaUnor, String instansi, String nipbaru) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<unorskp> unoriesByCriteria = new ArrayList<unorskp>();
         DBqueryUnor dbqueryUnor = new DBqueryUnor(dbConn.getConnection());
 
@@ -102,7 +100,7 @@ public class GoIndex {
     }
 
     public loginweb getLoginPassByNip(String nip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         loginweb ipns = new loginweb();
         DBqueryLogin dBqueryLogin = new DBqueryLogin(dbConn.getConnection());
 
@@ -124,7 +122,7 @@ public class GoIndex {
     }
 
     public PnsSkp getPns(String id) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
 
@@ -146,7 +144,7 @@ public class GoIndex {
     }
 
     public List<UnorKeTupoksi> getSamaLikeTupoksi(String cariKriteria) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<UnorKeTupoksi> unorKeTupoksi = new ArrayList<UnorKeTupoksi>();
         DBqueryUnorKeTupoksi dbqueryCariNipTupoksiDiIsi4Faktor = new DBqueryUnorKeTupoksi(dbConn.getConnection());
 
@@ -170,7 +168,7 @@ public class GoIndex {
     }
 
     public String getdeleteUser(String idTambahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Hapus";
@@ -208,7 +206,7 @@ public class GoIndex {
     }
 
     public String MaksimumTupoksi() {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         String _max = null;
         _max = "X";
         int _imax;
@@ -229,7 +227,7 @@ public class GoIndex {
     }
 
     public unorskp getIdUnorskp(String idUnor) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         unorskp unorSkp = new unorskp();
         DBqueryUnor dBqueryUnor = new DBqueryUnor(dbConn.getConnection());
         if (idUnor == null) {
@@ -250,7 +248,7 @@ public class GoIndex {
     }
 
     public tupoksi_lama getIdtupoksi(String idTupoksi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         tupoksi_lama itupoksi = new tupoksi_lama();
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
 
@@ -272,7 +270,7 @@ public class GoIndex {
     }
 
     public tupoksi getIdtupoksiAll(String idTupoksi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         tupoksi itupoksi = new tupoksi();
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
 
@@ -294,7 +292,7 @@ public class GoIndex {
     }
 
     public TugasTambahan getTugasTambahan(String idTambahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         TugasTambahan tugasTambahan = new TugasTambahan();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -316,7 +314,7 @@ public class GoIndex {
     }
 
     public TugasTambahan getTugasTambahanNotList(String idTambahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         TugasTambahan tugasTambahan = new TugasTambahan();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -338,7 +336,7 @@ public class GoIndex {
     }
 
     public nilaiprestasikerja getNilaiPrestasiKerjaAllNotList(String idTambahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         nilaiprestasikerja tugasTambahan = new nilaiprestasikerja();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -360,7 +358,7 @@ public class GoIndex {
     }
 
     public nilaiprestasikerja getNilaiPrestasiKerjaAllNotList_session(String idTambahan, String thn_sesion, String idUnorNilai) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         nilaiprestasikerja tugasTambahan = new nilaiprestasikerja();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -383,7 +381,7 @@ public class GoIndex {
     }
 
     public nilaiPerilaku getPrilaku(String nippri) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         nilaiPerilaku pri = new nilaiPerilaku();
         DBqueryPerilaku dBqueryPerilaku = new DBqueryPerilaku(dbConn.getConnection());
 
@@ -405,7 +403,7 @@ public class GoIndex {
     }
 
     public PnsSkp getLihatNipNama(String nippri) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         PnsSkp pri = new PnsSkp();
         DBqueryPerilaku dBqueryPerilaku = new DBqueryPerilaku(dbConn.getConnection());
 
@@ -427,7 +425,7 @@ public class GoIndex {
     }
 
     public List<TugasTambahan> getTugasTambahanList(String idNip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<TugasTambahan> tugasTambahan = new ArrayList<TugasTambahan>();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -450,7 +448,7 @@ public class GoIndex {
     }
 
     public List<TugasTambahan> getTugasTambahanListList(String idNip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<TugasTambahan> tugasTambahan = new ArrayList<TugasTambahan>();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -473,7 +471,7 @@ public class GoIndex {
     }
 
     public List<TugasTambahan> getTugasTambahanAllList(String idNip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<TugasTambahan> tugasTambahan = new ArrayList<TugasTambahan>();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -495,7 +493,7 @@ public class GoIndex {
     }
 
     public List<nilaiPerilaku> getPerilakuAllList(String idNip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<nilaiPerilaku> prilaku = new ArrayList<nilaiPerilaku>();
         DBqueryPerilaku dBqueryPerilaku = new DBqueryPerilaku(dbConn.getConnection());
 
@@ -517,7 +515,7 @@ public class GoIndex {
     }
 
     public List<PnsSkp> getDBqueryPNSInstansiList(String sid_Instansi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<PnsSkp> pnsskps = new ArrayList<PnsSkp>();
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
 
@@ -539,7 +537,7 @@ public class GoIndex {
     }
 
     public List<PnsSkp> getDBqueryPNSInstansiNamaAtasanList(String instansiAtasant, String carinamapnsatasan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<PnsSkp> pnsskps = new ArrayList<PnsSkp>();
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
 
@@ -561,7 +559,7 @@ public class GoIndex {
     }
 
     public List<PnsSkp> getDBqueryInstansinNamaPnsList(String sid_Instansi, String pencarian) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<PnsSkp> pnsskps = new ArrayList<PnsSkp>();
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
 
@@ -583,7 +581,7 @@ public class GoIndex {
     }
 
     public List<TugasTambahan> getKreatifitasList(String idNip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<TugasTambahan> tugasTambahan = new ArrayList<TugasTambahan>();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -605,7 +603,7 @@ public class GoIndex {
     }
 
     public TugasTambahan getKreatifitasSatoe(String idNip, String idTambahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         TugasTambahan tugasTambahan = new TugasTambahan();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -628,7 +626,7 @@ public class GoIndex {
     }
 
     public String getsimpanTugasTambahan(String maks, String idTambahan, String jenisTambahan, String nama, String TmtPeriode, String nilai1, String nilai2, String idNip, String hitungtambahan, String nilaitambahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Update";
@@ -660,7 +658,7 @@ public class GoIndex {
     }
 
     public String getsimpanTugasTambahanKoef(String idTamb, String koef) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Update";
@@ -685,7 +683,7 @@ public class GoIndex {
     }
 
     public String getdeleteTambahan(String idTambahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Hapus";
@@ -709,7 +707,7 @@ public class GoIndex {
     }
 
     public String getHapusPerilaku(String nipPerilaku) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Hapus";
@@ -733,7 +731,7 @@ public class GoIndex {
     }
 
     public String getHapusRealita(String _id_tupoksi, String _nip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Hapus";
@@ -757,7 +755,7 @@ public class GoIndex {
     }
 
     public String getInsertTugasTambahan(String maks, String idTambahan, String jenisTambahan, String nama, String TmtPeriode, String nilai1, String nilai2, String idNip, String hitungtambahan, String nilaitambahan, String koef_kreatifitas) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Berhasil di Insert";
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
@@ -793,7 +791,7 @@ public class GoIndex {
     }
 
     public String HitungTugasTambahan(String idTambahan, String nippns) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         String berhasil = "Data Berhasil di Hitung";
         TugasTambahan tugasTambahan = new TugasTambahan();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
@@ -846,7 +844,7 @@ public class GoIndex {
     }
 
     public String HitungTugasTambahanKoef(String idTambahan, String nip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         String berhasil = "Data Berhasil di Hitung";
         TugasTambahan tugasTambahan = new TugasTambahan();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
@@ -951,7 +949,7 @@ public class GoIndex {
     }
 
     public realisasi getIdRealitas(String idTupoksi, String nipRealita, String idTupoksiRealita) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         realisasi Realisasi = new realisasi();
         DBqueryRealisasi dBqueryRealisasi = new DBqueryRealisasi(dbConn.getConnection());
 
@@ -974,7 +972,7 @@ public class GoIndex {
     }
 
     public RealisasiIsi4faktorTupoksi getFormatPenghitunganIsi4FaktorBusiness(String idTupoksi, String nipRealita) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         RealisasiIsi4faktorTupoksi Realisasi = new RealisasiIsi4faktorTupoksi();
         DBqueryRealisasi dBqueryRealisasi = new DBqueryRealisasi(dbConn.getConnection());
 
@@ -997,7 +995,7 @@ public class GoIndex {
     }
 
     public List<TugasTambahan> getNilaiTugasTambahanList(String idNip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<TugasTambahan> tugasTambahan = new ArrayList<TugasTambahan>();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -1019,7 +1017,7 @@ public class GoIndex {
     }
 
     public List<TugasTambahan> getTugasTambahanMakList(String idNip) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<TugasTambahan> tugasTambahan = new ArrayList<TugasTambahan>();
         DbqueryTugasTambahan dbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
 
@@ -1041,7 +1039,7 @@ public class GoIndex {
     }
 
     public RealisasiIsi4faktorTupoksi getIsiRealisasi4FaktorDao(String idTupoksi, String nipRealita, String idTupoksiRealita) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         RealisasiIsi4faktorTupoksi Realisasi = new RealisasiIsi4faktorTupoksi();
         DBqueryRealisasi dBqueryRealisasi = new DBqueryRealisasi(dbConn.getConnection());
 
@@ -1065,7 +1063,7 @@ public class GoIndex {
 
     //--------------------------
     public List<tupoksi> getTupoksiAllJabatan(String sId_Unor, String sId_Instansi, String IdJabatan, String Jenis) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         // tupoksi itupoksi = new tupoksi();
         List<tupoksi> itupoksi = new ArrayList<tupoksi>();
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
@@ -1093,7 +1091,7 @@ public class GoIndex {
     }
 
     public List<tupoksi_lama> getIdtupoksiUnor(String sId_Unor, String sId_Instansi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         // tupoksi itupoksi = new tupoksi();
         List<tupoksi_lama> itupoksi = new ArrayList<tupoksi_lama>();
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
@@ -1117,7 +1115,7 @@ public class GoIndex {
     //--------------------------
 
     public PnsSkp getUnorAtasan(String unorId) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
 
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
@@ -1139,7 +1137,7 @@ public class GoIndex {
     }
 
     public PnsSkp getUnorAtasanSama(String unorId) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
 
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
@@ -1162,7 +1160,7 @@ public class GoIndex {
 
     public List<TupoksiKeIsi4Faktor> getTukesi(String unorId, String instansiId, String nipPns) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<TupoksiKeIsi4Faktor> tukesi = new ArrayList<TupoksiKeIsi4Faktor>();
@@ -1195,7 +1193,7 @@ public class GoIndex {
 
     public List<TupoksiKeIsi4Faktor> getTukesiSession(String unorId, String instansiId, String nipPns, String _pilih_session) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<TupoksiKeIsi4Faktor> tukesi = new ArrayList<TupoksiKeIsi4Faktor>();
@@ -1228,7 +1226,7 @@ public class GoIndex {
 
     public List<tupoksi> getTukesiPerJenisJabatan(String unorId, String instansiId, String nipPns, String jenis, String Jabatan) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<tupoksi> tukesi = new ArrayList<tupoksi>();
@@ -1266,7 +1264,7 @@ public class GoIndex {
 
     public List<TupoksiKeIsi4Faktor> getTukesiNonUnor(String unorId, String instansiId, String nipPns) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<TupoksiKeIsi4Faktor> tukesi = new ArrayList<TupoksiKeIsi4Faktor>();
@@ -1299,7 +1297,7 @@ public class GoIndex {
     //public List<RealisasiIsi4faktorTupoksi> getRealkesi(String sidisi4faktor)
     public List<RealisasiIsi4faktorTupoksi> getRealkesiSession(String unorIdPns, String snippns, String _pilih_session) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<RealisasiIsi4faktorTupoksi> Realkesi = new ArrayList<RealisasiIsi4faktorTupoksi>();
@@ -1330,7 +1328,7 @@ public class GoIndex {
 
     public List<RealisasiIsi4faktorTupoksi> getRealkesi(String snippns) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<RealisasiIsi4faktorTupoksi> Realkesi = new ArrayList<RealisasiIsi4faktorTupoksi>();
@@ -1361,7 +1359,7 @@ public class GoIndex {
 
     public List<RealisasiIsi4faktorTupoksiHitung> getRealkesiHitung(String snippns) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<RealisasiIsi4faktorTupoksiHitung> Realkesi = new ArrayList<RealisasiIsi4faktorTupoksiHitung>();
@@ -1391,7 +1389,7 @@ public class GoIndex {
     }
 
     public TupoksiKeIsi4Faktor getTupoksi(String inputTupoksi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         TupoksiKeIsi4Faktor TKI4F = new TupoksiKeIsi4Faktor();
         DBqueryTupoksiKeIsi4Faktor dBquerytupoksi = new DBqueryTupoksiKeIsi4Faktor(dbConn.getConnection());
 
@@ -1413,7 +1411,7 @@ public class GoIndex {
     }
 
     public RealisasiIsi4faktorTupoksi getRealkesiid(String sidnippns, String sidtupoksi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         RealisasiIsi4faktorTupoksi RIS4FT = new RealisasiIsi4faktorTupoksi();
         DBqueryRealisasiIsi4faktorTupoksi dbqueryRealkesi = new DBqueryRealisasiIsi4faktorTupoksi(dbConn.getConnection());
 
@@ -1437,7 +1435,7 @@ public class GoIndex {
 
     //pak RD --> untuk update
     public String getsimpanIsiEmpatFaktor(String iNip_id, String idTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String pilih, String waktuL, String _angkaKredit, String _pilih_session, String _getidUnor4jspSesiion) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Update";
@@ -1472,7 +1470,7 @@ public class GoIndex {
     }
 
     public String getSimpanLogin(String usernamebaru, String passwordbaru, String kewenangan, String nipbaru, String apakah) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Update";
@@ -1505,7 +1503,7 @@ public class GoIndex {
     }
 
     public String getRekomendasiPns(String nippns, String nipatasan, String periode, String rekomendasi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Update";
@@ -1532,7 +1530,7 @@ public class GoIndex {
     }
 
     public loginweb getSudahAdaUser(String nippns) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         loginweb ipns = new loginweb();
 
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
@@ -1554,7 +1552,7 @@ public class GoIndex {
     }
 
     public String getsimpanRealisasi(String iNip_id, String idTupoksi, String ikuantitasR, String ikualitasR, String iWaktuR, String iBiayaR, String _angkakrdt4t, String _pilih_session) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Update";
@@ -1586,7 +1584,7 @@ public class GoIndex {
     }
 
     public String getsimpanHitungRealisasi(String iNip_id, String idTupoksi, String hitungan, String nilaiC) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data Berhasil di Update";
@@ -1614,7 +1612,7 @@ public class GoIndex {
 
     //untuk insert
     public String getInsertIsiEmpatFaktor(String maks, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String ipilih, String waktuL, String iBiaya, String maksR, String ikuantitasR, String ikualitasR, String iWaktuR, String iBiayaR, String penghitungan, String nilaiCapaian, String iBiayanya, String angkakrdtR) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Berhasil di Insert";
         DBqueryUpdateTupoksi dBqueryUpdateTupoksi = new DBqueryUpdateTupoksi(dbConn.getConnection());
@@ -1658,7 +1656,7 @@ public class GoIndex {
     }
 
     public String getInsertPerilaku(String _nip, String _Pelayanan, String _Integritas, String _Komitmen, String _Disiplin, String _Kerjasama, String _Kepemimpinan, String _jumlah, String _ratarata, String _Penilaian) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Perilaku Berhasil di Insert";
         DBqueryPerilaku dBqueryPerilaku = new DBqueryPerilaku(dbConn.getConnection());
@@ -1691,7 +1689,7 @@ public class GoIndex {
     }
 
     public String getUpdatePerilaku(String _nip, String _Pelayanan, String _Integritas, String _Komitmen, String _Disiplin, String _Kerjasama, String _Kepemimpinan, String _jumlah, String _ratarata, String _Penilaian) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Perilaku Berhasil di UPDATE";
         DBqueryPerilaku dBqueryPerilaku = new DBqueryPerilaku(dbConn.getConnection());
@@ -1724,7 +1722,7 @@ public class GoIndex {
     }
 
     public String getInsertRealisasi(String maks, String idisi4faktor, String insertRealisasi, String nip_pns, String idtupoksi, String ikuantitasR, String ikualitasR, String iWaktuR, String iBiayaR, String iPenghitungan, String iNilaiCapaian, String iBiayanya, String iangkakrdtR) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Berhasil di Insert";
         DBqueryUpdateTupoksi dBqueryUpdateTupoksi = new DBqueryUpdateTupoksi(dbConn.getConnection());
@@ -1761,7 +1759,7 @@ public class GoIndex {
     }
 
     public String getHpsTupoksi(String _id_tupoksi, String _id_unor, String _id_instansi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         String berhasil = "Data Berhasil di Hapus";
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
 
@@ -1787,7 +1785,7 @@ public class GoIndex {
     }
 
     public String getHpsIdTupoksi(String _id_tupoksi, String Jenis, String Instansi, String Unor, String Jabatan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         String berhasil = "Data Berhasil di Hapus";
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
 
@@ -1815,7 +1813,7 @@ public class GoIndex {
     }
 
     public String getInsertTupoksiOperator(String _id_tupoksi, String _nama_tupoksi, String _id_unor, String _nama_unor, String _id_instansi, String _instansi_nama, String _id_diatasan, String _angka_krdt, String _pilih_output_Jabatan, String namaKelompok, String jenisJabatan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Berhasil di Insert";
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
@@ -1848,7 +1846,7 @@ public class GoIndex {
     }
 
     public String getsimpanRiwayatAtasan_Bawahan(String idAtasan, String instansiIdAtasan, String UnorIdatasan, String instansiIdpnsBawahan, String instansiIdunorbawahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Berhasil di simpan";
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
@@ -1876,7 +1874,7 @@ public class GoIndex {
     }
 
     public String getUpdateUnorYangKosong(String NipPns, String unorAtasan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Berhasil di Update";
         DBqueryUnor dBqueryunor = new DBqueryUnor(dbConn.getConnection());
@@ -1897,7 +1895,7 @@ public class GoIndex {
     }
 
     public RiwayatAtasanBawahan getSimpanRiwayatAtasan_Bawahan(String s_idAtasani, String s_instansiIdAtasan, String s_UnorIdatasan, String s_instansiIdpnsBawahan, String s_instansiIdunorbawahan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         RiwayatAtasanBawahan ipns = new RiwayatAtasanBawahan();
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
 
@@ -1914,7 +1912,7 @@ public class GoIndex {
     }
 
     public unorskp getIdUnorAtasan(String unorAtasan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         unorskp ipns = new unorskp();
         DBqueryUnor dBqueryunor = new DBqueryUnor(dbConn.getConnection());
 
@@ -1934,7 +1932,7 @@ public class GoIndex {
 
     /*  public unorskp getIdUnorAtasan(String unorAtasan)
     {
-    DBConnection dbConn = new DBConnection();
+    DBConnection dbConn = DBConnection.getInstance();
     
     String berhasil="Data Berhasil di Update";
     DBqueryUnor dBqueryunor = new  DBqueryUnor(dbConn.getConnection());
@@ -1962,7 +1960,7 @@ public class GoIndex {
     
      */
     public String getUpdateInsertTupoksiOperator(String jenis, String _id_tupoksi, String _nama_tupoksi, String _id_unor, String _id_instansi, String _angka_krdt, String _pilih_output_Jabatan, String namaKelompok) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Berhasil di Update";
         DBqueryTupoksi dBqueryTupoksi = new DBqueryTupoksi(dbConn.getConnection());
@@ -1994,7 +1992,7 @@ public class GoIndex {
 
     //baru 22022012
     public instansiri getInstansi(String InstansiPns) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         instansiri ins = new instansiri();
         DbqueryINS dbqueryINS = new DbqueryINS(dbConn.getConnection());
 
@@ -2016,7 +2014,7 @@ public class GoIndex {
     }
 
     public unorskp getUnor(String UnorPns, String InstansiPns) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         unorskp ukp = new unorskp();
         DBqueryUnor dbqueryUNOR = new DBqueryUnor(dbConn.getConnection());
 
@@ -2039,7 +2037,7 @@ public class GoIndex {
     }
 
     public isi4faktor getSamaNipDanTupoksi(String nip_pns, String id_tupoksi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         isi4faktor ukp = new isi4faktor();
         DBqueryIsi4Faktor dbqueryCariNipTupoksiDiIsi4Faktor = new DBqueryIsi4Faktor(dbConn.getConnection());
 
@@ -2062,7 +2060,7 @@ public class GoIndex {
     }
 
     public List<UnorKeTupoksi> getSamaLikeTupoksi(String cariKriteriaKlTgs, String cariKriteria) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<UnorKeTupoksi> unorKeTupoksi = new ArrayList<UnorKeTupoksi>();
         DBqueryUnorKeTupoksi dbqueryCariNipTupoksiDiIsi4Faktor = new DBqueryUnorKeTupoksi(dbConn.getConnection());
 
@@ -2086,7 +2084,7 @@ public class GoIndex {
     }
 
     public List<tupoksi_lama> getSamaLikeKeLompokTupoksiIdAll(String cariKriteriaKlTgs) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<tupoksi_lama> Tupoksis = new ArrayList<tupoksi_lama>();
         DBqueryUnorKeTupoksi dbqueryCariNipTupoksiDiIsi4Faktor = new DBqueryUnorKeTupoksi(dbConn.getConnection());
 
@@ -2109,7 +2107,7 @@ public class GoIndex {
     }
 
     public List<instansiri> getAllInstansi() throws SQLException {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<instansiri> instansies = new ArrayList<instansiri>();
         DbqueryINS dbqueryINS = new DbqueryINS(dbConn.getConnection());
 
@@ -2122,7 +2120,7 @@ public class GoIndex {
 
     public List<UnorKeTupoksi> getUnosi(String sid_unor, String sid_instansi) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<UnorKeTupoksi> unosi = new ArrayList<UnorKeTupoksi>();
@@ -2152,7 +2150,7 @@ public class GoIndex {
 
     public List<UnorKeTupoksi> getUnosi2(String sid_unor, String sid_instansi, String NipPns, String Jenis, String Jabatan) {
         //KONEKSi
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         //DOMAIN
         List<UnorKeTupoksi> unosi = new ArrayList<UnorKeTupoksi>();
@@ -2186,7 +2184,7 @@ public class GoIndex {
     }
 
     public List<unorskp> getUnori(String sidInstansi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<unorskp> unori = new ArrayList<unorskp>();
         DBqueryUnor dbqueryUnor = new DBqueryUnor(dbConn.getConnection());
 
@@ -2209,7 +2207,7 @@ public class GoIndex {
     }
 
     public List<instansiri> getCariInstansi(String snamaInstansi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<instansiri> instansies = new ArrayList<instansiri>();
         DbqueryINS dbqueryINS = new DbqueryINS(dbConn.getConnection());
 
@@ -2231,7 +2229,7 @@ public class GoIndex {
     }
 
     public List<unorskp> getCariUnor(String snamaUnor, String InstansiId) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<unorskp> unoriesByCriteria = new ArrayList<unorskp>();
         DBqueryUnor dbqueryUnor = new DBqueryUnor(dbConn.getConnection());
 
@@ -2254,7 +2252,7 @@ public class GoIndex {
     }
 
     public List<unorskp> getUnoriUN(String sidInstansi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<unorskp> unori = new ArrayList<unorskp>();
         DBqueryUnor dbqueryUnor = new DBqueryUnor(dbConn.getConnection());
 
@@ -2277,7 +2275,7 @@ public class GoIndex {
     }
 
     public tupoksi_lama getIdInstansiIdUnorDariIdTupoksi(String IdTupoksi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         tupoksi_lama tup = new tupoksi_lama();
         DBqueryTupoksi dbqueryINS = new DBqueryTupoksi(dbConn.getConnection());
 
@@ -2299,7 +2297,7 @@ public class GoIndex {
     }
 
     public tupoksi_lama getallDariIdTupoksi(String IdTupoksi) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         tupoksi_lama tup = new tupoksi_lama();
         DBqueryTupoksi dbqueryINS = new DBqueryTupoksi(dbConn.getConnection());
 
@@ -2321,7 +2319,7 @@ public class GoIndex {
     }
 
     public String getNilaiAllSession(String id_unoruser, String nip_pns, String _pilih_session) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = null;
         DbqueryTugasTambahan _DbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
@@ -2345,7 +2343,7 @@ public class GoIndex {
     }
 
     public String getNilaiAllSession_unor(String nip_pns, String unorIdPns, String _pilih_session) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = null;
         DbqueryTugasTambahan _DbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
@@ -2369,7 +2367,7 @@ public class GoIndex {
     }
 
     public String getNilaiAll(String nip_pns) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = null;
         DbqueryTugasTambahan _DbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
@@ -2393,7 +2391,7 @@ public class GoIndex {
     }
 
     public String getNilaiAllIdunor(String nip_pns, String Idunor) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = null;
         DbqueryTugasTambahan _DbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
@@ -2417,7 +2415,7 @@ public class GoIndex {
     }
 
     public String getNilaiAllTugasTambahan(String nip_pns) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = null;
         DbqueryTugasTambahan _DbqueryTugasTambahan = new DbqueryTugasTambahan(dbConn.getConnection());
@@ -2442,7 +2440,7 @@ public class GoIndex {
 
     //BILA MENGGUNAKAN STRUKTURAL SAJA ==> DBqueryPNS.java
 //     public  List<pnsskp_strukturalbkn> getTugasTambahanBawahanList(String iunorAtasan){
-//          DBConnection dbConn = new DBConnection();
+//          DBConnection dbConn = DBConnection.getInstance();
 //          List<pnsskp_strukturalbkn> pnsBawahan = new ArrayList<pnsskp_strukturalbkn>();
 //          DBqueryPNS dbquerypns = new  DBqueryPNS(dbConn.getConnection());
 //        
@@ -2472,7 +2470,7 @@ public class GoIndex {
 //    }
     //BILA MENGGUNAKAN STRUKTURAL SAJA DAN MENGHILANGKAN FUNGSIONAL
     public List<PnsSkp> getTugasTambahanBawahanListALLSession(String iunorAtasan, String thnSession) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<PnsSkp> pnsBawahan = new ArrayList<PnsSkp>();
         List<PnsSkp> pnsBawahan2 = new ArrayList<PnsSkp>();
         List<PnsSkp> pnsBawahan3 = new ArrayList<PnsSkp>();
@@ -2551,7 +2549,7 @@ public class GoIndex {
     }
 
     public List<PnsSkp> getTugasTambahanBawahanListALL(String iunorAtasan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<PnsSkp> pnsBawahan = new ArrayList<PnsSkp>();
         List<PnsSkp> pnsBawahan2 = new ArrayList<PnsSkp>();
         List<PnsSkp> pnsBawahan3 = new ArrayList<PnsSkp>();
@@ -2674,7 +2672,7 @@ public class GoIndex {
     }
 
     public List<pnsskp_jabfungtbkn> getTugasTambahanBawahanList(String iunorAtasan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<pnsskp_jabfungtbkn> pnsBawahan = new ArrayList<pnsskp_jabfungtbkn>();
         DBqueryPNS dbquerypns = new DBqueryPNS(dbConn.getConnection());
         if (iunorAtasan == null && iunorAtasan == null) {
@@ -2695,7 +2693,7 @@ public class GoIndex {
     }
 
     public List<PnsSkp> getTugasTambahanBawahanList2(String iunorAtasan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<PnsSkp> pnsBawahan = new ArrayList<PnsSkp>();
         DBqueryPNS dbquerypns = new DBqueryPNS(dbConn.getConnection());
 
@@ -2718,7 +2716,7 @@ public class GoIndex {
     }
 
     public List<PnsSkp> getPNSbawahan(String iunorAtasan, String pencarian, String Kriteria) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<PnsSkp> pnsBawahan = new ArrayList<PnsSkp>();
         DBqueryPNS dbquerypns = new DBqueryPNS(dbConn.getConnection());
 
@@ -2747,7 +2745,7 @@ public class GoIndex {
 
     public String getSimpanFotoBlob(String nippns, FileInputStream fotobinari) {
 
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
         String berhasil = "Data BLOB Berhasil di Update";
@@ -2772,7 +2770,7 @@ public class GoIndex {
     }
 
     public jabfung getJabatanFungsional(String Jabatan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         jabfung kelJabFung = new jabfung();
         //jabfung kelJabFung = null;
@@ -2797,7 +2795,7 @@ public class GoIndex {
     }
 
     public jabfum getJabatanUmum(String Jabatan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         jabfum kelJabFum = new jabfum();
         //jabfung kelJabFung = null;
@@ -2822,7 +2820,7 @@ public class GoIndex {
     }
 
     public kelompokJabatan getKelompokJabatan(String Jabatan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
 
         kelompokJabatan kelJabFung = new kelompokJabatan();
         //jabfung kelJabFung = null;
@@ -2847,7 +2845,7 @@ public class GoIndex {
     }
 
     public List<kelompokJabatan> getSatuRumpun(String kelompok) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<kelompokJabatan> jabfung = new ArrayList<kelompokJabatan>();
         DBqueryJabatan dBqueryJabatan = new DBqueryJabatan(dbConn.getConnection());
 
@@ -2872,7 +2870,7 @@ public class GoIndex {
     }
 
     public List<jabfum> getRumpunUmum(String namaUmum) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<jabfum> jabfum = new ArrayList<jabfum>();
         DBqueryJabatan dBqueryJabatan = new DBqueryJabatan(dbConn.getConnection());
 
@@ -2897,7 +2895,7 @@ public class GoIndex {
     }
 
     public List<jabfum> getRumpunUmumById(String IdUmum) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<jabfum> jabfum = new ArrayList<jabfum>();
         DBqueryJabatan dBqueryJabatan = new DBqueryJabatan(dbConn.getConnection());
 
@@ -2925,7 +2923,7 @@ public class GoIndex {
     }
 
     public List<jabfung> getSatuRumpunFungsionalId(String kelompok, String idJabfung) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<jabfung> jabfung = new ArrayList<jabfung>();
         DBqueryJabatan dBqueryJabatan = new DBqueryJabatan(dbConn.getConnection());
 
@@ -2948,7 +2946,7 @@ public class GoIndex {
     }
 
     public List<jabfung> getListJabatanFungsional(String Jabatan) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<jabfung> kelJabFung = new ArrayList<jabfung>();
         // jabfung kelJabFung = new jabfung();
         //jabfung kelJabFung = null;
@@ -2973,7 +2971,7 @@ public class GoIndex {
     }
 
     public List<jabfung> getSatuRumpunFungsional(String kelompok) {
-        DBConnection dbConn = new DBConnection();
+        DBConnection dbConn = DBConnection.getInstance();
         List<jabfung> jabfung = new ArrayList<jabfung>();
         DBqueryJabatan dBqueryJabatan = new DBqueryJabatan(dbConn.getConnection());
 
