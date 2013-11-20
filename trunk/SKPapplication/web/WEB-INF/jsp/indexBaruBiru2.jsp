@@ -14,7 +14,7 @@
         <title>SASARAN KINERJA PEGAWAI</title>
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
 
-        <link rel="stylesheet" type="text/css" href="style2.css" />
+        <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
         
         <style>
 	 
@@ -37,7 +37,7 @@
                                     <table >
                                         <tr>
                                             <th rowspan="6" >
-                                    <img src="images/burung_garuda7.png"/></th>
+                                    <img src="/SKPapplication/images/burung_garuda7.png"/></th>
                                             <td  id="hijau" width="500" >
                                                  SASARAN KINERJA PEGAWAI
 				           </td>
@@ -47,7 +47,7 @@
                                         </td>
                                         <tr>
                                             <td id="merah" width="500" hidden="true" align="LEFT"> &nbsp;Login <c:out value="${sessionScope.user}" /> </td>
-                                            <td id="merah" width="414" hidden="false" align="right">&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
+                                            <td id="merah" width="414" hidden="true" align="right">&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
                                         </tr> 
                                     </table>
                                   
@@ -91,7 +91,7 @@
                                     </select>
                                 </li>
 						
-						 <li><a href="indexloginBaru.jsp" target="_parent" title="Keluar"><span></span>Keluar</a></li>
+						 <li><a href="RequestServlet?page=indexloginBaru" target="_parent" title="Keluar"><span></span>Keluar</a></li>
 					</ul>
 					<br class="clearfix" />
 				</div>
@@ -263,7 +263,7 @@
                                  <a href="tupoksiServlet2?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&_idUnorTambah=<c:out value="${pns.getUnorId()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>" id="urltest" onclick="redirect_testt()"><img src="images/tambah.png"/></a>
                                 </td>
                                   <td>
-                                   <a id="url3test"  onclick="redirect3Test()"><img src="images/tambah.png"/></a>
+                                   <a id="url3test"  onclick="redirect3Test()"><img src="/SKPapplication/images/tambah.png"/></a>
                                   </td>
                              
                                 <td>
