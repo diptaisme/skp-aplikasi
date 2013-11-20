@@ -138,7 +138,7 @@ public class GetPnsServlet extends HttpServlet {
                               request.setAttribute("nip", nip);
                               request.setAttribute("nama", nama);
                               
-                              RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+                              RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
                               dis.forward(request, response);   
                           }
                       }
@@ -197,7 +197,7 @@ public class GetPnsServlet extends HttpServlet {
                             //kirim ke jsp lagi
                             //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
                             //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
-                            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+                            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                             dis.forward(request, response);   
                       }
                       else
@@ -279,7 +279,7 @@ public class GetPnsServlet extends HttpServlet {
                             getTugasTambahan(request, response);
 
                             //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
-                            RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
+                            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
                             dis.forward(request, response);
                       }
                   }
@@ -399,12 +399,12 @@ public class GetPnsServlet extends HttpServlet {
                 //kirim ke jsp lagi
                 //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
                 //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                 dis.forward(request, response);
             }
             else if (id == null || id == "" || id == " ")
             {
-                RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                 dis.forward(request, response);
             }
             else
@@ -429,7 +429,7 @@ public class GetPnsServlet extends HttpServlet {
             request.setAttribute("pnsp", pnsp);
             request.setAttribute("tupoksiKeIsi4Faktor", tupoksiKeIsi4Faktor);
             //RequestDispatcher dis = request.getRequestDispatcher("isi4faktor.jsp");
-            RequestDispatcher dis = request.getRequestDispatcher("isi4faktorBaru.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
             dis.forward(request, response);
         }
 //        else if (param.equalsIgnoreCase("AMBIL"))
@@ -594,7 +594,7 @@ public class GetPnsServlet extends HttpServlet {
                 getTugasTambahan(request, response);
 
                 //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
                 dis.forward(request, response);
     }
     
@@ -668,7 +668,7 @@ public class GetPnsServlet extends HttpServlet {
             request.setAttribute("UnorAts", UnorAts);
             request.setAttribute("listResult",listResult); 
         }       
-        RequestDispatcher dis = request.getRequestDispatcher("realisasi2.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/realisasi2.jsp");
         dis.forward(request, response);
     }
     
@@ -1004,14 +1004,14 @@ if(_pilih_session.equals("-")){
             request.setAttribute("nipdimonitoring", nipAtasanMonitoring);
             request.setAttribute("nipsendiri",id);
             
-            RequestDispatcher dis = request.getRequestDispatcher("monitoring.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
             List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
                   
                   
                   request.setAttribute("realkesiServlet", realkesiServlet);
                   dis.forward(request, response);
             }else{
-            RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
              dis.forward(request, response);
             }
             
@@ -1026,7 +1026,7 @@ if(_pilih_session.equals("-")){
         }
         else if (id == null || id == "" || id == " ")
         {
-            RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
             dis.forward(request, response);
         }
         else
@@ -1047,7 +1047,7 @@ if(_pilih_session.equals("-")){
         request.setAttribute("nip", nip);
         request.setAttribute("nama", nama);
 
-        RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
         dis.forward(request, response);   
         
     }
@@ -1079,7 +1079,7 @@ if(_pilih_session.equals("-")){
 
         //kirim ke jsp lagi
         //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-        RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
         dis.forward(request, response);
     }
     

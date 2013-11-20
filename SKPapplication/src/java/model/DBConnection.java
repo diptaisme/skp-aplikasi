@@ -6,49 +6,53 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author diptaisme
  */
-public class DBConnection
-{
-    Connection conn = null;
-    
-    public DBConnection()
-    {
-        try
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-           // conn = DriverManager.getConnection("jdbc:mysql://localhost/skpwebbased","root","admin");
-             conn = DriverManager.getConnection("jdbc:mysql://localhost/skpwebbased","root","");
-            
-            //untuk koneksi ke komputer lain yg ip nya sudah diketahui
-            //conn = DriverManager.getConnection("jdbc:mysql://192.168.200.61:8084/skpwebbased","root","admin");
+public class DBConnection {
+
+    private Connection conn = null;
+    private static DBConnection instance = null;
+
+    public static DBConnection getInstance() {
+        if (instance == null) {
+            instance = new DBConnection();
         }
-        catch(Exception e)
-        {
-            System.out.println("Pesan Kesalahan : "+e.getMessage());
-        } 
+        return instance;
     }
-    
-    public Connection getConnection()
-    {
-        return this.conn;
+
+    private DBConnection() {
+        try {
+            Class.forName(DBProperties.DB_DRIVER);            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Pesan Kesalahan : " + e.getMessage());
+        }
     }
-    
-    public void closeConnection()
-    {
-        if (this.conn != null)
-        {
-            try
-            {
-                this.conn.close();
-            }
-            catch(Exception ex)
-            {
-                
+
+    public void closeConnection() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
+    }
+
+    public Connection getConnection(){
+        try {
+            conn = DriverManager.getConnection(DBProperties.DB_URL, DBProperties.DB_USERNAME, DBProperties.DB_PASSWORD);
+            return conn;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

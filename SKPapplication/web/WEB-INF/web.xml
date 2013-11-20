@@ -50,7 +50,7 @@
     </servlet>
     <servlet>
         <servlet-name>loginPassServlet</servlet-name>
-        <servlet-class>servlets.loginPassServlet</servlet-class>
+        <servlet-class>servlets.LoginPassServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>isiPerilakuServlet</servlet-name>
@@ -58,7 +58,7 @@
     </servlet>
     <servlet>
         <servlet-name>administratorFunctionServlet</servlet-name>
-        <servlet-class>servlets.administratorFunctionServlet</servlet-class>
+        <servlet-class>servlets.AdministratorFunctionServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>keberatanServlet</servlet-name>
@@ -66,11 +66,15 @@
     </servlet>
     <servlet>
         <servlet-name>profilePnsServlet</servlet-name>
-        <servlet-class>servlets.profilePnsServlet</servlet-class>
+        <servlet-class>servlets.ProfilePnsServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SimpanatasanBawahanRiwayatServlet</servlet-name>
         <servlet-class>servlets.SimpanatasanBawahanRiwayatServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestServlet</servlet-name>
+        <servlet-class>servlets.RequestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetPnsServlet</servlet-name>
@@ -144,12 +148,16 @@
         <servlet-name>SimpanatasanBawahanRiwayatServlet</servlet-name>
         <url-pattern>/SimpanatasanBawahanRiwayatServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestServlet</servlet-name>
+        <url-pattern>/RequestServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>indexloginBaru.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/indexloginBaru.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

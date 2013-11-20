@@ -137,7 +137,7 @@ public class tupoksiServlet2 extends HttpServlet {
                    
            
             //RequestDispatcher dis=request.getRequestDispatcher("tupoksi.jsp");
-            RequestDispatcher dis=request.getRequestDispatcher("tupoksiBaru2.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru2.jsp");
             dis.forward(request, response); 
        
         }else if(nipKelokpokKriteria!= null){
@@ -169,12 +169,12 @@ public class tupoksiServlet2 extends HttpServlet {
            request.setAttribute("namaKelompok",namaKelompok);
 
             //RequestDispatcher dis=request.getRequestDispatcher("tupoksi.jsp");
-            RequestDispatcher dis=request.getRequestDispatcher("tupoksiBaru.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru.jsp");
             dis.forward(request, response); 
         } 
           else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " "))
         {
-            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
             dis.forward(request, response);
         }
         else if(idTB != null && idTB != "" && idTB != " ")
@@ -185,7 +185,7 @@ public class tupoksiServlet2 extends HttpServlet {
             request.setAttribute("namaPns", namaPns);
             request.setAttribute("idNip", idNip);
             
-            RequestDispatcher dis=request.getRequestDispatcher("TugasTambahan.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
             dis.forward(request, response); 
         }
         else
@@ -232,12 +232,12 @@ public class tupoksiServlet2 extends HttpServlet {
             request.setAttribute("tukesiServlet", tukesiServlet);
             request.setAttribute("unosiServlet", unosiServlet);
            
-            RequestDispatcher dis=request.getRequestDispatcher("tupoksiBaru.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru.jsp");
             dis.forward(request, response); 
         }
         else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " "))
         {
-            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
             dis.forward(request, response);
         }
         else if(idTB != null && idTB != "" && idTB != " ")
@@ -248,7 +248,7 @@ public class tupoksiServlet2 extends HttpServlet {
             request.setAttribute("namaPns", namaPns);
             request.setAttribute("idNip", idNip);
             
-            RequestDispatcher dis=request.getRequestDispatcher("TugasTambahan.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
             dis.forward(request, response); 
             }
        }else if(submitCari.equalsIgnoreCase("CARIKLTGS")){
@@ -277,7 +277,7 @@ public class tupoksiServlet2 extends HttpServlet {
             request.setAttribute("tukesiServlet", tukesiServlet);
             request.setAttribute("tupoksiServlets", tupoksiServlets);
            
-            RequestDispatcher dis=request.getRequestDispatcher("tabelKelompokTugas.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tabelKelompokTugas.jsp");
             dis.forward(request, response); 
       
        }else if(submitCari.equalsIgnoreCase("cariJabatan")){
@@ -332,7 +332,7 @@ public class tupoksiServlet2 extends HttpServlet {
            request.setAttribute("lisJabfung", lisJabfung);
            
             //RequestDispatcher dis=request.getRequestDispatcher("tupoksi.jsp");
-            RequestDispatcher dis=request.getRequestDispatcher("tupoksiBaru2.jsp");
+            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru2.jsp");
             dis.forward(request, response); 
        
            

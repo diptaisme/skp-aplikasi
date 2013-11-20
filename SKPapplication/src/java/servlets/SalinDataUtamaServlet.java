@@ -103,7 +103,7 @@ public class SalinDataUtamaServlet extends HttpServlet {
                                 request.setAttribute("tukesiServlet", tukesiServlet); 
                             }  
 
-                            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+                            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                             dis.forward(request, response);   
         }
     }

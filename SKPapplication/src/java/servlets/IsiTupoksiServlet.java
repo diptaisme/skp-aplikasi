@@ -195,7 +195,7 @@ public class IsiTupoksiServlet extends HttpServlet {
 
             //kirim ke jsp lagi
             //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
             dis.forward(request, response);
             
         }

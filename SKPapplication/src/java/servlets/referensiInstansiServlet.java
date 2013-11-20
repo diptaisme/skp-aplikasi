@@ -138,7 +138,7 @@ public class referensiInstansiServlet extends HttpServlet {
              request.setAttribute("Tupoksi", Tupoksi);
             request.setAttribute("jabatan", Jenis);
                
-            RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
             dis.forward(request, response);
             
         }
@@ -157,7 +157,7 @@ public class referensiInstansiServlet extends HttpServlet {
       
         
          if (updateUnor != null ) {
-            DBConnection dbConn = new DBConnection();
+            DBConnection dbConn = DBConnection.getInstance();
              
             //pnsskp pns = (PnsSkp) new GoIndex().getUpdateUnor(nipbaru, updateUnor, diatasanUnor);
            unorskp namaUnor = new GoIndex().getIdUnorskp(updateUnor);
@@ -175,7 +175,7 @@ public class referensiInstansiServlet extends HttpServlet {
             request.setAttribute("ins", ins);
            
             //RequestDispatcher dis = request.getRequestDispatcher("TabelUnor.jsp");
-            RequestDispatcher dis = request.getRequestDispatcher("updateMenu.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/updateMenu.jsp");
             dis.forward(request, response);
         }
         
@@ -245,7 +245,7 @@ public class referensiInstansiServlet extends HttpServlet {
             
             request.setAttribute("jabatan", Jenis);
             request.setAttribute("Tupoksi", Tupoksi);
-            RequestDispatcher dis = request.getRequestDispatcher("ubahInsertTupoksiBaruBiru.jsp"); //update
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/ubahInsertTupoksiBaruBiru.jsp"); //update
             dis.forward(request, response);
         }
         else //klik link instansi
@@ -271,7 +271,7 @@ public class referensiInstansiServlet extends HttpServlet {
                 request.setAttribute("jabatan", ModelLocatorSKP.jenisJabatan);
 
                 //RequestDispatcher dis = request.getRequestDispatcher("insertTupoksi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                 dis.forward(request, response);
             } else if (namaIDInstansiUnor != null) {
                 instansiri instansie = new GoIndex().getInstansi(cariInstansi);
@@ -294,7 +294,7 @@ public class referensiInstansiServlet extends HttpServlet {
                  request.setAttribute("jabatan", Jenis);
 
                 //RequestDispatcher dis = request.getRequestDispatcher("insertTupoksi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                 dis.forward(request, response);
             } else {
                 ambilDataInstansi(request, response);
@@ -360,11 +360,11 @@ public class referensiInstansiServlet extends HttpServlet {
                 {
                     try
                     {
-                        DBConnection dbConn = new DBConnection();
+                        DBConnection dbConn = DBConnection.getInstance();
                         List<instansiri> instansies = new GoIndex().getAllInstansi();
                         request.setAttribute("instansies", instansies);
                         //RequestDispatcher dis = request.getRequestDispatcher("TabelInstansi.jsp");
-                        RequestDispatcher dis = request.getRequestDispatcher("TabelInstansiBaruBiru.jsp");
+                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TabelInstansiBaruBiru.jsp");
                         dis.forward(request, response);
                     }
                     catch (SQLException ex)
@@ -374,11 +374,11 @@ public class referensiInstansiServlet extends HttpServlet {
                 }
                 else
                 {
-                    DBConnection dbConn = new DBConnection();
+                    DBConnection dbConn = DBConnection.getInstance();
                     List<instansiri> instansies = new GoIndex().getCariInstansi(cariInstansi);
                     request.setAttribute("instansies", instansies);
                     //RequestDispatcher dis = request.getRequestDispatcher("TabelInstansi.jsp");
-                    RequestDispatcher dis = request.getRequestDispatcher("TabelInstansiBaruBiru.jsp");
+                    RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TabelInstansiBaruBiru.jsp");
                     dis.forward(request, response);
                 }
             }
@@ -389,21 +389,21 @@ public class referensiInstansiServlet extends HttpServlet {
 
                 if (cariUnor == null)
                 {
-                    DBConnection dbConn = new DBConnection();
+                    DBConnection dbConn = DBConnection.getInstance();
                     List<unorskp> unories = new GoIndex().getUnoriUN(cariInstansi);
                     request.setAttribute("unories", unories);
                     request.setAttribute("instansi", cariInstansi);
                     //RequestDispatcher dis = request.getRequestDispatcher("TabelUnor.jsp");
-                    RequestDispatcher dis = request.getRequestDispatcher("TabelUnorBaruBiru.jsp");
+                    RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TabelUnorBaruBiru.jsp");
                     dis.forward(request, response);
                 }
                 else
                 {
-                    DBConnection dbConn = new DBConnection();
+                    DBConnection dbConn = DBConnection.getInstance();
                     List<unorskp> unories = new GoIndex().getCariUnor(cariUnor, cariInstansi);
                     request.setAttribute("unories", unories);
                     //RequestDispatcher dis = request.getRequestDispatcher("TabelUnor.jsp");
-                    RequestDispatcher dis = request.getRequestDispatcher("TabelUnorBaruBiru.jsp");
+                    RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TabelUnorBaruBiru.jsp");
                     dis.forward(request, response);
                 }
             }
@@ -417,7 +417,7 @@ public class referensiInstansiServlet extends HttpServlet {
                         
                        if (ModelLocatorSKP.jenisJabatan ==  2)
                        {
-                           DBConnection dbConn = new DBConnection();
+                           DBConnection dbConn = DBConnection.getInstance();
                            List<kelompokJabatan> kelJab = new GoIndex().getSatuRumpun("null");
                            request.setAttribute("kelJab", kelJab);
                        }
@@ -428,7 +428,7 @@ public class referensiInstansiServlet extends HttpServlet {
                        }
                         request.setAttribute("jabatan", jenisJabatan);
                       // List<kelompokJabatan> kelompok = new GoIndex().getUnoriUN(SkodeInstansi);
-                        RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                         //request.setAttribute("jabatan", ModelLocatorSKP.jenisJabatan );
                     dis.forward(request, response);
                    }
@@ -444,7 +444,7 @@ public class referensiInstansiServlet extends HttpServlet {
                          
                        if (ModelLocatorSKP.jenisJabatan ==  2)
                        {
-                           DBConnection dbConn = new DBConnection();
+                           DBConnection dbConn = DBConnection.getInstance();
                            List<jabfung> jabatanfungfum = new GoIndex().getSatuRumpunFungsional(kelJabatan);
                            
                             List<kelompokJabatan> kelJab = new GoIndex().getSatuRumpun(kelJabatan);
@@ -454,7 +454,7 @@ public class referensiInstansiServlet extends HttpServlet {
                                       
                        else if (ModelLocatorSKP.jenisJabatan ==  4)
                        {
-                            DBConnection dbConn = new DBConnection();
+                            DBConnection dbConn = DBConnection.getInstance();
                              List<jabfum> jabatanfungfum = new GoIndex().getRumpunUmum(cariUmum);
                            //request.setAttribute("kelJab", kelJab);
                            request.setAttribute("jabatanfungfum", jabatanfungfum);
@@ -463,7 +463,7 @@ public class referensiInstansiServlet extends HttpServlet {
                          request.setAttribute("jabatan", jenisJabatan);
                          //request.setAttribute("kelJab", IdKelJabatan);
                       // List<kelompokJabatan> kelompok = new GoIndex().getUnoriUN(SkodeInstansi);
-                        RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                         //request.setAttribute("jabatan", ModelLocatorSKP.jenisJabatan );
                     dis.forward(request, response);
                    }
@@ -534,7 +534,7 @@ public class referensiInstansiServlet extends HttpServlet {
               //  request.setAttribute("jabatanfungfum", KodeJabatan);
                 // request.setAttribute("jabatanfungfum", jabatanfungfum);
                 //RequestDispatcher dis = request.getRequestDispatcher("insertTupoksi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                 dis.forward(request, response);
                 
             }
@@ -589,14 +589,14 @@ public class referensiInstansiServlet extends HttpServlet {
                 String tpMaksimum = new GoIndex().MaksimumTupoksi();
                 String test = textArea1;
 
-                DBConnection dbConn = new DBConnection();
+                DBConnection dbConn = DBConnection.getInstance();
                 String _pesan = new GoIndex().getInsertTupoksiOperator(tpMaksimum, textArea1, idUnorTextJ, namaUnorTextJ, _kodeIdInstansi, namaInstansiTextJ, idUnor,angka_Krdt,JabatanId,namaKelompok, jenisJabatan);
 
 
                // List<tupoksi_lama> Tupoksi = new GoIndex().getIdtupoksiUnor(idUnorTextJ, _kodeIdInstansi);
                  List<tupoksi> Tupoksi = new GoIndex().getTupoksiAllJabatan(idUnorTextJ, _kodeIdInstansi, JabatanId, jenisJabatan);  
                 request.setAttribute("Tupoksi", Tupoksi);
-                // DBConnection dbConn = new DBConnection();
+                // DBConnection dbConn = DBConnection.getInstance();
                    request.setAttribute("jabatan", jenisJabatan);
                   
                   
@@ -605,7 +605,7 @@ public class referensiInstansiServlet extends HttpServlet {
                 //String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id,_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text);
                 // String isiTupoksiOperator = ;
                 //RequestDispatcher dis = request.getRequestDispatcher("insertTupoksi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                 dis.forward(request, response);
 
             }
@@ -615,7 +615,7 @@ public class referensiInstansiServlet extends HttpServlet {
 //                String idUnorTextJ = request.getParameter("idUnorText");
 //                String idtupoksi = request.getParameter("idTupoksihit");
 //
-//                DBConnection dbConn = new DBConnection();
+//                DBConnection dbConn = DBConnection.getInstance();
 //                String _pesan = new GoIndex().getHpsTupoksi(idtupoksi, cariUnor, _kodeIdInstansi);
 //
 //                List<tupoksi> Tupoksi = new GoIndex().getIdtupoksiUnor(idUnorTextJ, _kodeIdInstansi);
@@ -686,12 +686,12 @@ public class referensiInstansiServlet extends HttpServlet {
                          request.setAttribute("jabatan", jenisJabatan);
                
               
-                DBConnection dbConn = new DBConnection();
+                DBConnection dbConn = DBConnection.getInstance();
               
                // List<tupoksi_lama> Tupoksi = new GoIndex().getIdtupoksiUnor(idUnorTextJ, _kodeIdInstansi);
                  List<tupoksi> Tupoksi = new GoIndex().getTupoksiAllJabatan(idUnorTextJ, _kodeIdInstansi, JabatanId, jenisJabatan);  
                 request.setAttribute("Tupoksi", Tupoksi);
-                // DBConnection dbConn = new DBConnection();
+                // DBConnection dbConn = DBConnection.getInstance();
                    request.setAttribute("jabatan", jenisJabatan);
                   
                 
@@ -703,12 +703,12 @@ public class referensiInstansiServlet extends HttpServlet {
                 request.setAttribute("Tupoksi", Tupoksi);
 
                 //RequestDispatcher dis = request.getRequestDispatcher("insertTupoksi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                 dis.forward(request, response);
             }
             else if (Submit.equalsIgnoreCase("KELUAR"))
             {
-                RequestDispatcher dis = request.getRequestDispatcher("indexloginBaru.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexloginBaru.jsp");
                 dis.forward(request, response);
             }
             
@@ -727,7 +727,7 @@ public class referensiInstansiServlet extends HttpServlet {
                  String _namaTupoksi = request.getParameter("textarea1");
                  String _angka_krdt = request.getParameter("angkakrdtText");
                                                 
-                DBConnection dbConn = new DBConnection();
+                DBConnection dbConn = DBConnection.getInstance();
                 String _pesan = new GoIndex().getUpdateInsertTupoksiOperator(jenis,_kodeTupoksi,_namaTupoksi,_kodeUnor,_kodeInstansi,_angka_krdt,JabId, namaKelompok);
                 
                 tupoksi_lama _getIdInstansiIdUnorDariIdTupoksi = new GoIndex().getallDariIdTupoksi(_kodeTupoksi);
@@ -764,7 +764,7 @@ public class referensiInstansiServlet extends HttpServlet {
                    
             }     
                 request.setAttribute("jabatan", jenis);
-                RequestDispatcher dis = request.getRequestDispatcher("ubahInsertTupoksiBaruBiru.jsp");//simpan
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/ubahInsertTupoksiBaruBiru.jsp");//simpan
                 dis.forward(request, response);
             }
             else if (Submit1.equalsIgnoreCase("BATAL"))
@@ -790,7 +790,7 @@ public class referensiInstansiServlet extends HttpServlet {
                 request.setAttribute("kodeTupoksi", kodeTupoksi);
                 request.setAttribute("angkakrdt", angka_krdt);
                 
-                RequestDispatcher dis = request.getRequestDispatcher("ubahInsertTupoksiBaruBiru.jsp");//batal
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/ubahInsertTupoksiBaruBiru.jsp");//batal
                 dis.forward(request, response);
             }
             else if (Submit1.equalsIgnoreCase("KELUAR"))//tes keluar balik lagi gak value nya ke halaman awal
@@ -840,7 +840,7 @@ public class referensiInstansiServlet extends HttpServlet {
                request.setAttribute("Tupoksi", Tupoksi);
                request.setAttribute("jabatan", jenisJabatan);
                 //RequestDispatcher dis = request.getRequestDispatcher("insertTupoksi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("insertTupoksiBaruBiru.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                 dis.forward(request, response);
             }
         }
@@ -856,11 +856,11 @@ public class referensiInstansiServlet extends HttpServlet {
 
         if (isAllInstansi != null && isAllInstansi.equalsIgnoreCase("true") && cariInstansi == null) {
             try {
-                DBConnection dbConn = new DBConnection();
+                DBConnection dbConn = DBConnection.getInstance();
                 List<instansiri> instansies = new GoIndex().getAllInstansi();
                 request.setAttribute("instansies", instansies);
                 //RequestDispatcher dis = request.getRequestDispatcher("TabelInstansi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("TabelInstansiBaruBiru.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TabelInstansiBaruBiru.jsp");
                 dis.forward(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(referensiInstansiServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -869,11 +869,11 @@ public class referensiInstansiServlet extends HttpServlet {
 
 
         if (cariInstansi != null && isAllInstansi == null) {
-            DBConnection dbConn = new DBConnection();
+            DBConnection dbConn = DBConnection.getInstance();
             List<instansiri> instansies = new GoIndex().getCariInstansi(cariInstansi);
             request.setAttribute("instansies", instansies);
             //RequestDispatcher dis = request.getRequestDispatcher("TabelInstansi.jsp");
-            RequestDispatcher dis = request.getRequestDispatcher("TabelInstansiBaruBiru.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TabelInstansiBaruBiru.jsp");
             dis.forward(request, response);
         }
 
@@ -886,7 +886,7 @@ public class referensiInstansiServlet extends HttpServlet {
         nipbaru = request.getParameter("idnip");
         diatasanUnor = request.getParameter("diatasanId");
         if (updateUnor != null ) {
-            DBConnection dbConn = new DBConnection();
+            DBConnection dbConn = DBConnection.getInstance();
             List<unorskp> unories = new GoIndex().getCariUnorByInstansi(updateUnor, instansi, nipbaru);
             request.setAttribute("unories", unories);
              PnsSkp pns=new GoIndex().getPns(nipbaru);
@@ -894,7 +894,7 @@ public class referensiInstansiServlet extends HttpServlet {
             instansiri ins = new GoIndex().getInstansi(instansi);
             request.setAttribute("ins", ins);
             //RequestDispatcher dis = request.getRequestDispatcher("TabelUnor.jsp");
-            RequestDispatcher dis = request.getRequestDispatcher("updateMenu.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/updateMenu.jsp");
             dis.forward(request, response);
         }
      }
@@ -904,12 +904,12 @@ public class referensiInstansiServlet extends HttpServlet {
         cariUnor = request.getParameter("cariUnor");
 
         if (cariUnor != null && isAllInstansi == null) {
-            DBConnection dbConn = new DBConnection();
+            DBConnection dbConn = DBConnection.getInstance();
             List<unorskp> unories = new GoIndex().getCariUnor(cariUnor, cariInstansi);
             request.setAttribute("unories", unories);
             request.setAttribute("instansi",cariInstansi );
             //RequestDispatcher dis = request.getRequestDispatcher("TabelUnor.jsp");
-            RequestDispatcher dis = request.getRequestDispatcher("TabelUnorBaruBiru.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TabelUnorBaruBiru.jsp");
             dis.forward(request, response);
         }
 

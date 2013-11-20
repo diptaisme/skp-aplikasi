@@ -1,0 +1,627 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 3.0 License
+
+Name       : Argon
+Description: A two-column, fixed-width design with a dark color scheme.
+Version    : 1.0
+Released   : 20120529
+*/
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: underline;
+	color: #000000;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+body {
+	background: #BDE1F1 url(/SKPapplication/images/bg0.jpg) top center fixed;
+	background-size: 100%;
+	line-height: 1.75em;
+	color: #000;
+	font-size: 12px;
+        
+        
+        
+}
+
+body,input {
+	font-family: Arial, sans-serif;
+}
+
+br.clearfix {
+	clear: both;
+}
+
+strong {
+	color: #FFF;
+}
+
+h1,h2,h3,h4 {
+	text-transform: lowercase;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 1.75em;
+}
+
+h2,h3,h4 {
+	color: #FFF;
+	font-family: Abel, sans-serif;
+	margin-bottom: 1em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+h4 {
+	font-size: 1.25em;
+}
+
+img.alignleft {
+	float: left;
+	margin: 5px 20px 20px 0;
+}
+
+img.aligntop {
+	margin: 5px 0 20px 0;
+}
+
+p {
+	margin-bottom: 1.5em;
+}
+
+ul {
+	margin-bottom: 1.5em;
+}
+
+ul h4 {
+	margin-bottom: 0.35em;
+}
+
+.box {
+	margin-bottom: 3em;
+}
+
+#content {
+	padding: 0;
+	width: 765px;
+	float: left;
+}
+
+#footer {
+	text-align: center;
+	margin: 20px 0 40px 0;
+	color: #543E51;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.75);
+}
+
+#footer a {
+	color: #543E51;
+}
+
+#header {
+	padding: 45px;
+	position: relative;
+	height: 25px;
+}
+
+#header2 {
+	padding: 0px;
+	position: relative;
+	height: 30px;
+}
+
+
+
+#logo {
+    
+	line-height: 5px;
+	left: 45px;
+	height: 40px;
+	top: 0;
+	position: absolute;
+	text-shadow: 1px 1px 1px #000;
+}
+
+div.scroll3
+{
+    width: 1200px;
+    height: 300px;
+    overflow: scroll;
+    background-color: #FFFFFF;
+    
+}
+div.scroll30
+{
+    width: 1200px;
+    height: 100px;
+    overflow: scroll;
+    background-color: #FFFFFF;
+    
+}
+div.scroll3 a{
+    color: #FFFFFFF;
+        
+}
+
+#hof tbody tr:hover td
+{
+	background: #d0dafd;
+}
+
+
+
+div.scroll2
+{
+    width: 1105px;
+    height: 300px;
+    overflow: scroll;
+    background-color: #FFFFFF;
+    top : 100px;
+    left : 150px;
+    
+}
+
+#rounded-corner2
+{
+	
+	width: 1200px;
+	
+	border-collapse: collapse;
+}
+
+#rounded-corner
+{
+	
+	width: 1090px;
+	border-collapse: collapse;
+}
+#rounded-corner thead th.ujungataskiri
+{
+	background: #b9c9fe url(/SKPapplication/images/left.png) left no-repeat;
+}
+#rounded-corner thead th.ujungataskanan
+{
+	background: #b9c9fe url(/SKPapplication/images/right.png) right  no-repeat;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #FFFFFF;
+        background: #b9c9fe url(/SKPapplication/images/table_header.png) repeat;
+      
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background: #FFFFFF;
+	border-top: 1px solid #fff;
+	color: #000000;
+}
+#rounded-corner tfoot td.ujungbawahkiri
+{
+	background: #e8edff url(/SKPapplication/images/botleft.png) left bottom no-repeat;
+}
+#rounded-corner tfoot td.ujungbawahkanan
+{
+	background: #e8edff url(/SKPapplication/images/botright.png) right bottom no-repeat;
+}
+#rounded-corner tbody tr:hover td
+{
+	background: #d0dafd;
+}
+
+
+#rounded-corner2
+{
+	
+	width: 1200px;
+	
+	border-collapse: collapse;
+}
+#rounded-corner2 thead th.ujungataskiri
+{
+	background: #b9c9fe url(/SKPapplication/images/left.png) left no-repeat;
+}
+#rounded-corner2 thead th.ujungataskanan
+{
+	background: #b9c9fe url(/SKPapplication/images/right.png) right  no-repeat;
+}
+#rounded-corner2 th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #BDE1F1;
+	background: #b9c9fe url(/SKPapplication/images/table_header.png) repeat;
+}
+#rounded-corner2 td
+{
+	padding: 8px;
+	background: #FFFFFF;
+	border-top: 1px solid #fff;
+	color: #000000;
+}
+#rounded-corner2 tfoot td.ujungbawahkiri
+{
+	background: #e8edff url(/SKPapplication/images/botleft.png) left bottom no-repeat;
+}
+#rounded-corner2 tfoot td.ujungbawahkanan
+{
+	background: #e8edff url(/SKPapplication/images/botright.png) right bottom no-repeat;
+}
+#rounded-corner2 tbody tr:hover td
+{
+	background: #d0dafd;
+}
+
+
+
+div.table
+{
+    width: 1090px;
+    
+   
+}
+
+div.tablePanjang
+{
+    width: 1200px;
+    
+   
+}
+
+
+#logo a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#logo h1 {
+	font-family: Lobster, script;
+	font-size: 3em;
+	display: inline;
+	margin-right: 0.25em;
+}
+
+#logo span {
+	color: #B294A0;
+}
+
+#menu {
+
+    position: absolute;
+	bottom: 0;
+	left: 0;
+	font-family: Abel, sans-serif;
+        margin: 0 0 0 0;
+	height: 30px;
+	background: #bdb7bc url(/SKPapplication/images/bg1.png) top left repeat-x;
+	width: 1090px;
+	padding: 0 45px 0 45px;
+	line-height: 30px;
+	/*text-shadow: 1px 1px 0px #FFF;*/
+	border-radius: 10px 10px 0px 0px;
+
+}
+
+#menuKecil{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	font-family: Abel, sans-serif;
+	margin: 0 0 0 0;
+	height: 30px;
+	background: #bdb7bc url(/SKPapplication/images/bg4.png) top left repeat-x;
+	width: 573px;
+	padding: 0 0 0 90px;
+	line-height: 30px;
+	/*text-shadow: 1px 1px 0px #FFF;*/
+	border-radius: 10px 10px 0px 0px;
+}
+
+#menuKecil a {
+	text-decoration: none;
+	font-size: 1.5em;
+	text-transform: lowercase;
+	color: #FFFFFF;
+}
+
+#menuKecil ul {
+	list-style: none;
+}
+
+#menuKecil ul li {
+	padding: 13px 15px 10px 15px;
+	margin-right: 10px;
+	display: inline;
+}
+
+#menuKecil ul li.first {
+	padding-left: 0;
+}
+
+#menuKecil .current_page_item {
+	background: rgba(0,0,0,0.1);
+	border-radius: 4px;
+	padding: 1px 15px 1px 15px !important;
+	border-top: solid 1px rgba(0,0,0,0.2);
+	border-bottom: solid 1px #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#menu2{
+ position: absolute;
+	bottom: 0;
+	left: 0;
+	font-family: Abel, sans-serif;
+        margin: 0 0 0 0;
+	height: 30px;
+	background: #bdb7bc url(/SKPapplication/images/bg4.png) top left repeat-x;
+        
+	width: 1150px;
+	padding: 0 0 0 140px;
+	line-height: 30px;
+	/*text-shadow: 1px 1px 0px #FFF;*/
+	border-radius: 0px 0px 0px 0px;
+}
+
+#menu2 a {
+	text-decoration: none;
+	font-size: 1.5em;
+	text-transform: lowercase;
+	color: #FFFFFF;
+}
+
+#menu2 ul {
+	list-style: none;
+}
+
+#menu2 ul li {
+	padding: 13px 15px 10px 15px;
+	margin-right: 10px;
+	display: inline;
+}
+
+#menu2 ul li.first {
+	padding-left: 0;
+}
+
+#menu2 .current_page_item {
+	background: rgba(0,0,0,0.1);
+	border-radius: 4px;
+	padding: 1px 15px 1px 15px !important;
+	border-top: solid 1px rgba(0,0,0,0.2);
+	border-bottom: solid 1px #fff;
+}
+
+
+
+
+
+
+#menu a {
+	text-decoration: none;
+	font-size: 1.5em;
+	text-transform: lowercase;
+	color: #FFFFFF;
+}
+
+#menu ul {
+	list-style: none;
+}
+
+#menu ul li {
+	padding: 13px 15px 10px 15px;
+	margin-right: 10px;
+	display: inline;
+}
+
+#menu ul li.first {
+	padding-left: 0;
+}
+
+#menu .current_page_item {
+	background: rgba(0,0,0,0.1);
+	border-radius: 4px;
+	padding: 1px 15px 1px 15px !important;
+	border-top: solid 1px rgba(0,0,0,0.2);
+	border-bottom: solid 1px #fff;
+}
+
+#page2{
+    	width: 1200px;
+        padding: 45px 45px 0 45px;
+	position: relative;
+	background: #BDE1F1;
+	margin: 0;
+	border-left: solid 1px rgba(255,230,255,0.15);
+	border-right: solid 1px rgba(255,230,255,0.15);
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.5);
+	/*text-shadow: 1px 1px 1px rgba(0,0,0,0.75);*/
+        font-family: Abel, sans-serif;
+        font-size: 14px;
+}
+
+#pageKecil {
+	width: 600px;
+        padding: 30px 30px 0 30px;
+	position: relative;
+	background: #BDE1F1;
+	margin: 0;
+	border-left: solid 1px rgba(255,230,255,0.15);
+	border-right: solid 1px rgba(255,230,255,0.15);
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.5);
+	/*text-shadow: 1px 1px 1px rgba(0,0,0,0.75);*/
+        font-family: Abel, sans-serif;
+        font-size: 14px;
+}
+
+#page {
+	width: 1090px;
+	padding: 45px 45px 0 45px;
+	position: relative;
+	background: #BDE1F1;
+	margin: 0;
+	border-left: solid 1px rgba(255,230,255,0.15);
+	border-right: solid 1px rgba(255,230,255,0.15);
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.5);
+	/*text-shadow: 1px 1px 1px rgba(0,0,0,0.75);*/
+        font-family: Abel, sans-serif;
+        font-size: 14px;
+}
+
+#page .section-list {
+	padding-left: 0;
+	list-style: none;
+}
+
+#page .section-list li {
+	padding: 30px 0 30px 0;
+	clear: both;
+}
+
+#page ul {
+	list-style: none;
+}
+
+#page-bottom {
+	width: 1090px;
+	padding: 45px 45px 30px 45px;
+	color: #444;
+	background: #A59DA4 url(/SKPapplication/images/bg1.png) top left repeat-x;
+	position: relative;
+	/*text-shadow: 1px 1px 0px rgba(255,255,255,0.5);*/
+	border-radius: 0px 0px 10px 10px;
+	box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.5), inset 0px 0px 0px 2px rgba(0,0,0,0.25), 0px 4px 3px 1px rgba(0,0,0,0.25);
+	border: solid 1px rgba(0,0,0,0.5);
+}
+
+
+#pageKecil-bottomkecil {
+width: 570px;
+	padding: 45px 45px 30px 45px;
+	color: #444;
+	background: #A59DA4 url(/SKPapplication/images/bg1.png) top left repeat-x;
+	position: relative;
+	/*text-shadow: 1px 1px 0px rgba(255,255,255,0.5);*/
+	border-radius: 0px 0px 10px 10px;
+	box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.5), inset 0px 0px 0px 2px rgba(0,0,0,0.25), 0px 4px 3px 1px rgba(0,0,0,0.25);
+	border: solid 1px rgba(0,0,0,0.5);
+}
+#pageKecil-bottomkecil-kiri {
+	width: 230px;
+	float: left;
+        margin: 0 0 0 0px;
+        font-weight: bold;
+}
+
+#pageKecil-bottomkecil-kanan {
+	margin: 0 0 0 290px;
+	width: 230px;
+        font-weight: bold;
+}
+
+.button
+{
+    background-image: url(/SKPapplication/images/simpan.png);
+    width: 100px;
+}
+
+
+
+
+#page-bottom2 {
+	width: 1200px;
+	
+}
+
+
+#page-bottom a {
+	color: #212121;
+}
+
+#page-bottom h2, #page-bottom h3, #page-bottom h4 {
+	color: #000;
+}
+
+#page-bottom ul {
+	list-style: none;
+}
+
+#page-bottom-content {
+	width: 500px;
+	float: left;
+}
+
+#page-bottom-sidebar {
+	margin: 0 0 0 570px;
+	width: 500px;
+}
+
+
+
+
+
+
+#box1 {
+	width: 370px;
+	float: left;
+	overflow: hidden;
+}
+
+#box2 {
+	width: 370px;
+	overflow: hidden;
+	margin: 0 0 0 395px;
+}
+
+#search input.form-submit {
+	font-family: Abel, sans-serif;
+	background: #FFF;
+	color: #000;
+	margin-left: 1em;
+	border: 0;
+	padding: 10px;
+}
+
+#search input.form-text {
+	padding: 10px;
+	border: dashed 1px #4A3A48;
+}
+
+#sidebar {
+	padding: 0;
+	margin: 0 0 0 790px;
+	width: 300px;
+}
+
+#wrapper {
+	width: 1180px;
+	position: relative;
+	margin: 0 auto 0 auto;
+}

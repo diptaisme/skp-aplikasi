@@ -167,7 +167,7 @@ public String id;
 }
         System.out.println(i);
         
-       DBConnection dbConn = new DBConnection();
+       DBConnection dbConn = DBConnection.getInstance();
        PnsSkp ipns = new PnsSkp();
        DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
        // baca.gettosql();

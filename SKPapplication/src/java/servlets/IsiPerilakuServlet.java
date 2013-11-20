@@ -129,7 +129,7 @@ public class IsiPerilakuServlet extends HttpServlet {
         if (action != null && action.equalsIgnoreCase("HapusPerilaku")) {
             String hapusPerilaku = new GoIndex().getHapusPerilaku(nipHapusPerilaku);
 
-            RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
             dis.forward(request, response);
         } else if (action != null && action.equalsIgnoreCase("Lihat")) {
             String idNipTambahan = nipLihatPerilaku;
@@ -150,7 +150,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             request.setAttribute("nama", nama);
             request.setAttribute("jenis", jenis);
 
-            RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
             dis.forward(request, response);
         } else if (action != null && action.equalsIgnoreCase("UpdatePerilaku")) {
             nilaiPerilaku nilaiPrilak = new GoIndex().getPrilaku(nipUpdatePerilaku);
@@ -182,7 +182,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             request.setAttribute("ratarata", _ratarata);
             request.setAttribute("nama", _nama);
 
-            RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
             dis.forward(request, response);
         } else if (action == null && nipPerilaku != null) {
             String idNipTambahan = nipPerilaku;
@@ -200,7 +200,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             request.setAttribute("isJab", jnsjabtn);
             request.setAttribute("jenis", jnsjabtn);
             request.setAttribute("pnsList", pnsList);
-            RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
             dis.forward(request, response);
         } else if (action == null && nipAtasanMonitoring != null) {
             ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
@@ -217,7 +217,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             request.setAttribute("pns", pns);
 
             request.setAttribute("nipAtasan", idNipTambahan);
-            RequestDispatcher dis = request.getRequestDispatcher("monitoring.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
             dis.forward(request, response);
         } else if (action == null && nipAtasanMonitoring2 != null) {
             ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
@@ -253,7 +253,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             request.setAttribute("pns", pns);
 
             request.setAttribute("nipAtasan", idNipTambahan);
-            RequestDispatcher dis = request.getRequestDispatcher("monitoring.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
             dis.forward(request, response);
         } else if (action == null && nipatasanMonitoringCetak != null) {
             ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
@@ -267,7 +267,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             request.setAttribute("pns", pns);
 
             request.setAttribute("nipAtasan", idNipTambahan);
-            RequestDispatcher dis = request.getRequestDispatcher("monitoring.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
             dis.forward(request, response);
         } else if (action == null && nipAtasan != null) {
             //nipAtasan = request.getParameter("nipAtasan");
@@ -289,7 +289,7 @@ public class IsiPerilakuServlet extends HttpServlet {
 //            List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNipTambahan);
 //            request.setAttribute("kereaktifitas", kereaktifitas);
 
-            RequestDispatcher dis = request.getRequestDispatcher("nilaiTugasTambahan.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
             dis.forward(request, response);
         } else if ("Koef".equals(action) && NipKoefKreatifitas != null) {
             String idNipTambahan = NipKoefKreatifitas;
@@ -323,7 +323,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNipTambahan);
             request.setAttribute("kereaktifitas", kereaktifitas);
 
-            RequestDispatcher dis = request.getRequestDispatcher("nilaiTugasTambahan.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
             dis.forward(request, response);
         } else if ("Kreaf".equals(action) && NipKoefKreatifitas != null) {
 
@@ -348,7 +348,7 @@ public class IsiPerilakuServlet extends HttpServlet {
 
             TugasTambahan kereaktifitas2 = new GoIndex().getKreatifitasSatoe(idNipTambahan, idTambahan);
             request.setAttribute("kereaktifitas2", kereaktifitas2);
-            RequestDispatcher dis = request.getRequestDispatcher("nilaiTugasTambahan.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
             dis.forward(request, response);
 
         } else if ("HitungTambahan".equals(action)) {
@@ -379,7 +379,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNipTambahan);
             request.setAttribute("kereaktifitas", kereaktifitas);
 
-            RequestDispatcher dis = request.getRequestDispatcher("nilaiTugasTambahan.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
             dis.forward(request, response);
 
         } else if ("HitungKreatifitas".equals(action) && idTambahanKreatifitas != null) {
@@ -413,7 +413,7 @@ public class IsiPerilakuServlet extends HttpServlet {
                 List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNipTambahan);
                 request.setAttribute("kereaktifitas", kereaktifitas);
 
-                RequestDispatcher dis = request.getRequestDispatcher("nilaiTugasTambahan.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
                 PrintWriter out = response.getWriter();
                 dis.include(request, response);
                 out.println(hitungKoefKreaf);
@@ -438,7 +438,7 @@ public class IsiPerilakuServlet extends HttpServlet {
                 List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNipTambahan);
                 request.setAttribute("kereaktifitas", kereaktifitas);
 
-                RequestDispatcher dis = request.getRequestDispatcher("nilaiTugasTambahan.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
                 PrintWriter out = response.getWriter();
                 dis.include(request, response);
             }
@@ -470,7 +470,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNipTambahan);
             request.setAttribute("kereaktifitas", kereaktifitas);
 
-            RequestDispatcher dis = request.getRequestDispatcher("nilaiTugasTambahan.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
             PrintWriter out = response.getWriter();
             dis.include(request, response);
             out.println(tolakanAtasanTugasTambahan);
@@ -555,7 +555,7 @@ public class IsiPerilakuServlet extends HttpServlet {
                 request.setAttribute("jumlah", _jumlah);
                 request.setAttribute("ratarata", _ratarata);
 
-                RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
                 dis.forward(request, response);
 
             } else if (param.equalsIgnoreCase("LIHAT")) {
@@ -617,7 +617,7 @@ public class IsiPerilakuServlet extends HttpServlet {
                     request.setAttribute("ratarata", _ratarata);
                     request.setAttribute("nama", _nama);
 
-                    RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+                    RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
                     dis.forward(request, response);
                 } else {
                     String idNipTambahan1 = niplihat;
@@ -635,7 +635,7 @@ public class IsiPerilakuServlet extends HttpServlet {
                     request.setAttribute("nip", nip);
                     request.setAttribute("nama", nama);
 
-                    RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+                    RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
                     dis.forward(request, response);
                 }
 
@@ -688,7 +688,7 @@ public class IsiPerilakuServlet extends HttpServlet {
                 request.setAttribute("jenis", jnsjabtn);
                 request.setAttribute("isJab", jnsjabtn);
 
-                RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
                 dis.forward(request, response);
             } else if (param.equalsIgnoreCase("KEMBALI")) {
                 RequestDispatcher dis = getServletContext().getRequestDispatcher("/GetPnsServlet?etst=test");
@@ -722,7 +722,7 @@ public class IsiPerilakuServlet extends HttpServlet {
                 List<PnsSkp> pnsList = new GoIndex().getTugasTambahanBawahanList2(iUnorTambahan);
                 request.setAttribute("pnsList", pnsList);
 
-                RequestDispatcher dis = request.getRequestDispatcher("indexPerilaku.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
                 dis.forward(request, response);
 
             } //            else if(param.equalsIgnoreCase("HITUNG"))
@@ -838,7 +838,7 @@ public class IsiPerilakuServlet extends HttpServlet {
      
      List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(id);
      request.setAttribute("kereaktifitas", kereaktifitas);
-                RequestDispatcher dis = request.getRequestDispatcher("monitoring.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
                 dis.forward(request, response);
 
             }
@@ -877,7 +877,7 @@ public class IsiPerilakuServlet extends HttpServlet {
 //            List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNipTambahan);
 //            request.setAttribute("kereaktifitas", kereaktifitas);
 
-            RequestDispatcher dis = request.getRequestDispatcher("nilaiTugasTambahan.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
             dis.forward(request, response);
 
 

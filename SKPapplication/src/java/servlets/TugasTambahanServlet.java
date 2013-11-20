@@ -91,7 +91,7 @@ public class TugasTambahanServlet extends HttpServlet {
             List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNip);
             request.setAttribute("kereaktifitas", kereaktifitas);
             
-            RequestDispatcher dis = request.getRequestDispatcher("TugasTambahan.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
             dis.forward(request, response);
         }
         else if(action != null && action.equalsIgnoreCase("UpdateTambahan"))
@@ -127,7 +127,7 @@ public class TugasTambahanServlet extends HttpServlet {
             List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNip);
             request.setAttribute("kereaktifitas", kereaktifitas);
 
-            RequestDispatcher dis = request.getRequestDispatcher("TugasTambahan.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
             dis.forward(request, response);
         }
         else if (action == null && idNiptambahan != null)
@@ -209,7 +209,7 @@ public class TugasTambahanServlet extends HttpServlet {
                 request.setAttribute("idNip", _idNip);
                 
 
-                RequestDispatcher dis = request.getRequestDispatcher("TugasTambahan.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
                 dis.forward(request, response);
            }
            else if (Submit.equalsIgnoreCase("TUGAS TAMBAHAN"))
@@ -227,7 +227,7 @@ public class TugasTambahanServlet extends HttpServlet {
                 request.setAttribute("namaPns", _nama);
                 request.setAttribute("idNip", _idNip);
 
-                RequestDispatcher dis = request.getRequestDispatcher("TugasTambahan.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
                 dis.forward(request, response);
            }
            else if (Submit.equalsIgnoreCase("BATAL"))
@@ -253,7 +253,7 @@ public class TugasTambahanServlet extends HttpServlet {
                 request.setAttribute("idNip", _idNip);
 
                 
-               RequestDispatcher dis = request.getRequestDispatcher("TugasTambahan.jsp");
+               RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
               //  RequestDispatcher dis = request.getRequestDispatcher("/ReportIsi4FaktorServlet?etst=test");
                 dis.forward(request, response);
            }

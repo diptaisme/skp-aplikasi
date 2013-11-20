@@ -313,10 +313,10 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
             } else {
             }
         } else if ((id == null || "".equals(id) || " ".equals(id)) && ("target".equals(target))) {
-            RequestDispatcher dis = request.getRequestDispatcher("indexBaruBiru2.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
             dis.forward(request, response);
         } else if ((idR == null || "".equals(idR) || " ".equals(idR)) && ("realisasi".equals(realisasi))) {
-            RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru.jsp");
             dis.forward(request, response);
         } else {
         }

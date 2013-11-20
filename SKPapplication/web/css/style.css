@@ -12,7 +12,7 @@
 	height:600px;
 	float:left;
 	border-bottom:1px solid #000;
-	background:#444 url(../images/bg.png) repeat top left;
+	background:#444 url(/SKPapplication/images/bg.png) repeat top left;
 	position:relative;
 	-moz-box-shadow:3px -3px 10px #000;
 	-webkit-box-shadow:3px -3px 10px #000;
@@ -66,7 +66,7 @@ span.cc_title{
 	border-bottom:1px solid #000;
 	position:absolute;
 	left:-700px;
-	background:#444 url(../images/bg.png) repeat top left;
+	background:#444 url(/SKPapplication/images/bg.png) repeat top left;
 	overflow:hidden;
 	-moz-box-shadow:4px 0 7px #000;
 	-webkit-box-shadow:4px 0 7px #000;

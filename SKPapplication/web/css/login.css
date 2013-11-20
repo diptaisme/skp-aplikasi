@@ -36,32 +36,32 @@ body {
 	padding-bottom:2px;
 	font-family:tahoma;
 	font-size:12px;
-	background-image:url(images/login.gif);
+	background-image:url(/SKPapplication/images/login.gif);
 	background-repeat: no-repeat;
 	/*login.png*/
 }
 
 .new_button {
-	background-color:;
+	background-color:
 	border:0px;
 	height:21px;
 	width:90px;
 	padding-bottom:2px;
 	font-family:arial;
 	font-size:12px;
-	background-image:url(images/bouton.png);
+	background-image:url(/SKPapplication/images/bouton.png);
 	background-repeat: no-repeat;
 }
 
 .new_button_large {
-        background-color:;
+        background-color:
         border:0px;
         height:21px;
         width:90px;
         padding-bottom:2px;
         font-family:arial;
         font-size:12px;
-        background-image:url(images/boutton_large.png);
+        background-image:url(/SKPapplication/images/boutton_large.png);
         background-repeat: no-repeat;
 }
 
@@ -74,18 +74,18 @@ body {
         font-family:tahoma;
         font-size:11px;
 		font-weight:bold;
-        background-image:url(images/btn-long.png);
+        background-image:url(/SKPapplication/images/btn-long.png);
         background-repeat: no-repeat;
 }
 
 
 .new_button:hover {
-        background-image:url(images/boutton_over.png);
+        background-image:url(/SKPapplication/images/boutton_over.png);
         color:#dddddd;
 }
 
 .new_button_large:hover {
-        background-image:url(images/bouton_large_over.png);
+        background-image:url(/SKPapplication/images/bouton_large_over.png);
         color:#dddddd;
 }
 
