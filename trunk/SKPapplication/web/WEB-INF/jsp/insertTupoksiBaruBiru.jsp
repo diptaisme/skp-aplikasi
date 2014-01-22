@@ -15,6 +15,7 @@
 <meta name="keywords" content="corporate, free web template" />
 <meta name="description" content="SKI" />
 <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
+<link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
 <script language="javascript" type="text/javascript">
    
 function clearText(field)
@@ -25,10 +26,6 @@ function clearText(field)
 </script>
 <script type="text/javascript" language="javascript"> 
     
-  
-   
-
-
   
      function testHilang() {
     
@@ -103,31 +100,29 @@ return document.getElementById('chq2').style.visibility='hidden';
     </script> 
 </head>
 <body>
-    <div id="templatemo_site_title_bar_wrapper">
-        <div id="templatemo_site_title_bar">
+    <div id="wrapper">
+         <div id="header">
+                <div id="logo">
+                    <table >
+                        <tr>
+                            <th rowspan="2" >
+                                <img src="/SKPapplication/images/burung_garuda7.png"/></th>
+                            <td>
+                                SASARAN KINERJA PEGAWAI
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                B K N
+                            </td>
+                            <td width="100" hidden="true" align="left"> &nbsp;&nbsp;&nbsp;&nbsp;Login <c:out  value="${sessionScope.user}" /> </td>
+                            <td width="414" hidden="true" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
 
-        </div> <!-- end of templatemo_site_title_bar -->
-    </div> <!-- end of templatemo_site_title_bar_wrapper -->
-       
- <%--   <form onclick="getSelectedRadio()">
-<input type="radio" name="Jabatan" value="Cash" id="pay1" />&nbsp;Struktural
-<input type="radio" name="Jabatan" value="Bank Transfer" id="pay2" />&nbsp;Fungsional Tertentu
-<input type="radio" name="Jabatan" value="Cheque" id="pay3" onClick="getSelectedRadio()" />&nbsp;Umum
-<input type="text" name="chq" value="" id="chq" style="visibility:hidden;" />
-<input type="text" name="chq2" value="" id="chq2" style="visibility:hidden;" />
+                        </tr>
 
-</form> --%>
- 
- 
-
-
-
-
- 
- 
-   
- 
- 
+                    </table>
+                </div>
+            </div>
  <form name="form1" method="post" action="referensiInstansiServlet"  >
          
             <table width="1030" height="150" border="0">
@@ -136,14 +131,7 @@ return document.getElementById('chq2').style.visibility='hidden';
                 </tr>
                 <tr>
                   <td>
-                 <%--   
-         <select id="jabatan" name="jabatan" style="width: 212px;" >
-<option value="1" >Struktural</option>
-<option value="2">Fungsional Tertentu</option>
-<option value="3" >Fungsional Umum</option>
-
- </select>--%>
-                 
+              
                  <input type="radio" name="jabatan"   value="1" id="jabatan1" onclick="testHilang()" <c:if test="${jabatan == '1'}">checked</c:if> />&nbsp;Struktural
                  <input type="radio" name="jabatan" value="2" id="jabatan2" onclick="testHilang()" <c:if test="${jabatan == '2'}">checked</c:if> />&nbsp;Fungsional Tertentu
                 <input type="radio" name="jabatan" value="4" id="jabatan4" onclick="testHilang()" <c:if test="${jabatan == '4'}">checked</c:if> />&nbsp;Fungsional Umum
@@ -282,16 +270,10 @@ return document.getElementById('chq2').style.visibility='hidden';
                     </c:forEach>
              </table> 
           </div>
-                     
-       
-                           
         
   </form>
-  
-            
-            
-            
-            
+       
+    </div>          
 <SCRIPT TYPE="text/javascript">
       
 function updateClock()
@@ -539,16 +521,7 @@ function alertnipnull()
         background-position: -314px 0;
         color:white;
 }
-    
-tr:nth-child
-{
-    background-color:#D9D7D7; color: black;
-}
 
-tr:nth-child(even)
-{
-    background-color:#D9D7D7; color: black;
-}
 
      
 form fieldset
@@ -604,8 +577,8 @@ form input.highlight:focus
 	color: #d7d7d7;
 	border: solid 1px #333;
 	background: #333;
-	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#000));
-	background: -moz-linear-gradient(top,  #666,  #000);
+	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#085d93));
+	background: -moz-linear-gradient(top,  #666,  #085d93);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000');
 }
 .black:hover {
