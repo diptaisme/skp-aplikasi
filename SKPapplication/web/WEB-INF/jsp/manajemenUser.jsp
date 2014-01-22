@@ -15,29 +15,61 @@
 <meta name="keywords" content="corporate, free web template" />
 <meta name="description" content="SKI" />
 <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
+<link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
+       
+
+
+
 <script language="javascript" type="text/javascript">
 function clearText(field)
 {
     if (field.defaultValue == field.value) field.value = '';
     else if (field.value == '') field.value = field.defaultValue;
 }
+
+function alertnipnull(evt)
+{
+    evt = (evt) ? evt : window.event
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+     if (charCode > 31 && (charCode < 48 || charCode > 57)) 
+    {
+        status = "This field accepts numbers only."
+        return false
+    }
+    
+    status = ""
+    return true
+}
+ 
 </script>
 </head>
 <body>
-    <div id="container">
-    <div id="templatemo_site_title_bar3_wrapper">
-        <div id="templatemo_site_title_bar3">
-            <div id="templatemo_menu">
-                	
-            </div> <!-- end of templatemo_menu -->  
-            <div class="cleaner"></div>
-            <div id="search_box">
+      <div id="wrapper">
+      <div id="header">
+                <div id="logo">
+                    <table >
+                        <tr>
+                            <th rowspan="2" >
+                                <img src="/SKPapplication/images/burung_garuda7.png"/></th>
+                            <td>
+                                SASARAN KINERJA PEGAWAI
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                B K N
+                            </td>
+                            <td width="100" hidden="true" align="left"> &nbsp;&nbsp;&nbsp;&nbsp;Login <c:out  value="${sessionScope.user}" /> </td>
+                            <td width="414" hidden="true" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
 
+                        </tr>
+
+                    </table>
+                </div>
             </div>
-        </div> <!-- end of templatemo_site_title_bar -->
-    </div> <!-- end of templatemo_site_title_bar_wrapper -->
     
-    <div id="templatemo_content3_admin">
+    
         <form action="administratorFunctionServlet" method="post">
             <table width="1320" border="0" align="left">
                 <tr>
@@ -60,7 +92,7 @@ function clearText(field)
                                 <td width="30"><div align="left"><span class="style3">NIP BARU</span></div></td>
                                 <td><input type="text" name="nipbaru" onkeypress="return alertnipnull(event)" maxlength="18"></input></td>
                                 <td>
-                                    <input type="submit" name="param" class="button black bigrounded" value="AMBIL" />
+                                    <input type="submit" name="param"  value="AMBIL" />
                                 </td>
                             </tr>
                             <tr>
@@ -72,7 +104,7 @@ function clearText(field)
                                 <td><div align="left"><span class="style3">2</span></div></td>
                                 <td align="left"><span class="style3">NIP</span></td>
                                 <td align="left"><c:out value="${pns.getNipBaru()}" /></td>
-                                <input  type="hidden"  name="getNipBaruPns" value="${pns.getNipBaru()}">
+                                <input  type="hidden"  name="getNipBaruPns" value="${pns.getNipBaru()}"/>
                             </tr>
                             <tr>
                                 <td><div align="left"><span class="style3">3</span></div></td>
@@ -107,6 +139,8 @@ function clearText(field)
                                         <option value="-">-</option>
                                         <option value="user">user</option>
                                         <option value="operator">operator</option>
+                                        <option value="administrator">Administrator</option>
+                                        <option value="Perwakilan_user">Perwakilan User</option>
                                     </select>
                                 </td>
                             </tr>
@@ -114,227 +148,23 @@ function clearText(field)
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="submit" name="param" class="button black bigrounded" value="OK" /> 
+                                    <input type="submit" name="param"  value="OK" /> 
+                                </td>
+                                 <td>
+                                    <input type="submit" name="param"  value="Delete" /> 
                                 </td>
                             </tr>
                         </table>
                     </td>
-                    <td>
-                        <table width="330" border="0" align="left">
-                            <tr>
-                                <td colspan="3" align="center"><strong><h3>PENCARIAN USER</h3></strong></td>
-                            </tr>
-                            <tr>
-                                <td width="50"></td>
-                                <td width="100"></td>
-                                <td width="180"></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><div align="left"><span class="style3">NIP BARU</span></div></td>
-                                <td><input type="text" name="nipbaru" onkeypress="return alertnipnull(event)" maxlength="18"></input></td>
-                                <td>
-                                    <input type="submit" name="param" class="button black bigrounded" value="AMBIL" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="30"><div align="left"><span class="style3">1</span></div></td>
-                                <td width="135" align="left"><span class="style3">Nama</span></td>
-                                <td width="414" align="left"> <c:out value="${pns.getNamaPns()}"/> </td>
-                            </tr>
-                            <tr>
-                                <td><div align="left"><span class="style3">2</span></div></td>
-                                <td align="left"><span class="style3">NIP</span></td>
-                                <td align="left"><c:out value="${pns.getNipBaru()}" /></td>
-                                <input  type="hidden"  name="getNipBaruPns" value="${pns.getNipBaru()}">
-                            </tr>
-                            <tr>
-                                <td><div align="left"><span class="style3">3</span></div></td>
-                                <td align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
-                                <td align="left"><c:out value="${pns.getPangkat()}" /></td>
-                            </tr>
-                            <tr>
-                                <td><div align="left"><span class="style3">4</span></div></td>
-                                <td align="left"><span class="style3">Jabatan</span></td>
-                                <td align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
-                            </tr>
-                            <tr>
-                                <td><div align="left"><span class="style3">5</span></div></td>
-                                <td align="left"><span class="style3">Unit Kerja </span></td>
-                                <td align="left"><c:out value="${pns.getNamaUnor()}" /></td>
-                            </tr>
-                            <tr>
-                                <td><div align="left"><span class="style3">6</span></div></td>
-                                <td align="left"><span class="style3">USERNAME</span></td>
-                                <td><input type="text" name="usernameinputan"></input></td>
-                            </tr>
-                            <tr>
-                                <td><div align="left"><span class="style3">7</span></div></td>
-                                <td align="left"><span class="style3">PASSWORD</span></td>
-                                <td><input type="text" name="passwordinputan"></input></td>
-                            </tr>
-                            <tr>
-                                <td><div align="left"><span class="style3">8</span></div></td>
-                                <td><div align="left"><span class="style3">KEWENANGAN</span></div></td>
-                                <td><input type="text" name="kewenanganinputan"></input></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <input type="submit" name="param" class="button black bigrounded" value="UBAH" /> 
-                                    <input type="submit" name="param" class="button black bigrounded" value="HAPUS" /> 
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table width="330" border="0" align="left">
-                            <tr>
-                                <td colspan="3" align="center"><strong><h3>FUNGSI ADMIN LAINNYA</h3></strong></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table width="330" border="0" align="left">
-                            <tr>
-                                <td colspan="3" align="center"><strong><h3>FUNGSI ADMIN LAINNYA</h3></strong></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table width="330" border="0" align="left">
-                            <tr>
-                                <td colspan="3" align="center"><strong><h3>FUNGSI ADMIN LAINNYA</h3></strong></td>
-                            </tr>
-                            <tr>
-                                <td width="50"><b><i>NO</i></b></td>
-                                <td width="100"><b><i>NAMA</i></b></td>
-                                <td width="180"><b><i>KET</i></b></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <<td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                            <tr>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                                <td><i>sample</i></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table width="330" border="0" align="left">
-                            <tr>
-                                <td colspan="3" align="center"><strong><h3>FUNGSI ADMIN LAINNYA</h3></strong></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table width="330" border="0" align="left">
-                            <tr>
-                                <td colspan="3" align="center"><strong><h3>FUNGSI ADMIN LAINNYA</h3></strong></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table width="330" border="0" align="left">
-                            <tr>
-                                <td colspan="3" align="center"><strong><h3>FUNGSI ADMIN LAINNYA</h3></strong></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </td>
+                   
                 </tr>
             </table>
+                            
+                            
+                            
         </form>  
-    </div>
-                
-                <SCRIPT TYPE="text/javascript">
-                    function alertnipnull(evt)
-                        {
-                            evt = (evt) ? evt : window.event
-                            var charCode = (evt.which) ? evt.which : evt.keyCode
-                            if (charCode > 31 && (charCode < 48 || charCode > 57)) 
-                            {
-                                status = "This field accepts numbers only."
-                                return false
-                            }
-                            status = ""
-                            return true
-                        }
-                </script> 
-                
+  
+              
+      </div>             
 </body>
 </html>

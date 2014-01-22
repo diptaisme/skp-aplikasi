@@ -76,6 +76,10 @@
         <servlet-name>RequestServlet</servlet-name>
         <servlet-class>servlets.RequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NavigasiProfile</servlet-name>
+        <servlet-class>servlets.NavigasiProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GetPnsServlet</servlet-name>
         <url-pattern>/GetPnsServlet</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>RequestServlet</servlet-name>
         <url-pattern>/RequestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NavigasiProfile</servlet-name>
+        <url-pattern>/NavigasiProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

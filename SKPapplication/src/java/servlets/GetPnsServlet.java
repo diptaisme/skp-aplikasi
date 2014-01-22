@@ -101,208 +101,181 @@ public class GetPnsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-          //String niprealisasi = request.getParameter("niprealisasi");
-          String id = request.getParameter("txtNIPBaru"); //mendapatkan NIP, saat di index klik REALISASI menuju ke indexRealisasi
-          String idB = request.getParameter("txtNIPBaruB"); //mendapatkan NIP pada KEMBALI isi4faktor
-          String idR = request.getParameter("txtNIPBaruReal"); //mendapatkan NIP pada KEMBALI realisasi
-          String idRisi = request.getParameter("txtNIPBaruReal"); //mendapatkan NIP pada KEMBALI realisasi
-          
-          String idP = request.getParameter("txtNIPBaruPerilaku");
-            String _pilih_session=request.getParameter("pilih_session");
-          //String periode = request.getParameter("Periode");
-          
-          String idNiptambahan = (String) request.getAttribute("idNiptambahan");
-            if(_pilih_session==null){
-               _pilih_session="-";
-           }
+
+        //String niprealisasi = request.getParameter("niprealisasi");
+        String id = request.getParameter("txtNIPBaru"); //mendapatkan NIP, saat di index klik REALISASI menuju ke indexRealisasi
+        String idB = request.getParameter("txtNIPBaruB"); //mendapatkan NIP pada KEMBALI isi4faktor
+        String idR = request.getParameter("txtNIPBaruReal"); //mendapatkan NIP pada KEMBALI realisasi
+        String idRisi = request.getParameter("txtNIPBaruReal"); //mendapatkan NIP pada KEMBALI realisasi
+
+        String idP = request.getParameter("txtNIPBaruPerilaku");
+        String _pilih_session = request.getParameter("pilih_session");
+        //String periode = request.getParameter("Periode");
+
+        String idNiptambahan = (String) request.getAttribute("idNiptambahan");
+        if (_pilih_session == null) {
+            _pilih_session = "-";
+        }
         //  if(niprealisasi == null)
-         // {
-          if ( idRisi == null)
-          {
-              if (id == null)
-              {
-                  if (idB == null)
-                  {
-                      if(idNiptambahan != null)
-                      {
-                          getRealisasi2(request, response);
-                          
-                          if(idP != null)
-                          {
-                              PnsSkp pns = new GoIndex().getPns(idP);
-                              
-                              String nip = pns.getNipBaru();
-                              String nama = pns.getNamaPns();
-                              
-                              request.setAttribute("nip", nip);
-                              request.setAttribute("nama", nama);
-                              
-                              RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
-                              dis.forward(request, response);   
-                          }
-                      }
-                      else
-                      {
-                          getTusiDariIsiTupoksi(request, response);  
-                      }   
-                  }
-                  else
-                  {
-                      if(idR == null)
-                      {
-                          //untuk button KEMBALI di isi4faktor.jsp
-                          //jika idB ada isinya (nip pns ybs)
-                            PnsSkp pns = new GoIndex().getPns(idB);
+        // {
+        if (idRisi == null) {
+            if (id == null) {
+                if (idB == null) {
+                    if (idNiptambahan != null) {
+                        getRealisasi2(request, response);
 
-                            if (pns == null)
-                            {
-                                
+                        if (idP != null) {
+                            PnsSkp pns = new GoIndex().getPns(idP);
+
+                            String nip = pns.getNipBaru();
+                            String nama = pns.getNamaPns();
+
+                            request.setAttribute("nip", nip);
+                            request.setAttribute("nama", nama);
+
+                            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
+                            dis.forward(request, response);
+                        }
+                    } else {
+                        getTusiDariIsiTupoksi(request, response);
+                    }
+                } else {
+                    if (idR == null) {
+                        //untuk button KEMBALI di isi4faktor.jsp
+                        //jika idB ada isinya (nip pns ybs)
+                        PnsSkp pns = new GoIndex().getPns(idB);
+
+                        if (pns == null) {
+                        } else {
+                            String unorAtasan = pns.getDiAtasanId();
+                            String UnorPns = pns.getUnorId();
+                            String InstansiPns = pns.getInstansiId();
+                            String NipPns = pns.getNipBaru();
+
+                            PnsSkp UnorAts = null;
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
                             }
-                            else
-                            {
-                                String unorAtasan = pns.getDiAtasanId();
-                                String UnorPns = pns.getUnorId();
-                                String InstansiPns = pns.getInstansiId();
-                                String NipPns = pns.getNipBaru();
-                                
-                                    PnsSkp UnorAts = null;
-         if(ModelLocatorSKP.nipBaruAtasan==null || ModelLocatorSKP.nipBaruAtasan.equals("")|| ModelLocatorSKP.nipBaruAtasan.equals(" ")){
-               UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-         }else{
-                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
-         }
-          
-                                
-                             //   PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-                                
-                                
-                                
-                                 List<TupoksiKeIsi4Faktor> tukesiServlet =null;
-                         if(_pilih_session.equals("-")) {
+
+
+                            //   PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+
+
+
+                            List<TupoksiKeIsi4Faktor> tukesiServlet = null;
+                            if (_pilih_session.equals("-")) {
                                 tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-                         }else{
-                                tukesiServlet = new GoIndex().getTukesiSession(UnorPns, InstansiPns, NipPns,_pilih_session); 
-                              }
-                            
-
-                               // List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-
-                                request.setAttribute("pns", pns);
-                                request.setAttribute("UnorAts", UnorAts);
-                                request.setAttribute("tukesiServlet", tukesiServlet); 
-                             
-                            }  
-
-                            //kirim ke jsp lagi
-                            //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-                            //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
-                            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
-                            dis.forward(request, response);   
-                      }
-                      else
-                      {
-                            PnsSkp pns = new GoIndex().getPns(idR);
-                            if (pns ==null)
-                            {   
+                            } else {
+                                tukesiServlet = new GoIndex().getTukesiSession(UnorPns, InstansiPns, NipPns, _pilih_session);
                             }
-                            else
-                            {
-                                String unorAtasan = pns.getDiAtasanId();
-                                String UnorPns = pns.getUnorId();
-                                String InstansiPns = pns.getInstansiId();
-                                String NipPns = pns.getNipBaru();
 
-                                PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
 
-                                List<Map<String,Object>> listResult = new ArrayList<Map<String,Object>>();
+                            // List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
 
-                                List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+                            request.setAttribute("pns", pns);
+                            request.setAttribute("UnorAts", UnorAts);
+                            request.setAttribute("tukesiServlet", tukesiServlet);
 
-                                List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
+                        }
 
-                                //StringBuffer Keterangan = new StringBuffer();
+                        //kirim ke jsp lagi
+                        //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
+                        //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
+                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+                        dis.forward(request, response);
+                    } else {
+                        PnsSkp pns = new GoIndex().getPns(idR);
+                        if (pns == null) {
+                        } else {
+                            String unorAtasan = pns.getDiAtasanId();
+                            String UnorPns = pns.getUnorId();
+                            String InstansiPns = pns.getInstansiId();
+                            String NipPns = pns.getNipBaru();
 
-                                int nomorHitung=0;
-                                String nomorstr;
+                            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
 
-                                for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet)
-                                {
-                                    nomorHitung=nomorHitung+1;
-                                    Map<String, Object> test = new HashMap<String, Object>();
-                                    String idTupoksi=tukesiDomain.getIdTupoksi();
-                                    String idIsi4faktor=tukesiDomain.getIdIsi4Faktor();
-                                    realisasi Realisasi= new GoIndex().getIdRealitas(idTupoksi, idp, idIsi4faktor);
-                                    nomorstr =Integer.toString(nomorHitung);
-                                    if (Realisasi != null)
-                                    {
+                            List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
+
+                            List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+
+                            List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
+
+                            //StringBuffer Keterangan = new StringBuffer();
+
+                            int nomorHitung = 0;
+                            String nomorstr;
+
+                            for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet) {
+                                nomorHitung = nomorHitung + 1;
+                                Map<String, Object> test = new HashMap<String, Object>();
+                                String idTupoksi = tukesiDomain.getIdTupoksi();
+                                String idIsi4faktor = tukesiDomain.getIdIsi4Faktor();
+                                realisasi Realisasi = new GoIndex().getIdRealitas(idTupoksi, idp, idIsi4faktor);
+                                nomorstr = Integer.toString(nomorHitung);
+                                if (Realisasi != null) {
                                     test.put("KUALITASR", Realisasi.getKualitasR());
-                                    test.put("KUANTITASR",Realisasi.getKuantitasR());
-                                    test.put("WAKTUR",Realisasi.getWaktuR());
-                                    test.put("BAYARR",Realisasi.getBiayaR());
+                                    test.put("KUANTITASR", Realisasi.getKuantitasR());
+                                    test.put("WAKTUR", Realisasi.getWaktuR());
+                                    test.put("BAYARR", Realisasi.getBiayaR());
 
-                                    test.put("NOMORTUPOKSI",nomorstr); 
-                                    test.put("NAMATUPOKSI",tukesiDomain.getNamaTupoksi()); 
+                                    test.put("NOMORTUPOKSI", nomorstr);
+                                    test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
 
-                                    test.put("KUANTITAS4",tukesiDomain.getKuantitas4());
-                                    test.put("KUALITAS4",tukesiDomain.getKualitas4());
-                                    test.put("WAKTU4",tukesiDomain.getWaktu4());
-                                    test.put("BIAYA4",tukesiDomain.getBiaya4());
+                                    test.put("KUANTITAS4", tukesiDomain.getKuantitas4());
+                                    test.put("KUALITAS4", tukesiDomain.getKualitas4());
+                                    test.put("WAKTU4", tukesiDomain.getWaktu4());
+                                    test.put("BIAYA4", tukesiDomain.getBiaya4());
 
                                     listResult.add(test);
-                                    }
-                                    else
-                                    {
-                                        test.put("KUALITASR", "-");
-                                        test.put("KUANTITASR","-");
-                                        test.put("WAKTUR","-");
-                                        test.put("BAYARR","-");
+                                } else {
+                                    test.put("KUALITASR", "-");
+                                    test.put("KUANTITASR", "-");
+                                    test.put("WAKTUR", "-");
+                                    test.put("BAYARR", "-");
 
-                                        test.put("NOMORTUPOKSI",nomorstr); 
-                                        test.put("NAMATUPOKSI",tukesiDomain.getNamaTupoksi()); 
-                                        test.put("KUANTITAS4",tukesiDomain.getKuantitas4());
-                                        test.put("KUALITAS4",tukesiDomain.getKualitas4());
-                                        test.put("WAKTU4",tukesiDomain.getWaktu4());
-                                        test.put("BIAYA4",tukesiDomain.getBiaya4());
+                                    test.put("NOMORTUPOKSI", nomorstr);
+                                    test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
+                                    test.put("KUANTITAS4", tukesiDomain.getKuantitas4());
+                                    test.put("KUALITAS4", tukesiDomain.getKualitas4());
+                                    test.put("WAKTU4", tukesiDomain.getWaktu4());
+                                    test.put("BIAYA4", tukesiDomain.getBiaya4());
 
 
-                                    }
                                 }
-
-                                request.setAttribute("pns", pns);
-                                request.setAttribute("UnorAts", UnorAts);
-                                request.setAttribute("listResult",listResult);
-                                //request.setAttribute("tukesiServlet", tukesiServlet);
-                                request.setAttribute("realkesiServlet", realkesiServlet);
                             }
-                            
-                            getTugasTambahan(request, response);
 
-                            //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
-                            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
-                            dis.forward(request, response);
-                      }
-                  }
-              }
-              else
-              {
-                  //di index.jsp mengklik link REALISASI dan menuju ke indexRealisasi.jsp dan otomatis terisi
-                  //sesuai dengan nip ybs 
-                  getRealisasi2(request, response);
-                  getTugasTambahan(request, response);
-              }
-          }    
-          else
-          {
-                getKembaliRealisasi(request, response);   
-          }
-         // }
-         // else
-         // {
-              //getRealisasi(request, response);
-          //}
+                            request.setAttribute("pns", pns);
+                            request.setAttribute("UnorAts", UnorAts);
+                            request.setAttribute("listResult", listResult);
+                            //request.setAttribute("tukesiServlet", tukesiServlet);
+                            request.setAttribute("realkesiServlet", realkesiServlet);
+                        }
 
-         
+                        getTugasTambahan(request, response);
+
+                        //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
+                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
+                        dis.forward(request, response);
+                    }
+                }
+            } else {
+                //di index.jsp mengklik link REALISASI dan menuju ke indexRealisasi.jsp dan otomatis terisi
+                //sesuai dengan nip ybs 
+                getRealisasi2(request, response);
+                getTugasTambahan(request, response);
+            }
+        } else {
+            getKembaliRealisasi(request, response);
+        }
+        // }
+        // else
+        // {
+        //getRealisasi(request, response);
+        //}
+
+
 //*********************ISIAN KETIGA***************************
 //         String id=request.getParameter("txtNIPBaru");
 //        idp = id;
@@ -368,21 +341,16 @@ public class GetPnsServlet extends HttpServlet {
 
         String param = request.getParameter("param");
         //String paramR = request.getParameter("paramR");
-        
-        if (param.equalsIgnoreCase("CARI"))
-        {
+
+        if (param.equalsIgnoreCase("CARI")) {
             String id = request.getParameter("txtNIPBaru");
-            
-            if (id != null && id != "" && id != " ")
-            {
+
+            if (id != null && id != "" && id != " ") {
                 idp = id;
                 PnsSkp pns = new GoIndex().getPns(id);
 
-                if (pns == null)
-                {
-                }
-                else
-                {
+                if (pns == null) {
+                } else {
                     String unorAtasan = pns.getDiAtasanId();
                     String UnorPns = pns.getUnorId();
                     String InstansiPns = pns.getInstansiId();
@@ -393,33 +361,24 @@ public class GetPnsServlet extends HttpServlet {
 
                     request.setAttribute("pns", pns);
                     request.setAttribute("UnorAts", UnorAts);
-                    request.setAttribute("tukesiServlet", tukesiServlet); 
-                }  
+                    request.setAttribute("tukesiServlet", tukesiServlet);
+                }
 
                 //kirim ke jsp lagi
                 //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
                 //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                 dis.forward(request, response);
-            }
-            else if (id == null || id == "" || id == " ")
-            {
+            } else if (id == null || id == "" || id == " ") {
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                 dis.forward(request, response);
+            } else {
             }
-            else
-            {}
-        }
-        else if(param.equalsIgnoreCase("CARI_PNS"))
-        {
+        } else if (param.equalsIgnoreCase("CARI_PNS")) {
             getRealisasi2(request, response);
-        }
-        else if(param.equalsIgnoreCase("CARI_NIP"))
-        {
+        } else if (param.equalsIgnoreCase("CARI_NIP")) {
             getPerilaku(request, response);
-        }
-        else if (param.equalsIgnoreCase("INSERT"))
-        {
+        } else if (param.equalsIgnoreCase("INSERT")) {
             String dd = "cccC";
             String nip = request.getParameter("_getInstansi");
 
@@ -431,53 +390,51 @@ public class GetPnsServlet extends HttpServlet {
             //RequestDispatcher dis = request.getRequestDispatcher("isi4faktor.jsp");
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
             dis.forward(request, response);
-        }
-//        else if (param.equalsIgnoreCase("AMBIL"))
-//        {
-//            String nip = request.getParameter("nipbaru");
-//            PnsSkp pns = new GoIndex().getPns(nip);
-//            request.setAttribute("pns", pns);
-//            RequestDispatcher dis = request.getRequestDispatcher("manajemenUser.jsp");  
-//            dis.forward(request, response);
-//        }
-//        else if (param.equalsIgnoreCase("OK"))
-//        {
-//           String nipbaru = request.getParameter("getNipBaruPns"); 
-//           String usernamebaru = request.getParameter("usernameinputan"); 
-//           String passwordbaru = request.getParameter("passwordinputan");
-//           String kewenangan = request.getParameter("kewenangan");
-//           String apakah;
-//           
-//           if (!"-".equals(kewenangan))
-//           {
-//               loginweb getSudahAdaUser = new GoIndex().getSudahAdaUser(nipbaru);
-//               if (getSudahAdaUser == null)
-//               {
-//                    apakah = "simpan";
-//                    String masukLogin = new GoIndex().getSimpanLogin(usernamebaru,passwordbaru,kewenangan,nipbaru,apakah);
-//               }
-//               else
-//               {
-//                   apakah = "ubah";
-//                   String updateLogin = new GoIndex().getSimpanLogin(usernamebaru,passwordbaru,kewenangan,nipbaru,apakah);
-//               }
-//           }
-//           else
-//           {
-//               
-//           }
-//           
-//        }
-//        else if (param.equalsIgnoreCase("UBAH"))
-//        {
-//            
-//        }
-//        else if (param.equalsIgnoreCase("HAPUS"))
-//        {
-//            
-//        }
-        else if (param == null)   
-        {
+        } //        else if (param.equalsIgnoreCase("AMBIL"))
+        //        {
+        //            String nip = request.getParameter("nipbaru");
+        //            PnsSkp pns = new GoIndex().getPns(nip);
+        //            request.setAttribute("pns", pns);
+        //            RequestDispatcher dis = request.getRequestDispatcher("manajemenUser.jsp");  
+        //            dis.forward(request, response);
+        //        }
+        //        else if (param.equalsIgnoreCase("OK"))
+        //        {
+        //           String nipbaru = request.getParameter("getNipBaruPns"); 
+        //           String usernamebaru = request.getParameter("usernameinputan"); 
+        //           String passwordbaru = request.getParameter("passwordinputan");
+        //           String kewenangan = request.getParameter("kewenangan");
+        //           String apakah;
+        //           
+        //           if (!"-".equals(kewenangan))
+        //           {
+        //               loginweb getSudahAdaUser = new GoIndex().getSudahAdaUser(nipbaru);
+        //               if (getSudahAdaUser == null)
+        //               {
+        //                    apakah = "simpan";
+        //                    String masukLogin = new GoIndex().getSimpanLogin(usernamebaru,passwordbaru,kewenangan,nipbaru,apakah);
+        //               }
+        //               else
+        //               {
+        //                   apakah = "ubah";
+        //                   String updateLogin = new GoIndex().getSimpanLogin(usernamebaru,passwordbaru,kewenangan,nipbaru,apakah);
+        //               }
+        //           }
+        //           else
+        //           {
+        //               
+        //           }
+        //           
+        //        }
+        //        else if (param.equalsIgnoreCase("UBAH"))
+        //        {
+        //            
+        //        }
+        //        else if (param.equalsIgnoreCase("HAPUS"))
+        //        {
+        //            
+        //        }
+        else if (param == null) {
 //            String id = request.getParameter("txtNIPBaru");
 //            idp = id;
 //            PnsSkp pns = new GoIndex().getPns(id);
@@ -510,104 +467,91 @@ public class GetPnsServlet extends HttpServlet {
         //        session.setAttribute("unorAts", UnorAts);
 
     }
-      
-    
-    private void getKembaliRealisasi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    { 
-         String idRisi = request.getParameter("txtNIPBaruReal"); //mendapatkan NIP pada KEMBALI realisasi
-                     PnsSkp pns = new GoIndex().getPns(idRisi);
-                if (pns ==null)
-                {   
+
+    private void getKembaliRealisasi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idRisi = request.getParameter("txtNIPBaruReal"); //mendapatkan NIP pada KEMBALI realisasi
+        PnsSkp pns = new GoIndex().getPns(idRisi);
+        if (pns == null) {
+        } else {
+
+            String unorAtasan = pns.getDiAtasanId();
+            String UnorPns = pns.getUnorId();
+
+            String InstansiPns = pns.getInstansiId();
+            String NipPns = pns.getNipBaru();
+
+            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+
+            List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
+
+            List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+
+            List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(idRisi);
+
+            //StringBuffer Keterangan = new StringBuffer();
+
+            int nomorHitung = 0;
+            String nomorstr;
+
+            for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet) {
+                nomorHitung = nomorHitung + 1;
+                Map<String, Object> test = new HashMap<String, Object>();
+                String idTupoksi = tukesiDomain.getIdTupoksi();
+                String idIsi4faktor = tukesiDomain.getIdIsi4Faktor();
+                realisasi Realisasi = new GoIndex().getIdRealitas(idTupoksi, idp, idIsi4faktor);
+                nomorstr = Integer.toString(nomorHitung);
+                if (Realisasi != null) {
+                    test.put("KUALITASR", Realisasi.getKualitasR());
+                    test.put("KUANTITASR", Realisasi.getKuantitasR());
+                    test.put("WAKTUR", Realisasi.getWaktuR());
+                    test.put("BAYARR", Realisasi.getBiayaR());
+
+                    test.put("NOMORTUPOKSI", nomorstr);
+                    test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
+
+                    test.put("KUANTITAS4", tukesiDomain.getKuantitas4());
+                    test.put("KUALITAS4", tukesiDomain.getKualitas4());
+                    test.put("WAKTU4", tukesiDomain.getWaktu4());
+                    test.put("BIAYA4", tukesiDomain.getBiaya4());
+
+                    listResult.add(test);
+                } else {
+                    test.put("KUALITASR", "-");
+                    test.put("KUANTITASR", "-");
+                    test.put("WAKTUR", "-");
+                    test.put("BAYARR", "-");
+
+                    test.put("NOMORTUPOKSI", nomorstr);
+                    test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
+                    test.put("KUANTITAS4", tukesiDomain.getKuantitas4());
+                    test.put("KUALITAS4", tukesiDomain.getKualitas4());
+                    test.put("WAKTU4", tukesiDomain.getWaktu4());
+                    test.put("BIAYA4", tukesiDomain.getBiaya4());
+
+
                 }
-                else
-                {
-                    
-                    String unorAtasan = pns.getDiAtasanId();
-                    String UnorPns = pns.getUnorId();
-                    
-                    String InstansiPns = pns.getInstansiId();
-                    String NipPns = pns.getNipBaru();
+            }
 
-                    PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            request.setAttribute("pns", pns);
+            request.setAttribute("UnorAts", UnorAts);
+            request.setAttribute("listResult", listResult);
+            //request.setAttribute("tukesiServlet", tukesiServlet);
+            request.setAttribute("realkesiServlet", realkesiServlet);
+        }
 
-                    List<Map<String,Object>> listResult = new ArrayList<Map<String,Object>>();
+        getTugasTambahan(request, response);
 
-                    List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-
-                    List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(idRisi);
-
-                    //StringBuffer Keterangan = new StringBuffer();
-
-                    int nomorHitung=0;
-                    String nomorstr;
-
-                    for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet)
-                    {
-                        nomorHitung=nomorHitung+1;
-                        Map<String, Object> test = new HashMap<String, Object>();
-                        String idTupoksi=tukesiDomain.getIdTupoksi();
-                        String idIsi4faktor=tukesiDomain.getIdIsi4Faktor();
-                        realisasi Realisasi= new GoIndex().getIdRealitas(idTupoksi, idp, idIsi4faktor);
-                        nomorstr =Integer.toString(nomorHitung);
-                        if (Realisasi != null)
-                        {
-                            test.put("KUALITASR", Realisasi.getKualitasR());
-                            test.put("KUANTITASR",Realisasi.getKuantitasR());
-                            test.put("WAKTUR",Realisasi.getWaktuR());
-                            test.put("BAYARR",Realisasi.getBiayaR());
-
-                            test.put("NOMORTUPOKSI",nomorstr); 
-                            test.put("NAMATUPOKSI",tukesiDomain.getNamaTupoksi()); 
-
-                            test.put("KUANTITAS4",tukesiDomain.getKuantitas4());
-                            test.put("KUALITAS4",tukesiDomain.getKualitas4());
-                            test.put("WAKTU4",tukesiDomain.getWaktu4());
-                            test.put("BIAYA4",tukesiDomain.getBiaya4());
-
-                            listResult.add(test);
-                        }
-                        else
-                        {
-                            test.put("KUALITASR", "-");
-                            test.put("KUANTITASR","-");
-                            test.put("WAKTUR","-");
-                            test.put("BAYARR","-");
-
-                            test.put("NOMORTUPOKSI",nomorstr); 
-                            test.put("NAMATUPOKSI",tukesiDomain.getNamaTupoksi()); 
-                            test.put("KUANTITAS4",tukesiDomain.getKuantitas4());
-                            test.put("KUALITAS4",tukesiDomain.getKualitas4());
-                            test.put("WAKTU4",tukesiDomain.getWaktu4());
-                            test.put("BIAYA4",tukesiDomain.getBiaya4());
-
-
-                        }
-                    }
-
-                    request.setAttribute("pns", pns);
-                    request.setAttribute("UnorAts", UnorAts);
-                    request.setAttribute("listResult",listResult);
-                    //request.setAttribute("tukesiServlet", tukesiServlet);
-                    request.setAttribute("realkesiServlet", realkesiServlet);
-                }
-                
-                getTugasTambahan(request, response);
-
-                //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
-                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
-                dis.forward(request, response);
+        //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
+        dis.forward(request, response);
     }
-    
-    private void getRealisasi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
+
+    private void getRealisasi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("niprealisasi");
         idp = id;
         PnsSkp pns = new GoIndex().getPns(id);
-        if (pns ==null)
-        {   
-        }
-        else
-        {
+        if (pns == null) {
+        } else {
             String unorAtasan = pns.getDiAtasanId();
             String UnorPns = pns.getUnorId();
             String InstansiPns = pns.getInstansiId();
@@ -615,66 +559,59 @@ public class GetPnsServlet extends HttpServlet {
 
             PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
 
-            List<Map<String,Object>> listResult = new ArrayList<Map<String,Object>>();
+            List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 
             List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-            
+
             //StringBuffer Keterangan = new StringBuffer();
-            
-            int nomorHitung=0;
+
+            int nomorHitung = 0;
             String nomorstr;
-            
-            for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet)
-            {
-                nomorHitung=nomorHitung+1;
+
+            for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet) {
+                nomorHitung = nomorHitung + 1;
                 Map<String, Object> test = new HashMap<String, Object>();
-                String idTupoksi=tukesiDomain.getIdTupoksi();
-                String idIsi4faktor=tukesiDomain.getIdIsi4Faktor();
-                realisasi Realisasi= new GoIndex().getIdRealitas(idTupoksi, idp, idIsi4faktor);
-                nomorstr =Integer.toString(nomorHitung);
-                if (Realisasi != null)
-                {
-                  test.put("KUALITASR", Realisasi.getKualitasR());
-                  test.put("KUANTITASR",Realisasi.getKuantitasR());
-                  test.put("WAKTUR",Realisasi.getWaktuR());
-                  test.put("BAYARR",Realisasi.getBiayaR());
-                  
-                  test.put("NOMORTUPOKSI",nomorstr); 
-                  test.put("NAMATUPOKSI",tukesiDomain.getNamaTupoksi()); 
-                  
-                  test.put("KUANTITAS4",tukesiDomain.getKuantitas4());
-                  test.put("KUALITAS4",tukesiDomain.getKualitas4());
-                  test.put("WAKTU4",tukesiDomain.getWaktu4());
-                  test.put("BIAYA4",tukesiDomain.getBiaya4());
+                String idTupoksi = tukesiDomain.getIdTupoksi();
+                String idIsi4faktor = tukesiDomain.getIdIsi4Faktor();
+                realisasi Realisasi = new GoIndex().getIdRealitas(idTupoksi, idp, idIsi4faktor);
+                nomorstr = Integer.toString(nomorHitung);
+                if (Realisasi != null) {
+                    test.put("KUALITASR", Realisasi.getKualitasR());
+                    test.put("KUANTITASR", Realisasi.getKuantitasR());
+                    test.put("WAKTUR", Realisasi.getWaktuR());
+                    test.put("BAYARR", Realisasi.getBiayaR());
 
-                  listResult.add(test);
-                }
-                else
-                {
+                    test.put("NOMORTUPOKSI", nomorstr);
+                    test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
+
+                    test.put("KUANTITAS4", tukesiDomain.getKuantitas4());
+                    test.put("KUALITAS4", tukesiDomain.getKualitas4());
+                    test.put("WAKTU4", tukesiDomain.getWaktu4());
+                    test.put("BIAYA4", tukesiDomain.getBiaya4());
+
+                    listResult.add(test);
+                } else {
                     test.put("KUALITASR", "-");
-                    test.put("KUANTITASR","-");
-                    test.put("WAKTUR","-");
-                    test.put("BAYARR","-");
+                    test.put("KUANTITASR", "-");
+                    test.put("WAKTUR", "-");
+                    test.put("BAYARR", "-");
 
-                    test.put("NOMORTUPOKSI",nomorstr); 
-                    test.put("NAMATUPOKSI",tukesiDomain.getNamaTupoksi()); 
-                    test.put("KUANTITAS4",tukesiDomain.getKuantitas4());
-                    test.put("KUALITAS4",tukesiDomain.getKualitas4());
-                    test.put("WAKTU4",tukesiDomain.getWaktu4());
-                    test.put("BIAYA4",tukesiDomain.getBiaya4());
+                    test.put("NOMORTUPOKSI", nomorstr);
+                    test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
+                    test.put("KUANTITAS4", tukesiDomain.getKuantitas4());
+                    test.put("KUALITAS4", tukesiDomain.getKualitas4());
+                    test.put("WAKTU4", tukesiDomain.getWaktu4());
+                    test.put("BIAYA4", tukesiDomain.getBiaya4());
                 }
-            }   
+            }
             request.setAttribute("pns", pns);
             request.setAttribute("UnorAts", UnorAts);
-            request.setAttribute("listResult",listResult); 
-        }       
+            request.setAttribute("listResult", listResult);
+        }
         RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/realisasi2.jsp");
         dis.forward(request, response);
     }
-    
-    
-    
-    
+
 //    private void getRealisasi2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 //    {
 //        String id = request.getParameter("txtNIPBaru");
@@ -867,107 +804,94 @@ public class GetPnsServlet extends HttpServlet {
 //        RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
 //        dis.forward(request, response); 
 //    }
-    
-    
-    
-    private void getRealisasi2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-         //di index.jsp mengklik link REALISASI dan menuju ke indexRealisasi.jsp dan otomatis terisi
-         //sesuai dengan nip ybs 
-        
+    private void getRealisasi2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //di index.jsp mengklik link REALISASI dan menuju ke indexRealisasi.jsp dan otomatis terisi
+        //sesuai dengan nip ybs 
+
         String id = request.getParameter("txtNIPBaru");
-         String action = request.getParameter("action");
-         
+        String action = request.getParameter("action");
+
         //String tupo = request.getParameter("idTupoksi");
-         String _pilih_session=request.getParameter("pilih_session");
+        String _pilih_session = request.getParameter("pilih_session");
         String idNiptambahan = (String) request.getAttribute("idNiptambahan");
-         if(_pilih_session==null){
-            _pilih_session="-";
+        if (_pilih_session == null) {
+            _pilih_session = "-";
         }
-        if ( id == null)
-        {
+        if (id == null) {
             id = idNiptambahan;
         }
-        
-        if (id != null && id != "" && id != " ")
-        {
+
+        if (id != null && id != "" && id != " ") {
             idp = id;
             PnsSkp pns = new GoIndex().getPns(id);
-            if (pns ==null)
-            {   
-            }
-            else
-            {
+            if (pns == null) {
+            } else {
                 String unorAtasan = pns.getDiAtasanId();
                 String UnorPns = pns.getUnorId();
                 String InstansiPns = pns.getInstansiId();
                 String NipPns = pns.getNipBaru();
-                  PnsSkp UnorAts =null;
-if(ModelLocatorSKP.nipBaruAtasan==null || ModelLocatorSKP.nipBaruAtasan.equals("")|| ModelLocatorSKP.nipBaruAtasan.equals(" ")){
-    
-      UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-}else{
-      UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);   
-            }
-              
+                PnsSkp UnorAts = null;
+                if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
 
-                List<Map<String,Object>> listResult = new ArrayList<Map<String,Object>>();
+                    UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                } else {
+                    UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                }
+
+
+                List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 
                 List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
 
                 List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
-if(_pilih_session.equals("-")){
-                 realkesiServlet = new GoIndex().getRealkesi(id);
-}else{
-                
-                 realkesiServlet = new GoIndex().getRealkesiSession(ModelLocatorSKP.IdUnorUser,id,_pilih_session);
-}
+                if (_pilih_session.equals("-")) {
+                    realkesiServlet = new GoIndex().getRealkesi(id);
+                } else {
+
+                    realkesiServlet = new GoIndex().getRealkesiSession(ModelLocatorSKP.IdUnorUser, id, _pilih_session);
+                }
                 //StringBuffer Keterangan = new StringBuffer();
 
-                int nomorHitung=0;
+                int nomorHitung = 0;
                 String nomorstr;
 
-                for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet)
-                {
-                    nomorHitung=nomorHitung+1;
+                for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet) {
+                    nomorHitung = nomorHitung + 1;
                     Map<String, Object> test = new HashMap<String, Object>();
-                    String idTupoksi=tukesiDomain.getIdTupoksi();
-                    String idIsi4faktor=tukesiDomain.getIdIsi4Faktor();
-                    realisasi Realisasi= new GoIndex().getIdRealitas(idTupoksi, idp, idIsi4faktor);
-                    nomorstr =Integer.toString(nomorHitung);
-                    if (Realisasi != null)
-                    {
-                    test.put("KUALITASR", Realisasi.getKualitasR());
-                    test.put("KUANTITASR",Realisasi.getKuantitasR());
-                    test.put("WAKTUR",Realisasi.getWaktuR());
-                    test.put("BAYARR",Realisasi.getBiayaR());
-                    test.put("ANGKAKREDITR",Realisasi.getangkaKrdt());
+                    String idTupoksi = tukesiDomain.getIdTupoksi();
+                    String idIsi4faktor = tukesiDomain.getIdIsi4Faktor();
+                    realisasi Realisasi = new GoIndex().getIdRealitas(idTupoksi, idp, idIsi4faktor);
+                    nomorstr = Integer.toString(nomorHitung);
+                    if (Realisasi != null) {
+                        test.put("KUALITASR", Realisasi.getKualitasR());
+                        test.put("KUANTITASR", Realisasi.getKuantitasR());
+                        test.put("WAKTUR", Realisasi.getWaktuR());
+                        test.put("BAYARR", Realisasi.getBiayaR());
+                        test.put("ANGKAKREDITR", Realisasi.getangkaKrdt());
 
-                    test.put("NOMORTUPOKSI",nomorstr); 
-                    test.put("NAMATUPOKSI",tukesiDomain.getNamaTupoksi()); 
+                        test.put("NOMORTUPOKSI", nomorstr);
+                        test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
 
-                    test.put("KUANTITAS4",tukesiDomain.getKuantitas4());
-                    test.put("KUALITAS4",tukesiDomain.getKualitas4());
-                    test.put("WAKTU4",tukesiDomain.getWaktu4());
-                    test.put("BIAYA4",tukesiDomain.getBiaya4());
-                    test.put("ANGKAKREDIT4",tukesiDomain.getangka_krdt());
+                        test.put("KUANTITAS4", tukesiDomain.getKuantitas4());
+                        test.put("KUALITAS4", tukesiDomain.getKualitas4());
+                        test.put("WAKTU4", tukesiDomain.getWaktu4());
+                        test.put("BIAYA4", tukesiDomain.getBiaya4());
+                        test.put("ANGKAKREDIT4", tukesiDomain.getangka_krdt());
 
-                    listResult.add(test);
-                    }
-                    else
-                    {
+                        listResult.add(test);
+                    } else {
                         test.put("KUALITASR", "-");
-                        test.put("KUANTITASR","-");
-                        test.put("WAKTUR","-");
-                        test.put("BAYARR","-");
+                        test.put("KUANTITASR", "-");
+                        test.put("WAKTUR", "-");
+                        test.put("BAYARR", "-");
 
-                        test.put("NOMORTUPOKSI",nomorstr); 
-                        test.put("NAMATUPOKSI",tukesiDomain.getNamaTupoksi()); 
-                        test.put("KUANTITAS4",tukesiDomain.getKuantitas4());
-                        test.put("KUALITAS4",tukesiDomain.getKualitas4());
-                        test.put("WAKTU4",tukesiDomain.getWaktu4());
-                        test.put("BIAYA4",tukesiDomain.getBiaya4());
-                        test.put("ANGKAKREDIT4",tukesiDomain.getangka_krdt());
+                        test.put("NOMORTUPOKSI", nomorstr);
+                        test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
+                        test.put("KUANTITAS4", tukesiDomain.getKuantitas4());
+                        test.put("KUALITAS4", tukesiDomain.getKualitas4());
+                        test.put("WAKTU4", tukesiDomain.getWaktu4());
+                        test.put("BIAYA4", tukesiDomain.getBiaya4());
+                        test.put("ANGKAKREDIT4", tukesiDomain.getangka_krdt());
 
 
                     }
@@ -975,72 +899,67 @@ if(_pilih_session.equals("-")){
 
                 request.setAttribute("pns", pns);
                 request.setAttribute("UnorAts", UnorAts);
-                request.setAttribute("listResult",listResult);
+                request.setAttribute("listResult", listResult);
                 //request.setAttribute("tukesiServlet", tukesiServlet);
                 request.setAttribute("realkesiServlet", realkesiServlet);
             }
-            
+
             getTugasTambahan(request, response);
-            
-            
-            
+
+
+
             //======================*********************
-            
-             if("Monitor".equals(action)){
-                String nipAtasanMonitoring = request.getParameter("NipAtasan"); 
-                  id = request.getParameter("txtNIPBaru"); 
-               //String nipAtasanMonitoring = request.getParameter("nipBaru"); 
+
+            if ("Monitor".equals(action)) {
+                String nipAtasanMonitoring = request.getParameter("NipAtasan");
+                id = request.getParameter("txtNIPBaru");
+                //String nipAtasanMonitoring = request.getParameter("nipBaru"); 
                 String idNipTambahan = nipAtasanMonitoring;
-             
-            PnsSkp pns2 = new GoIndex().getPns(nipAtasanMonitoring);
-            
-            String iUnorTambahan = pns2.getUnorId();
-            //List<pnsskp_strukturalbkn> pnsList = new GoIndex().getTugasTambahanBawahanList(iUnorTambahan);
-            List<PnsSkp> pnsList = new GoIndex().getTugasTambahanBawahanList2(iUnorTambahan);
-            request.setAttribute("pnsList", pnsList);
-            request.setAttribute("pns", pns2);
-            request.setAttribute("nipBaru", idNipTambahan);
-            request.setAttribute("nipAtasan", idNipTambahan);
-            request.setAttribute("nipdimonitoring", nipAtasanMonitoring);
-            request.setAttribute("nipsendiri",id);
-            
-            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
-            List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
-                  
-                  
-                  request.setAttribute("realkesiServlet", realkesiServlet);
-                  dis.forward(request, response);
-            }else{
-            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
-             dis.forward(request, response);
+
+                PnsSkp pns2 = new GoIndex().getPns(nipAtasanMonitoring);
+
+                String iUnorTambahan = pns2.getUnorId();
+                //List<pnsskp_strukturalbkn> pnsList = new GoIndex().getTugasTambahanBawahanList(iUnorTambahan);
+                List<PnsSkp> pnsList = new GoIndex().getTugasTambahanBawahanList2(iUnorTambahan);
+                request.setAttribute("pnsList", pnsList);
+                request.setAttribute("pns", pns2);
+                request.setAttribute("nipBaru", idNipTambahan);
+                request.setAttribute("nipAtasan", idNipTambahan);
+                request.setAttribute("nipdimonitoring", nipAtasanMonitoring);
+                request.setAttribute("nipsendiri", id);
+
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
+                List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
+
+
+                request.setAttribute("realkesiServlet", realkesiServlet);
+                dis.forward(request, response);
+            } else {
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
+                dis.forward(request, response);
             }
-            
-            
+
+
             //=====================***********************
-            
+
 
             //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
 //            RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru.jsp");
-           // RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
-          //  dis.forward(request, response);
-        }
-        else if (id == null || id == "" || id == " ")
-        {
+            // RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
+            //  dis.forward(request, response);
+        } else if (id == null || id == "" || id == " ") {
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
             dis.forward(request, response);
+        } else {
         }
-        else
-        {}
-        
+
     }
-    
-    
-    private void getPerilaku(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
+
+    private void getPerilaku(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idP = request.getParameter("txtNIPBaruPerilaku");
-        
+
         PnsSkp pns = new GoIndex().getPns(idP);
-                              
+
         String nip = pns.getNipBaru();
         String nama = pns.getNamaPns();
 
@@ -1048,20 +967,22 @@ if(_pilih_session.equals("-")){
         request.setAttribute("nama", nama);
 
         RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexPerilaku.jsp");
-        dis.forward(request, response);   
-        
+        dis.forward(request, response);
+
     }
 
-            
-            
-            
-            
-            
     public void getTusiDariIsiTupoksi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        String id = (String) request.getAttribute("NipPns");
+        String _vnipInputan = request.getParameter("vnipInputan");
+        String _pilih_session = request.getParameter("pilih_session");
+        String id = null;
+        if (_vnipInputan != null) {
+            id = _vnipInputan;
+        } else {
+            id = (String) request.getAttribute("NipPns");
+        }
+
         idp = id;
-        
+
         PnsSkp pns = new GoIndex().getPns(id);
         String unorAtasan = pns.getDiAtasanId();
         String UnorPns = pns.getUnorId();
@@ -1082,19 +1003,18 @@ if(_pilih_session.equals("-")){
         RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
         dis.forward(request, response);
     }
-    
-    
- public void getTugasTambahan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
- {
-     //String id = (String) request.getAttribute("NipPns"); 
-     String id = idp;
-     
-     List<TugasTambahan> tugasTambahans = new GoIndex().getTugasTambahanList(id);
-     request.setAttribute("tugasTambahans", tugasTambahans);
-     
-     List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(id);
-     request.setAttribute("kereaktifitas", kereaktifitas);
- }
+
+    public void getTugasTambahan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //String id = (String) request.getAttribute("NipPns"); 
+        String id = idp;
+
+        List<TugasTambahan> tugasTambahans = new GoIndex().getTugasTambahanList(id);
+        request.setAttribute("tugasTambahans", tugasTambahans);
+
+        List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(id);
+        request.setAttribute("kereaktifitas", kereaktifitas);
+    }
+
     /**
      * Returns a short description of the servlet.
      *

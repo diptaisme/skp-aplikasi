@@ -6,6 +6,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import model.GoIndex;
 import model.loginweb;
 import model.PnsSkp;
+import model.TupoksiKeIsi4Faktor;
+import model.unorskp;
 
 /**
  *
@@ -83,6 +86,7 @@ public class AdministratorFunctionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         //processRequest(request, response);
         String param = request.getParameter("param");
         
@@ -95,7 +99,9 @@ public class AdministratorFunctionServlet extends HttpServlet {
             dis.forward(request, response);
         }
         else if (param.equalsIgnoreCase("OK"))
-        {
+        {  
+            RequestDispatcher dis = null;
+            PnsSkp pns =new PnsSkp();
            String nipbaru = request.getParameter("getNipBaruPns"); 
            String usernamebaru = request.getParameter("usernameinputan"); 
            String passwordbaru = request.getParameter("passwordinputan");
@@ -109,12 +115,59 @@ public class AdministratorFunctionServlet extends HttpServlet {
                {
                     apakah = "simpan";
                     String masukLogin = new GoIndex().getSimpanLogin(usernamebaru,passwordbaru,kewenangan,nipbaru,apakah);
+                 pns = new GoIndex().getPns(ModelLocatorSKP.loginNipPengguna);
                }
                else
                {
                    apakah = "ubah";
                    String updateLogin = new GoIndex().getSimpanLogin(usernamebaru,passwordbaru,kewenangan,nipbaru,apakah);
+                    pns = new GoIndex().getPns(ModelLocatorSKP.loginNipPengguna);
                }
+              
+                         
+
+                            if (pns == null) {
+                            } else {
+                                String unorAtasan;
+                                PnsSkp UnorAts;
+                                unorAtasan = pns.getDiAtasanId();
+                                String UnorPns = pns.getUnorId();
+                                if (unorAtasan.equals("")) {
+                                    unorAtasan = pns.getUnorId();
+                                } else {
+                                    unorAtasan = pns.getDiAtasanId();
+                                }
+                                String InstansiPns = pns.getInstansiId();
+                                String NipPns = pns.getNipBaru();
+                                ModelLocatorSKP.nipBaruAtasan = NipPns;
+                                ModelLocatorSKP.loginNipPengguna= NipPns;
+                                ModelLocatorSKP.IdUnorUser = pns.getUnorId();
+                               
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                                ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+                                if (UnorAts == null) {
+                                    unorskp unorAtasanLagi = new GoIndex().getIdUnorAtasan(unorAtasan);
+                                    String namaUnorAtasNyaLagi = unorAtasanLagi.getNamaUnor();
+                                    String IdUnorAtasNyaLagi = unorAtasanLagi.getDiAtasanId();
+
+                                    String UnorAtasanAtasan = new GoIndex().getUpdateUnorYangKosong(NipPns, IdUnorAtasNyaLagi);
+                                    unorAtasan = pns.getDiAtasanId();
+                                    UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                                    ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+                                }
+
+                                List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+                                request.setAttribute("pns", pns);
+                                request.setAttribute("UnorAts", UnorAts);
+                                request.setAttribute("tukesiServlet", tukesiServlet);
+                                 request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                                 dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+                                dis.forward(request, response);
+
+                            }
+
+
+                      
            }
            else
            {
