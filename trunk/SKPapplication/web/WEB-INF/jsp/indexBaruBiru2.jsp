@@ -60,7 +60,7 @@
                         <li>
                             <%-- <a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>"class="current_page_item" target="_parent" title="Target Sasaran SKI"><span></span>Target</a> --%>
 
-                            <a href="GetPnsServlet?action=HitungtupoksiServlet3&txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" id="url" onclick="redirect2()"class="current_page_item" target="_parent" title="Target Sasaran SKI">Target</a>
+                            <a href="GetPnsServlet?action=HitungtupoksiServlet3&txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" id="url" onclick="redirect2W()"class="current_page_item" target="_parent" title="Target Sasaran SKI">Target</a>
                         </li>
                         <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>"  target="_parent" title="Realisasi Capaian SKI"><span></span>Realisasi</a></li> 
 
@@ -283,7 +283,7 @@
 
 
 
-                            <a id="url3" target="_blank"  title="Cetak" onclick="redirect3()"><img src="images/cetak.png"/></a>
+                            <a id="url3" target="_blank"  title="Cetak" onclick="redirect3W()"><img src="images/cetak.png"/></a>
                         </td>
                         <td align="left"><span class="style3">Tgl Cetak </span></td>
                         <td>   
@@ -342,7 +342,7 @@
                 }
             }
 
-            function redirect2()
+            function redirect2W()
             {
                 pilihan=document.getElementById("pilih_session").value;
  
@@ -374,7 +374,7 @@
                     url2.href=url2.href+"&pilih_session=" + pilihan; }
 
             }
-            function redirect3()       
+            function redirect3W()       
             {
                 var hr="cetakIsi4FaktorServlet?action=HitungtupoksiServlet3&nipnilai2=<c:out value='${pns.getNipBaru()}'/>"; 
                 tglCetak=document.getElementById("tglCetak").value;
@@ -431,6 +431,35 @@
                 status = ""
                 return true
             }
+            function redirect2()
+{
+   pilihan=document.getElementById("pilih_session").value;
+   url=document.getElementById("url");
+  // url.href=url.href+"&session=" + pilihan;
+    url.href=url.href+"&pilih_session=" + pilihan;
+    
+};
+function redirect3()
+{  
+   var hr= "cetakIsi4FaktorServlet?nipnilai2SB=<c:out value='${pns.getNipBaru()}'/>";
+   tglCetak=document.getElementById("tglCetak").value;
+    pilihan=document.getElementById("pilih_session").value;
+   //pilihan=document.getElementById("pilih_session").value;
+   url3=document.getElementById("url3");
+ //  url3.href=hr+"&tglCetak="+tglCetak; 
+   url3.href=hr+"&pilih_session=" + pilihan+"&tglCetak="+tglCetak; 
+ //   pilihan=document.getElementById("pilih_session").value;
+ //  url3=document.getElementById("url3");
+  //   url3.href=url3.href+"&pilih_session=" + pilihan+"&tglCetak="+tglCetak;;
+  
+}
+function redirect4()
+{
+   pilihan=document.getElementById("pilih_session").value;
+   url4=document.getElementById("url4");
+   url4.href=url4.href+"&pilih_session=" + pilihan;
+  
+}
 
         </script>
 

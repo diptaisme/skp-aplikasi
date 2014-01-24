@@ -86,7 +86,11 @@ public class RequestServlet extends HttpServlet {
                         request.setAttribute("pns", pns);
                         request.setAttribute("UnorAts", UnorAts);
                         request.setAttribute("tukesiServlet", tukesiServlet);
-                          request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                        request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                        ModelLocatorSKP.navigasiPil = "0";
+
+                        request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
 
                     }
                 }

@@ -6,6 +6,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -74,11 +75,14 @@ public class NavigasiProfile extends HttpServlet {
 
 
         RequestDispatcher dis = null;
+        String action = request.getParameter("action");
 
         String nip_Manajemen_Pengguna = request.getParameter("nipManajemenPengguna");
         String nip_Perwakilan = request.getParameter("nipPerwakilan");
         String nip_Pengguna = request.getParameter("nipPengguna");
         String nip_Entri_Tupoksi = request.getParameter("nipentriTupoksi");
+        String nip_Monitoring = request.getParameter("nipmonitoring");
+        String nipAtasanMonitoring = nip_Monitoring;
 
         request.setAttribute("namaPNScetak", nip_Manajemen_Pengguna);
         request.setAttribute("nipPNScetak", nip_Perwakilan);
@@ -109,7 +113,7 @@ public class NavigasiProfile extends HttpServlet {
             request.setAttribute("UnorAts", UnorAts);
 
             request.setAttribute("tukesiServlet", tukesiServlet);
-             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
             //====================
 
             //  dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
@@ -139,18 +143,55 @@ public class NavigasiProfile extends HttpServlet {
             request.setAttribute("UnorAts", UnorAts);
 
             request.setAttribute("tukesiServlet", tukesiServlet);
-              request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
-            dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+            //   request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            //====================
+
+            //  dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+            //  dis.forward(request, response);
+
+            dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
             dis.forward(request, response);
+
+            // dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+            // dis.forward(request, response);
             //====================
 
         } else if (nip_Entri_Tupoksi != null) {
             HttpSession session = request.getSession();
             ModelLocatorSKP.navigasiPil = "2";
-              request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
             dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
             dis.forward(request, response);
+        } else if (nip_Monitoring != null) {
+            ModelLocatorSKP.navigasiPil = "46";
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            if (nipAtasanMonitoring != null) {
+                ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
+                String idNipTambahan = nipAtasanMonitoring;
+                PnsSkp pns = new GoIndex().getPns(idNipTambahan);
+
+                String iUnorTambahan = pns.getUnorId();
+                //List<pnsskp_strukturalbkn> pnsList = new GoIndex().getTugasTambahanBawahanList(iUnorTambahan);
+                List<PnsSkp> pnsList = new GoIndex().getTugasTambahanBawahanList2(iUnorTambahan);
+
+
+                //   List<pnsskp> pnsList = new GoIndex().getTugasTambahanBawahanListALL(iUnorTambahan);
+                request.setAttribute("pnsList", pnsList);
+                request.setAttribute("pns", pns);
+
+                request.setAttribute("nipAtasan", idNipTambahan);
+               // dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
+                dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+                dis.forward(request, response);
+
+                // dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
+                //dis.forward(request, response);
+            }
         } else {
             dis = request.getRequestDispatcher("/WEB-INF/jsp/IndexBaruBiru2.jsp");
             dis.forward(request, response);

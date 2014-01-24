@@ -11,11 +11,11 @@
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
-    
+
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <!-- <script type="text/javascript" src="jquery-1.5.2.min.js"></script> -->
+        <!-- <script type="text/javascript" src="jquery-1.5.2.min.js"></script> -->
         <script type="text/javascript" src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="/SKPapplication/js/jquery.slidertron-1.1.js"></script>
 
@@ -23,14 +23,24 @@
         <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
         <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
-       
+
         <%
             ArrayList al = new ArrayList();
             String[] arr_inkerl = new String[3000];
             int ijl;
             ijl = 0;
         %>    
+        <style>
 
+            #merah { color : red }
+
+            #biru { color : blue }
+
+            #hijau { color : green }
+
+            #kuning { color : yellow }
+
+        </style>
 
         <script language="javascript" type="text/javascript">
             function validate(evt) {
@@ -61,7 +71,7 @@
                 var ddtk = vbiaya4text.options[vbiaya4text.selectedIndex].text;
                 //   document.getElementById("session").value = ddtk;
             }; 
-            function validasitest(){ 
+            function validasitestMonitor(){ 
                 //document.getElementById("kuantitas4text").value
                 var vkuantitas4text = document.getElementById("kuantitasRtext"); 
                 var vidkualitas4text = document.getElementById("kualitasRtext"); 
@@ -219,7 +229,7 @@
 
                 font-family: arial;
 
-                font:italic bold 12px/30px Georgia, serif;
+                font:italic bold 11px/25px Georgia, serif;
             }
             #menu1 ul {
                 margin: 0;
@@ -236,7 +246,7 @@
                 display: block;
                 text-decoration: none;
                 color: #000000;
-                padding: 10px;
+                padding: 0px;
                 float: left;
                 width: 200px;
 
@@ -244,7 +254,7 @@
             #menu1 ul li a:hover {
                 background-color: #CCCCFF;
                 color: #FF0000;
-                font-size: 18px;
+                font-size: 11px;
             }
             #menu1 ul li ul {
                 display: none;
@@ -644,75 +654,90 @@
 
                                 <div STYLE=" height: 400px;   width: 300px; font-size: 12px;  overflow: scroll;">   
 
-                                    <table  width="300"  >
-
-                                        <tr>
-                                            <td width ="30">No.</td>
-                                            <td  width ="140" >NIP BARU</td>
-                                            <td width ="200" >NAMA</td>
-                                        </tr>         
-                                        <c:forEach var="pnsList" items="${pnsList}" varStatus="count">
-                                            <c:choose>
-                                                <c:when test="${(pnsList.getRealisasi()) <'45'}">
-
-                                                    <tr bgcolor="#FF0000">
-                                                        <td width ="30" align="center">${(count.index)+1}</td>
-                                                        <td width ="140" ><div align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsList.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>" >${pnsList.getNipBaru()}</a></div></td>
-                                                        <td><div align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsList.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>" >${pnsList.getNamaPns()}</a></div></td>
-                                                    </tr>  
-                                                </c:when>
-                                                <c:when test="${(pnsList.getRealisasi()) <'76'}">
-
-                                                    <tr bgcolor="#CCFF99">
-                                                        <td width ="30" align="center">${(count.index)+1}</td>
-                                                        <td width ="140" ><div align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsList.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>" >${pnsList.getNipBaru()}</a></div></td>
-                                                        <td><div align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsList.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>" >${pnsList.getNamaPns()}</a></div></td>
-
-                                                    </tr>  
-                                                </c:when>    
-
-                                                <c:otherwise>
-                                                    <tr bgcolor="#e8edff">   
-                                                        <td width ="30" align="center">${(count.index)+1}</td>
-                                                        <td width ="140" ><div align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsList.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>" >${pnsList.getNipBaru()}</a></div></td>
-                                                        <td><div align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsList.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>" >${pnsList.getNamaPns()}</a></div></td>
-                                                    </tr>       
-                                                </c:otherwise>
-
-                                            </c:choose>      
-                                        </c:forEach>
-
-                                    </table>
                                     <div id="menu1">
 
                                         <ul>   
 
-
                                             <c:forEach var="pnsBaw" items="${pnsBawahan}" varStatus="count">
-                                                <li><a href="#">${pnsBaw.getNamaPns()}</a>
+                                                <c:set var="capaian" value="${pnsBaw.getRealisasi()}" /> 
+                                                <c:choose>    
+                                                    <c:when test="${(pnsBaw.getRealisasi()) <'45'}">
+                                                        <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw.getNamaPns()}</div></a>
+                                                        </c:when> 
+
+                                                        <c:when test="${(pnsBaw.getRealisasi()) <'76'}">
+                                                        <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="kuning"> ${pnsBaw.getNamaPns()}</div></a>
+                                                        </c:when> 
+                                                        <c:otherwise>
+                                                        <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw.getNamaPns()}</div></a>
+
+                                                        </c:otherwise>   
+                                                    </c:choose>           
+
+
+
                                                     <ul>
 
                                                         <c:forEach var="pnsBaw2" items="${pnsBawahan2}">
                                                             <c:choose>
                                                                 <c:when test="${(pnsBaw2.getDiAtasanId() == pnsBaw.getUnorId() &&  pnsBaw.getjnsjbtn_id()=='1' )}">  
                                                                     <c:set var="namArray" value="${pnsBaw2.getNamaPns()}"/>
+                                                                    <c:set var="capaian" value="${pnsBaw2.getRealisasi()}" /> 
+                                                                    <c:choose>    
+                                                                        <c:when test="${(pnsBaw2.getRealisasi()) <'45'}">
+                                                                            <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw2.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw2.getNamaPns()}</div></a>
+                                                                            </c:when> 
 
+                                                                            <c:when test="${(pnsBaw2.getRealisasi()) <'76'}">
+                                                                            <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw2.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="kuning"> ${pnsBaw2.getNamaPns()}</div></a>
+                                                                            </c:when> 
+                                                                            <c:otherwise>
+                                                                            <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw2.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw2.getNamaPns()}</div></a>
 
-                                                                    <li><a href="#">${pnsBaw2.getNamaPns()}</a>
-
+                                                                            </c:otherwise>   
+                                                                        </c:choose> 
                                                                         <ul>  
                                                                             <c:forEach var="pnsBaw3" items="${pnsBawahan3}">
                                                                                 <c:choose>
                                                                                     <c:when test="${(pnsBaw3.getDiAtasanId() == pnsBaw2.getUnorId() && pnsBaw2.getjnsjbtn_id()=='1' )}">  
-                                                                                        <li><a href="#">${pnsBaw3.getNamaPns()}</a>                        
+                                                                                        <c:set var="capaian" value="${pnsBaw3.getRealisasi()}" /> 
+                                                                                        <c:choose>    
+                                                                                            <c:when test="${(pnsBaw3.getRealisasi()) <'45'}">
+                                                                                                <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw3.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw3.getNamaPns()}</div></a>
+                                                                                                </c:when> 
+
+                                                                                                <c:when test="${(pnsBaw3.getRealisasi()) <'76'}">
+                                                                                                <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw3.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="kuning"> ${pnsBaw3.getNamaPns()}</div></a>
+                                                                                                </c:when> 
+                                                                                                <c:otherwise>
+                                                                                                <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw3.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw3.getNamaPns()}</div></a>
+
+                                                                                                </c:otherwise>   
+                                                                                            </c:choose> 
+
                                                                                             <ul>
                                                                                                 <c:forEach var="pnsBaw4" items="${pnsBawahan4}">
                                                                                                     <c:choose>
-                                                                                                        <c:when test="${(pnsBaw4.getDiAtasanId() == pnsBaw3.getUnorId() ) && pnsBaw3.getjnsjbtn_id()=='1'}">  
-                                                                                                            <li><a href="#">BAWAHAN4 : &nbsp;&nbsp;${pnsBaw4.getNamaPns()}</a></li>              
-                                                                                                        </c:when>
-                                                                                                    </c:choose>
-                                                                                                </c:forEach>
+                                                                                                        <c:when test="${(pnsBaw4.getDiAtasanId() == pnsBaw3.getUnorId() ) && pnsBaw3.getjnsjbtn_id()=='1'}"> 
+                                                                                                            <c:set var="capaian" value="${pnsBaw4.getRealisasi()}" /> 
+                                                                                                            <c:choose>    
+                                                                                                                <c:when test="${(pnsBaw4.getRealisasi()) <'45'}">
+                                                                                                                    <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw4.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw4.getNamaPns()}</div></a>
+                                                                                                                    </c:when> 
+
+                                                                                                                    <c:when test="${(pnsBaw4.getRealisasi()) <'76'}">
+                                                                                                                    <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw4.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="kuning"> ${pnsBaw4.getNamaPns()}</div></a>
+                                                                                                                    </c:when> 
+                                                                                                                    <c:otherwise>
+                                                                                                                    <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw4.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw4.getNamaPns()}</div></a>
+
+                                                                                                                    </c:otherwise>   
+                                                                                                                </c:choose> 
+
+
+                                                                                                            </c:when>
+                                                                                                        </c:choose>
+                                                                                                    </c:forEach>
                                                                                             </ul>
                                                                                         </li>
                                                                                     </c:when>
@@ -760,14 +785,14 @@
                         <table>
                             <td>
                                 <div id="slideshow">
-                        <div id="foobar">   
-                            <div id="col2">
-                                <div class="viewer">        <div class="reel"> 
-                                        <div class="slide">                     <img src="/SKPapplication/images/arrow-on-target.jpg" width="100" height="130" alt="" /> <span>S.K.P</span>
-                                        </div><div class="slide">                <img src="/SKPapplication/images/blurry.jpg" width="100" height="130" alt="" /> <span>S.K.P</span>
-                                        </div><div class="slide">                <img src="/SKPapplication/images/sukses.jpg" width="100" height="130" alt="" /> <span>S.K.P</span>
-                                        </div><div class="slide">                <img src="/SKPapplication/images/meeting.jpg" width="100" height="130" alt="" /> <span>S.K.P</span>
-                                        </div></div></div></div></div></div>
+                                    <div id="foobar">   
+                                        <div id="col2">
+                                            <div class="viewer">        <div class="reel"> 
+                                                    <div class="slide">                     <img src="/SKPapplication/images/arrow-on-target.jpg" width="100" height="130" alt="" /> <span>S.K.P</span>
+                                                    </div><div class="slide">                <img src="/SKPapplication/images/blurry.jpg" width="100" height="130" alt="" /> <span>S.K.P</span>
+                                                    </div><div class="slide">                <img src="/SKPapplication/images/sukses.jpg" width="100" height="130" alt="" /> <span>S.K.P</span>
+                                                    </div><div class="slide">                <img src="/SKPapplication/images/meeting.jpg" width="100" height="130" alt="" /> <span>S.K.P</span>
+                                                    </div></div></div></div></div></div>
 
 
                             </td>
@@ -929,13 +954,13 @@
                             <td>
                                 <input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN"/>
                             </TD> 
-                            
+
                         </tr>
 
                         </table>
 
                         </td>
-                       
+
                         <td >  <img src="/SKPapplication/images/Spining Globe_thumb[1].gif" width="100" height="100"/></td>
 
 
@@ -948,7 +973,7 @@
 
 
 
-                                        <script type="text/javascript">
+                    <script type="text/javascript">
                         
                         $('#foobar').slidertron({
                             viewerSelector: '.viewer',
