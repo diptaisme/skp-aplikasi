@@ -179,12 +179,22 @@ public class GetPnsServlet extends HttpServlet {
                             request.setAttribute("tukesiServlet", tukesiServlet);
 
                         }
+                         ModelLocatorSKP.navigasiPil = "3";
+                         request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+                             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            //====================
+
+            //  dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+            //  dis.forward(request, response);
+
+           RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+            dis.forward(request, response);
 
                         //kirim ke jsp lagi
                         //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
                         //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
-                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
-                        dis.forward(request, response);
+                       // RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+                      //  dis.forward(request, response);
                     } else {
                         PnsSkp pns = new GoIndex().getPns(idR);
                         if (pns == null) {
@@ -935,8 +945,17 @@ public class GetPnsServlet extends HttpServlet {
                 request.setAttribute("realkesiServlet", realkesiServlet);
                 dis.forward(request, response);
             } else {
-                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
-                dis.forward(request, response);
+                  ModelLocatorSKP.navigasiPil = "44";
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+            
+              request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            
+
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+            dis.forward(request, response);
+                
+               // RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
+                //dis.forward(request, response);
             }
 
 

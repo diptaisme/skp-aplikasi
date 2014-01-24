@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <script language="javascript" type="text/javascript">
-     function validasi4 (){
+     function validasi4W (){
                var vbiaya4text =document.getElementById("pilih_session");
                var ddtk = vbiaya4text.options[vbiaya4text.selectedIndex].text;
                 document.getElementById("session").value = ddtk;
@@ -77,13 +77,13 @@ document.getElementById("button1").style.backgroundColor = '#FFFF00';
                     <ul>
                         <li><a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" target="_parent" title="Target Sasaran SKI">TARGET</a>
                             <%--   <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>" class="current_page_item" target="_parent" title="Realisasi Capaian SKI">REALISASI</a> --%>
-                    <li> <a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getId_tupoksi()}"/>" class="current_page_item" target="_parent" title="Realisasi Capaian SKI" id="url" onclick="redirect2()">REALISASI</a>  
+                    <li> <a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getId_tupoksi()}"/>" class="current_page_item" target="_parent" title="Realisasi Capaian SKI" id="url" onclick="redirect2K()">REALISASI</a>  
                    
                    <li>
                                          <input type="text" id="session" name="session" /> 
                        </li>
                                  <li>
-                                    <select id="pilih_session"  name="pilih_session" onchange="validasi4()" >
+                                    <select id="pilih_session"  name="pilih_session" onchange="validasi4W()" >
                                     <option value="-">-</option>
                                     <option value="2013">2013</option>
                                     <option value="2014">2014</option>
@@ -115,7 +115,7 @@ document.getElementById("button1").style.backgroundColor = '#FFFF00';
                 </div>
             </div>
 
-            <div id="page2">
+            <div id="page2t">
                  <div>REALISASI</div>
                 <table width="100%" id="rounded-corner2">
                                 
@@ -344,8 +344,8 @@ document.getElementById("button1").style.backgroundColor = '#FFFF00';
                                          <%--  <td><a href="cetakIsi4FaktorServlet?nipnilai2SB=<c:out value="${pns.getNipBaru()}"/>&realisasi=realisasi" target="_blank" title="Cetak"><center><img src="images/cetak.png"/></center></a></td>--%>
                                        <%--  <td><a href="cetakIsi4FaktorServlet?nipPrestasi=<c:out value="${pns.getNipBaru()}"/>"target="_blank"><center><img src="images/cetakprestasi.png"/></center></a></td> --%>
                                         
-                                         <td><a href="cetakIsi4FaktorServlet?nipPrestasi=<c:out value="${pns.getNipBaru()}"/>&realisasi2=realisasi2"  target="_blank" id="url4"  onclick="redirect4()" title="Prestasi"><center><img src="images/cetakprestasi.png"/></center></a></td> 
-                                         <td><a target="_blank" id="url3"  onclick="redirect3()" title="Cetak"><center><img src="/SKPapplication/images/cetak.png"/></center></a></td>
+                                         <td><a href="cetakIsi4FaktorServlet?nipPrestasi=<c:out value="${pns.getNipBaru()}"/>&realisasi2=realisasi2"  target="_blank" id="url4"  onclick="redirect4K()" title="Prestasi"><center><img src="images/cetakprestasi.png"/></center></a></td> 
+                                         <td><a target="_blank" id="url3"  onclick="redirect3K()" title="Cetak"><center><img src="/SKPapplication/images/cetak.png"/></center></a></td>
                                          <td>Tanggal Cetak </td>
                                          <td>&nbsp;&nbsp;&nbsp;<input type="text" id="tglCetak" name="tglCetak" maxlength="8"onfocus="clearText2()" onblur="clearText()"onkeypress="return alertnipnull3(event)"/> </td>
                                          <td>DDMMYYYY </td>          
@@ -394,7 +394,7 @@ function clearText2()
     document.getElementById("tglCetak").value = hasil;
     }
 }
- function redirect2()
+ function redirect2K()
 {
    pilihan=document.getElementById("pilih_session").value;
    url=document.getElementById("url");
@@ -402,7 +402,7 @@ function clearText2()
     url.href=url.href+"&pilih_session=" + pilihan;
     
 };
-function redirect3()
+function redirect3K()
 {  
    var hr= "cetakIsi4FaktorServlet?nipnilai2SB=<c:out value='${pns.getNipBaru()}'/>";
    tglCetak=document.getElementById("tglCetak").value;
@@ -416,7 +416,7 @@ function redirect3()
   //   url3.href=url3.href+"&pilih_session=" + pilihan+"&tglCetak="+tglCetak;;
   
 }
-function redirect4()
+function redirect4K()
 {
    pilihan=document.getElementById("pilih_session").value;
    url4=document.getElementById("url4");

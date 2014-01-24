@@ -234,13 +234,13 @@ public class IsiPerilakuServlet extends HttpServlet {
             List<PnsSkp> pnsBawahan4 = new ArrayList<PnsSkp>();
             for (PnsSkp ipns3 : pnsList) {
                 ipns = new PnsSkp();
-                if (ipns3.getLevel().length()==1) {
+                if (ipns3.getLevel().length() == 1) {
                     pnsBawahan.add(ipns3);
-                } else if (ipns3.getLevel().length()==2) {
+                } else if (ipns3.getLevel().length() == 2) {
                     pnsBawahan2.add(ipns3);
-                } else if (ipns3.getLevel().length()==3) {
+                } else if (ipns3.getLevel().length() == 3) {
                     pnsBawahan3.add(ipns3);
-                } else if (ipns3.getLevel().length()==4) {
+                } else if (ipns3.getLevel().length() == 4) {
                     pnsBawahan4.add(ipns3);
                 }
             }
@@ -253,8 +253,15 @@ public class IsiPerilakuServlet extends HttpServlet {
             request.setAttribute("pns", pns);
 
             request.setAttribute("nipAtasan", idNipTambahan);
-            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
+            ModelLocatorSKP.navigasiPil = "46";
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
             dis.forward(request, response);
+
+            //RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
+            // dis.forward(request, response);
         } else if (action == null && nipatasanMonitoringCetak != null) {
             ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
             String idNipTambahan = nipatasanMonitoringCetak;
@@ -830,14 +837,14 @@ public class IsiPerilakuServlet extends HttpServlet {
                 request.setAttribute("pns", pns);
 
                 request.setAttribute("nipAtasan", idNipTambahan);
-                
-                 String id =_nipsendiri;
-     
-     List<TugasTambahan> tugasTambahans = new GoIndex().getTugasTambahanList(id);
-     request.setAttribute("tugasTambahans", tugasTambahans);
-     
-     List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(id);
-     request.setAttribute("kereaktifitas", kereaktifitas);
+
+                String id = _nipsendiri;
+
+                List<TugasTambahan> tugasTambahans = new GoIndex().getTugasTambahanList(id);
+                request.setAttribute("tugasTambahans", tugasTambahans);
+
+                List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(id);
+                request.setAttribute("kereaktifitas", kereaktifitas);
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
                 dis.forward(request, response);
 

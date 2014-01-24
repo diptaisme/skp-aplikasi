@@ -100,6 +100,19 @@ ul h4 {
 	float: left;
 }
 
+#contentMonitor {
+	
+	width: 765px;
+	left :153px;
+}
+#rightMonitor {
+                position :  absolute;
+                padding-top:0px;
+                left : 1px;
+                width : 153px;
+                height :500px;
+
+            }
 #footer {
 	text-align: center;
 	margin: 20px 0 40px 0;
@@ -466,7 +479,19 @@ div.tablePanjang
         font-family: Abel, sans-serif;
         font-size: 14px;
 }
-
+#page2t{
+    	width: 1200px;
+	position: absolute;
+        padding: 10px 45px 0 0px;
+	background: #BDE1F1;
+        margin: 0;
+	border-left: solid 1px rgba(255,230,255,0.15);
+	border-right: solid 1px rgba(255,230,255,0.15);
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.5);
+	/*text-shadow: 1px 1px 1px rgba(0,0,0,0.75);*/
+        font-family:Abel, sans-serif;
+        font-size: 14px;
+}
 #pageKecil {
 	width: 600px;
         padding: 30px 30px 0 30px;
