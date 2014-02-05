@@ -266,7 +266,11 @@ public class GetPnsServlet extends HttpServlet {
                         getTugasTambahan(request, response);
 
                         //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
-                        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
+                       
+                          request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+         RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+                       // RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
                         dis.forward(request, response);
                     }
                 }
@@ -552,8 +556,14 @@ public class GetPnsServlet extends HttpServlet {
         getTugasTambahan(request, response);
 
         //RequestDispatcher dis = request.getRequestDispatcher("indexRealisasi.jsp");
-        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
-        dis.forward(request, response);
+     //   RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
+      //  dis.forward(request, response);
+        
+          request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                        request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+                          RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+            dis.forward(request, response);
     }
 
     private void getRealisasi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -937,13 +947,21 @@ public class GetPnsServlet extends HttpServlet {
                 request.setAttribute("nipAtasan", idNipTambahan);
                 request.setAttribute("nipdimonitoring", nipAtasanMonitoring);
                 request.setAttribute("nipsendiri", id);
-
-                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
-                List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
+                
+                 List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
 
 
                 request.setAttribute("realkesiServlet", realkesiServlet);
-                dis.forward(request, response);
+                
+                  request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                        request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+                          RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+            dis.forward(request, response);
+                        
+              //  RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
+               
+            //    dis.forward(request, response);
             } else {
                   ModelLocatorSKP.navigasiPil = "44";
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
@@ -967,8 +985,15 @@ public class GetPnsServlet extends HttpServlet {
             // RequestDispatcher dis = request.getRequestDispatcher("indexRealisasiBaruBiru2.jsp");
             //  dis.forward(request, response);
         } else if (id == null || id == "" || id == " ") {
-            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
+           
+             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                        request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+                          RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
             dis.forward(request, response);
+            
+           // RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexRealisasiBaruBiru2.jsp");
+          //  dis.forward(request, response);
         } else {
         }
 
@@ -1019,7 +1044,11 @@ public class GetPnsServlet extends HttpServlet {
 
         //kirim ke jsp lagi
         //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+         RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+        
+       // RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
         dis.forward(request, response);
     }
 

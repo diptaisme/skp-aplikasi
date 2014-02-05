@@ -38,8 +38,23 @@ public class RequestServlet extends HttpServlet {
             throws ServletException, IOException {
         // controller untuk halaman
         String page = request.getParameter("page");
+        String page1 = request.getParameter("page1");
         if (page == null) {
-            cetakNotAvailable(response);
+            page=page1;
+            if (page1==null) {
+                 cetakNotAvailable(response);
+            }else{
+                page = "/WEB-INF/jsp/" + page + ".jsp";
+                try {
+                    RequestDispatcher rd = request.getRequestDispatcher(page);
+                    rd.forward(request, response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    cetakNotAvailable(response);
+                } 
+            }
+            
+           
         } else {
             if (page.equalsIgnoreCase("validasi")) {
                 if (request.getParameter("jenis_tambahan").toString().equals("Keterampilan")) {

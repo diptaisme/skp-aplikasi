@@ -192,6 +192,7 @@ public class LoginPassServlet extends HttpServlet {
                                 ModelLocatorSKP.loginNipPengguna = NipPns;
                                 ModelLocatorSKP.IdUnorUser = pns.getUnorId();
                                 session.setAttribute("NipPnsSession", NipPns);
+                                 session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
                                 UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
                                 ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
                                 if (UnorAts == null) {
@@ -291,6 +292,7 @@ public class LoginPassServlet extends HttpServlet {
                         ModelLocatorSKP.levelUser = "2";
                         String levelUser = ModelLocatorSKP.levelUser;
                         ModelLocatorSKP.navigasiPil = "0";
+                        session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
 
                         request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
                         request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
@@ -376,7 +378,7 @@ public class LoginPassServlet extends HttpServlet {
 
 
         request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
-
+session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
 
         RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
         dis.forward(request, response);
@@ -444,6 +446,7 @@ public class LoginPassServlet extends HttpServlet {
 
             ModelLocatorSKP.levelUser = "0";
             ModelLocatorSKP.navigasiPil = "0";
+            session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
             String levelUser = ModelLocatorSKP.levelUser;
 
 

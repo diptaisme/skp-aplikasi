@@ -44,13 +44,13 @@ public class AdministratorFunctionServlet extends HttpServlet {
              */
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet administratorFunctionServlet</title>");            
+            out.println("<title>Servlet administratorFunctionServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet administratorFunctionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -69,9 +69,6 @@ public class AdministratorFunctionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
-        
-        
     }
 
     /**
@@ -86,106 +83,130 @@ public class AdministratorFunctionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         //processRequest(request, response);
         String param = request.getParameter("param");
-        
-        if (param.equalsIgnoreCase("AMBIL"))
-        {
+
+        if (param.equalsIgnoreCase("AMBIL")) {
             String nip = request.getParameter("nipbaru");
             PnsSkp pns = new GoIndex().getPns(nip);
             request.setAttribute("pns", pns);
-            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/manajemenUser.jsp");  
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/manajemenUser.jsp");
             dis.forward(request, response);
-        }
-        else if (param.equalsIgnoreCase("OK"))
-        {  
+        } else if (param.equalsIgnoreCase("Simpan")) {
             RequestDispatcher dis = null;
-            PnsSkp pns =new PnsSkp();
-           String nipbaru = request.getParameter("getNipBaruPns"); 
-           String usernamebaru = request.getParameter("usernameinputan"); 
-           String passwordbaru = request.getParameter("passwordinputan");
-           String kewenangan = request.getParameter("kewenangan");
-           String apakah;
-           
-           if (!"-".equals(kewenangan))
-           {
-               loginweb getSudahAdaUser = new GoIndex().getSudahAdaUser(nipbaru);
-               if (getSudahAdaUser == null)
-               {
+            PnsSkp pns = new PnsSkp();
+            String nipbaru = request.getParameter("getNipBaruPns");
+            String usernamebaru = request.getParameter("usernameinputan");
+            String passwordbaru = request.getParameter("passwordinputan");
+            String kewenangan = request.getParameter("kewenangan");
+            String apakah;
+
+            if (!"-".equals(kewenangan)) {
+                loginweb getSudahAdaUser = new GoIndex().getSudahAdaUser(nipbaru);
+                if (getSudahAdaUser == null) {
                     apakah = "simpan";
-                    String masukLogin = new GoIndex().getSimpanLogin(usernamebaru,passwordbaru,kewenangan,nipbaru,apakah);
-                 pns = new GoIndex().getPns(ModelLocatorSKP.loginNipPengguna);
-               }
-               else
-               {
-                   apakah = "ubah";
-                   String updateLogin = new GoIndex().getSimpanLogin(usernamebaru,passwordbaru,kewenangan,nipbaru,apakah);
+                    String masukLogin = new GoIndex().getSimpanLogin(usernamebaru, passwordbaru, kewenangan, nipbaru, apakah);
                     pns = new GoIndex().getPns(ModelLocatorSKP.loginNipPengguna);
-               }
-              
-                         
-
-                            if (pns == null) {
-                            } else {
-                                String unorAtasan;
-                                PnsSkp UnorAts;
-                                unorAtasan = pns.getDiAtasanId();
-                                String UnorPns = pns.getUnorId();
-                                if (unorAtasan.equals("")) {
-                                    unorAtasan = pns.getUnorId();
-                                } else {
-                                    unorAtasan = pns.getDiAtasanId();
-                                }
-                                String InstansiPns = pns.getInstansiId();
-                                String NipPns = pns.getNipBaru();
-                                ModelLocatorSKP.nipBaruAtasan = NipPns;
-                                ModelLocatorSKP.loginNipPengguna= NipPns;
-                                ModelLocatorSKP.IdUnorUser = pns.getUnorId();
-                               
-                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-                                ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
-                                if (UnorAts == null) {
-                                    unorskp unorAtasanLagi = new GoIndex().getIdUnorAtasan(unorAtasan);
-                                    String namaUnorAtasNyaLagi = unorAtasanLagi.getNamaUnor();
-                                    String IdUnorAtasNyaLagi = unorAtasanLagi.getDiAtasanId();
-
-                                    String UnorAtasanAtasan = new GoIndex().getUpdateUnorYangKosong(NipPns, IdUnorAtasNyaLagi);
-                                    unorAtasan = pns.getDiAtasanId();
-                                    UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-                                    ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
-                                }
-
-                                List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-                                request.setAttribute("pns", pns);
-                                request.setAttribute("UnorAts", UnorAts);
-                                request.setAttribute("tukesiServlet", tukesiServlet);
-                                 request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
-                                 dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
-                                dis.forward(request, response);
-
-                            }
+                } else {
+                    apakah = "ubah";
+                    String updateLogin = new GoIndex().getSimpanLogin(usernamebaru, passwordbaru, kewenangan, nipbaru, apakah);
+                    pns = new GoIndex().getPns(ModelLocatorSKP.loginNipPengguna);
+                }
 
 
-                      
-           }
-           else
-           {
-               
-           }
-           
+
+                if (pns == null) {
+                } else {
+                    String unorAtasan;
+                    PnsSkp UnorAts;
+                    unorAtasan = pns.getDiAtasanId();
+                    String UnorPns = pns.getUnorId();
+                    if (unorAtasan.equals("")) {
+                        unorAtasan = pns.getUnorId();
+                    } else {
+                        unorAtasan = pns.getDiAtasanId();
+                    }
+                    String InstansiPns = pns.getInstansiId();
+                    String NipPns = pns.getNipBaru();
+                    ModelLocatorSKP.nipBaruAtasan = NipPns;
+                    ModelLocatorSKP.loginNipPengguna = NipPns;
+                    ModelLocatorSKP.IdUnorUser = pns.getUnorId();
+
+                    UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                    ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+                    if (UnorAts == null) {
+                        unorskp unorAtasanLagi = new GoIndex().getIdUnorAtasan(unorAtasan);
+                        String namaUnorAtasNyaLagi = unorAtasanLagi.getNamaUnor();
+                        String IdUnorAtasNyaLagi = unorAtasanLagi.getDiAtasanId();
+
+                        String UnorAtasanAtasan = new GoIndex().getUpdateUnorYangKosong(NipPns, IdUnorAtasNyaLagi);
+                        unorAtasan = pns.getDiAtasanId();
+                        UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                        ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+                    }
+
+                    List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+                    request.setAttribute("pns", pns);
+                    request.setAttribute("UnorAts", UnorAts);
+                    request.setAttribute("tukesiServlet", tukesiServlet);
+                    request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                    dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+                    dis.forward(request, response);
+
+                }
+
+
+
+            } else {
+            }
+
+        } else if (param.equalsIgnoreCase("Kembali")) {
+            PnsSkp pns = new PnsSkp();
+            pns = new GoIndex().getPns(ModelLocatorSKP.loginNipPengguna);
+            if (pns == null) {
+                } else {
+                    String unorAtasan;
+                    PnsSkp UnorAts;
+                    unorAtasan = pns.getDiAtasanId();
+                    String UnorPns = pns.getUnorId();
+                    if (unorAtasan.equals("")) {
+                        unorAtasan = pns.getUnorId();
+                    } else {
+                        unorAtasan = pns.getDiAtasanId();
+                    }
+                    String InstansiPns = pns.getInstansiId();
+                    String NipPns = pns.getNipBaru();
+                    ModelLocatorSKP.nipBaruAtasan = NipPns;
+                    ModelLocatorSKP.loginNipPengguna = NipPns;
+                    ModelLocatorSKP.IdUnorUser = pns.getUnorId();
+
+                    UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                    ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+                    if (UnorAts == null) {
+                        unorskp unorAtasanLagi = new GoIndex().getIdUnorAtasan(unorAtasan);
+                        String namaUnorAtasNyaLagi = unorAtasanLagi.getNamaUnor();
+                        String IdUnorAtasNyaLagi = unorAtasanLagi.getDiAtasanId();
+
+                        String UnorAtasanAtasan = new GoIndex().getUpdateUnorYangKosong(NipPns, IdUnorAtasNyaLagi);
+                        unorAtasan = pns.getDiAtasanId();
+                        UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                        ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+                    }
+
+                    List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+                    request.setAttribute("pns", pns);
+                    request.setAttribute("UnorAts", UnorAts);
+                    request.setAttribute("tukesiServlet", tukesiServlet);
+                     RequestDispatcher dis = null;
+                    request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                    dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+                    dis.forward(request, response);
+
+                }
+        } else if (param.equalsIgnoreCase("HAPUS")) {
+        } else if (param == null) {
         }
-        else if (param.equalsIgnoreCase("UBAH"))
-        {
-            
-        }
-        else if (param.equalsIgnoreCase("HAPUS"))
-        {
-            
-        }
-        else if (param == null)   
-        {
-        } 
     }
 
     /**

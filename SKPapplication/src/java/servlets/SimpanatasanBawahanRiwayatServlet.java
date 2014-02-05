@@ -66,14 +66,7 @@ public class SimpanatasanBawahanRiwayatServlet extends HttpServlet {
                 String InstansiIdskp=unorskp.getInstansiId();
                 String NamaUnordskp=unorskp.getNamaUnor();
                 String NamaJabatanskp=unorskp.getNamaJabatan();
-                
-              /*  iunor.setIdUnor(rs.getString(1));
-            iunor.setInstansiId(rs.getString(2));
-            iunor.setDiAtasanId(rs.getString(3));
-            iunor.setEselonId(rs.getString(4));
-            iunor.setNamaUnor(rs.getString(5));
-            iunor.setNamaJabatan(rs.getString(6));
-            iunor.setPemimpinPnsId(rs.getString(7));*/
+              
                   ModelLocatorSKP.nipBaruAtasan=idAtasan;
                   UnorAts= new GoIndex().getPns(idAtasan);
                   UnorAts.setUnorId(UnorIdatasan);
@@ -87,7 +80,11 @@ public class SimpanatasanBawahanRiwayatServlet extends HttpServlet {
                     request.setAttribute("pns", pns);
                     request.setAttribute("UnorAts", UnorAts);
                     request.setAttribute("tukesiServlet", tukesiServlet); 
-                    RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+                     request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+                       request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+           
+             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+                   // RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                     dis.forward(request, response);
     
     }

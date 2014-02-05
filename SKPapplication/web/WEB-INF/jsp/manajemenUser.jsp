@@ -17,7 +17,7 @@
 <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
 <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
 <link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
-       
+   
 
 
 
@@ -43,41 +43,52 @@ function alertnipnull(evt)
 }
  
 </script>
+
+ <style type="text/css"> 
+       #headerLokal {
+	padding: 0px;
+        width: 1000px;
+       
+	position: relative;
+	height: 80px;
+        left : -50px;
+}
+        #leftside {
+               
+                position :  absolute;
+                top : 60px;
+                left : 10px;
+                width : 156px;
+                height : 501px;
+            }
+            
+              #content {
+                position :  absolute;
+                top : 115px;
+                left : 156px;
+                width : 1000px;
+                height : 501px;
+                overflow: auto;
+            }
+    </style>
 </head>
 <body>
       <div id="wrapper">
-      <div id="header">
-                <div id="logo">
-                    <table >
-                        <tr>
-                            <th rowspan="2" >
-                                <img src="/SKPapplication/images/burung_garuda7.png"/></th>
-                            <td>
-                                SASARAN KINERJA PEGAWAI
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                B K N
-                            </td>
-                            <td width="100" hidden="true" align="left"> &nbsp;&nbsp;&nbsp;&nbsp;Login <c:out  value="${sessionScope.user}" /> </td>
-                            <td width="414" hidden="true" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
-
-                        </tr>
-
-                    </table>
-                </div>
-            </div>
-    
+     
     
         <form action="administratorFunctionServlet" method="post">
-            <table width="1320" border="0" align="left">
+            <div id="headerLokal">
+                    <%@ include file="SlindronHeader.jsp" %>
+                </div>   
+            <div id="leftside">
+                <%@ include file="navigasiPro.jsp" %>
+            </div>   
+            <div id="content">
+            <table  border="0" align="left">
                 <tr>
                     <td>
                         <table width="330" border="0" align="left">
-                            <tr>
-                                <td colspan="3" align="center"><strong><h3>TAMBAH USER</h3></strong></td>
-                            </tr>
+                           
                             <tr>
                                 <td width="50"></td>
                                 <td width="100"></td>
@@ -145,13 +156,15 @@ function alertnipnull(evt)
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
+                                
                                 <td>
-                                    <input type="submit" name="param"  value="OK" /> 
+                                    <input type="submit" name="param"  value="Simpan" /> 
                                 </td>
                                  <td>
-                                    <input type="submit" name="param"  value="Delete" /> 
+                                    <input type="submit" name="param"  value="Hapus" /> 
+                                </td>
+                                 <td>
+                                    <input type="submit" name="param"  value="Kembali" /> 
                                 </td>
                             </tr>
                         </table>
@@ -159,7 +172,7 @@ function alertnipnull(evt)
                    
                 </tr>
             </table>
-                            
+            </div>                  
                             
                             
         </form>  
