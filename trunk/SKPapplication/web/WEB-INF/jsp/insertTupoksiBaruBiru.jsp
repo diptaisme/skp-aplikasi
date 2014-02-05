@@ -9,591 +9,588 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>SASARAN KERJA INDIVIDU</title>
-<meta name="keywords" content="corporate, free web template" />
-<meta name="description" content="SKI" />
-<link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
-<link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>SASARAN KERJA INDIVIDU</title>
+        <meta name="keywords" content="corporate, free web template" />
+        <meta name="description" content="SKI" />
+        <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
+        <link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
+        <script language="javascript" type="text/javascript">
    
-function clearText(field)
-{
-    if (field.defaultValue == field.value) field.value = '';
-    else if (field.value == '') field.value = field.defaultValue;
-}
-</script>
-<script type="text/javascript" language="javascript"> 
+            function clearText(field)
+            {
+                if (field.defaultValue == field.value) field.value = '';
+                else if (field.value == '') field.value = field.defaultValue;
+            }
+        </script>
+        <script type="text/javascript" language="javascript"> 
     
   
-     function testHilang() {
+            function testHilang() {
     
-    if (document.getElementById('jabatan1').checked) {
-  //return document.getElementById('tombolInstansi').disabled = false;
+                if (document.getElementById('jabatan1').checked) {
+                    //return document.getElementById('tombolInstansi').disabled = false;
 
-      document.getElementById('tombolInstansi').style.visibility='visible';
-       document.getElementById('tombolUnitOrganisasi').style.visibility='visible'; 
-       document.getElementById('kelJab').style.visibility='hidden'; 
-         document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
-         document.getElementById('tombolJabatan').style.visibility='hidden'; 
-         document.getElementById('jabatanfungfum').style.visibility='hidden'; 
-          document.getElementById('kredit').style.visibility='hidden'; 
-               document.getElementById('cariUmum').style.display = 'none';
-                  document.getElementById('namaUnorText').style.visibility='visible'; 
-                  document.getElementById('namaInstansiText').style.visibility='visible';  
+                    document.getElementById('tombolInstansi').style.visibility='visible';
+                    document.getElementById('tombolUnitOrganisasi').style.visibility='visible'; 
+                    document.getElementById('kelJab').style.visibility='hidden'; 
+                    document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
+                    document.getElementById('tombolJabatan').style.visibility='hidden'; 
+                    document.getElementById('jabatanfungfum').style.visibility='hidden'; 
+                    document.getElementById('kredit').style.visibility='hidden'; 
+                    document.getElementById('cariUmum').style.display = 'none';
+                    document.getElementById('namaUnorText').style.visibility='visible'; 
+                    document.getElementById('namaInstansiText').style.visibility='visible';  
       
-    } else if (document.getElementById('jabatan2').checked){
-    // return   document.getElementById('tombolInstansi').disabled = true;
-         document.getElementById('tombolInstansi').style.visibility='hidden';
-        document.getElementById('tombolUnitOrganisasi').style.visibility='hidden'; 
-          document.getElementById('kelJab').style.visibility='visible'; 
-            document.getElementById('tombolKeloJabatan').style.visibility='visible'; 
-         document.getElementById('tombolJabatan').style.visibility='visible'; 
-         document.getElementById('jabatanfungfum').style.visibility='visible'; 
-           document.getElementById('kredit').style.visibility='visible'; 
-           document.getElementById('cariUmum').style.display = 'none';
-               document.getElementById('namaUnorText').style.visibility='hidden'; 
-                  document.getElementById('namaInstansiText').style.visibility='hidden';  
-    }
+                } else if (document.getElementById('jabatan2').checked){
+                    // return   document.getElementById('tombolInstansi').disabled = true;
+                    document.getElementById('tombolInstansi').style.visibility='hidden';
+                    document.getElementById('tombolUnitOrganisasi').style.visibility='hidden'; 
+                    document.getElementById('kelJab').style.visibility='visible'; 
+                    document.getElementById('tombolKeloJabatan').style.visibility='visible'; 
+                    document.getElementById('tombolJabatan').style.visibility='visible'; 
+                    document.getElementById('jabatanfungfum').style.visibility='visible'; 
+                    document.getElementById('kredit').style.visibility='visible'; 
+                    document.getElementById('cariUmum').style.display = 'none';
+                    document.getElementById('namaUnorText').style.visibility='hidden'; 
+                    document.getElementById('namaInstansiText').style.visibility='hidden';  
+                }
     
     
-    else if (document.getElementById('jabatan4').checked){
-     document.getElementById('tombolInstansi').style.visibility='hidden';
-        document.getElementById('tombolUnitOrganisasi').style.visibility='hidden'; 
-          document.getElementById('kelJab').style.visibility='hidden'; 
-            document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
-         document.getElementById('tombolJabatan').style.visibility='visible'; 
-         document.getElementById('jabatanfungfum').style.visibility='visible';
-         document.getElementById('kredit').style.visibility='hidden'; 
-         document.getElementById('cariUmum').style.display = 'block'; 
-         document.getElementById('namaUnorText').style.visibility='hidden'; 
-                  document.getElementById('namaInstansiText').style.visibility='hidden';  
-    }
-}  
+                else if (document.getElementById('jabatan4').checked){
+                    document.getElementById('tombolInstansi').style.visibility='hidden';
+                    document.getElementById('tombolUnitOrganisasi').style.visibility='hidden'; 
+                    document.getElementById('kelJab').style.visibility='hidden'; 
+                    document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
+                    document.getElementById('tombolJabatan').style.visibility='visible'; 
+                    document.getElementById('jabatanfungfum').style.visibility='visible';
+                    document.getElementById('kredit').style.visibility='hidden'; 
+                    document.getElementById('cariUmum').style.display = 'block'; 
+                    document.getElementById('namaUnorText').style.visibility='hidden'; 
+                    document.getElementById('namaInstansiText').style.visibility='hidden';  
+                }
+            }  
     
  
-         function myFunction()
-{
-     var e = document.getElementById("pilih_output_Jabatan");
-    var ddtk = e.options[e.selectedIndex].text;
-    document.form1.JenisJabatan.value=ddtk;
-    document.getElementById("JenisJabatan").value = ddtk;
-}
+            function myFunction()
+            {
+                var e = document.getElementById("pilih_output_Jabatan");
+                var ddtk = e.options[e.selectedIndex].text;
+                document.form1.JenisJabatan.value=ddtk;
+                document.getElementById("JenisJabatan").value = ddtk;
+            }
   
 
-window.onload=function(){
-    testHilang();
-}
-function getSelectedRadio(payment_means){
-if(document.getElementById('pay3').checked){
-return document.getElementById('chq').style.visibility='visible';
-return document.getElementById('chq2').style.visibility='visible';
-}
-else{
-return document.getElementById('chq').style.visibility='hidden';
-return document.getElementById('chq2').style.visibility='hidden';
-}
-} 
+            window.onload=function(){
+                testHilang();
+            }
+            function getSelectedRadio(payment_means){
+                if(document.getElementById('pay3').checked){
+                    return document.getElementById('chq').style.visibility='visible';
+                    return document.getElementById('chq2').style.visibility='visible';
+                }
+                else{
+                    return document.getElementById('chq').style.visibility='hidden';
+                    return document.getElementById('chq2').style.visibility='hidden';
+                }
+            } 
 
 
-    </script> 
-</head>
-<body>
-    <div id="wrapper">
-         <div id="header">
-                <div id="logo">
-                    <table >
+        </script> 
+
+        <style type="text/css"> 
+            #headerLokal {
+                padding: 0px;
+                width: 1000px;
+
+                position: relative;
+                height: 80px;
+                left : -50px;
+            }
+            #leftside {
+
+                position :  absolute;
+                top : 60px;
+                left : 10px;
+                width : 156px;
+                height : 501px;
+            }
+
+            #contentdalam {
+                position :  absolute;
+                top : 110px;
+                left : 185px;
+                width : 1200px;
+                height : 501px;
+                overflow: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+         
+            <form name="form1" method="post" action="referensiInstansiServlet"  >
+                 <div id="headerLokal">
+                    <%@ include file="SlindronHeader.jsp" %>
+                </div>   
+                <div id="leftside">
+                    <%@ include file="navigasiPro.jsp" %>
+                </div>   
+                <div id="contentdalam">
+
+                    <table width="500" height="50" border="0">
                         <tr>
-                            <th rowspan="2" >
-                                <img src="/SKPapplication/images/burung_garuda7.png"/></th>
-                            <td>
-                                SASARAN KINERJA PEGAWAI
-                            </td>
+                            <td colspan="3"><div align="center" ><strong><h2 style="color: #000">FORM PENGISIAN TUGAS POKOK FUNGSI</h2></strong></div></td>
                         </tr>
                         <tr>
                             <td>
-                                B K N
-                            </td>
-                            <td width="100" hidden="true" align="left"> &nbsp;&nbsp;&nbsp;&nbsp;Login <c:out  value="${sessionScope.user}" /> </td>
-                            <td width="414" hidden="true" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>
 
+                                <input type="radio" name="jabatan"   value="1" id="jabatan1" onclick="testHilang()" <c:if test="${jabatan == '1'}">checked</c:if> />&nbsp;Struktural
+                                <input type="radio" name="jabatan" value="2" id="jabatan2" onclick="testHilang()" <c:if test="${jabatan == '2'}">checked</c:if> />&nbsp;Fungsional Tertentu
+                                <input type="radio" name="jabatan" value="4" id="jabatan4" onclick="testHilang()" <c:if test="${jabatan == '4'}">checked</c:if> />&nbsp;Fungsional Umum
+                                </td>
+                            </tr> 
+                        </table>
+
+                        <table width="600" height="300" border="0">
+
+                            <tr>
+                                <td style="width: 50px">INSTANSI   :</td>
+
+                                <td><c:out value="${namaInstansi}" /></td>
+                            <input size="75" type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/>
+                            <input  type="hidden"  name="idInstansiText" value="${kodeInstansi}"/>
+
+                            <%--<td width="275"><c:out value="${instansie.getNamaInstansi()}" /></td>--%>
+                            <td >
+                                <div align="center">
+                                    <input type="submit" name="Submit" style="visibility:hidden;" class="button black bigrounded" id="tombolInstansi" value="CARI INSTANSI"/>
+                                    <%-- <input type="submit" name="Submit" value="CARI" onclick="myPopupInstansi()"> --%>
+                                    <%--<a href="referensiInstansiServlet?asd=asd">INSTANSI</a>--%>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50px">UNIT ORGANISASI   :</td>
+
+                            <td><c:out value="${namaUnor}" /></td>
+                            <input size="40" type="hidden" align="right" style="visibility:hidden;" id="namaUnorText" name="namaUnorText" value="${namaUnor}"/>
+                            <input  type="hidden"  name="idUnorText" value="${kodeUnor}"/> 
+                            <%--<input type="text" align="right" name="namaUnorText" value="${unorie.getNamaUnor()}" style="text-align: right">--%>
+                            <td >
+                                <div align="center">
+                                    <%--<input type="submit" name="Submit" value="CARI UNOR" onclick="myPopupUnor()">--%>
+
+                                    <input type="submit" name="Submit" style="visibility: hidden;" class="button black bigrounded" id="tombolUnitOrganisasi" value="CARI UNOR"/>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 50px"> KELOMPOK JABATAN   :</td> 
+                            <td colspan="2"><input type="submit" name="Submit"  style="visibility:hidden;" value="CARI KELOMPOK" id="tombolKeloJabatan"/>
+                                <select id ="kelJab" name ="kelJab"style="visibility:hidden;" >
+                                    <c:forEach var="kelJab" items="${kelJab}" varStatus="count">
+                                        <option value=${kelJab.getId()} >${kelJab.getNama()}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+
+                        </tr>          
+                        <tr>
+                            <td style="width: 50px"> JABATAN   :</td>   
+                            <td> <input type="text" name="cariUmum"  size="25" id="cariUmum"/>
+                                <input type="submit" name="Submit" style="visibility:hidden;"  value="CARI JABATAN" id="tombolJabatan"/>
+                                <select id ="jabatanfungfum" name ="jabatanfungfum" style="visibility:hidden;" >
+                                    <c:forEach var="jabatanfungfum" items="${jabatanfungfum}" varStatus="count">
+                                        <option value=${jabatanfungfum.getId()} >${jabatanfungfum.getNama()}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+
+                            <td>
+
+                                <input type="submit" class="button black bigrounded" name="Submit" value="LIHAT TUPOKSI"/>
+
+                            </td>
+                        </tr>          
+                        <tr>
+                            <td style="width: 50px">TUGAS POKOK DAN FUNGSI </td>
+                            <td><textarea id="textarea1" name="textarea1" cols="40" rows="6"></textarea></td>
+                            <td>
+                                <div align="center">
+
+                                    <%--<input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi();"/>--%>
+                                    <input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi()"/>
+                                    <input type="submit" class="button black bigrounded" name="Submit" value="BATAL"/>
+                                    <input type="submit" class="button black bigrounded" name="Submit" value="KELUAR"/>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="width: 50px">NILAI ANGKA KREDIT (AK)   :</td>
+                            <td><input  type="text" align="right"  name="angka_krdtText" style="visibility:hidden;" id="kredit" onkeypress="return alertnipnull1(event)"/></td>
+                            <td>
+                                <div align="center">  
+                                </div>
+                            </td>
                         </tr>
 
                     </table>
+
+                    <div id="templatemo_content2" class="scroll">                 
+                        <table  width="60%"border="1" align="left" style="background-color: #E9BE75"> 
+                            <tr>
+                                <td width="5" style="font-size: medium"><div align="center">NO</div></td>
+                                <td width="10" style="font-size: medium"><div align="center">KODE</div></td>
+                                <td width="70" style="font-size: medium"><div align="center">NAMA TUPOKSI</div></td>
+                                <c:if test="${jabatan == '2'}">
+                                    <td width="5"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
+                                </c:if>
+                            </tr>
+                            <tr></tr>
+
+                            <c:forEach var="listTupoksi" items="${Tupoksi}" varStatus="count">
+                                <tr>
+                                    <td><div align="center">${(count.index)+1}</div></td>
+                                    <td><div align="center">${listTupoksi.getIdTupoksi()}</div></td>
+                                    <td><div align="left">${listTupoksi.getNamaTupoksi()}</div></td>
+                                    <td><div align="left">${listTupoksi.getangka_krdt()}</div></td>
+                                    <%--<td><a href ="referensiInstansiServlet?idTupoksihit=<c:out value="${listTupoksi.getIdTupoksi()}"/>">hapus</td>
+                                    <!--<input  type="text" id='<c:out value="${listTupoksi.getIdTupoksi()}"/>' value="<c:out value="${listTupoksi.getIdTupoksi()}"/>">-->
+                                    <!--<td><input type="button" name="btnHapus" value="HAPUS" onclick=""></input></td>  -->--%>                        
+                                    <td><a href="referensiInstansiServlet?action=HapusTupoksi&idTupoksiHapus=<c:out value="${listTupoksi.getIdTupoksi()}"/>&InstansiHapus=<c:out value="${kodeInstansi}"/>&UnorHapus=<c:out value="${kodeUnor}"/>&JabHapus=<c:out value="${listTupoksi.getjabatanId()}"/>"><img src="images/hapus2.png"></img></a></td>
+                                    <td><a href="referensiInstansiServlet?action=UpdateTupoksi&idTupoksiUpdate=<c:out value="${listTupoksi.getIdTupoksi()}"/>"><img src="images/ubah2.png"></img></a></td>
+                                    <%--<td><input type="submit" name="Submit" value="UBAH"></td>--%>
+                                </tr>
+                            </c:forEach>
+                        </table> 
+                    </div>
                 </div>
-            </div>
- <form name="form1" method="post" action="referensiInstansiServlet"  >
-         
-            <table width="1030" height="150" border="0">
-                <tr>
-                    <td colspan="3"><div align="center" class="style1"><strong><h2>FORM PENGISIAN TUGAS POKOK FUNGSI</h2></strong></div></td>
-                </tr>
-                <tr>
-                  <td>
-              
-                 <input type="radio" name="jabatan"   value="1" id="jabatan1" onclick="testHilang()" <c:if test="${jabatan == '1'}">checked</c:if> />&nbsp;Struktural
-                 <input type="radio" name="jabatan" value="2" id="jabatan2" onclick="testHilang()" <c:if test="${jabatan == '2'}">checked</c:if> />&nbsp;Fungsional Tertentu
-                <input type="radio" name="jabatan" value="4" id="jabatan4" onclick="testHilang()" <c:if test="${jabatan == '4'}">checked</c:if> />&nbsp;Fungsional Umum
-                </td>
-                <td> <div align="center">  
-                        </div></td>
-               
-               </tr>
-                
-                <tr>
-                    <td width="450" height="38">INSTANSI   :</td>
-                    <%-- <td width="275"><input type="text" name="textfield" size="75" value=""></td> 
-                    <td><input size="75" type="text" align="right" name="namaInstansiText" value="${instansie.getNamaInstansi()}"></td>
-                        <input  type="hidden"  name="idInstansiText" value="${instansie.getIdInstansi()}">--%>
-                            
-                    <td><c:out value="${namaInstansi}" />
-                        <input size="75" type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/></td>
-                        <input  type="hidden"  name="idInstansiText" value="${kodeInstansi}"/>
-                    
-                    <%--<td width="275"><c:out value="${instansie.getNamaInstansi()}" /></td>--%>
-                    <td width="75">
-                        <div align="center">
-                            <input type="submit" name="Submit" style="visibility:hidden;" class="button black bigrounded" id="tombolInstansi" value="CARI INSTANSI"/>
-                            <%-- <input type="submit" name="Submit" value="CARI" onclick="myPopupInstansi()"> --%>
-                            <%--<a href="referensiInstansiServlet?asd=asd">INSTANSI</a>--%>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>UNIT ORGANISASI   :</td>
-                    <%--<td width="275"><c:out value="${unorie.getNamaUnor()}" /></td>
-                    <td><input size="75" type="text" align="right" name="namaUnorText" value="${unorie.getNamaUnor()}"></td>
-                    <input  type="hidden"  name="idUnorText" value="${unorie.getIdUnor()}">--%> 
-                    <td><c:out value="${namaUnor}" />
-                        <input size="75" type="hidden" align="right" style="visibility:hidden;" id="namaUnorText" name="namaUnorText" value="${namaUnor}"/></td>
-                    <input  type="hidden"  name="idUnorText" value="${kodeUnor}"/> 
-                    <%--<input type="text" align="right" name="namaUnorText" value="${unorie.getNamaUnor()}" style="text-align: right">--%>
-                    <td width="75">
-                        <div align="center">
-                           <%--<input type="submit" name="Submit" value="CARI UNOR" onclick="myPopupUnor()">--%>
-                          
-                           <input type="submit" name="Submit" style="visibility: hidden;" class="button black bigrounded" id="tombolUnitOrganisasi" value="CARI UNOR"/>
-                        </div>
-                    </td>
-                </tr>
-                          
-                     <tr>
-                    <td> KELOMPOK JABATAN   :</td> 
-                    <td><input type="submit" name="Submit"  style="visibility:hidden;" value="CARI KELOMPOK" id="tombolKeloJabatan"/>
-                        <select id ="kelJab" name ="kelJab"style="visibility:hidden;" >
-                   <c:forEach var="kelJab" items="${kelJab}" varStatus="count">
-                                        <option value=${kelJab.getId()} >${kelJab.getNama()}</option>
-                                    </c:forEach>
-                                        </select>
-                                        </td>
-                    <td>
-                        
-                    </td>
-                </tr>          
-                     <tr>
-                    <td> JABATAN   :</td>   
-                    <td> <input type="text" name="cariUmum"  size="25" id="cariUmum"/>
-                       <input type="submit" name="Submit" style="visibility:hidden;"  value="CARI JABATAN" id="tombolJabatan"/>
-                       <select id ="jabatanfungfum" name ="jabatanfungfum" style="visibility:hidden;" >
-                   <c:forEach var="jabatanfungfum" items="${jabatanfungfum}" varStatus="count">
-                                        <option value=${jabatanfungfum.getId()} >${jabatanfungfum.getNama()}</option>
-                                    </c:forEach>
-                                        </select>
-                                        </td>
-                   
-                    <td>
-                        
-                    <input type="submit" class="button black bigrounded" name="Submit" value="LIHAT TUPOKSI"/>
-                   
-                    </td>
-                </tr>          
-                <tr>
-                    <td>TUGAS POKOK DAN FUNGSI </td>
-                    <td><textarea id="textarea1" name="textarea1" cols="57" rows="6"></textarea></td>
-                    <td>
-                         <div align="center">
-                            
-                            <%--<input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi();"/>--%>
-                            <input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi()"/>
-                            <input type="submit" class="button black bigrounded" name="Submit" value="BATAL"/>
-                            <input type="submit" class="button black bigrounded" name="Submit" value="KELUAR"/>
-                        </div>
-                    </td>
-                </tr>
-                           
-                
-                           
-                 <tr>
-                    <td>NILAI ANGKA KREDIT (AK)   :</td>
-                    <td><input  type="text" align="right"  name="angka_krdtText" style="visibility:hidden;" id="kredit" onkeypress="return alertnipnull1(event)"/></td>
-                    <td>
-                        <div align="center">  
-                        </div>
-                    </td>
-                </tr>
-                             <tr>
-                    <td> </td>
-                    <td></td>
-                    <td>
-                      
-                    </td>
-                </tr>
+            </form>
 
-            </table>
-                            
-          <div id="templatemo_content2" class="scroll">                 
-              <table width="100%" border="1" align="left"> 
-                   <tr>
-                        <td width="20"><div align="center"><span class="style3"><strong>NO</strong></span></div></td>
-                        <td width="80"><div align="center"><span class="style3"><strong>KODE</strong></span></div></td>
-                        <td width="100%"><div align="center"><span class="style3"><strong>NAMA TUPOKSI</strong></span></div></td>
-                        <c:if test="${jabatan == '2'}">
-                        <td width="50"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
-                   </c:if>
-                        </tr>
-                    <tr></tr>
-                    
-                    <c:forEach var="listTupoksi" items="${Tupoksi}" varStatus="count">
-                        <tr>
-                            <td><div align="center">${(count.index)+1}</div></td>
-                            <td><div align="center">${listTupoksi.getIdTupoksi()}</div></td>
-                            <td><div align="left">${listTupoksi.getNamaTupoksi()}</div></td>
-                             <td><div align="left">${listTupoksi.getangka_krdt()}</div></td>
-                            <%--<td><a href ="referensiInstansiServlet?idTupoksihit=<c:out value="${listTupoksi.getIdTupoksi()}"/>">hapus</td>
-                            <!--<input  type="text" id='<c:out value="${listTupoksi.getIdTupoksi()}"/>' value="<c:out value="${listTupoksi.getIdTupoksi()}"/>">-->
-                            <!--<td><input type="button" name="btnHapus" value="HAPUS" onclick=""></input></td>  -->--%>                        
-                            <td><a href="referensiInstansiServlet?action=HapusTupoksi&idTupoksiHapus=<c:out value="${listTupoksi.getIdTupoksi()}"/>&InstansiHapus=<c:out value="${kodeInstansi}"/>&UnorHapus=<c:out value="${kodeUnor}"/>&JabHapus=<c:out value="${listTupoksi.getjabatanId()}"/>"><img src="images/hapus2.png"></img></a></td>
-                            <td><a href="referensiInstansiServlet?action=UpdateTupoksi&idTupoksiUpdate=<c:out value="${listTupoksi.getIdTupoksi()}"/>"><img src="images/ubah2.png"></img></a></td>
-                            <%--<td><input type="submit" name="Submit" value="UBAH"></td>--%>
-                        </tr>
-                    </c:forEach>
-             </table> 
-          </div>
-        
-  </form>
-       
-    </div>          
-<SCRIPT TYPE="text/javascript">
+        </div>          
+        <SCRIPT TYPE="text/javascript">
       
-function updateClock()
-{
-    var now = new Date();
+            function updateClock()
+            {
+                var now = new Date();
     
-    var jam = now.getHours().toString();
-    var menit = now.getMinutes().toString();
-    var detik = now.getSeconds().toString();
-    var mili = now.getMilliseconds().toString();
+                var jam = now.getHours().toString();
+                var menit = now.getMinutes().toString();
+                var detik = now.getSeconds().toString();
+                var mili = now.getMilliseconds().toString();
     
-    var tgl = now.getDate().toString();
-    var bulan = now.getMonth().toString();
-    var tahun = now.getYear().toString();
+                var tgl = now.getDate().toString();
+                var bulan = now.getMonth().toString();
+                var tahun = now.getYear().toString();
     
-    var hari = now.getDay().toString();
+                var hari = now.getDay().toString();
     
-    var coba = now.getD
+                var coba = now.getD
 
-    if (menit.length < 2)
-        menit = "0" + menit
-    if (detik.length < 2)
-        detik = "0" + detik
-    if (tgl.length < 2)
-        tgl = "0" + tgl
-    if (bulan == "0")
-        bulan = "Januari"
-    if (bulan == "1")
-        bulan = "Februari"
-    if (bulan == "2")
-        bulan = "Maret"
-    if (bulan == "3")
-        bulan = "April"
-    if (bulan == "4")
-        bulan = "Mei"
-    if (bulan == "5")
-        bulan = "Juni"
-    if (bulan == "6")
-        bulan = "Juli"
-    if (bulan == "7")
-        bulan = "Agustus"
-    if (bulan == "8")
-        bulan = "September"
-    if (bulan == "9")
-        bulan = "Oktober"
-    if (bulan == "10")
-        bulan = "November"
-    if (bulan == "11")
-        bulan = "Desember"
-    if (hari == "1")
-        hari = "Senin"
-    if (hari == "2")
-        hari = "Selasa"
-    if (hari == "3")
-        hari = "Rabu"
-    if (hari == "4")
-        hari = "Kamis"
-    if (hari == "5")
-        hari = "Jumat"
-    if (hari == "6")
-        hari = "Sabtu"
-    if (hari == "0")
-        hari = "Minggu"
+                if (menit.length < 2)
+                    menit = "0" + menit
+                if (detik.length < 2)
+                    detik = "0" + detik
+                if (tgl.length < 2)
+                    tgl = "0" + tgl
+                if (bulan == "0")
+                    bulan = "Januari"
+                if (bulan == "1")
+                    bulan = "Februari"
+                if (bulan == "2")
+                    bulan = "Maret"
+                if (bulan == "3")
+                    bulan = "April"
+                if (bulan == "4")
+                    bulan = "Mei"
+                if (bulan == "5")
+                    bulan = "Juni"
+                if (bulan == "6")
+                    bulan = "Juli"
+                if (bulan == "7")
+                    bulan = "Agustus"
+                if (bulan == "8")
+                    bulan = "September"
+                if (bulan == "9")
+                    bulan = "Oktober"
+                if (bulan == "10")
+                    bulan = "November"
+                if (bulan == "11")
+                    bulan = "Desember"
+                if (hari == "1")
+                    hari = "Senin"
+                if (hari == "2")
+                    hari = "Selasa"
+                if (hari == "3")
+                    hari = "Rabu"
+                if (hari == "4")
+                    hari = "Kamis"
+                if (hari == "5")
+                    hari = "Jumat"
+                if (hari == "6")
+                    hari = "Sabtu"
+                if (hari == "0")
+                    hari = "Minggu"
     
-    var time = hari + ", " + tgl + " " + bulan + " " + tahun + " / "+ jam + ":" + menit + ":" + detik + ":" + mili;
+                var time = hari + ", " + tgl + " " + bulan + " " + tahun + " / "+ jam + ":" + menit + ":" + detik + ":" + mili;
      
-    document.forms["clock"].time.value = time;
-    setTimeout("updateClock();", 1000);
-}
+                document.forms["clock"].time.value = time;
+                setTimeout("updateClock();", 1000);
+            }
 
- function myPopupInstansi() 
-{
-    window.open("referensiInstansiServlet?isAllInstansi=true", "myWindow", "status = 0, height = 500, width = 1000, resizable = 0, scrollbars=yes")
-}
+            function myPopupInstansi() 
+            {
+                window.open("referensiInstansiServlet?isAllInstansi=true", "myWindow", "status = 0, height = 500, width = 1000, resizable = 0, scrollbars=yes")
+            }
 
-function myPopupUnor() 
-{
-    window.open("RequestServlet?page=TabelUnor", "myWindow", "status = 0, height = 500, width = 1000, resizable = 0, scrollbars=yes")
-}
-</script>
+            function myPopupUnor() 
+            {
+                window.open("RequestServlet?page=TabelUnor", "myWindow", "status = 0, height = 500, width = 1000, resizable = 0, scrollbars=yes")
+            }
+        </script>
 
-<SCRIPT TYPE="text/javascript">
-function popup(mylink, windowname)
-{
-if (! window.focus)return true;
-var href;
-if (typeof(mylink) == 'string')
-   href=mylink;
-else
-   href=mylink.href;
-window.open(href, windowname, 'width=400,height=200,scrollbars=yes');
-return false;
-}
+        <SCRIPT TYPE="text/javascript">
+            function popup(mylink, windowname)
+            {
+                if (! window.focus)return true;
+                var href;
+                if (typeof(mylink) == 'string')
+                    href=mylink;
+                else
+                    href=mylink.href;
+                window.open(href, windowname, 'width=400,height=200,scrollbars=yes');
+                return false;
+            }
 
-function next()
-{
-    //location = 'insertTupoksi.jsp';
-    location = 'RequestServlet?page=insertTupoksiBaruBiru';
-}
-function next_isi4faktor()
-{
-    //location = 'insertTupoksi.jsp';
-    location = 'RequestServlet?page=insertTupoksiBaruBiru';
-}
-function myPopup2() 
-{
-    window.open( "tupoksiServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>", "myWindow", "status = 0, height = 500, width = 1000, resizable = 0, scrollbars=yes" )
-}
+            function next()
+            {
+                //location = 'insertTupoksi.jsp';
+                location = 'RequestServlet?page=insertTupoksiBaruBiru';
+            }
+            function next_isi4faktor()
+            {
+                //location = 'insertTupoksi.jsp';
+                location = 'RequestServlet?page=insertTupoksiBaruBiru';
+            }
+            function myPopup2()         
+            {
+                window.open( "tupoksiServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>", "myWindow", "status = 0, height = 500, width = 1000, resizable = 0, scrollbars=yes" )
+            }
 
-function show_alert()
-{
-    var r=confirm("Press a button");
+            function show_alert()
+            {
+                var r=confirm("Press a button");
         
-    if (r==true)
-    {
-        alert("You pressed OK!");
-    }
-    else
-    {
-        alert("You pressed Cancel!");
-    }
-}
+                if (r==true)
+                {
+                    alert("You pressed OK!");
+                }
+                else
+                {
+                    alert("You pressed Cancel!");
+                }
+            }
 
-function alert()
-{
-    alert("TUPOKSI MASIH KOSONG");
-}
+            function alert()
+            {
+                alert("TUPOKSI MASIH KOSONG");
+            }
 
-function banner()
-{
+            function banner()
+            {
     
-}
+            }
 
-function updateClock()
-{
-    var now = new Date();
+            function updateClock()
+            {
+                var now = new Date();
     
-    var jam = now.getHours().toString();
-    var menit = now.getMinutes().toString();
-    var detik = now.getSeconds().toString();
-    var mili = now.getMilliseconds().toString();
+                var jam = now.getHours().toString();
+                var menit = now.getMinutes().toString();
+                var detik = now.getSeconds().toString();
+                var mili = now.getMilliseconds().toString();
     
-    var tgl = now.getDate().toString();
-    var bulan = now.getMonth().toString();
-    var tahun = now.getYear().toString();
+                var tgl = now.getDate().toString();
+                var bulan = now.getMonth().toString();
+                var tahun = now.getYear().toString();
     
-    var hari = now.getDay().toString();
+                var hari = now.getDay().toString();
     
-    var coba = now.getD
+                var coba = now.getD
 
-    if (menit.length < 2)
-        menit = "0" + menit
-    if (detik.length < 2)
-        detik = "0" + detik
-    if (tgl.length < 2)
-        tgl = "0" + tgl
-    if (bulan == "0")
-        bulan = "Januari"
-    if (bulan == "1")
-        bulan = "Februari"
-    if (bulan == "2")
-        bulan = "Maret"
-    if (bulan == "3")
-        bulan = "April"
-    if (bulan == "4")
-        bulan = "Mei"
-    if (bulan == "5")
-        bulan = "Juni"
-    if (bulan == "6")
-        bulan = "Juli"
-    if (bulan == "7")
-        bulan = "Agustus"
-    if (bulan == "8")
-        bulan = "September"
-    if (bulan == "9")
-        bulan = "Oktober"
-    if (bulan == "10")
-        bulan = "November"
-    if (bulan == "11")
-        bulan = "Desember"
-    if (hari == "1")
-        hari = "Senin"
-    if (hari == "2")
-        hari = "Selasa"
-    if (hari == "3")
-        hari = "Rabu"
-    if (hari == "4")
-        hari = "Kamis"
-    if (hari == "5")
-        hari = "Jumat"
-    if (hari == "6")
-        hari = "Sabtu"
-    if (hari == "0")
-        hari = "Minggu"
+                if (menit.length < 2)
+                    menit = "0" + menit
+                if (detik.length < 2)
+                    detik = "0" + detik
+                if (tgl.length < 2)
+                    tgl = "0" + tgl
+                if (bulan == "0")
+                    bulan = "Januari"
+                if (bulan == "1")
+                    bulan = "Februari"
+                if (bulan == "2")
+                    bulan = "Maret"
+                if (bulan == "3")
+                    bulan = "April"
+                if (bulan == "4")
+                    bulan = "Mei"
+                if (bulan == "5")
+                    bulan = "Juni"
+                if (bulan == "6")
+                    bulan = "Juli"
+                if (bulan == "7")
+                    bulan = "Agustus"
+                if (bulan == "8")
+                    bulan = "September"
+                if (bulan == "9")
+                    bulan = "Oktober"
+                if (bulan == "10")
+                    bulan = "November"
+                if (bulan == "11")
+                    bulan = "Desember"
+                if (hari == "1")
+                    hari = "Senin"
+                if (hari == "2")
+                    hari = "Selasa"
+                if (hari == "3")
+                    hari = "Rabu"
+                if (hari == "4")
+                    hari = "Kamis"
+                if (hari == "5")
+                    hari = "Jumat"
+                if (hari == "6")
+                    hari = "Sabtu"
+                if (hari == "0")
+                    hari = "Minggu"
     
-    var time = hari + ", " + tgl + " " + bulan + " " + tahun + " / "+ jam + ":" + menit + ":" + detik + ":" + mili;
+                var time = hari + ", " + tgl + " " + bulan + " " + tahun + " / "+ jam + ":" + menit + ":" + detik + ":" + mili;
      
-    document.forms["clock"].time.value = time;
-    setTimeout("updateClock();", 1000);
-}
+                document.forms["clock"].time.value = time;
+                setTimeout("updateClock();", 1000);
+            }
 
- function alertnipnull1(evt)
-    {
-        evt = (evt) ? evt : window.event
-        var charCode = (evt.which) ? evt.which : evt.keyCode
-        if (charCode > 31 && (charCode < 44  || charCode > 57)) 
-        {
-            status = "This field accepts numbers only."
-            return false
-        }
-        status = ""
-        return true
-    }
+            function alertnipnull1(evt)
+            {
+                evt = (evt) ? evt : window.event
+                var charCode = (evt.which) ? evt.which : evt.keyCode
+                if (charCode > 31 && (charCode < 44  || charCode > 57)) 
+                {
+                    status = "This field accepts numbers only."
+                    return false
+                }
+                status = ""
+                return true
+            }
 
-function alertnipnull()
-{
-    if (txtNIPBaru == null)
-    {
-        window.alert("Masukkan NIP anda terlebih dahulu");
-    }
-}
-</script>
+            function alertnipnull()
+            {
+                if (txtNIPBaru == null)
+                {
+                    window.alert("Masukkan NIP anda terlebih dahulu");
+                }
+            }
+        </script>
 
-<style type="text/css"> 
-#menu a
-{
-        display:block;
-        width:120px;
-        margin: 1em 0; padding:7px 0 10px 20px;
-        font: bold 14px/1 sans-serif;
-        color:#c60;
-        /*background: url(http://www.image-share.com/upload/1396/159.gif) 0 0 no-repeat;*/
-        background: url(/SKPapplication/images/button.gif) 0 0 no-repeat;
-        text-decoration: none;
-}
-	
-#menu a:hover
-{	
-        background-position: -157px 0;
-        color: #E9BE75;
-}
-	
-#menu a:active
-{
-        background-position: -314px 0;
-        color:white;
-}
+        <style type="text/css"> 
+            #menu a
+            {
+                display:block;
+                width:120px;
+                margin: 1em 0; padding:7px 0 10px 20px;
+                font: bold 14px/1 sans-serif;
+                color:#c60;
+                /*background: url(http://www.image-share.com/upload/1396/159.gif) 0 0 no-repeat;*/
+                background: url(/SKPapplication/images/button.gif) 0 0 no-repeat;
+                text-decoration: none;
+            }
+
+            #menu a:hover
+            {	
+                background-position: -157px 0;
+                color: #E9BE75;
+            }
+
+            #menu a:active
+            {
+                background-position: -314px 0;
+                color:white;
+            }
 
 
-     
-form fieldset
-{
-    border: none;
-}
-form input.highlight
-{
-    background: #f9f9f9;
-    border: solid 1px #CCCCCC;
-    padding: 5px;
-}
-form input.highlight:focus
-{
-    border: solid 1px #D9AD00;
-    background: #FFF7D7;
-}
-            
-.button {
-	display: inline-block;
-	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
-	display: inline;
-	vertical-align: baseline;
-	margin: 0 2px;
-	outline: none;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	font: 14px/100% Arial, Helvetica, sans-serif;
-	padding: .5em 2em .55em;
-	text-shadow: 0 1px 1px rgba(0,0,0,.3);
-	-webkit-border-radius: .5em; 
-	-moz-border-radius: .5em;
-	border-radius: .5em;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
-        width: 150px;
-}
-.button:hover {
-	text-decoration: none;
-}
-.button:active {
-	position: relative;
-	top: 1px;
-}
-.bigrounded {
-	-webkit-border-radius: 2em;
-	-moz-border-radius: 2em;
-	border-radius: 2em;
-}
-.black {
-	color: #d7d7d7;
-	border: solid 1px #333;
-	background: #333;
-	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#085d93));
-	background: -moz-linear-gradient(top,  #666,  #085d93);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000');
-}
-.black:hover {
-	background: #000;
-	background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#000));
-	background: -moz-linear-gradient(top,  #444,  #000);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#000000');
-}
-.black:active {
-	color: #666;
-	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#444));
-	background: -moz-linear-gradient(top,  #000,  #444);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#666666');
-}
-</style>
 
-</body>
+            form fieldset
+            {
+                border: none;
+            }
+            form input.highlight
+            {
+                background: #f9f9f9;
+                border: solid 1px #CCCCCC;
+                padding: 5px;
+            }
+            form input.highlight:focus
+            {
+                border: solid 1px #D9AD00;
+                background: #FFF7D7;
+            }
+
+            .button {
+                display: inline-block;
+                zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+                display: inline;
+                vertical-align: baseline;
+                margin: 0 2px;
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                font: 14px/100% Arial, Helvetica, sans-serif;
+                padding: .5em 2em .55em;
+                text-shadow: 0 1px 1px rgba(0,0,0,.3);
+                -webkit-border-radius: .5em; 
+                -moz-border-radius: .5em;
+                border-radius: .5em;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                width: 150px;
+            }
+            .button:hover {
+                text-decoration: none;
+            }
+            .button:active {
+                position: relative;
+                top: 1px;
+            }
+            .bigrounded {
+                -webkit-border-radius: 2em;
+                -moz-border-radius: 2em;
+                border-radius: 2em;
+            }
+            .black {
+
+                background: #D9AD00;
+
+            }
+            .black:hover {
+                background: #E9BE75;
+                background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#000));
+                background: -moz-linear-gradient(top,  #444,  #E9BE75);
+                filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#000000');
+            }
+            .black:active {
+                color: #D9AD00;
+                background: -webkit-gradient(linear, left top, left bottom, from(#D9AD00), to(#444));
+                background: -moz-linear-gradient(top,  #000,  #444);
+                filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#D9AD00', endColorstr='#666666');
+            }
+        </style>
+
+    </body>
 </html>

@@ -419,8 +419,15 @@ public class IsiPerilakuServlet extends HttpServlet {
 
                 List<TugasTambahan> kereaktifitas = new GoIndex().getKreatifitasList(idNipTambahan);
                 request.setAttribute("kereaktifitas", kereaktifitas);
+                
+                 request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
 
-                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
+          //  RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+          //  dis.forward(request, response);
+                
+
+              RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/nilaiTugasTambahan.jsp");
                 PrintWriter out = response.getWriter();
                 dis.include(request, response);
                 out.println(hitungKoefKreaf);

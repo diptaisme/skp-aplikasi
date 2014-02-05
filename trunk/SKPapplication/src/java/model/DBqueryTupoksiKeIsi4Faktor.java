@@ -128,17 +128,27 @@ public class DBqueryTupoksiKeIsi4Faktor
     public List<TupoksiKeIsi4Faktor> getDBqueryTupoksiKeIsi4FaktorSesion(String sid_unor, String sid_instansi, String snip_pns,String _pilih_session) throws SQLException
     {
         List<TupoksiKeIsi4Faktor> TupoksiKeIsi4Faktories = new ArrayList<TupoksiKeIsi4Faktor>();
-                
+          
+        // String sql = "SELECT T.id_tupoksi, T.nama_tupoksi, T.id_unor, T.id_instansi, T.id_atasan, T.instansi_nama "
+        //        + " FROM TUPOKSI T "
+        //        + " WHERE T.id_unor = '"+sid_unor+ "'"
+        //        + " AND ID_INSTANSI ='"+sid_instansi+ "'";
+        
+       //  PreparedStatement pst = this.conn.prepareStatement(sql);
+       // DBqueryTupoksiKeIsi4Faktor nDBqueryTupoksiKeIsi4Faktor = null;
+      // tupoksi tukeisi = null;
+      //  ResultSet rs = pst.executeQuery();
+        
         String sql = "SELECT T.id_tupoksi, T.nama_tupoksi, T.id_unor, T.id_instansi, T.id_atasan, T.instansi_nama, "
                 + " I.id_isi4faktor, I.nip_pns, I.id_tupoksi, I.kuantitas4, I.kualitas4, I.waktu4, I.biaya4, I.kuantitas_label, I.waktu_label,T.angka_krdt,I.angka_krdt,I.session "
                 + " FROM TUPOKSI T, ISI4FAKTOR I "
-                + " WHERE T.id_tupoksi = I.id_tupoksi AND I.nip_pns =? and I.session=? and I.id_unor=?";
+                + " WHERE T.id_tupoksi = I.id_tupoksi AND I.nip_pns ='" +snip_pns+"' and I.session='" +_pilih_session+"' and I.id_unor='"+sid_unor+"'";
         
         PreparedStatement pst = this.conn.prepareStatement(sql);
         DBqueryTupoksiKeIsi4Faktor nDBqueryTupoksiKeIsi4Faktor = null;
-        pst.setString(1, snip_pns);
-        pst.setString(2, _pilih_session);
-        pst.setString(3, sid_unor);
+       // pst.setString(1, snip_pns);
+      //  pst.setString(2, _pilih_session);
+       // pst.setString(3, sid_unor);
         ResultSet rs = pst.executeQuery();
         while (rs.next())
         {

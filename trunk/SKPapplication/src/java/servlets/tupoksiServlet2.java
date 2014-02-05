@@ -53,7 +53,7 @@ public class tupoksiServlet2 extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -69,16 +69,15 @@ public class tupoksiServlet2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          String id=request.getParameter("txtNIPBaru"); //ambil NIPBARU dari lemparan hiperlink index.jsp (parameter : txtNIPBaru)
+        String id = request.getParameter("txtNIPBaru"); //ambil NIPBARU dari lemparan hiperlink index.jsp (parameter : txtNIPBaru)
         String idTB = request.getParameter("txtNIPBaruTB");
-         String nipKelokpokKriteria= request.getParameter("nipKelokpokKriteria");
-          String namaKelompok= request.getParameter("namaKelompok");
-          String test= request.getParameter("test");
-          String jenis = request.getParameter("jenis");
-        if (id != null && id != "" && id != " ")                        
-        {
+        String nipKelokpokKriteria = request.getParameter("nipKelokpokKriteria");
+        String namaKelompok = request.getParameter("namaKelompok");
+        String test = request.getParameter("test");
+        String jenis = request.getParameter("jenis");
+        if (id != null && id != "" && id != " ") {
             //domain PnsSkp
-            PnsSkp pns=new GoIndex().getPns(id); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
+            PnsSkp pns = new GoIndex().getPns(id); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
             String unorAtasan = pns.getDiAtasanId(); //ambil satu2 dari "pns" diatas
             String UnorPns = pns.getUnorId();
             String InstansiPns = pns.getInstansiId();
@@ -86,22 +85,22 @@ public class tupoksiServlet2 extends HttpServlet {
             String Jenis = pns.getjnsjbtn_id();
             String JabFung = pns.getJabatanUmumId();
             String Jabatan;
-            if (Jenis.equals("1")){
+            if (Jenis.equals("1")) {
                 Jabatan = null;
-            }else if (Jenis.equals("2")){
+            } else if (Jenis.equals("2")) {
                 Jabatan = pns.getJabatanFungsionalId();
-            }else if (Jenis.equals("4")){
+            } else if (Jenis.equals("4")) {
                 Jabatan = pns.getJabatanUmumId();
-            }else{
-             Jabatan = null;   
+            } else {
+                Jabatan = null;
             }
 
-            PnsSkp UnorAts=new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
+            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
 
             //List<tupoksi2> tukesiServlet = new GoIndex().getTukesiPerJenisJabatan(UnorPns, InstansiPns, NipPns, Jenis, Jabatan);
-         
- List<tupoksi> tukesiServlet = new GoIndex().getTukesiPerJenisJabatan(UnorPns, InstansiPns, NipPns, Jenis, Jabatan);
-          
+
+            List<tupoksi> tukesiServlet = new GoIndex().getTukesiPerJenisJabatan(UnorPns, InstansiPns, NipPns, Jenis, Jabatan);
+
             //baru 22022012
             instansiri ins = new GoIndex().getInstansi(InstansiPns);
             String NamaInstansi = ins.getNamaInstansi();
@@ -110,44 +109,45 @@ public class tupoksiServlet2 extends HttpServlet {
             //String insA = request.getParameter("instansiA");
             //String unoA = request.getParameter("unorA");
             List<UnorKeTupoksi> unosiServlet = new GoIndex().getUnosi2(UnorPns, InstansiPns, NipPns, Jenis, Jabatan);
-            if (Jenis.equals("2")){
-            jabfung kelompok = new GoIndex().getJabatanFungsional(Jabatan);
-                        String kelompoks = kelompok.getkelJabatanId();
-                         List<jabfung> lisJabfung = new GoIndex().getSatuRumpunFungsional(kelompoks);
-                          request.setAttribute("lisJabfung", lisJabfung);
-            }
-            else if (Jenis.equals("4")){
-            jabfum kelompok = new GoIndex().getJabatanUmum(Jabatan);
-            String kelompoks = kelompok.getId();
-            List<jabfum> lisJabfung = new GoIndex().getRumpunUmumById(Jabatan);
-             request.setAttribute("lisJabfung", lisJabfung);
+            if (Jenis.equals("2")) {
+                jabfung kelompok = new GoIndex().getJabatanFungsional(Jabatan);
+                String kelompoks = kelompok.getkelJabatanId();
+                List<jabfung> lisJabfung = new GoIndex().getSatuRumpunFungsional(kelompoks);
+                request.setAttribute("lisJabfung", lisJabfung);
+            } else if (Jenis.equals("4")) {
+                jabfum kelompok = new GoIndex().getJabatanUmum(Jabatan);
+                String kelompoks = kelompok.getId();
+                List<jabfum> lisJabfung = new GoIndex().getRumpunUmumById(Jabatan);
+                request.setAttribute("lisJabfung", lisJabfung);
             }
 
             //  List<kelompokJabatan> lisKelompok =  new GoIndex().getSatuRumpun(kelompoks);
-           
+
             request.setAttribute("pns", pns);
-            request.setAttribute("UnorAts", UnorAts);  
+            request.setAttribute("UnorAts", UnorAts);
             request.setAttribute("ins", ins);
-            
+
 
             request.setAttribute("tukesiServlet", tukesiServlet);
             request.setAttribute("unosiServlet", unosiServlet);
 //           request.setAttribute("lisJabfung", lisJabfung);
-           request.setAttribute("jabatan", jenis);
-                   
-           
-            //RequestDispatcher dis=request.getRequestDispatcher("tupoksi.jsp");
-            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru2.jsp");
-            dis.forward(request, response); 
-       
-        }else if(nipKelokpokKriteria!= null){
-             PnsSkp pns=new GoIndex().getPns(nipKelokpokKriteria); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
+            request.setAttribute("jabatan", jenis);
+
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+           // dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+
+               RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru2.jsp");
+            dis.forward(request, response);
+
+        } else if (nipKelokpokKriteria != null) {
+            PnsSkp pns = new GoIndex().getPns(nipKelokpokKriteria); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
             String unorAtasan = pns.getDiAtasanId(); //ambil satu2 dari "pns" diatas
             String UnorPns = pns.getUnorId();
             String InstansiPns = pns.getInstansiId();
-            String NipPns = pns.getNipBaru(); 
+            String NipPns = pns.getNipBaru();
 
-            PnsSkp UnorAts=new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
+            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
 
             List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
 
@@ -161,35 +161,30 @@ public class tupoksiServlet2 extends HttpServlet {
             List<UnorKeTupoksi> unosiServlet = new GoIndex().getUnosi(UnorPns, InstansiPns);
 
             request.setAttribute("pns", pns);
-            request.setAttribute("UnorAts", UnorAts);  
+            request.setAttribute("UnorAts", UnorAts);
             request.setAttribute("ins", ins);
 
             request.setAttribute("tukesiServlet", tukesiServlet);
             request.setAttribute("unosiServlet", unosiServlet);
-           request.setAttribute("namaKelompok",namaKelompok);
+            request.setAttribute("namaKelompok", namaKelompok);
 
             //RequestDispatcher dis=request.getRequestDispatcher("tupoksi.jsp");
-            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru.jsp");
-            dis.forward(request, response); 
-        } 
-          else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " "))
-        {
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru.jsp");
+            dis.forward(request, response);
+        } else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " ")) {
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
             dis.forward(request, response);
-        }
-        else if(idTB != null && idTB != "" && idTB != " ")
-        {
-            PnsSkp pns=new GoIndex().getPns(idTB);
+        } else if (idTB != null && idTB != "" && idTB != " ") {
+            PnsSkp pns = new GoIndex().getPns(idTB);
             String idNip = pns.getNipBaru();
             String namaPns = pns.getNamaPns();
             request.setAttribute("namaPns", namaPns);
             request.setAttribute("idNip", idNip);
-            
-            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
-            dis.forward(request, response); 
+
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
+            dis.forward(request, response);
+        } else {
         }
-        else
-        {}
     }
 
     /** 
@@ -201,90 +196,86 @@ public class tupoksiServlet2 extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { String cariKriteria = request.getParameter("cariKriteria");
-       String  cariKriteriaKlTgs = request.getParameter("cariKriteriaKlTgs");
-       String submitCari = request.getParameter("submitCari");
-       String id=request.getParameter("idnipText"); //ambil NIPBARU dari lemparan hiperlink index.jsp (parameter : txtNIPBaru)
-       String idTB = request.getParameter("txtNIPBaruTB");
-       
-       if (submitCari.equalsIgnoreCase("CARI")){
-            if (cariKriteria != null && cariKriteria!= "" && cariKriteria != " " ||  cariKriteria.equals(""))
-            {
-            PnsSkp pns=new GoIndex().getPns(id); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
-            String unorAtasan = pns.getDiAtasanId(); //ambil satu2 dari "pns" diatas
-            String UnorPns = pns.getUnorId();
-            String InstansiPns = pns.getInstansiId();
-            String NipPns = pns.getNipBaru(); 
+            throws ServletException, IOException {
+        String cariKriteria = request.getParameter("cariKriteria");
+        String cariKriteriaKlTgs = request.getParameter("cariKriteriaKlTgs");
+        String submitCari = request.getParameter("submitCari");
+        String id = request.getParameter("idnipText"); //ambil NIPBARU dari lemparan hiperlink index.jsp (parameter : txtNIPBaru)
+        String idTB = request.getParameter("txtNIPBaruTB");
 
-            PnsSkp UnorAts=new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
+        if (submitCari.equalsIgnoreCase("CARI")) {
+            if (cariKriteria != null && cariKriteria != "" && cariKriteria != " " || cariKriteria.equals("")) {
+                PnsSkp pns = new GoIndex().getPns(id); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
+                String unorAtasan = pns.getDiAtasanId(); //ambil satu2 dari "pns" diatas
+                String UnorPns = pns.getUnorId();
+                String InstansiPns = pns.getInstansiId();
+                String NipPns = pns.getNipBaru();
 
-            List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+                PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
 
-            instansiri ins = new GoIndex().getInstansi(InstansiPns);
-            String NamaInstansi = ins.getNamaInstansi();
+                List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
 
-             List<UnorKeTupoksi> unosiServlet = new GoIndex().getSamaLikeTupoksi(cariKriteriaKlTgs,cariKriteria);
-            
-            request.setAttribute("pns", pns);
-            request.setAttribute("UnorAts", UnorAts);  
-            request.setAttribute("ins", ins);
+                instansiri ins = new GoIndex().getInstansi(InstansiPns);
+                String NamaInstansi = ins.getNamaInstansi();
 
-            request.setAttribute("tukesiServlet", tukesiServlet);
-            request.setAttribute("unosiServlet", unosiServlet);
-           
-            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru.jsp");
-            dis.forward(request, response); 
-        }
-        else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " "))
-        {
-            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
-            dis.forward(request, response);
-        }
-        else if(idTB != null && idTB != "" && idTB != " ")
-        {
-            PnsSkp pns=new GoIndex().getPns(idTB);
-            String idNip = pns.getNipBaru();
-            String namaPns = pns.getNamaPns();
-            request.setAttribute("namaPns", namaPns);
-            request.setAttribute("idNip", idNip);
-            
-            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
-            dis.forward(request, response); 
+                List<UnorKeTupoksi> unosiServlet = new GoIndex().getSamaLikeTupoksi(cariKriteriaKlTgs, cariKriteria);
+
+                request.setAttribute("pns", pns);
+                request.setAttribute("UnorAts", UnorAts);
+                request.setAttribute("ins", ins);
+
+                request.setAttribute("tukesiServlet", tukesiServlet);
+                request.setAttribute("unosiServlet", unosiServlet);
+
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru.jsp");
+                dis.forward(request, response);
+            } else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " ")) {
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+                dis.forward(request, response);
+            } else if (idTB != null && idTB != "" && idTB != " ") {
+                PnsSkp pns = new GoIndex().getPns(idTB);
+                String idNip = pns.getNipBaru();
+                String namaPns = pns.getNamaPns();
+                request.setAttribute("namaPns", namaPns);
+                request.setAttribute("idNip", idNip);
+
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
+                dis.forward(request, response);
             }
-       }else if(submitCari.equalsIgnoreCase("CARIKLTGS")){
-           
-            PnsSkp pns=new GoIndex().getPns(id); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
+        } else if (submitCari.equalsIgnoreCase("CARIKLTGS")) {
+
+            PnsSkp pns = new GoIndex().getPns(id); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
             String unorAtasan = pns.getDiAtasanId(); //ambil satu2 dari "pns" diatas
             String UnorPns = pns.getUnorId();
             String InstansiPns = pns.getInstansiId();
-            String NipPns = pns.getNipBaru(); 
-           if(cariKriteriaKlTgs==null ||cariKriteriaKlTgs.equals("")){
-               cariKriteriaKlTgs=" ";
-           }
-            PnsSkp UnorAts=new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
+            String NipPns = pns.getNipBaru();
+            if (cariKriteriaKlTgs == null || cariKriteriaKlTgs.equals("")) {
+                cariKriteriaKlTgs = " ";
+            }
+            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
 
             List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
 
             instansiri ins = new GoIndex().getInstansi(InstansiPns);
             String NamaInstansi = ins.getNamaInstansi();
 
-             List<tupoksi_lama> tupoksiServlets = new GoIndex().getSamaLikeKeLompokTupoksiIdAll(cariKriteriaKlTgs);
-            
+            List<tupoksi_lama> tupoksiServlets = new GoIndex().getSamaLikeKeLompokTupoksiIdAll(cariKriteriaKlTgs);
+
             request.setAttribute("pns", pns);
-            request.setAttribute("UnorAts", UnorAts);  
+            request.setAttribute("UnorAts", UnorAts);
             request.setAttribute("ins", ins);
 
             request.setAttribute("tukesiServlet", tukesiServlet);
             request.setAttribute("tupoksiServlets", tupoksiServlets);
-           
-            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tabelKelompokTugas.jsp");
-            dis.forward(request, response); 
-      
-       }else if(submitCari.equalsIgnoreCase("cariJabatan")){
-           String jabFungPilih = request.getParameter("jabfung");
-           String nip = request.getParameter("txtNIPBaru");
-            PnsSkp pns=new GoIndex().getPns(nip); 
-           
+
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/tabelKelompokTugas.jsp");
+            dis.forward(request, response);
+
+        } else if (submitCari.equalsIgnoreCase("cariJabatan")) {
+            String jabFungPilih = request.getParameter("jabfung");
+            String nip = request.getParameter("txtNIPBaru");
+            PnsSkp pns = new GoIndex().getPns(nip);
+
             String unorAtasan = pns.getDiAtasanId(); //ambil satu2 dari "pns" diatas
             String UnorPns = pns.getUnorId();
             String InstansiPns = pns.getInstansiId();
@@ -292,21 +283,21 @@ public class tupoksiServlet2 extends HttpServlet {
             String Jenis = pns.getjnsjbtn_id();
             String JabFung = pns.getJabatanUmumId();
             String Jabatan;
-            if (Jenis.equals("1")){
+            if (Jenis.equals("1")) {
                 Jabatan = null;
-            }else if (Jenis.equals("2")){
+            } else if (Jenis.equals("2")) {
                 Jabatan = pns.getJabatanFungsionalId();
-            }else if (Jenis.equals("4")){
+            } else if (Jenis.equals("4")) {
                 Jabatan = pns.getJabatanUmumId();
-            }else{
-             Jabatan = null;   
+            } else {
+                Jabatan = null;
             }
 
-            PnsSkp UnorAts=new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
+            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan); //ambil gelondongan    
 
             //List<tupoksi2> tukesiServlet = new GoIndex().getTukesiPerJenisJabatan(UnorPns, InstansiPns, NipPns, Jenis, Jabatan);
- List<tupoksi> tukesiServlet = new GoIndex().getTukesiPerJenisJabatan(UnorPns, InstansiPns, NipPns, Jenis, jabFungPilih);
-            
+            List<tupoksi> tukesiServlet = new GoIndex().getTukesiPerJenisJabatan(UnorPns, InstansiPns, NipPns, Jenis, jabFungPilih);
+
             //baru 22022012
             instansiri ins = new GoIndex().getInstansi(InstansiPns);
             String NamaInstansi = ins.getNamaInstansi();
@@ -320,24 +311,24 @@ public class tupoksiServlet2 extends HttpServlet {
             String kelompoks = kelompok.getkelJabatanId();
             //  List<kelompokJabatan> lisKelompok =  new GoIndex().getSatuRumpun(kelompoks);
             List<jabfung> lisJabfung = new GoIndex().getSatuRumpunFungsional(kelompoks);
-            
+
             request.setAttribute("pns", pns);
-            request.setAttribute("UnorAts", UnorAts);  
+            request.setAttribute("UnorAts", UnorAts);
             request.setAttribute("ins", ins);
             request.setAttribute("jabatan", Jenis);
-            
+
 
             request.setAttribute("tukesiServlet", tukesiServlet);
             request.setAttribute("unosiServlet", unosiServlet);
-           request.setAttribute("lisJabfung", lisJabfung);
-           
+            request.setAttribute("lisJabfung", lisJabfung);
+
             //RequestDispatcher dis=request.getRequestDispatcher("tupoksi.jsp");
-            RequestDispatcher dis=request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru2.jsp");
-            dis.forward(request, response); 
-       
-           
-           
-       }
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/tupoksiBaru2.jsp");
+            dis.forward(request, response);
+
+
+
+        }
     }
 
     /** 
