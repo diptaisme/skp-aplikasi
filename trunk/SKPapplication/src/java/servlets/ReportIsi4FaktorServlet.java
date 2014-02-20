@@ -204,10 +204,10 @@ public class ReportIsi4FaktorServlet extends HttpServlet
              String tglCetak_= (String) request.getAttribute("tglCetak");
 
             String rf=tglskrg.format(Calendar.getInstance().getTime()) ;
-            rf="02 Januari 2013";
+            rf="02 Januari 2014";
             
             if(tglCetak_==null){
-                   rf="02 Januari 2013";
+                   rf="02 Januari 2014";
                  
              }else  if (tglCetak_.length()==10){
                   rf=tglCetak_;
@@ -217,7 +217,7 @@ public class ReportIsi4FaktorServlet extends HttpServlet
                 String brf = vs.getNamaBulan();
                 rf=rf.substring(0,2) +" " + brf + " "+rf.substring(6,10); 
               }else{
-                  rf="02 Januari 2013";
+                  rf="02 Januari 2014";
              }
             
             DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());

@@ -156,6 +156,7 @@ public class GetPnsServlet extends HttpServlet {
                             if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
                                 UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
                             } else {
+                                  
                                 UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
                             }
 
@@ -1018,9 +1019,11 @@ public class GetPnsServlet extends HttpServlet {
     public void getTusiDariIsiTupoksi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _vnipInputan = request.getParameter("vnipInputan");
         String _pilih_session = request.getParameter("pilih_session");
+        
         String id = null;
         if (_vnipInputan != null) {
             id = _vnipInputan;
+            
         } else {
             id = (String) request.getAttribute("NipPns");
         }
@@ -1032,8 +1035,14 @@ public class GetPnsServlet extends HttpServlet {
         String UnorPns = pns.getUnorId();
         String InstansiPns = pns.getInstansiId();
         String NipPns = pns.getNipBaru();
+       
 
         PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+        
+         if (_vnipInputan != null) {
+          ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+            
+        }
 
         List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
 

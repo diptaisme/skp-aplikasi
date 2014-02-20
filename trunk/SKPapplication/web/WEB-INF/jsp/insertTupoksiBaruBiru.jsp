@@ -125,20 +125,57 @@
                 height : 501px;
                 overflow: auto;
             }
+
+            #met {
+                position: relative;
+                width: 947px;
+                height: 40px;
+                background: #9999CC;
+
+                font-family: arial;
+                padding-left: 1px;
+                top :13px;
+                text-decoration: none;
+
+
+
+            }
+            #met ul li a {
+                display: block;
+                text-decoration: none;
+                color: #FFF;
+                padding: 10px;
+                float: left;
+                width: 100px;
+                font-size: 18px
+
+            }
+
+            #met ul li a:hover {
+                background-color: #CCCCFF;
+                color: #FF0000;
+            }
+
         </style>
     </head>
     <body>
         <div id="wrapper">
-         
+
             <form name="form1" method="post" action="referensiInstansiServlet"  >
-                 <div id="headerLokal">
+                <div id="headerLokal">
                     <%@ include file="SlindronHeader.jsp" %>
                 </div>   
                 <div id="leftside">
                     <%@ include file="navigasiPro.jsp" %>
                 </div>   
                 <div id="contentdalam">
+                    <div id="met">
+                        <ul>
 
+                            <li> <a href="referensiInstansiServlet?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Kembali</a> 
+                            </li>
+                        </ul>
+                    </div>
                     <table width="500" height="50" border="0">
                         <tr>
                             <td colspan="3"><div align="center" ><strong><h2 style="color: #000">FORM PENGISIAN TUGAS POKOK FUNGSI</h2></strong></div></td>
@@ -149,16 +186,16 @@
                                 <input type="radio" name="jabatan"   value="1" id="jabatan1" onclick="testHilang()" <c:if test="${jabatan == '1'}">checked</c:if> />&nbsp;Struktural
                                 <input type="radio" name="jabatan" value="2" id="jabatan2" onclick="testHilang()" <c:if test="${jabatan == '2'}">checked</c:if> />&nbsp;Fungsional Tertentu
                                 <input type="radio" name="jabatan" value="4" id="jabatan4" onclick="testHilang()" <c:if test="${jabatan == '4'}">checked</c:if> />&nbsp;Fungsional Umum
-                                </td>
-                            </tr> 
-                        </table>
+                            </td>
+                        </tr> 
+                    </table>
 
-                        <table width="600" height="300" border="0">
+                    <table width="600" height="300" border="0">
 
-                            <tr>
-                                <td style="width: 50px">INSTANSI   :</td>
+                        <tr>
+                            <td style="width: 50px">INSTANSI   :</td>
 
-                                <td><c:out value="${namaInstansi}" /></td>
+                            <td><c:out value="${namaInstansi}" /></td>
                             <input size="75" type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/>
                             <input  type="hidden"  name="idInstansiText" value="${kodeInstansi}"/>
 
@@ -243,30 +280,55 @@
                     </table>
 
                     <div id="templatemo_content2" class="scroll">                 
-                        <table  width="60%"border="1" align="left" style="background-color: #E9BE75"> 
+                        <table  width="800"border="1" align="left" > 
                             <tr>
-                                <td width="5" style="font-size: medium"><div align="center">NO</div></td>
-                                <td width="10" style="font-size: medium"><div align="center">KODE</div></td>
-                                <td width="70" style="font-size: medium"><div align="center">NAMA TUPOKSI</div></td>
+                                <td width="5" style="font-size: medium;background-color: #9999ff"><div align="center">NO</div></td>
+                                <td width="10" style="font-size: medium;background-color: #9999ff"><div align="center">KODE</div></td>
+                                <td width="300" style="font-size: medium;background-color: #9999ff"><div align="center">NAMA TUPOKSI</div></td>
                                 <c:if test="${jabatan == '2'}">
-                                    <td width="5"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
+                                    <td width="5" style="font-size: medium;background-color: #9999ff"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
                                 </c:if>
+                                <c:if test="${jabatan != '2'}">
+                                    <td width="5" style="font-size: medium;background-color: #9999ff"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
+                                </c:if>
+                                <td width="8" style="font-size: medium;background-color: #9999ff"><div align="center"> Hapus</div></td> 
+                                <td width="8" style="font-size: medium;background-color: #9999ff"><div align="center"> Edit</div></td>
                             </tr>
                             <tr></tr>
 
                             <c:forEach var="listTupoksi" items="${Tupoksi}" varStatus="count">
-                                <tr>
-                                    <td><div align="center">${(count.index)+1}</div></td>
-                                    <td><div align="center">${listTupoksi.getIdTupoksi()}</div></td>
-                                    <td><div align="left">${listTupoksi.getNamaTupoksi()}</div></td>
-                                    <td><div align="left">${listTupoksi.getangka_krdt()}</div></td>
-                                    <%--<td><a href ="referensiInstansiServlet?idTupoksihit=<c:out value="${listTupoksi.getIdTupoksi()}"/>">hapus</td>
-                                    <!--<input  type="text" id='<c:out value="${listTupoksi.getIdTupoksi()}"/>' value="<c:out value="${listTupoksi.getIdTupoksi()}"/>">-->
-                                    <!--<td><input type="button" name="btnHapus" value="HAPUS" onclick=""></input></td>  -->--%>                        
-                                    <td><a href="referensiInstansiServlet?action=HapusTupoksi&idTupoksiHapus=<c:out value="${listTupoksi.getIdTupoksi()}"/>&InstansiHapus=<c:out value="${kodeInstansi}"/>&UnorHapus=<c:out value="${kodeUnor}"/>&JabHapus=<c:out value="${listTupoksi.getjabatanId()}"/>"><img src="images/hapus2.png"></img></a></td>
-                                    <td><a href="referensiInstansiServlet?action=UpdateTupoksi&idTupoksiUpdate=<c:out value="${listTupoksi.getIdTupoksi()}"/>"><img src="images/ubah2.png"></img></a></td>
-                                    <%--<td><input type="submit" name="Submit" value="UBAH"></td>--%>
-                                </tr>
+                                <c:choose>
+                                    <c:when test="${count.index % 2 == 0}">
+                                        <tr bgcolor="#b9c9fe">
+
+                                            <td><div align="center">${(count.index)+1}</div></td>
+                                            <td><div align="center">${listTupoksi.getIdTupoksi()}</div></td>
+                                            <td><div align="left">${listTupoksi.getNamaTupoksi()}</div></td>
+                                            <td><div align="left">${listTupoksi.getangka_krdt()}</div></td>
+                                            <%--<td><a href ="referensiInstansiServlet?idTupoksihit=<c:out value="${listTupoksi.getIdTupoksi()}"/>">hapus</td>
+                                            <!--<input  type="text" id='<c:out value="${listTupoksi.getIdTupoksi()}"/>' value="<c:out value="${listTupoksi.getIdTupoksi()}"/>">-->
+                                            <!--<td><input type="button" name="btnHapus" value="HAPUS" onclick=""></input></td>  -->--%>                        
+                                            <td><a href="referensiInstansiServlet?action=HapusTupoksi&idTupoksiHapus=<c:out value="${listTupoksi.getIdTupoksi()}"/>&InstansiHapus=<c:out value="${kodeInstansi}"/>&UnorHapus=<c:out value="${kodeUnor}"/>&JabHapus=<c:out value="${listTupoksi.getjabatanId()}"/>"><img src="images/hapus2.png"></img></a></td>
+                                            <td><a href="referensiInstansiServlet?action=UpdateTupoksi&idTupoksiUpdate=<c:out value="${listTupoksi.getIdTupoksi()}"/>"><img src="images/ubah2.png"></img></a></td>
+                                            <%--<td><input type="submit" name="Submit" value="UBAH"></td>--%>
+                                        </tr>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <tr bgcolor="#e8edff">
+                                            <td><div align="center">${(count.index)+1}</div></td>
+                                            <td><div align="center">${listTupoksi.getIdTupoksi()}</div></td>
+                                            <td><div align="left">${listTupoksi.getNamaTupoksi()}</div></td>
+                                            <td><div align="left">${listTupoksi.getangka_krdt()}</div></td>
+                                            <%--<td><a href ="referensiInstansiServlet?idTupoksihit=<c:out value="${listTupoksi.getIdTupoksi()}"/>">hapus</td>
+                                            <!--<input  type="text" id='<c:out value="${listTupoksi.getIdTupoksi()}"/>' value="<c:out value="${listTupoksi.getIdTupoksi()}"/>">-->
+                                            <!--<td><input type="button" name="btnHapus" value="HAPUS" onclick=""></input></td>  -->--%>                        
+                                            <td><a href="referensiInstansiServlet?action=HapusTupoksi&idTupoksiHapus=<c:out value="${listTupoksi.getIdTupoksi()}"/>&InstansiHapus=<c:out value="${kodeInstansi}"/>&UnorHapus=<c:out value="${kodeUnor}"/>&JabHapus=<c:out value="${listTupoksi.getjabatanId()}"/>"><img src="images/hapus2.png"></img></a></td>
+                                            <td><a href="referensiInstansiServlet?action=UpdateTupoksi&idTupoksiUpdate=<c:out value="${listTupoksi.getIdTupoksi()}"/>"><img src="images/ubah2.png"></img></a></td>
+                                            <%--<td><input type="submit" name="Submit" value="UBAH"></td>--%>
+                                        </tr>
+                                    </c:otherwise>
+
+                                </c:choose>
                             </c:forEach>
                         </table> 
                     </div>

@@ -15,7 +15,7 @@
         <title>SASARAN KERJA INDIVIDU</title>
         <meta name="keywords" content="corporate, free web template" />
         <meta name="description" content="SKI" />
-        <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
+
         <script language="javascript" type="text/javascript">
             function clearText(field)
             {
@@ -23,22 +23,7 @@
                 else if (field.value == '') field.value = field.defaultValue;
             }
         </script>
-        <style type="text/css">
-            #button {
-                display: block;
-                width: 175px;
-                height: 45px;
-                margin: 0px auto;
-            }
-            #button input:focus{
 
-            }
-            #button input:hover{
-                background-image:url('/SKPapplication/images/clicktosend_hover.gif');
-                background-position:left top;
-                background-repeat:no-repeat;
-            }
-        </style>
         <style type="text/css"> 
             #headerLokal {
                 padding: 0px;
@@ -90,6 +75,24 @@
                 overflow: auto;
             }
         </style>
+
+        <style type="text/css">
+            #menu2 {
+                position: relative;
+                width: 600px;
+                height: 40px;
+
+                font-family: arial;
+                padding-left: 2px;
+                top :0px;
+            }
+
+            #menu2 ul li a:hover {
+                background-color: #CCCCFF;
+                color: #FF0000;
+            }
+
+        </style>
     </head>
     <body>
         <div id="wrapper">
@@ -101,7 +104,10 @@
                     <%@ include file="navigasiPro.jsp" %>
                 </div>   
                 <div id="contentdalam">
-                    <div style="padding-left:0px;padding-top: 10px;overflow: auto;background-color: #FF9900;width: 400px ;height: 500px">
+
+                    
+
+                    <div style="padding-left:0px;padding-top: 10px;overflow: auto;background-color: #99ffcc;width: 400px ;height: 500px">
                         <table width="400" border="0" >
                             <tr>
                                 <th colspan="3"><strong style="color: #000">STAFF/PEJABAT STRUKTURAL</strong>
@@ -130,20 +136,35 @@
                             </tr> 
 
                             <c:forEach var="pnsList" items="${pnsList}" varStatus="count">
+                                <c:choose>
+                                    <c:when test="${count.index % 2 == 0}">
+                                        <tr bgcolor="#b9c9fe">
 
-                                <tr>
-                                    <td align="center"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${(count.index)+1}</a></td>
-                                    <td><div align="left"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNipBaru()}</a></div></td>
-                                    <td><div align="left"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNamaPns()}</a></div></td>
 
-                                </tr>
+                                            <td align="center"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${(count.index)+1}</a></td>
+                                            <td><div align="left"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNipBaru()}</a></div></td>
+                                            <td><div align="left"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNamaPns()}</a></div></td>
+
+                                        </tr>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <tr bgcolor="#e8edff">
+
+                                            <td align="center"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${(count.index)+1}</a></td>
+                                            <td><div align="left"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNipBaru()}</a></div></td>
+                                            <td><div align="left"><a href="isiPerilakuServlet?action=Koef&NipKoefKreatifitas=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNamaPns()}</a></div></td>
+
+                                        </tr> 
+                                    </c:otherwise>
+
+                                </c:choose>
 
                             </c:forEach>
 
                         </table>   
                     </div>    
 
-                    <div id="contentdalamsub">
+                    <div id="contentdalamsub" >
                         <table width="300" >
                             <tbody>
                                 <tr align="center">
@@ -172,58 +193,58 @@
 
                     <div id="contentdalamsub2">
                         <table >
-                           
-                                <tr align="center">
-                                    <td colspan="5"><strong style="color: #000"><u>Kreatifitas</u></strong></td>
-                                </tr>
+
+                            <tr align="center">
+                                <td colspan="5"><strong style="color: #000"><u>Kreatifitas</u></strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #000">No</strong></td>
+                                <td  style="width: 150px"><strong style="color: #000">Tugas</strong></td>
+                                <td><strong style="color: #000">Persetujuan</strong></td>
+                            </tr> 
+                            <c:forEach var="tambahans" items="${kereaktifitas}" varStatus ="count">
                                 <tr>
-                                    <td><strong style="color: #000">No</strong></td>
-                                    <td  style="width: 150px"><strong style="color: #000">Tugas</strong></td>
-                                    <td><strong style="color: #000">Persetujuan</strong></td>
-                                </tr> 
-                                <c:forEach var="tambahans" items="${kereaktifitas}" varStatus ="count">
-                                    <tr>
-                                        <td align="center" style="background-color:darkorange">${(count.index)+1}</td>
-                                        <td align="left" style="background-color:darkorange;width: 150px"><a href="isiPerilakuServlet?action=Kreaf&NipKoefKreatifitas=<c:out value="${idNipTambahan}"/>&idTam=<c:out value="${tambahans.getIdTambahan()}"/>">${tambahans.getNama()}</a></td>
-                                        <td align="left" style="background-color:darkorange"><a href="isiPerilakuServlet?action=Kreaf&NipKoefKreatifitas=<c:out value="${idNipTambahan}"/>&idTam=<c:out value="${tambahans.getIdTambahan()}"/>">${tambahans.getKoef_kreatifitas()}</a></td>
-                                    </tr>
-                                </c:forEach>
-                           
+                                    <td align="center" style="background-color:darkorange">${(count.index)+1}</td>
+                                    <td align="left" style="background-color:darkorange;width: 150px"><a href="isiPerilakuServlet?action=Kreaf&NipKoefKreatifitas=<c:out value="${idNipTambahan}"/>&idTam=<c:out value="${tambahans.getIdTambahan()}"/>">${tambahans.getNama()}</a></td>
+                                    <td align="left" style="background-color:darkorange"><a href="isiPerilakuServlet?action=Kreaf&NipKoefKreatifitas=<c:out value="${idNipTambahan}"/>&idTam=<c:out value="${tambahans.getIdTambahan()}"/>">${tambahans.getKoef_kreatifitas()}</a></td>
+                                </tr>
+                            </c:forEach>
+
                         </table>
                         <div style="padding-top: 20px;background-color: #FFF7D7">  
-                    <table >
-                      
-                            <tr align="center">
-                                <td colspan="5"><strong style="color: #000"><u>Penilaian Kreatifitas</u></strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong style="color: #000">Id</strong></td>
-                                <td><strong style="color: #000">Nama</strong></td>
-                                <td><strong style="color: #000">Koefisien</strong></td>
-                            </tr>
-                            <tr>
-                                <td>${kereaktifitas2.getIdTambahan()}</td>
-                                <td>${kereaktifitas2.getNama()}</td>
+                            <table >
 
-                                <td>
-                                    <select name="koef_kreatifitas" id="koef_kreatifitas">
-                                        <option value="-">-</option>
-                                        <option value="10">Unit Kerja</option>
-                                        <option value="20">Instansi</option>
-                                        <option value="30">Nasional</option>
-                                        <option value="40">Tidak Valid</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <%-- <input type="button" name="paramKoefKreatifitas" onclick="ButtonKoef()" value="HITUNG"> --%>
-                            <%-- <td><a href=  id="url" onclick="redirect()">HITUNG</a></td> --%>
-                            <td><a href="isiPerilakuServlet?action=HitungKreatifitas&idTambahanKreatifitas=<c:out value="${kereaktifitas2.getIdTambahan()}"/>&nipTambahan=<c:out value="${idNipTambahan}"/>" id="url" onclick="redirect()">HITUNG</a></td> 
-                            <input type="hidden" name="idNilaiKoef" value="${idNipTambahan}">
-                      
-                    </table>
-                   </div>
+                                <tr align="center">
+                                    <td colspan="5"><strong style="color: #000"><u>Penilaian Kreatifitas</u></strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color: #000">Id</strong></td>
+                                    <td><strong style="color: #000">Nama</strong></td>
+                                    <td><strong style="color: #000">Koefisien</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>${kereaktifitas2.getIdTambahan()}</td>
+                                    <td>${kereaktifitas2.getNama()}</td>
+
+                                    <td>
+                                        <select name="koef_kreatifitas" id="koef_kreatifitas">
+                                            <option value="-">-</option>
+                                            <option value="10">Unit Kerja</option>
+                                            <option value="20">Instansi</option>
+                                            <option value="30">Nasional</option>
+                                            <option value="40">Tidak Valid</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <%-- <input type="button" name="paramKoefKreatifitas" onclick="ButtonKoef()" value="HITUNG"> --%>
+                                <%-- <td><a href=  id="url" onclick="redirect()">HITUNG</a></td> --%>
+                                <td><a href="isiPerilakuServlet?action=HitungKreatifitas&idTambahanKreatifitas=<c:out value="${kereaktifitas2.getIdTambahan()}"/>&nipTambahan=<c:out value="${idNipTambahan}"/>" id="url" onclick="redirect()">HITUNG</a></td> 
+                                <input type="hidden" name="idNilaiKoef" value="${idNipTambahan}">
+
+                            </table>
+                        </div>
                     </div>
-                 
+
                     <%--<input type="submit" name="param" class="button black bigrounded" value="CETAK">
                     <td><c:out value="${nipAtasan}"/></td>
                     <td align="center"><a href="GetPnsServlet?txtNIPBaruReal=<c:out value="${nipAtasan}"/>">SELESAI</a></td>--%>
@@ -268,6 +289,7 @@
                                 {
                                     location = 'GetPnsServlet?txtNIPBaruReal=<c:out value="${nipAtasan}"/>';
                                 }
+                               
 
                                 function refresh(                            )
                                 {
@@ -382,107 +404,6 @@
                             </form>			
                             </div> <!-- end of content -->
 
-
-
-
-
-                            <style type="text/css"> 
-                                #menu a
-                                {
-                                    display:block;
-                                    width:120px;
-                                    margin: 1em 0; padding:7px 0 10px 20px;
-                                    font: bold 14px/1 sans-serif;
-                                    color:#c60;
-                                    /*background: url(http://www.image-share.com/upload/1396/159.gif) 0 0 no-repeat;*/
-                                    background: url(/SKPapplication/images/button.gif) 0 0 no-repeat;
-                                    text-decoration: none;
-                                }
-
-                                #menu a:hover
-                                {	
-                                    background-position: -157px 0;
-                                    color: #E9BE75;
-                                }
-
-                                #menu a:active
-                                {
-                                    background-position: -314px 0;
-                                    color:white;
-                                }
-
-
-
-                                form fieldset
-                                {
-                                    border: none;
-                                }
-                                form input.highlight
-                                {
-                                    background: #f9f9f9;
-                                    border: solid 1px #CCCCCC;
-                                    padding: 5px;
-                                }
-                                form input.highlight:focus
-                                {
-                                    border: solid 1px #D9AD00;
-                                    background: #FFF7D7;
-                                }
-
-                                .button {
-                                    display: inline-block;
-                                    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
-                                    display: inline;
-                                    vertical-align: baseline;
-                                    margin: 0 2px;
-                                    outline: none;
-                                    cursor: pointer;
-                                    text-align: center;
-                                    text-decoration: none;
-                                    font: 14px/100% Arial, Helvetica, sans-serif;
-                                    padding: .5em 2em .55em;
-                                    text-shadow: 0 1px 1px rgba(0,0,0,.3);
-                                    -webkit-border-radius: .5em; 
-                                    -moz-border-radius: .5em;
-                                    border-radius: .5em;
-                                    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-                                    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-                                    box-shadow: 0 1px 2px rgba(0,0,0,.2);
-                                    width: 150px;
-                                }
-                                .button:hover {
-                                    text-decoration: none;
-                                }
-                                .button:active {
-                                    position: relative;
-                                    top: 1px;
-                                }
-                                .bigrounded {
-                                    -webkit-border-radius: 2em;
-                                    -moz-border-radius: 2em;
-                                    border-radius: 2em;
-                                }
-                                .black {
-                                    color: #d7d7d7;
-                                    border: solid 1px #333;
-                                    background: #333;
-                                    background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#000));
-                                    background: -moz-linear-gradient(top,  #666,  #000);
-                                    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000');
-                                }
-                                .black:hover {
-                                    background: #000;
-                                    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#000));
-                                    background: -moz-linear-gradient(top,  #444,  #000);
-                                    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#000000');
-                                }
-                                .black:active {
-                                    color: #666;
-                                    background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#444));
-                                    background: -moz-linear-gradient(top,  #000,  #444);
-                                    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#666666');
-                                }
-                            </style>
 
                             </body>
                             </html>

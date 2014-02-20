@@ -129,8 +129,6 @@
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
-        <title>JSP Page</title>
-
         <style type="text/css"> 
             /*=======================Monitoring*/
             #headermetting {
@@ -150,7 +148,7 @@
                 font-size: 18px
             }
 
-
+            #warnass {color:#ff9900;font-weight:bold; font-size:14px;text-decoration:blink;font-family:Arial, Helvetica, sans-serif}
 
             #slideshow {
                 width : 1180px;
@@ -309,12 +307,14 @@
             }
 
             #contentMonitor {
-                background :#BCEDF1 ;
+
                 position :  absolute;
                 top : 60px;
-                left : 250px;
+                left : 280px;
                 width : 1000px;
+                overflow: auto;
                 height : 501px;}
+
 
             #leftsideMonitor {
 
@@ -498,8 +498,8 @@
                     <div id="foobar">   
                         <div id="col2">
                             <div class="viewer">        <div class="reel"> 
-                                    <div class="slide">                     <img src="images/header41.jpg" width="1200" height="100" alt=""  /> <span>Direktorat Pengolahan Data.</span>
-                                    </div><div class="slide">                <img src="images/header42.jpg" width="1200" height="100" alt="" /> <span>direktorat Pengolahan Data</span>
+                                    <div class="slide">                     <img src="images/Abstract Blue backgrounds 3.1440x300.jpg" width="1200" height="100" alt=""  /> <span>Direktorat Pengolahan Data.</span>
+                                    </div><div class="slide">                <img src="images/sweet-white-blue-swirl-powerpoint-backgrounds.1440x300.jpg" width="1200" height="100" alt="" /> <span>direktorat Pengolahan Data</span>
                                     </div></div></div></div></div></div>
             </div>
             <table >
@@ -529,7 +529,7 @@
                 </div>
 
                 <div style="width: 1180px ">
-                    <font face="georgia"   color="White"><strong><marquee bgcolor="red" width="100%" scrollamount="3" behavior="alternate">Sasaran Kinerja Pegawai.. </marquee></strong></font></div>
+                    <font face="georgia"   color="White"><strong><marquee bgcolor="#9999ff"  width="100%" scrollamount="3" behavior="alternate"><span id='warnass'>Sasaran Kinerja Pegawai..</span> </marquee></strong></font></div>
 
 
 
@@ -545,39 +545,39 @@
             <div id="content">
                 <c:if test="${navigasi_pilihan =='0'}">
 
-                    <table style="margin-top: 0px ">
+                    <table style="margin-top: 0px ;font-size: 12px">
                         <td style="font-size: 12px; width:500px; font-family: sans-serif; text-align: center; font: bold ">
 
-                            <table>
-                                <tr style="padding-top: 0px ">
-                                    <td width="30"><div align="left"><span class="style3">1</span></div></td>
-                                    <td width="135" align="left"><span class="style3">Nama</span></td>
+                            <table style="padding-top:0px">
+                                <tr style="padding-top: 0px">
+                                    <td style="font-weight:normal; font-size: 12px"width="30"><div align="left"><span class="style3">1</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px"width="135" align="left"><span class="style3">Nama</span></td>
                                     <td>:</td>
-                                    <td width="414" align="left"> <c:out value="${UnorAts.getNamaPns()}" /> </td>
+                                    <td style="font-weight:normal; font-size: 12px"width="414" align="left"> <c:out value="${UnorAts.getNamaPns()}" /> </td>
                                 </tr>
-                                <tr>
-                                    <td><div align="left"><span class="style3">2</span></div></td>
-                                    <td align="left"><span class="style3">NIP</span></td>
+                                <tr tr style="padding-top: 0px">
+                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">2</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">NIP</span></td>
                                     <td>:</td>
 
-                                    <td align="left"><c:out value="${UnorAts.getNipBaru()}" /> </td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNipBaru()}" /> </td>
                                 </tr>
-                                <tr>
-                                    <td><div align="left"><span class="style3">3</span></div></td>
-                                    <td align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
+                                <tr style="padding-top: 0px ">
+                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">3</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
                                     <td>:</td>
-                                    <td align="left"><c:out value="${UnorAts.getPangkat()}" /> / <c:out value="${UnorAts.getNamaGolru()}" /></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getPangkat()}" /> / <c:out value="${UnorAts.getNamaGolru()}" /></td>
                                 </tr>
-                                <tr>
-                                    <td><div align="left"><span class="style3">4</span></div></td>
-                                    <td align="left"><span class="style3">Jabatan</span></td>
+                                <tr   style="padding-top : 0px">
+                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">4</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Jabatan</span></td>
                                     <td>:</td>
-                                    <td align="left"><c:out value="${UnorAts.getNamaJabatan()}" /></td>
-                                </tr> <tr>
-                                    <td><div align="left"><span class="style3">5</span></div></td>
-                                    <td align="left"><span class="style3">Unit Kerja </span></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNamaJabatan()}" /></td>
+                                </tr> <tr  style="padding-top: 0px">
+                                    <td style="font-weight:normal; font-size: 12px"<div align="left"><span class="style3">5</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px" align="left"><span class="style3">Unit Kerja </span></td>
                                     <td>:</td>
-                                    <td align="left"><c:out value="${UnorAts.getNamaUnor()}" /></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNamaUnor()}" /></td>
                                 </tr>
 
                             </table>
@@ -586,17 +586,17 @@
 
                         <td  style="font-size: 12px; width:500px; padding-top: 0px;font-family: sans-serif; text-align: center; font: bold "> 
                             <table  style="padding-top:0px" >
-                                <tr style="padding-top: 0px">
-                                    <td width="30"><div align="left"><span class="style3">1</span></div></td>
-                                    <td width="135" align="left"><span class="style3">Nama</span></td>
+                                <tr  style="padding-top: 0px">
+                                    <td style="font-weight:normal; font-size: 12px" width="30"><div align="left"><span class="style3">1</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px" width="135" align="left"><span class="style3">Nama</span></td>
                                     <td>:</td>
-                                    <td width="414" align="left"> <c:out value="${pns.getNamaPns()}"/> </td>
+                                    <td style="font-weight:normal; font-size: 12px"width="414" align="left"> <c:out value="${pns.getNamaPns()}"/> </td>
                                 </tr>
-                                <tr>
-                                    <td><div align="left"><span class="style3">2</span></div></td>
-                                    <td align="left"><span class="style3">NIP</span></td>
+                                <tr style="padding-top: 0px">
+                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">2</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">NIP</span></td>
                                     <td>:</td>
-                                    <td align="left"><c:out value="${pns.getNipBaru()}" /></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNipBaru()}" /></td>
 
 
                                 <input  type="hidden"  name="_getInstansi" id="_getInstansi" value="${pns.getNipBaru()}"></input>
@@ -604,22 +604,22 @@
 
                                 </tr>
 
-                                <tr> <td><div align="left"><span class="style3">3</span></div></td>
-                                    <td align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
+                                <tr style="padding-top: 0px"> <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">3</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
                                     <td>:</td>
-                                    <td align="left"><c:out value="${pns.getPangkat()}" /> / <c:out value="${pns.getNamaGolru()}" /></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getPangkat()}" /> / <c:out value="${pns.getNamaGolru()}" /></td>
                                 </tr>
-                                <tr>
-                                    <td><div align="left"><span class="style3">4</span></div></td>
-                                    <td align="left"><span class="style3">Jabatan</span></td>
+                                <tr style="padding-top: 0px">
+                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">4</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Jabatan</span></td>
                                     <td>:</td>
-                                    <td align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
                                 </tr>
-                                <tr>
-                                    <td><div align="left"><span class="style3">5</span></div></td>
-                                    <td align="left"><span class="style3">Unit Kerja </span></td>
+                                <tr style="padding-top: 0px">
+                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">5</span></div></td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Unit Kerja </span></td>
                                     <td>:</td>
-                                    <td align="left"><c:out value="${pns.getNamaUnor()}" /> </td>
+                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaUnor()}" /> </td>
 
                                 </tr>
 
@@ -659,14 +659,7 @@
                             </li>
                             <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>"  target="_parent" ><span></span>Realisasi</a></li> 
 
-                            <li>
-                                <%--   <c:if test="${jenis_user == '1'}">--%>
 
-                                <a href="SalinDataUtamaServlet?action=InsertData&txtNIPBaruBData=<c:out value="${pns.getNipBaru()}"/>" id="url2" onclick="redirectInsertData()"  target="_parent">Salin Data Utama</a>
-
-                                <%-- </c:if>--%>
-
-                            </li>
 
                             <li>        
                                 <input type="text" id="session" name="session" /> 
@@ -705,56 +698,57 @@
 
 
                         <table>
-                            <td>
+                            <td style="width: 500px">
                                 <table>
 
                                     <tr>                       
-                                        <td width="30"><div align="left">1</div></td>
-                                        <td width="135" align="left">Nama</td>
+                                        <td style="font-weight:normal; font-size: 12px" width="30"><div align="left">1</div></td>
+                                        <td style="font-weight:normal; font-size: 12px"width="135" align="left">Nama</td>
                                         <td>:</td>
-                                        <td align="left"> <c:out value="${UnorAts.getNamaPns()}" /> </td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"> <c:out value="${UnorAts.getNamaPns()}" /> </td>
                                     </tr>
                                     <tr>
-                                        <td><div align="left">2</div></td>
-                                        <td align="left">NIP</td>
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left">2</div></td>
+                                        <td style="font-weight:normal; font-size: 12px" align="left">NIP</td>
                                         <td>:</td>
 
-                                        <td align="left"><c:out value="${UnorAts.getNipBaru()}" /> <a href="updateServlets?instansiAtasan=<c:out value="${ UnorAts.getInstansiId()}"/>&instansiIdpns=<c:out value="${pns.getNipBaru()}"/>&instansiIdunorbwhan=<c:out value="${pns.getUnorId()}"/>">  <img src="images/ubah2.png"/> </a></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNipBaru()}" /> <a href="updateServlets?instansiAtasan=<c:out value="${ UnorAts.getInstansiId()}"/>&instansiIdpns=<c:out value="${pns.getNipBaru()}"/>&instansiIdunorbwhan=<c:out value="${pns.getUnorId()}"/>">  <img src="images/ubah2.png"/> </a></td>
                                     </tr>
                                     <tr>
-                                        <td><div align="left">3</div></td>
-                                        <td align="left">Pangkat/Gol.Ruang</td>
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left">3</div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left">Pangkat/Gol.Ruang</td>
                                         <td>:</td>
-                                        <td align="left"><c:out value="${UnorAts.getPangkat()}" /> / <c:out value="${UnorAts.getNamaGolru()}" /></td>
+                                        <td style="font-weight:normal; font-size: 12px" align="left"><c:out value="${UnorAts.getPangkat()}" /> / <c:out value="${UnorAts.getNamaGolru()}" /></td>
                                     </tr>
                                     <tr>
-                                        <td><div align="left">4</div></td>
-                                        <td align="left">Jabatan</td>
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left">4</div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left">Jabatan</td>
                                         <td>:</td>
-                                        <td align="left"><c:out value="${UnorAts.getNamaJabatan()}" /></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNamaJabatan()}" /></td>
                                     </tr> <tr>
-                                        <td><div align="left">5</div></td>
-                                        <td align="left">Unit Kerja </td>
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left">5</div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left">Unit Kerja </td>
                                         <td>:</td>
-                                        <td align="left"><c:out value="${UnorAts.getNamaUnor()}" /></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNamaUnor()}" /></td>
                                     </tr>
 
                                 </table>
                                 <%-- ===================================== USER ======================================================	--%>			
                             </td>
+
                             <td>
                                 <table >
                                     <tr>
-                                        <td width="30"><div align="left">1</div></td>
-                                        <td width="135" align="left">Nama</td>
+                                        <td style="font-weight:normal; font-size: 12px"width="30"><div align="left">1</div></td>
+                                        <td style="font-weight:normal; font-size: 12px"width="135" align="left">Nama</td>
                                         <td>:</td>
-                                        <td align="left"> <c:out value="${pns.getNamaPns()}"/> </td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"> <c:out value="${pns.getNamaPns()}"/> </td>
                                     </tr>
                                     <tr>
-                                        <td><div align="left">2</div></td>
-                                        <td align="left">NIP</td>
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left">2</div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left">NIP</td>
                                         <td>:</td>
-                                        <td align="left"><c:out value="${pns.getNipBaru()}" /></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNipBaru()}" /></td>
 
 
                                     <input  type="hidden"  name="_getInstansi" id="_getInstansi" value="${pns.getNipBaru()}"></input>
@@ -762,10 +756,10 @@
 
                                     </tr>
 
-                                    <tr> <td><div align="left">3</div></td>
-                                        <td align="left">Pangkat/Gol.Ruang</td>
+                                    <tr> <td style="font-weight:normal; font-size: 12px"><div align="left">3</div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left">Pangkat/Gol.Ruang</td>
                                         <td>:</td>
-                                        <td align="left"><c:out value="${pns.getPangkat()}" /> / <c:out value="${pns.getNamaGolru()}" /></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getPangkat()}" /> / <c:out value="${pns.getNamaGolru()}" /></td>
                                     </tr>
                                     <tr>
                                         <td><div align="left">4</div></td>
@@ -774,10 +768,10 @@
                                         <td align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
                                     </tr>
                                     <tr>
-                                        <td><div align="left">5</div></td>
-                                        <td align="left">Unit Kerja </td>
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left">5</div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left">Unit Kerja </td>
                                         <td>:</td>
-                                        <td align="left"><c:out value="${pns.getNamaUnor()}" /> <a href="updateServlets?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>">  <img src="images/ubah2.png"/> </a></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaUnor()}" /> <a href="updateServlets?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>">  <img src="images/ubah2.png"/> </a></td>
 
                                     </tr>
 
@@ -792,50 +786,50 @@
 
                         <div class="scroll2" >
                             <table width="1080" >
-                                <tr style="background: #FF9900">
-                                    <th  style="font-weight:normal" width="31" rowspan="2" >NO</th>
-                                    <th style="font-weight:normal" rowspan="2" width="80">KODE</th>
-                                    <th style="font-weight:normal" rowspan="2" width="383" >KEGIATAN TUGAS JABATAN</th>
-                                    <th style="font-weight:normal" colspan="6">TARGET</th>
+                                <tr style="background: #ccccff">
+                                    <th  style="font-weight:normal; font-size: 12px;background-color: #9999ff" width="31" rowspan="2" >NO</th>
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" rowspan="2" width="80">KODE</th>
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" rowspan="2" width="383" >KEGIATAN TUGAS JABATAN</th>
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" colspan="6">TARGET</th>
 
                                 </tr>
                                 <tr style="background: #FF9900">
 
 
-                                    <th style="font-weight:normal" width="70">AK</th>
-                                    <th style="font-weight:normal" width="105">KUANT/ OUTPUT</th>
-                                    <th style="font-weight:normal" width="100">KUAL/ MUTU</th>
-                                    <th style="font-weight:normal" width="70">WAKTU</th>
-                                    <th style="font-weight:normal" width="136" >BIAYA</th>
-                                    <th style="font-weight:normal" width="31" >&nbsp;</th>  
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" width="70">AK</th>
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" width="105">KUANT/ OUTPUT</th>
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" width="100">KUAL/ MUTU</th>
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" width="70">WAKTU</th>
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" width="136" >BIAYA</th>
+                                    <th style="font-weight:normal; font-size: 12px ;background-color: #9999ff" width="31" >&nbsp;</th>  
                                 </tr>
 
                                 <c:forEach var="listTukesi" items="${tukesiServlet}" varStatus = "count">
                                     <c:choose>
                                         <c:when test="${count.index % 2 == 0}">
                                             <tr bgcolor="#b9c9fe">
-                                                <td width="31"><div align="center">${(count.index)+1}</div></td>
-                                                <td width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
-                                                <td width="383"><div align="left">${listTukesi.getNamaTupoksi()} </div></td>
-                                                <td width="70"><div align="right">${listTukesi.getangka_krdtR()}</div></td>
-                                                <td width="105"><div align="right">${listTukesi.getKuantitas4()} ${listTukesi.getkuantitas_label()} </div></td>
-                                                <td width="100"><div align="right">${listTukesi.getKualitas4()} %</div></td>
-                                                <td width="70"><div align="right">${listTukesi.getWaktu4()} ${listTukesi.getwaktu_label()} (${listTukesi.getpilih_session()})</div></td>
-                                                <td width="136"><div align="right">Rp. ${listTukesi.getBiaya4()}</div></td>
-                                                <td width="31"><div align="Left"><a href="Isi4FaktorServlet?idTupoksiHapus=<c:out value="${listTukesi.getIdTupoksi()}"/>&nipHapus=<c:out value="${pns.getNipBaru()}"/>"><img src="images/hapus2.png"></img></a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31"><div align="center">${(count.index)+1}</div></td>
+                                                <td style="font-weight:normal; font-size: 12px" width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="383"><div align="left">${listTukesi.getNamaTupoksi()} </div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getangka_krdtR()}</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="105"><div align="right">${listTukesi.getKuantitas4()} ${listTukesi.getkuantitas_label()} </div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="100"><div align="right">${listTukesi.getKualitas4()} %</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getWaktu4()} ${listTukesi.getwaktu_label()} (${listTukesi.getpilih_session()})</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="136"><div align="right">Rp. ${listTukesi.getBiaya4()}</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31"><div align="Left"><a href="Isi4FaktorServlet?idTupoksiHapus=<c:out value="${listTukesi.getIdTupoksi()}"/>&nipHapus=<c:out value="${pns.getNipBaru()}"/>"><img src="images/hapus2.png"></img></a></div></td>
                                             </tr>
                                         </c:when>
                                         <c:otherwise>
                                             <tr bgcolor="#e8edff">
-                                                <td width="31"><div align="center">${(count.index)+1}</div></td>
-                                                <td width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
-                                                <td width="383"><div align="left">${listTukesi.getNamaTupoksi()}</div></td>
-                                                <td width="70"><div align="right">${listTukesi.getangka_krdtR()}</div></td>
-                                                <td width="105"><div align="right">${listTukesi.getKuantitas4()} ${listTukesi.getkuantitas_label()} </div></td>
-                                                <td width="100"><div align="right">${listTukesi.getKualitas4()} %</div></td>
-                                                <td width="70"><div align="right">${listTukesi.getWaktu4()} ${listTukesi.getwaktu_label()} (${listTukesi.getpilih_session()}) </div></td>
-                                                <td width="136"><div align="right">Rp. ${listTukesi.getBiaya4()}</div></td>
-                                                <td width="31"><div align="Left"><a href="Isi4FaktorServlet?idTupoksiHapus=<c:out value="${listTukesi.getIdTupoksi()}"/>&nipHapus=<c:out value="${pns.getNipBaru()}"/>"><img src="images/hapus2.png"></img></a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31"><div align="center">${(count.index)+1}</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="383"><div align="left">${listTukesi.getNamaTupoksi()}</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getangka_krdtR()}</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="105"><div align="right">${listTukesi.getKuantitas4()} ${listTukesi.getkuantitas_label()} </div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="100"><div align="right">${listTukesi.getKualitas4()} %</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getWaktu4()} ${listTukesi.getwaktu_label()} (${listTukesi.getpilih_session()}) </div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="136"><div align="right">Rp. ${listTukesi.getBiaya4()}</div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31"><div align="Left"><a href="Isi4FaktorServlet?idTupoksiHapus=<c:out value="${listTukesi.getIdTupoksi()}"/>&nipHapus=<c:out value="${pns.getNipBaru()}"/>"><img src="images/hapus2.png"></img></a></div></td>
                                             </tr>
                                         </c:otherwise>
 
@@ -916,77 +910,73 @@
 
                     <div id="page-bottomBaru">
                         <div>REALISASI</div>
-                        <table>
 
-                            <tr style="background: #FF9900">
-                                <th style="font-weight:normal" width="38" rowspan="2">NO..</th>
-                                <th style="font-weight:normal" rowspan="2" width="66">KODE</th>
-                                <th style="font-weight:normal" rowspan="2" width="211">KEGIATAN TUGAS POKOK JABATAN</th>
-                                <th style="font-weight:normal" colspan="5">TARGET</th>
-                                <th style="font-weight:normal" colspan="4">REALISASI</th>
-                                <th style="font-weight:normal" width="80" rowspan="2">PENGHITUNGAN</th>
-                                <th style="font-weight:normal" width="80" rowspan="2">PENCAPAIAN</th>
-
-                            </tr>
-
-                            <tr style="background: #FF9900">
-                                <th style="font-weight:normal" width="51">AK</th>
-                                <th style="font-weight:normal" width="85">KUANT/ OUTPUT</th>
-                                <th style="font-weight:normal" width="78">KUAL/ MUTU</th>
-                                <th style="font-weight:normal" width="68">WAKTU</th>
-                                <th style="font-weight:normal" width="91" >BIAYA</th>
-
-                                <th style="font-weight:normal" width="85">KUANT/ OUTPUT</th>
-                                <th style="font-weight:normal" width="78">KUAL/ MUTU</th>
-                                <th style="font-weight:normal" width="68">WAKTU</th>
-                                <th style="font-weight:normal" width="95" >BIAYA</th>
-                            </tr>
-
-
-                        </table>
                         <div class="scroll3" id="hof">
 
                             <table>
+                                <tr style="background:#9999ff">
+                                    <th style="font-weight:normal; font-size: 12px" width="38" rowspan="2" >NO</th>
+                                    <th style="font-weight:normal; font-size: 12px" rowspan="2" width="66">KODE</th>
+                                    <th style="font-weight:normal; font-size: 12px" rowspan="2" width="211">KEGIATAN TUGAS POKOK JABATAN</th>
+                                    <th style="font-weight:normal; font-size: 12px" colspan="5">TARGET</th>
+                                    <th style="font-weight:normal; font-size: 12px" colspan="4">REALISASI</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="80" rowspan="2">PENGHITUNGAN</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="80" rowspan="2">PENCAPAIAN</th>
+
+                                </tr>
+
+                                <tr style="background: #9999ff">
+                                    <th style="font-weight:normal; font-size: 12px" width="51">AK</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="85">KUANT/ OUTPUT</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="78">KUAL/ MUTU</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="68">WAKTU</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="91" >BIAYA</th>
+
+                                    <th style="font-weight:normal; font-size: 12px" width="85">KUANT/ OUTPUT</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="78">KUAL/ MUTU</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="68">WAKTU</th>
+                                    <th style="font-weight:normal; font-size: 12px" width="95" >BIAYA</th>
+                                </tr>
                                 <c:forEach var="listTukesi" items="${realkesiServlet}" varStatus ="count">
                                     <c:choose>
                                         <c:when test="${count.index % 2 == 0}">
                                             <tr bgcolor="#b9c9fe">
 
-                                                <td width="38" align="center">${(count.index)+1}</td>
-                                                <td width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
-                                                <td width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
-                                                <td width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
-                                                <td width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td width="78" align="center">${listTukesi.getKualitas4()} %</td>
-                                                <td width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
-                                                <td  width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
+                                                <td style="font-weight:normal ; font-size: 12px" width="38" align="center">${(count.index)+1}</td>
+                                                <td  style="font-weight:normal; font-size: 12px" width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px" width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
+                                                <td style="font-weight:normal; font-size: 12px" width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitas4()} %</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
+                                                <td style="font-weight:normal; font-size: 12px" width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
                                                 <%--<td align="left">${listTukesi.getangkaKrdtr()}</td>--%>
-                                                <td width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td width="78" align="center">${listTukesi.getKualitasr()} %</td>
-                                                <td width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
-                                                <td width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
-                                                <td width="80" align="center">${listTukesi.getPenghitungan()}</td>
-                                                <td width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitasr()} %</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getPenghitungan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>
                                             </tr>
                                         </c:when>
                                         <c:otherwise>
                                             <tr bgcolor="#e8edff">
 
-                                                <td width="38" align="center">${(count.index)+1}</td>
-                                                <td width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
-                                                <td width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
-                                                <td width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
-                                                <td width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td width="78" align="center">${listTukesi.getKualitas4()} %</td>
-                                                <td width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
-                                                <td  width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="38" align="center">${(count.index)+1}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitas4()} %</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
+                                                <td style="font-weight:normal; font-size: 12px" width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
                                                 <%--<td align="left">${listTukesi.getangkaKrdtr()}</td>--%>
-                                                <td width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td width="78" align="center">${listTukesi.getKualitasr()} %</td>
-                                                <td width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
-                                                <td width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
-                                                <td width="80" align="center">${listTukesi.getPenghitungan()}</td>
-                                                <td width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>
+                                                <td style="font-weight:normal; font-size: 12px" width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitasr()} %</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getPenghitungan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>
                                             </tr>
                                         </c:otherwise>
 
@@ -1003,42 +993,42 @@
 
 
                         <div class="scroll30" id="hof">
-                            <table style="background: #ff9900;">
-                                <tr>
-                                    <th style="font-weight:normal" width="31"><div align="center">NO.</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">KODE</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">JENIS TUGAS</div></th>
-                                <th style="font-weight:normal" width="383"><div align="center">NAMA TUGAS TAMBAHAN</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">TARGET</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">REALISASI</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">PENGHITUNGAN </div>  </th>        
-                                <th style="font-weight:normal" width="138"><div align="center">NILAI CAPAIAN SKP</div></th>
+                            <table >
+                                <tr style="background:#9999ff">
+                                    <th style="font-weight:normal; font-size: 12px" width="31"><div align="center">NO.</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">KODE</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">JENIS TUGAS</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="383"><div align="center">NAMA TUGAS TAMBAHAN</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">TARGET</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">REALISASI</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">PENGHITUNGAN </div>  </th>        
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">NILAI CAPAIAN SKP</div></th>
                                 </tr>
 
                                 <c:forEach var="tambahans" items="${tugasTambahans}" varStatus ="count">
                                     <c:choose>
                                         <c:when test="${count.index % 2 == 0}">
                                             <tr bgcolor="#7FFFD4">
-                                                <td width="31" align="center">${(count.index)+1}</td>
-                                                <td width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td width="383" align="left">${tambahans.getNama()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td width="138" align="right">${tambahans.getNilaiTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31" align="center">${(count.index)+1}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="center">${tambahans.getIdTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px" width="138" align="left">${tambahans.getJenisTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="383" align="left">${tambahans.getNama()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai1()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai2()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getHitungTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
                                             </tr>
                                         </c:when>
                                         <c:otherwise>
                                             <tr bgcolor=#ADFF2F">
-                                                <td width="31" align="center">${(count.index)+1}</td>
-                                                <td width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td width="383" align="left">${tambahans.getNama()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td width="138" align="right">${tambahans.getNilaiTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31" align="center">${(count.index)+1}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="center">${tambahans.getIdTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="left">${tambahans.getJenisTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="383" align="left">${tambahans.getNama()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai1()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai2()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getHitungTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
                                             </tr>
                                         </c:otherwise>
 
@@ -1063,39 +1053,42 @@
 
 
                         <div class="scroll30" id="hof">
-                            <table style="background: #ff9900" >
-                                <th style="font-weight:normal" width="31"><div align="center">NO.</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">KODE</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">JENIS TUGAS</div></th>
-                                <th style="font-weight:normal" width="383"><div align="center">NAMA KREATIFITAS</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">TARGET</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">REALISASI</div></th>
-                                <th style="font-weight:normal" width="138"><div align="center">PENGHITUNGAN </div>  </th>        
-                                <th style="font-weight:normal" width="138"><div align="center">NILAI CAPAIAN SKP</div></th>
+                            <table  >
+                                <tr style="background:#9999ff">
+
+                                    <th style="font-weight:normal; font-size: 12px" width="31"><div align="center">NO.</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">KODE</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">JENIS TUGAS</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="383"><div align="center">NAMA KREATIFITAS</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">TARGET</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">REALISASI</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">PENGHITUNGAN </div>  </th>        
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">NILAI CAPAIAN SKP</div></th>
+                                </tr>   
                                 <c:forEach var="tambahans" items="${kereaktifitas}" varStatus ="count">
                                     <c:choose>
                                         <c:when test="${count.index % 2 == 0}"> 
                                             <tr bgcolor="#7FFFD4">
-                                                <td width="31" align="center">${(count.index)+1}</td>
-                                                <td width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td width="383" align="left">${tambahans.getNama()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td width="138" align="right">${tambahans.getNilaiTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31" align="center">${(count.index)+1}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="center">${tambahans.getIdTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="left">${tambahans.getJenisTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="383" align="left">${tambahans.getNama()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai1()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai2()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getHitungTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
                                             </tr>
                                         </c:when>
                                         <c:otherwise>
                                             <tr  bgcolor=#ADFF2F">
-                                                <td width="31" align="center">${(count.index)+1}</td>
-                                                <td width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td width="383" align="left">${tambahans.getNama()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td width="138" align="right">${tambahans.getNilaiTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31" align="center">${(count.index)+1}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="center">${tambahans.getIdTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="left">${tambahans.getJenisTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="383" align="left">${tambahans.getNama()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai1()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai2()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getHitungTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
                                             </tr>
                                         </c:otherwise>
 
@@ -1142,7 +1135,7 @@
                     <form method="post" name="form1"  onsubmit="return validasitest()"  action="isiPerilakuServlet"> 
 
                         <div id="leftsideMonitor">
-                            <div STYLE=" height: 501px;   width: 300px; font-size: 8px; overflow: scroll;">                  
+                            <div STYLE=" height: 501px;   width: 300px; font-size: 8px; overflow: auto;">                  
                                 <table  align="top" width="173">
 
                                     <tr>
@@ -1221,7 +1214,7 @@
 
                                     }
                                     #menu1 ul li a:hover {
-                                        background-color: #CCCCFF;
+
                                         color: #FF0000;
                                         font-size: 11px;
                                     }
@@ -1234,16 +1227,16 @@
                                         display: block;
                                         position: relative;
                                         top: 0px;
-                                        left: 50px;
+                                        left: 30px;
                                     }
                                     #menu1 ul li:hover ul li a {
                                         display: block;
-                                        background: #CC66FF;
+
                                         color: #fff;
                                         width: 100%;
                                     }
                                     #menu1 ul li:hover ul li a:hover {
-                                        background:#1c83ce;
+
                                         color: #33CC00;
                                     }
                                     #menu ul li:hover ul ul {
@@ -1257,17 +1250,18 @@
                                     #menu1 ul li:hover ul li:hover ul a {
                                         display: block;
                                         position: relative;
-                                        left: 50px;
+                                        left: 30px;
                                     }
 
                                 </style>
-                                <div id="menu1">
+                               <div id="menu1">
 
                                     <ul>   
 
                                         <c:forEach var="pnsBaw" items="${pnsBawahan}" varStatus="count">
                                             <c:set var="capaian" value="${pnsBaw.getRealisasi()}" /> 
-                                            <c:choose>    
+                                            <c:choose>   
+
                                                 <c:when test="${(pnsBaw.getRealisasi()) <'45'}">
                                                     <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw.getNamaPns()}</div></a>
                                                     </c:when> 
@@ -1276,8 +1270,8 @@
                                                     <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="kuning"> ${pnsBaw.getNamaPns()}</div></a>
                                                     </c:when> 
                                                     <c:otherwise>
-                                                    <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw.getNamaPns()}</div></a>
-
+                                                    <li> <a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw.getNamaPns()}</div></a>
+                                                        
                                                     </c:otherwise>   
                                                 </c:choose>           
 
@@ -1290,16 +1284,18 @@
                                                             <c:when test="${(pnsBaw2.getDiAtasanId() == pnsBaw.getUnorId() &&  pnsBaw.getjnsjbtn_id()=='1' )}">  
                                                                 <c:set var="namArray" value="${pnsBaw2.getNamaPns()}"/>
                                                                 <c:set var="capaian" value="${pnsBaw2.getRealisasi()}" /> 
-                                                                <c:choose>    
+                                                                <c:choose> 
+
                                                                     <c:when test="${(pnsBaw2.getRealisasi()) <'45'}">
                                                                         <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw2.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw2.getNamaPns()}</div></a>
                                                                         </c:when> 
 
                                                                         <c:when test="${(pnsBaw2.getRealisasi()) <'76'}">
-                                                                        <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw2.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="kuning"> ${pnsBaw2.getNamaPns()}</div></a>
+                                                                        <li> <a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw2.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="kuning"> ${pnsBaw2.getNamaPns()}</div></a>
                                                                         </c:when> 
                                                                         <c:otherwise>
                                                                         <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw2.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw2.getNamaPns()}</div></a>
+                                                                           
 
                                                                         </c:otherwise>   
                                                                     </c:choose> 
@@ -1318,7 +1314,7 @@
                                                                                             </c:when> 
                                                                                             <c:otherwise>
                                                                                             <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw3.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw3.getNamaPns()}</div></a>
-
+                                                                                               
                                                                                             </c:otherwise>   
                                                                                         </c:choose> 
 
@@ -1336,8 +1332,8 @@
                                                                                                                 <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw4.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="kuning"> ${pnsBaw4.getNamaPns()}</div></a>
                                                                                                                 </c:when> 
                                                                                                                 <c:otherwise>
-                                                                                                                <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw4.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw4.getNamaPns()}</div></a>
-
+                                                                                                                <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw4.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw4.getNamaPns()}</div></a></li>
+                                                                                                                   
                                                                                                                 </c:otherwise>   
                                                                                                             </c:choose> 
 
@@ -1361,194 +1357,261 @@
                                         </c:forEach>
                                     </ul>      
 
-                                </div>
+                                </div> 
+
+                                <%--================================================--%>
+<%--<ol class="tree">
+
+                                    <ol>   
+
+                                        <c:forEach var="pnsBaw" items="${pnsBawahan}" varStatus="count">
+                                            <c:set var="capaian" value="${pnsBaw.getRealisasi()}" /> 
+                                           
+                                                  
+                                                    <li> 
+                                                        <label for="folder<c:out value="${count.count}"/>"><c:out value="${pnsBaw.getNamaPns()}"/></label> <input type="checkbox" id="folder<c:out value="${count.count}"/>" value="${pnsBaw.getNamaPns()}"/> 
 
 
+
+                                                <ol>
+
+                                                    <c:forEach var="pnsBaw2" items="${pnsBawahan2}" varStatus="count2">
+                                                        <c:choose>
+                                                            <c:when test="${(pnsBaw2.getDiAtasanId() == pnsBaw.getUnorId() &&  pnsBaw.getjnsjbtn_id()=='1' )}">  
+                                                                <c:set var="namArray" value="${pnsBaw2.getNamaPns()}"/>
+                                                                <c:set var="capaian" value="${pnsBaw2.getRealisasi()}" /> 
+                                                               
+                                                                        <li>
+                                                                              <label for="folder2<c:out value="${count2.count}"/>"><c:out value="${pnsBaw2.getNamaPns()}"/></label> <input type="checkbox" id="folder2<c:out value="${count2.count}"/>" value="${pnsBaw2.getNamaPns()}"/> 
+
+                                                                    <ol>  
+                                                                        <c:forEach var="pnsBaw3" items="${pnsBawahan3}">
+                                                                            <c:choose>
+                                                                                <c:when test="${(pnsBaw3.getDiAtasanId() == pnsBaw2.getUnorId() && pnsBaw2.getjnsjbtn_id()=='1' )}">  
+                                                                                    <c:set var="capaian" value="${pnsBaw3.getRealisasi()}" /> 
+                                                                                  
+                                                                                            <li>
+                                                                                                  <label for="folder3"><c:out value="${pnsBaw3.getNamaPns()}"/></label> <input type="checkbox" id="folder3" value="${pnsBaw3.getNamaPns()}"/> 
+
+                                                                                        <ol>
+                                                                                            <c:forEach var="pnsBaw4" items="${pnsBawahan4}">
+                                                                                                <c:choose>
+                                                                                                    <c:when test="${(pnsBaw4.getDiAtasanId() == pnsBaw3.getUnorId() ) && pnsBaw3.getjnsjbtn_id()=='1'}"> 
+                                                                                                        <c:set var="capaian" value="${pnsBaw4.getRealisasi()}" /> 
+                                                                                                        
+                                                                                                                <li>
+                                                                                                                      <label for="folder4"><c:out value="${pnsBaw4.getNamaPns()}"/></label> <input type="checkbox" id="folder4" value="${pnsBaw4.getNamaPns()}"/> </li>
+
+                                                                                                              
+                                                                                                        </c:when>
+                                                                                                    </c:choose>
+                                                                                                </c:forEach>
+                                                                                        </ol>
+                                                                                    </li>
+                                                                                </c:when>
+                                                                            </c:choose>
+                                                                        </c:forEach>  
+                                                                    </ol>         
+                                                                </li>                     
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </c:forEach>  
+
+                                                </ol>    
+                                            </li>
+                                        </c:forEach>
+                                    </ol>      
+
+                                </ol> %-->
+                                <%--================================================--%>
                             </div>
 
 
                         </div>
                         <div  id="contentMonitor">
-
-                            <table>
-                                <tr  BGCOLOR="#81BEF7">
-                                    <th  width="38" rowspan="2">NO.</th>
-                                    <th rowspan="2" width="66">KODE</th>
-                                    <th rowspan="2" width="211">KEGIATAN TUGAS POKOK JABATAN</th>
-                                    <th colspan="5">TARGET</th>
-                                    <th colspan="4">REALISASI</th>
-                                    <th width="80" rowspan="2">PENGHITUNGAN PENCAPAIAN</th>
-
-
-                                </tr>
-
-                                <tr  BGCOLOR="#81BEF7">
-                                    <th width="51">AK</th>
-                                    <th width="85">KUANT/ OUTPUT</th>
-                                    <th width="78">KUAL/ MUTU</th>
-                                    <th width="68">WAKTU</th>
-                                    <th width="91" >BIAYA</th>
-
-                                    <th width="85">KUANT/ OUTPUT</th>
-                                    <th width="78">KUAL/ MUTU</th>
-                                    <th width="68">WAKTU</th>
-                                    <th width="95" >BIAYA</th>
-                                </tr>
-                                <c:forEach var="listTukesi" items="${realkesiServlet}" varStatus ="count">
-                                    <c:choose>
-                                        <c:when test="${(listTukesi.getNilai_capaian_skp()) <'76'}">
-
-                                            <tr bgcolor="#FF0000">
-
-                                                <td width="54" align="center">${(count.index)+1}<input type="text" name="nipsendiri" id ="nipsendiri" value="${nipsendiri}"/></td>
-                                                <td width="87" align="center"> <div align="center"><a href ="Isi4FaktorServlet?action=Monitor&nipnilaiR=<c:out value="${nipdimonitoring}"/>&NipAtasan=<c:out value="${pns.getNipBaru()}"/>&nipsendiriMonitoring=<c:out value="${nipsendiri}"/>&nipsendiriR=<c:out value="${nipsendiri}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
-                                                <td width="530" align="left">${listTukesi.getNama_tupoksi()}<input type="hidden" name="Id_tupoksi" id ="Id_tupoksi" value="${listTukesi.getId_tupoksi()}"/></td>
-                                                <td width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
-                                                <td width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td width="78" align="center">${listTukesi.getKualitas4()} %</td>
-                                                <td width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
-                                                <td  width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
-
-                                                <td width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td width="78" align="center">${listTukesi.getKualitasr()} %</td>
-                                                <td width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
-                                                <td width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
-                                                <td width="95" align="center"> ${listTukesi.getNilai_capaian_skp()}<input type="hidden" name="thn_sesion" id ="thn_sesion" value="${listTukesi.get_pilih_session()}"/></td>
-
-                                            </tr>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <tr bgcolor="#e8edff">
-
-                                                <td width="54" align="center">${(count.index)+1}<input type="text" name="nipsendiri" id ="nipsendiri" value="${nipsendiri}"/></td>
-                                                <td width="87" align="center"> <div align="center"><a href ="Isi4FaktorServlet?action=Monitor&nipnilaiR=<c:out value="${nipdimonitoring}"/>&NipAtasan=<c:out value="${pns.getNipBaru()}"/>&nipsendiriMonitoring=<c:out value="${nipsendiri}"/>&nipsendiriR=<c:out value="${nipsendiri}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
-                                                <td width="530" align="left">${listTukesi.getNama_tupoksi()}<input type="hidden" name="Id_tupoksi" id ="Id_tupoksi" value="${listTukesi.getId_tupoksi()}"/></td>
-                                                <td width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
-                                                <td width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td width="78" align="center">${listTukesi.getKualitas4()} %</td>
-                                                <td width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
-                                                <td  width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
-
-                                                <td width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td width="78" align="center">${listTukesi.getKualitasr()} %</td>
-                                                <td width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
-                                                <td width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
-                                                <td width="95" align="center"> ${listTukesi.getNilai_capaian_skp()}<input type="hidden" name="thn_sesion" id ="thn_sesion" value="${listTukesi.get_pilih_session()}"/></td>
-
-                                            </tr>
-                                        </c:otherwise>
-
-                                    </c:choose>
-
-                                </c:forEach> 
+                            <div style="height: 200px; overflow: auto;background: #ffffff">
+                                <table >
+                                    <tr  BGCOLOR="#9999ff">
+                                        <th style="font-weight:normal; font-size: 12px" width="38" rowspan="2" style="font-weight:normal">NO.</th>
+                                        <th style="font-weight:normal; font-size: 12px"rowspan="2" width="66" style="font-weight:normal">KODE</th>
+                                        <th style="font-weight:normal; font-size: 12px"rowspan="2" width="211" style="font-weight:normal">KEGIATAN TUGAS POKOK JABATAN</th>
+                                        <th style="font-weight:normal; font-size: 12px"colspan="5" style="font-weight:normal">TARGET</th>
+                                        <th style="font-weight:normal; font-size: 12px"colspan="4" style="font-weight:normal">REALISASI</th>
+                                        <th style="font-weight:normal; font-size: 12px"width="80" rowspan="2" style="font-weight:normal">PENGHITUNGAN PENCAPAIAN</th>
 
 
-                            </table>
+                                    </tr>
 
-                            <table bgcolor="#1c83ce">
-                                <thead>
+                                    <tr  BGCOLOR="#9999ff">
+                                        <th style="font-weight:normal; font-size: 12px"width="51" style="font-weight:normal">AK</th>
+                                        <th style="font-weight:normal; font-size: 12px"width="85" style="font-weight:normal">KUANT/ OUTPUT</th>
+                                        <th style="font-weight:normal; font-size: 12px"width="78" style="font-weight:normal">KUAL/ MUTU</th>
+                                        <th style="font-weight:normal; font-size: 12px"width="68" style="font-weight:normal">WAKTU</th>
+                                        <th style="font-weight:normal; font-size: 12px"width="91" style="font-weight:normal">BIAYA</th>
 
-                                    <tr bgcolor="#CC99FF">
-                                        <th width="31"><div align="center">NO.</div></th>
-                                <th width="138"><div align="center">KODE</div></th>
-                                <th width="138"><div align="center">JENIS TUGAS</div></th>
-                                <th width="383"><div align="center">NAMA TUGAS TAMBAHAN</div></th>
-                                <th width="138"><div align="center">TARGET</div></th>
-                                <th width="138"><div align="center">REALISASI</div></th>
-                                <th width="138"><div align="center">PENGHITUNGAN </div>  </th>        
-                                <th width="138"><div align="center">NILAI CAPAIAN SKP</div></th>
-                                </tr>
+                                        <th style="font-weight:normal; font-size: 12px"width="85" style="font-weight:normal">KUANT/ OUTPUT</th>
+                                        <th style="font-weight:normal; font-size: 12px"width="78" style="font-weight:normal">KUAL/ MUTU</th>
+                                        <th style="font-weight:normal; font-size: 12px"width="68" style="font-weight:normal">WAKTU</th>
+                                        <th style="font-weight:normal; font-size: 12px"width="95" style="font-weight:normal">BIAYA</th>
+                                    </tr>
+                                    <c:forEach var="listTukesi" items="${realkesiServlet}" varStatus ="count">
+                                        <c:choose>
+                                            <c:when test="${(listTukesi.getNilai_capaian_skp()) <'76'}">
 
-                                </thead>
+                                                <tr bgcolor="#FF0000">
 
+                                                    <td style="font-weight:normal; font-size: 12px"width="54" align="center">${(count.index)+1}<input type="hidden" name="nipsendiri" id ="nipsendiri" value="${nipsendiri}"/></td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="87" align="center"> <div align="center"><a href ="Isi4FaktorServlet?action=Monitor&nipnilaiR=<c:out value="${nipdimonitoring}"/>&NipAtasan=<c:out value="${pns.getNipBaru()}"/>&nipsendiriMonitoring=<c:out value="${nipsendiri}"/>&nipsendiriR=<c:out value="${nipsendiri}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="530" align="left">${listTukesi.getNama_tupoksi()}<input type="hidden" name="Id_tupoksi" id ="Id_tupoksi" value="${listTukesi.getId_tupoksi()}"/></td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitas4()} %</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
+                                                    <td  style="font-weight:normal; font-size: 12px"width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
 
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitasr()} %</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="95" align="center"> ${listTukesi.getNilai_capaian_skp()}<input type="hidden" name="thn_sesion" id ="thn_sesion" value="${listTukesi.get_pilih_session()}"/></td>
 
+                                                </tr>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <tr bgcolor="#e8edff">
 
-                                <c:forEach var="tambahans" items="${tugasTambahans}" varStatus ="count">
-                                    <c:choose>
-                                        <c:when test="${count.index % 2 == 0}">
-                                            <tr bgcolor="#7FFFD4">
-                                                <td width="31" align="center">${(count.index)+1}</td>
-                                                <td width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td width="383" align="left">${tambahans.getNama()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td width="138" align="right">${tambahans.getNilaiTambahan()}</td>
-                                            </tr>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <tr bgcolor=#ADFF2F">
-                                                <td width="31" align="center">${(count.index)+1}</td>
-                                                <td width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td width="383" align="left">${tambahans.getNama()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td width="138" align="right">${tambahans.getNilaiTambahan()}</td>
-                                            </tr>
-                                        </c:otherwise>
+                                                    <td style="font-weight:normal; font-size: 12px"width="54" align="center">${(count.index)+1}<input type="hidden" name="nipsendiri" id ="nipsendiri" value="${nipsendiri}"/></td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="87" align="center"> <div align="center"><a href ="Isi4FaktorServlet?action=Monitor&nipnilaiR=<c:out value="${nipdimonitoring}"/>&NipAtasan=<c:out value="${pns.getNipBaru()}"/>&nipsendiriMonitoring=<c:out value="${nipsendiri}"/>&nipsendiriR=<c:out value="${nipsendiri}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="530" align="left">${listTukesi.getNama_tupoksi()}<input type="hidden" name="Id_tupoksi" id ="Id_tupoksi" value="${listTukesi.getId_tupoksi()}"/></td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitas4()} %</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
+                                                    <td  style="font-weight:normal; font-size: 12px"width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
 
-                                    </c:choose>
-                                </c:forEach>
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitasr()} %</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="95" align="center"> ${listTukesi.getNilai_capaian_skp()}<input type="hidden" name="thn_sesion" id ="thn_sesion" value="${listTukesi.get_pilih_session()}"/></td>
 
-                            </table>
+                                                </tr>
+                                            </c:otherwise>
 
-                            <table >
+                                        </c:choose>
 
-                                <thead>
-                                    <tr bgcolor="#FF9966">
-                                        <th width="31"><div align="center">NO.</div></th>
-                                <th width="138"><div align="center">KODE</div></th>
-                                <th width="138"><div align="center">JENIS TUGAS</div></th>
-                                <th width="383"><div align="center">NAMA KREATIFITAS</div></th>
-                                <th width="138"><div align="center">TARGET</div></th>
-                                <th width="138"><div align="center">REALISASI</div></th>
-                                <th width="138"><div align="center">PENGHITUNGAN </div>  </th>        
-                                <th width="138"><div align="center">NILAI CAPAIAN SKP</div></th>
-                                </tr>
-
-                                </thead>
-
-                                <c:forEach var="tambahans" items="${kereaktifitas}" varStatus ="count">
-                                    <c:choose>
-                                        <c:when test="${count.index % 2 == 0}"> 
-                                            <tr bgcolor="#7FFFD4">
-                                                <td width="31" align="center">${(count.index)+1}</td>
-                                                <td width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td width="383" align="left">${tambahans.getNama()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td width="138" align="right">${tambahans.getNilaiTambahan()}</td>
-                                            </tr>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <tr  bgcolor=#ADFF2F">
-                                                <td width="31" align="center">${(count.index)+1}</td>
-                                                <td width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td width="383" align="left">${tambahans.getNama()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td width="138" align="right">${tambahans.getNilaiTambahan()}</td>
-                                            </tr>
-                                        </c:otherwise>
-
-                                    </c:choose>
-                                </c:forEach>
-
-                                <%-- ============================= --%>
+                                    </c:forEach> 
 
 
-                                <%-- ============================= --%>
+                                </table>
+                            </div>
+                            <div style="height: 100px; overflow: auto;background: #ffffff" >
+                                <table>
+                                    <thead>
+
+                                        <tr style="background-color: #9999ff;height: 30px">
+                                            <th width="31" style="font-weight:normal"><div align="center">NO.</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">KODE</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">JENIS TUGAS</div></th>
+                                    <th width="383" style="font-weight:normal;font-size: 12px"><div align="center">NAMA TUGAS TAMBAHAN</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">TARGET</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">REALISASI</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">PENGHITUNGAN </div>  </th>        
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">NILAI CAPAIAN SKP</div></th>
+                                    </tr>
+
+                                    </thead>
 
 
-                            </table>
+
+
+                                    <c:forEach var="tambahans" items="${tugasTambahans}" varStatus ="count">
+                                        <c:choose>
+                                            <c:when test="${count.index % 2 == 0}">
+                                                <tr bgcolor="#7FFFD4">
+                                                    <td width="31" align="center" style="font-weight:normal;font-size: 12px">${(count.index)+1}</td>
+                                                    <td width="138" align="center" style="font-weight:normal;font-size: 12px">${tambahans.getIdTambahan()}</td>
+                                                    <td width="138" align="left" style="font-weight:normal;font-size: 12px">${tambahans.getJenisTambahan()}</td>
+                                                    <td width="383" align="left" style="font-weight:normal;font-size: 12px">${tambahans.getNama()}</td>
+                                                    <td width="138" align="right" style="font-weight:normal;font-size: 12px">${tambahans.getNilai1()}</td>
+                                                    <td width="138" align="right" style="font-weight:normal;font-size: 12px">${tambahans.getNilai2()}</td>
+                                                    <td width="138" align="right" style="font-weight:normal;font-size: 12px">${tambahans.getHitungTambahan()}</td>
+                                                    <td width="138" align="right" style="font-weight:normal;font-size: 12px">${tambahans.getNilaiTambahan()}</td>
+                                                </tr>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <tr bgcolor=#ADFF2F">
+                                                    <td width="31" align="center" style="font-weight:normal;font-size: 12px">${(count.index)+1}</td>
+                                                    <td width="138" align="center" style="font-weight:normal;font-size: 12px">${tambahans.getIdTambahan()}</td>
+                                                    <td width="138" align="left" style="font-weight:normal;font-size: 12px"> ${tambahans.getJenisTambahan()}</td>
+                                                    <td width="383" align="left" style="font-weight:normal;font-size: 12px">${tambahans.getNama()}</td>
+                                                    <td width="138" align="right" style="font-weight:normal;font-size: 12px">${tambahans.getNilai1()}</td>
+                                                    <td width="138" align="right" style="font-weight:normal;font-size: 12px">${tambahans.getNilai2()}</td>
+                                                    <td width="138" align="right" style="font-weight:normal;font-size: 12px">${tambahans.getHitungTambahan()}</td>
+                                                    <td width="138" align="right" style="font-weight:normal;font-size: 12px">${tambahans.getNilaiTambahan()}</td>
+                                                </tr>
+                                            </c:otherwise>
+
+                                        </c:choose>
+                                    </c:forEach>
+
+                                </table>
+                            </div>
+                            <div style="height: 100px; overflow: auto;background: #ffffff">
+                                <table   >
+
+                                    <thead >
+                                        <tr style="background-color: #9999ff;height: 30px">
+                                            <th width="31" style="font-weight:normal;font-size: 12px"><div align="center">NO.</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">KODE</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">JENIS TUGAS</div></th>
+                                    <th width="383" style="font-weight:normal;font-size: 12px"><div align="center">NAMA KREATIFITAS</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">TARGET</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">REALISASI</div></th>
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">PENGHITUNGAN </div>  </th>        
+                                    <th width="138" style="font-weight:normal;font-size: 12px"><div align="center">NILAI CAPAIAN SKP</div></th>
+                                    </tr>
+
+                                    </thead>
+
+                                    <c:forEach var="tambahans" items="${kereaktifitas}" varStatus ="count">
+                                        <c:choose>
+                                            <c:when test="${count.index % 2 == 0}"> 
+                                                <tr bgcolor="#7FFFD4">
+                                                    <td style="font-weight:normal;font-size: 12"pxwidth="31" align="center">${(count.index)+1}</td>
+                                                    <td style="font-weight:normal;font-size: 12"pxwidth="138" align="center">${tambahans.getIdTambahan()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"pxwidth="138" align="left">${tambahans.getJenisTambahan()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"xwidth="383" align="left">${tambahans.getNama()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="right">${tambahans.getNilai1()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="right">${tambahans.getNilai2()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="right">${tambahans.getHitungTambahan()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
+                                                </tr>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <tr  bgcolor=#ADFF2F">
+                                                    <td style="font-weight:normal;font-size: 12"width="31" align="center">${(count.index)+1}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="center">${tambahans.getIdTambahan()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="left">${tambahans.getJenisTambahan()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="383" align="left">${tambahans.getNama()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="right">${tambahans.getNilai1()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="right">${tambahans.getNilai2()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"="138" align="right">${tambahans.getHitungTambahan()}</td>
+                                                    <td style="font-weight:normal;font-size: 12"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
+                                                </tr>
+                                            </c:otherwise>
+
+                                        </c:choose>
+                                    </c:forEach>
+
+                                    <%-- ============================= --%>
+
+
+                                    <%-- ============================= --%>
+
+
+                                </table>
+                            </div>
 
 
 
@@ -1557,14 +1620,14 @@
                         <style type="text/css"> 
                             #rightIsian {
                                 position :  absolute;
-                                top : 400px;
+                                top : 500px;
                                 left : 1px;
                                 width : 173px;
                                 height : 300px;
                             }
                             #rightIsian2 {
                                 position :  absolute;
-                                top : 200px;
+
                                 left : 50px;
                                 width : 500px;
                                 height : 300px;
@@ -1837,6 +1900,18 @@
     
                 window.open(urltest.href, windowname, 'width=200,height=200,scrollbars=yes'); 
             }
+            
+            function redirect_testtAjak()
+            {
+                 url2=document.getElementById("urltestAjak");
+               // urltest=document.getElementById("urltestAjak");
+               pilihan=document.getElementById("pilih_session").value;
+                   
+                    url2.href=url2.href+"&pilih_session=" + pilihan; 
+
+    
+               // window.open(urltest.href, windowname, 'width=200,height=200,scrollbars=yes'); 
+            }
             function redirectInsertData(){
     
                 var answer = confirm ("Yakin  Ingin Salin Data ?")
@@ -1873,15 +1948,7 @@
             {
                 var har2="tupoksiServlet2?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&_idUnorTambah=<c:out value="${pns.getUnorId()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>";
                 url3test=document.getElementById("url3test");
-                //  url3test.href=har2;
-  
-                //   url3.href=url3.href+"&pilih_session=" + pilihan+"&tglCetak="+tglCetak;
-                //url3.href=hr+"&pilih_session=" + pilihan+"&tglCetak="+tglCetak; 
-    
-
-   
-                //url3test=har2;
-                //  url3tes =har2.href;
+                
   
                 window.open(url3test.href=har2 , windowname, 'width=400,height=200,resizable = 0,scrollbars=yes'); 
             }
@@ -1975,6 +2042,7 @@
                                 <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
                                 <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Tupoksi</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
+                                <li><a href="NavigasiProfile?salindata=<c:out value="${sessionScope.NipPnsSession}"/>">Salin Data </a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">KELUAR</a></li>    
                             </c:if>
                             <c:if test="${tingkat=='2'}">
