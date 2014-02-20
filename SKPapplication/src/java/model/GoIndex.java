@@ -50,7 +50,19 @@ public class GoIndex {
         }
         return ipns;
     }
+ public  String getInsertUnor(String idTambahan) throws Exception
+    {
+       String berhasil = "Data Berhasil di Update";
+        bacaexcel1 bacaExcel1 = new bacaexcel1();
+        bacaExcel1.main2();
+        try {
+            berhasil = "Data Berhasil di Update";
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
+        return berhasil; 
+    }
     public void getUpdateUnorPns(String nipbaru, String AtasanBaru, String UnorBaru, String NamaUnor, String NamaJabatanBaru) {
         DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
@@ -2579,6 +2591,7 @@ public class GoIndex {
                 ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
                 pnsBawahan = dbquerypns.getDBqueryPNSTambahan2(_iunorAtasan);
                 for (PnsSkp ipns2 : pnsBawahan) {
+                     one = 0;
                     one = 1 + one;
                     oneAsString = String.valueOf(one);
                     
@@ -2589,6 +2602,9 @@ public class GoIndex {
                     akhirPns = ipns.getUnorId();
                     akhirAts = ipns.getDiAtasanId();
                     caverNip = ipns.getNipBaru();
+                     if (ipns.getNipBaru().equals("198612262009121001")){
+                    String testnip = ipns.getNipBaru();
+                }
 
                     if (!akhirAts.equals(akhirPns) && ipns.getjnsjbtn_id().equals("1")) {
                         pnsBawahan2 = dbquerypns.getDBqueryPNSTambahan2(akhirPns);

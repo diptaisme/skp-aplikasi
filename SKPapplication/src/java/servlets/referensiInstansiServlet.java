@@ -73,6 +73,7 @@ public class referensiInstansiServlet extends HttpServlet {
         String getIdPns=request.getParameter("getIdPns");
         String getinstansiId=request.getParameter("getinstansiId");
         String getUnorId=request.getParameter("getUnorId");
+        String nipPengguna=request.getParameter("nipPengguna");
         if (action != null && action.equalsIgnoreCase("HapusTupoksi"))
             
         {
@@ -247,8 +248,55 @@ public class referensiInstansiServlet extends HttpServlet {
             request.setAttribute("Tupoksi", Tupoksi);
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/ubahInsertTupoksiBaruBiru.jsp"); //update
             dis.forward(request, response);
-        }
-        else //klik link instansi
+        } if( nipPengguna !=null){
+            if (ModelLocatorSKP.levelUser.equals("3") || ModelLocatorSKP.levelUser.equals("2")) {
+                
+                    PnsSkp pns = new GoIndex().getPns(ModelLocatorSKP.loginNipsession);
+                    if (pns == null) {
+                    } else {
+                        String unorAtasan;
+                        PnsSkp UnorAts;
+                        unorAtasan = pns.getDiAtasanId();
+                        String UnorPns = pns.getUnorId();
+                        if (unorAtasan.equals("")) {
+                            unorAtasan = pns.getUnorId();
+                        } else {
+                            unorAtasan = pns.getDiAtasanId();
+                        }
+                        String InstansiPns = pns.getInstansiId();
+                        String NipPns = pns.getNipBaru();
+
+                        ModelLocatorSKP.nipBaruAtasan = NipPns;
+                        ModelLocatorSKP.loginNipPengguna = NipPns;
+                        ModelLocatorSKP.IdUnorUser = pns.getUnorId();
+
+                        UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                        ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+                        if (UnorAts == null) {
+                            unorskp unorAtasanLagi = new GoIndex().getIdUnorAtasan(unorAtasan);
+                            String namaUnorAtasNyaLagi = unorAtasanLagi.getNamaUnor();
+                            String IdUnorAtasNyaLagi = unorAtasanLagi.getDiAtasanId();
+
+                            String UnorAtasanAtasan = new GoIndex().getUpdateUnorYangKosong(NipPns, IdUnorAtasNyaLagi);
+                            unorAtasan = pns.getDiAtasanId();
+                            UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+                        }
+
+                        List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+                        request.setAttribute("pns", pns);
+                        request.setAttribute("UnorAts", UnorAts);
+                        request.setAttribute("tukesiServlet", tukesiServlet);
+                        request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+
+                    }
+                }
+                
+                
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+                dis.forward(request, response);
+            
+        }else  //klik link instansi
         {
             SkodeInstansi = request.getParameter("idInstkode");
            // SkodeInstansi = request.getParameter("idInstansiText");

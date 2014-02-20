@@ -192,6 +192,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             String iUnorTambahan = pns.getUnorId();
             System.out.println("idunor = " + iUnorTambahan);
             //List<pnsskp_strukturalbkn> pnsList = new GoIndex().getTugasTambahanBawahanList(iUnorTambahan);
+            ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
             List<PnsSkp> pnsList = new GoIndex().getTugasTambahanBawahanList2(iUnorTambahan);
 
             PnsSkp nipatasan = new GoIndex().getUnorAtasan(iUnorTambahan);
@@ -234,6 +235,9 @@ public class IsiPerilakuServlet extends HttpServlet {
             List<PnsSkp> pnsBawahan4 = new ArrayList<PnsSkp>();
             for (PnsSkp ipns3 : pnsList) {
                 ipns = new PnsSkp();
+                if (ipns3.getNipBaru().equals("198612262009121001")){
+                    String testnip = ipns3.getNipBaru();
+                }
                 if (ipns3.getLevel().length() == 1) {
                     pnsBawahan.add(ipns3);
                 } else if (ipns3.getLevel().length() == 2) {

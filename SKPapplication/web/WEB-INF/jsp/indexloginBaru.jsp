@@ -14,8 +14,8 @@
 
     <body>
         
-                 <form id="form1" name="form1" method="post" action="loginPassServlet">
-         <table id="Table_01" width="1230" height="662" border="0" cellpadding="0" cellspacing="0" align="center">
+                 <form id="form1" name="form1" method="post" action="loginPassServlet" >
+         <table id="Table_01" width="1230" height="662" border="0" cellpadding="0"   cellspacing="0" align="center">
 	<tr>
 		<td colspan="5">
 			<img src="/SKPapplication/images/skp_01.png" width="1230" height="314" alt=""/></td>
@@ -26,7 +26,7 @@
             
          
 		<td colspan="3">
-                    <input name="usernametext" type="text"  id="textfield" size="20"/></td>
+                    <input name="usernametext" type="text"  id="textfield" size="20" autocomplete ="off"/></td>
 		<td rowspan="6">
 			<img src="/SKPapplication/images/skp_04.png" width="594" height="348" alt=""/></td>
 	</tr>

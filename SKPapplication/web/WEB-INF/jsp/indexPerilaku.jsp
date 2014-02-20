@@ -118,17 +118,33 @@
 
                 <div id="contentdalam">
 
-                    <div style="padding-left: 5px;padding-top: 10px;overflow: auto;background-color: #FF9900;width: 500px">
+                    <div style="padding-left: 5px;padding-top: 10px;overflow: auto;width: 500px">
                         <table width="500" >
-                            
-                                <c:forEach var="pnsList" items="${pnsList}" varStatus="count">
-                                    <tr >     
-                                        <td style="background-color: #FF9900" align="center"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${(count.index)+1}</a></td>
-                                        <td style="background-color: #FF9900"><div align="left"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNipBaru()}</a></div></td>
-                                        <td style="background-color: #FF9900"><div align="left"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNamaPns()}</a></div></td>
-                                    </tr>
-                                </c:forEach>
-                          
+
+                            <c:forEach var="pnsList" items="${pnsList}" varStatus="count">
+                                <c:choose>
+                                    <c:when test="${count.index % 2 == 0}">
+                                        <tr bgcolor="#b9c9fe">
+
+
+                                            <td align="center"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${(count.index)+1}</a></td>
+                                            <td ><div align="left"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNipBaru()}</a></div></td>
+                                            <td><div align="left"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNamaPns()}</a></div></td>
+                                        </tr>
+                                        <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>
+                                        </tr>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <tr bgcolor="#e8edff">
+                                            <td  align="center"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${(count.index)+1}</a></td>
+                                            <td><div align="left"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNipBaru()}</a></div></td>
+                                            <td><div align="left"><a href="isiPerilakuServlet?action=Lihat&NipPerilakuLihat=<c:out value="${pnsList.getNipBaru()}"/>">${pnsList.getNamaPns()}</a></div></td>
+                                        </tr>
+                                    </c:otherwise>
+
+                                </c:choose>
+                            </c:forEach>
+
                         </table>
                     </div>
 
@@ -189,33 +205,33 @@
                                                             </div>
 
                                                             <div id="contentdalamsub2">
-                                                            <table width="35%">
-                                                                <tr>
-                                                                    <td><strong strong style="color: #000"><span class="style2">NIP PNS</span></strong></td>
-                                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span class="style2"></span></strong>${nip}</td>
-                                                                    <input type="hidden" name="nippns" value="${nip}"></input>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><strong strong style="color: #000"><span class="style2">NAMA PNS </span></strong></td>
-                                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span class="style2"></span></strong>${nama}</td>
-                                                                    <input type="hidden" name="namapns" value="${nama}"></input>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><strong strong style="color: #000"><span class="style2">Periode Penilaian </span></strong></td>
-                                                                    <td><input type="text" id="Penilaian" name="Penilaian" value="${Penilaian}" disabled></input></td>  
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">
-                                                                        <input type="checkbox" id="rekomen" name="rekomen" value="rekomen" onclick="enableTextArea()">Rekomendasi Atasan Langsung</input>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td width="120" colspan="2"><textarea rows="9" id="textarea1" name="textarea1" cols="80" disabled></textarea></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2"><input type="submit" name="param" class="button black bigrounded" value="REKOMENDASI"></td>
-                                                                </tr>
-                                                            </table>  
+                                                                <table width="35%">
+                                                                    <tr>
+                                                                        <td><strong strong style="color: #000"><span class="style2">NIP PNS</span></strong></td>
+                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span class="style2"></span></strong>${nip}</td>
+                                                                        <input type="hidden" name="nippns" value="${nip}"></input>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong strong style="color: #000"><span class="style2">NAMA PNS </span></strong></td>
+                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span class="style2"></span></strong>${nama}</td>
+                                                                        <input type="hidden" name="namapns" value="${nama}"></input>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong strong style="color: #000"><span class="style2">Periode Penilaian </span></strong></td>
+                                                                        <td><input type="text" id="Penilaian" name="Penilaian" value="${Penilaian}" disabled></input></td>  
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <input type="checkbox" id="rekomen" name="rekomen" value="rekomen" onclick="enableTextArea()">Rekomendasi Atasan Langsung</input>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="120" colspan="2"><textarea rows="9" id="textarea1" name="textarea1" cols="80" disabled></textarea></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2"><input type="submit" name="param" class="button black bigrounded" value="REKOMENDASI"></td>
+                                                                    </tr>
+                                                                </table>  
                                                             </div>
                                                             </div>    
                                                             </form>			
@@ -247,7 +263,7 @@
                                                                     color:white;
                                                                 }
 
-                                                               
+
 
 
                                                                 form fieldset

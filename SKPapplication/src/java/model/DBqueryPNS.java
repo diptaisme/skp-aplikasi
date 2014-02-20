@@ -39,7 +39,15 @@ public class DBqueryPNS
          
          
      }
-    
+    public void getDBqueryInsertUNOR( String id_unor, String instansi_id,String diatasan_id,String eselon_id,
+              String nama_unor,String nama_jabatan,String pemimpin_pns_id) throws SQLException{
+        
+           String sql = "insert into unorskp values('"+id_unor+"','"+instansi_id+"','"+diatasan_id+"','"+eselon_id+"',"
+                   + "'"+nama_unor+"','"+nama_jabatan+"','"+pemimpin_pns_id+"')" ;
+           PreparedStatement st = this.conn.prepareStatement(sql);
+            st.executeUpdate(sql);
+            st.close();     
+     }
       public void getDBqueryInsertPNS( String id,  String nip_lama, String nip_baru, String nama_pns,String golonganid,  String namagolru, String pangkat, String unorid,
               String namaunor,  String namajabatan, String diatasanid, String instansiid,String jenisjabatan,  String jabatan_fungsional,String jabatan_fungsional_umum) throws SQLException{
         
@@ -56,11 +64,19 @@ public class DBqueryPNS
      
    public PnsSkp getDBqueryPNSId(String sid_pns) throws SQLException
     {
-        String sql = "SELECT idpns, nip_lama, nip_baru, namapns, golongan_id, namagolru, pangkat, unorid, namaunor, namajabatan, diatasanid, instansi_id, jenis_jabatan, JABATAN_FUNGSIONAL, JABATAN_UMUM FROM pnsskp WHERE nip_baru =? ";
-        PreparedStatement pst = this.conn.prepareStatement(sql);
-        PnsSkp ipns = null;
-        pst.setString(1, sid_pns);
-        ResultSet rs = pst.executeQuery();
+        
+         String nip=sid_pns;
+        String sql2 = "SELECT idpns, nip_lama, nip_baru, namapns, golongan_id, namagolru, pangkat, unorid, namaunor, namajabatan, diatasanid, instansi_id, jenis_jabatan, JABATAN_FUNGSIONAL, JABATAN_UMUM FROM pnsskp WHERE nip_baru = '"+nip+"' ";
+        PreparedStatement pst2 = this.conn.prepareStatement(sql2);
+       PnsSkp ipns = null;
+        ResultSet rs = pst2.executeQuery();
+        
+        
+       // String sql = "SELECT idpns, nip_lama, nip_baru, namapns, golongan_id, namagolru, pangkat, unorid, namaunor, namajabatan, diatasanid, instansi_id, jenis_jabatan, JABATAN_FUNGSIONAL, JABATAN_UMUM FROM pnsskp WHERE nip_baru =? ";
+       // PreparedStatement pst = this.conn.prepareStatement(sql);
+      //  PnsSkp ipns = null;
+      //  pst.setString(1, sid_pns);
+       // ResultSet rs = pst.executeQuery();
         if (rs.next())
         {
             ipns = new PnsSkp();
