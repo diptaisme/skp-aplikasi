@@ -122,8 +122,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>SASARAN KERJA INDIVIDU</title>
-        <script type="text/javascript" src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
-        <script type="text/javascript" src="/SKPapplication/js/jquery.slidertron-1.1.js"></script>
+          <script type='text/javascript' src='/SKPapplication/js/jquery.min.js'></script>
+        <script src="/SKPapplication/js/jquery-ui-1.8.21.custom.min.js"></script>
+        <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
+        <script type='text/javascript' src='/SKPapplication/js/FusionCharts.js'></script>
+        <script type='text/javascript' src='/SKPapplication/js/FusionCharts.jQueryPlugin.js'></script>
+        <script type='text/javascript' src='/SKPapplication/js/FusionCharts.HTMLTableDataHandler.js'></script>
 
 
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
@@ -131,6 +135,15 @@
         <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
         <style type="text/css"> 
             /*=======================Monitoring*/
+            
+             #headerLokalUtama {
+                padding: 0px;
+                width: 1000px;
+
+                position: relative;
+                height: 80px;
+                left : -20px;
+            }
             #headermetting {
 
                 position :  absolute;
@@ -150,70 +163,8 @@
 
             #warnass {color:#ff9900;font-weight:bold; font-size:14px;text-decoration:blink;font-family:Arial, Helvetica, sans-serif}
 
-            #slideshow {
-                width : 1180px;
-                height: 100x;
-                left: 20px;
-                margin: -15px auto;
-                padding: 5px 0px 0px 0px;
-                background: url(images/img03.jpg) no-repeat left top;
-            }
-
-            #foobar {
-                position: relative;
-            }
-
-            #foobar .navigation {
-                position: absolute;
-                display: block;
-                z-index: 100;
-                color: #ffffff;
-                bottom: 0px;
-                right: 0px;
-                margin: 10px;
-                padding: 1px;
-                background-color: #303030;
-                opacity: 0.75;
-            }
-
-            #foobar .navigation a {
-                color: #ffffff;
-                text-decoration: none;
-                outline: none;
-            }
-
-            #foobar .viewer {
-                width: 1180px;
-                height: 100px;
-
-            }
-
-            #foobar .viewer .reel .slide {
-                position: relative;
-                width: 1180px;
-                height: 100px;
-            }
-
-            #foobar .viewer .reel .slide span {
-                position: absolute;
-                display: block;
-                width: 1180px;
-                opacity: 0.30;
-                padding: 15px;
-                background-color: #FFFFFF;
-                color: #000000;
-                bottom: 0px;
-                left: 0px;
-                font-size: 18px;
-            }
-
-
-            #foobar .viewer-wrapper {
-                float: left;
-                width: 1180px;
-                height: 100px;
-                background: red;
-            }
+           
+            
 
             .arrow-left {
                 background: blue;
@@ -291,6 +242,14 @@
             #content {
                 position :  absolute;
                 top : 127px;
+                left : 140px;
+                width : 1020px;
+                height : 600px;
+                overflow: auto;
+            }
+             #content50 {
+                position :  absolute;
+                top : 40px;
                 left : 140px;
                 width : 1020px;
                 height : 600px;
@@ -487,146 +446,202 @@
             div#place-nav li li:hover ul
             {display:block;}
         </style>
+ 
+                  
 
 
     </head>
 
     <body>
+         <div id="headerLokalUtama">
+                    <%@ include file="SlindronHeader.jsp" %>
+                    
+                </div>   
         <div id="wrapperUtama">
-            <div id="header2">  
-                <div id="slideshow">
-                    <div id="foobar">   
-                        <div id="col2">
-                            <div class="viewer">        <div class="reel"> 
-                                    <div class="slide">                     <img src="images/Abstract Blue backgrounds 3.1440x300.jpg" width="1200" height="100" alt=""  /> <span>Direktorat Pengolahan Data.</span>
-                                    </div><div class="slide">                <img src="images/sweet-white-blue-swirl-powerpoint-backgrounds.1440x300.jpg" width="1200" height="100" alt="" /> <span>direktorat Pengolahan Data</span>
-                                    </div></div></div></div></div></div>
-            </div>
-            <table >
-                <td hidden="true" align="left"> &nbsp;&nbsp;&nbsp;&nbsp;Login <c:out  value="${sessionScope.user}" /> </td>
-                <td  hidden="true" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </td>  
-            </table>
-            <div id="header2">
-                <div id="logo">
-                    <table>
-                        <tr>
-                            <th rowspan="2" >
-                                <img src="/SKPapplication/images/burung_garuda7.png"/></th>
-                            <td colspan="2">
-                                SASARAN KINERJA PEGAWAI
-                            </td>
-
-                        </tr>
-                        <tr><td>
-                                B K N 
-                            </td>
-
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-                <div style="width: 1180px ">
-                    <font face="georgia"   color="White"><strong><marquee bgcolor="#9999ff"  width="100%" scrollamount="3" behavior="alternate"><span id='warnass'>Sasaran Kinerja Pegawai..</span> </marquee></strong></font></div>
-
-
-
-            </div>
-
-            <div id="headermetting" > 
-                <div id='sol'>
-                    <td  width="200" >  <img src="images/meeting 01.png" width="200" height="100"/>    </td>
-                </div>
-            </div> 
+           
+           
+             <input type="hidden" name="nippns" value="${sessionScope.user}"/>
+              <input type="hidden" name="nippns" value="${sessionScope.NipPnsSession}"/>
+            
+           
+           
             <%-- ===================================== ======================================================	--%>      
             <c:set var="navigasi_pilihan" value="${navigasiPilihan}" />   
-            <div id="content">
+            <div id="content50">
                 <c:if test="${navigasi_pilihan =='0'}">
+                    <div style ="height: 300px;overflow: auto">
+ 
+                        <table style="margin-top: 0px ;font-size: 12px">
+                            <td style="font-size: 12px; width:500px; font-family: sans-serif; text-align: center; font: bold ">
 
-                    <table style="margin-top: 0px ;font-size: 12px">
-                        <td style="font-size: 12px; width:500px; font-family: sans-serif; text-align: center; font: bold ">
+                                <table style="padding-top:0px">
+                                    <tr style="padding-top: 0px">
+                                        <td style="font-weight:normal; font-size: 12px"width="30"><div align="left"><span class="style3">1</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px"width="135" align="left"><span class="style3">Nama</span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"width="414" align="left"> <c:out value="${UnorAts.getNamaPns()}" /> </td>
+                                    </tr>
+                                    <tr tr style="padding-top: 0px">
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">2</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">NIP</span></td>
+                                        <td>:</td>
 
-                            <table style="padding-top:0px">
-                                <tr style="padding-top: 0px">
-                                    <td style="font-weight:normal; font-size: 12px"width="30"><div align="left"><span class="style3">1</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px"width="135" align="left"><span class="style3">Nama</span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"width="414" align="left"> <c:out value="${UnorAts.getNamaPns()}" /> </td>
-                                </tr>
-                                <tr tr style="padding-top: 0px">
-                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">2</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">NIP</span></td>
-                                    <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNipBaru()}" /> </td>
+                                    </tr>
+                                    <tr style="padding-top: 0px ">
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">3</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getPangkat()}" /> / <c:out value="${UnorAts.getNamaGolru()}" /></td>
+                                    </tr>
+                                    <tr   style="padding-top : 0px">
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">4</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Jabatan</span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNamaJabatan()}" /></td>
+                                    </tr> <tr  style="padding-top: 0px">
+                                        <td style="font-weight:normal; font-size: 12px"<div align="left"><span class="style3">5</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px" align="left"><span class="style3">Unit Kerja </span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNamaUnor()}" /></td>
+                                    </tr>
 
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNipBaru()}" /> </td>
-                                </tr>
-                                <tr style="padding-top: 0px ">
-                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">3</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getPangkat()}" /> / <c:out value="${UnorAts.getNamaGolru()}" /></td>
-                                </tr>
-                                <tr   style="padding-top : 0px">
-                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">4</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Jabatan</span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNamaJabatan()}" /></td>
-                                </tr> <tr  style="padding-top: 0px">
-                                    <td style="font-weight:normal; font-size: 12px"<div align="left"><span class="style3">5</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px" align="left"><span class="style3">Unit Kerja </span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNamaUnor()}" /></td>
-                                </tr>
+                                </table>
+                            </td>       
+                            <%-- ===================================== USER ======================================================	--%>			
 
-                            </table>
-                        </td>       
-                        <%-- ===================================== USER ======================================================	--%>			
-
-                        <td  style="font-size: 12px; width:500px; padding-top: 0px;font-family: sans-serif; text-align: center; font: bold "> 
-                            <table  style="padding-top:0px" >
-                                <tr  style="padding-top: 0px">
-                                    <td style="font-weight:normal; font-size: 12px" width="30"><div align="left"><span class="style3">1</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px" width="135" align="left"><span class="style3">Nama</span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"width="414" align="left"> <c:out value="${pns.getNamaPns()}"/> </td>
-                                </tr>
-                                <tr style="padding-top: 0px">
-                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">2</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">NIP</span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNipBaru()}" /></td>
+                            <td  style="font-size: 12px; width:500px; padding-top: 0px;font-family: sans-serif; text-align: center; font: bold "> 
+                                <table  style="padding-top:0px" >
+                                    <tr  style="padding-top: 0px">
+                                        <td style="font-weight:normal; font-size: 12px" width="30"><div align="left"><span class="style3">1</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px" width="135" align="left"><span class="style3">Nama</span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"width="414" align="left"> <c:out value="${pns.getNamaPns()}"/> </td>
+                                    </tr>
+                                    <tr style="padding-top: 0px">
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">2</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">NIP</span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNipBaru()}" /></td>
 
 
-                                <input  type="hidden"  name="_getInstansi" id="_getInstansi" value="${pns.getNipBaru()}"></input>
-                                <input  type="hidden"  name="_getidUnor"  id="_getidUnor" value="${pns.getUnorId()}">
+                                    <input  type="hidden"  name="_getInstansi" id="_getInstansi" value="${pns.getNipBaru()}"></input>
+                                    <input  type="hidden"  name="_getidUnor"  id="_getidUnor" value="${pns.getUnorId()}">
 
-                                </tr>
+                                    </tr>
 
-                                <tr style="padding-top: 0px"> <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">3</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getPangkat()}" /> / <c:out value="${pns.getNamaGolru()}" /></td>
-                                </tr>
-                                <tr style="padding-top: 0px">
-                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">4</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Jabatan</span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
-                                </tr>
-                                <tr style="padding-top: 0px">
-                                    <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">5</span></div></td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Unit Kerja </span></td>
-                                    <td>:</td>
-                                    <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaUnor()}" /> </td>
+                                    <tr style="padding-top: 0px"> <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">3</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Pangkat/Gol.Ruang</span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getPangkat()}" /> / <c:out value="${pns.getNamaGolru()}" /></td>
+                                    </tr>
+                                    <tr style="padding-top: 0px">
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">4</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Jabatan</span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
+                                    </tr>
+                                    <tr style="padding-top: 0px">
+                                        <td style="font-weight:normal; font-size: 12px"><div align="left"><span class="style3">5</span></div></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><span class="style3">Unit Kerja </span></td>
+                                        <td>:</td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaUnor()}" /> </td>
 
-                                </tr>
+                                    </tr>
 
-                            </table>
+                                </table>
 
-                        </td>
-                    </table>
+                            </td>
+                            
+                        </table>
+                                       
+                    </div>
+                            <div id="graph">
+                                <div id="chartContainer20"></div>  
+                                        </div>            
+                                       
+                                        <style type="text/css"> 
+                        /*=======================Monitoring*/
+                        #graph {
+
+                            position :  absolute;
+                            top : 145px;
+                            left : 10px;
+                            width : 300px;
+                            height : 200px;
+                            overflow: auto;
+
+                        }	 </style>
+
+                        
+                        
+                   
+                     <script>
+                        $(document).ready(
+                        function() {
+                   
+
+                            $("#chartContainer20").insertFusionCharts({
+                                type: "MSColumn3D",
+                                width: "300",
+                                height: "250",
+                               
+                                dataFormat: "json",
+                                dataSource: {
+                                    "chart":{
+                                        "caption":"Grafik Capaian Kinerja ",
+                                        "bgcolor":"ffffff,ffffff",
+                                        "showlabels":"1",
+                                        "showvalues":"0",
+                                        "showborder":"0",
+                                        "decimals":"0"
+                                    },
+                                    "categories":[
+                                        {
+                                            "category":[
+                                                {
+                                                    "label":"Kinerja"
+                                                },
+                                                {
+                                                    "label":"Prilaku"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "dataset":[
+                                        {
+                                            "seriesname":"Nilai Capaian Prestasi",
+                                            "color":"AFD8F8",
+                                            "data":[
+                                                {
+                                                    "value":"${nilaiSKP}"
+                                                },
+                                                {
+                                                    "value":"${ratarata}"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "seriesname":"Standarisasi_prestasi",
+                                            "color":"F6BD0F",
+                                            "data":[
+                                                {
+                                                    "value":"76"
+                                                },
+                                                {
+                                                    "value":"76"
+                                                }
+                                            ]
+                                        }
+                            
+                                    ]
+                                }
+                            });	
+                        });
+                    </script>
+
+
+
                 </c:if>
                 <style type="text/css">
                     #menu2 {
@@ -1254,7 +1269,7 @@
                                     }
 
                                 </style>
-                               <div id="menu1">
+                                <div id="menu1">
 
                                     <ul>   
 
@@ -1271,7 +1286,7 @@
                                                     </c:when> 
                                                     <c:otherwise>
                                                     <li> <a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw.getNamaPns()}</div></a>
-                                                        
+
                                                     </c:otherwise>   
                                                 </c:choose>           
 
@@ -1295,7 +1310,7 @@
                                                                         </c:when> 
                                                                         <c:otherwise>
                                                                         <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw2.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw2.getNamaPns()}</div></a>
-                                                                           
+
 
                                                                         </c:otherwise>   
                                                                     </c:choose> 
@@ -1314,7 +1329,7 @@
                                                                                             </c:when> 
                                                                                             <c:otherwise>
                                                                                             <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw3.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw3.getNamaPns()}</div></a>
-                                                                                               
+
                                                                                             </c:otherwise>   
                                                                                         </c:choose> 
 
@@ -1333,14 +1348,14 @@
                                                                                                                 </c:when> 
                                                                                                                 <c:otherwise>
                                                                                                                 <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw4.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw4.getNamaPns()}</div></a></li>
-                                                                                                                   
-                                                                                                                </c:otherwise>   
-                                                                                                            </c:choose> 
+
+                                                                                                            </c:otherwise>   
+                                                                                                        </c:choose> 
 
 
-                                                                                                        </c:when>
-                                                                                                    </c:choose>
-                                                                                                </c:forEach>
+                                                                                                    </c:when>
+                                                                                                </c:choose>
+                                                                                            </c:forEach>
                                                                                         </ul>
                                                                                     </li>
                                                                                 </c:when>
@@ -1360,7 +1375,7 @@
                                 </div> 
 
                                 <%--================================================--%>
-<%--<ol class="tree">
+                                <%--<ol class="tree">
 
                                     <ol>   
 
@@ -1903,14 +1918,14 @@
             
             function redirect_testtAjak()
             {
-                 url2=document.getElementById("urltestAjak");
-               // urltest=document.getElementById("urltestAjak");
-               pilihan=document.getElementById("pilih_session").value;
+                url2=document.getElementById("urltestAjak");
+                // urltest=document.getElementById("urltestAjak");
+                pilihan=document.getElementById("pilih_session").value;
                    
-                    url2.href=url2.href+"&pilih_session=" + pilihan; 
+                url2.href=url2.href+"&pilih_session=" + pilihan; 
 
     
-               // window.open(urltest.href, windowname, 'width=200,height=200,scrollbars=yes'); 
+                // window.open(urltest.href, windowname, 'width=200,height=200,scrollbars=yes'); 
             }
             function redirectInsertData(){
     
@@ -2004,31 +2019,7 @@
 
         </script>
 
-        <script type="text/javascript">
-                        
-            $('#foobar').slidertron({
-                viewerSelector: '.viewer',
-                reelSelector: '.viewer .reel',
-                slidesSelector: '.viewer .reel .slide',
-                advanceDelay: 3000,
-                speed: 'slow'
-            });
-            
-            $(function () {
-                var $element = $('#sol');
-                function fadeInOut () {
-                    $element.fadeIn(1000, function () {
-                        $element.fadeOut(1500, function () {
-                            $element.fadeIn(1500, function () {
-                                setTimeout(fadeInOut, 500);
-                            });
-                        });
-                    });
-                }
-
-                fadeInOut();
-            });
-        </script>
+        
         <c:set var="tingkat" value="${tingkatPengguna}" />               
         <div id="leftside">     
             <div id="place-nav" >

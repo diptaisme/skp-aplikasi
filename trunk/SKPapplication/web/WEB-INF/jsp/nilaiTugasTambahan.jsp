@@ -15,6 +15,7 @@
         <title>SASARAN KERJA INDIVIDU</title>
         <meta name="keywords" content="corporate, free web template" />
         <meta name="description" content="SKI" />
+        <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
 
         <script language="javascript" type="text/javascript">
             function clearText(field)

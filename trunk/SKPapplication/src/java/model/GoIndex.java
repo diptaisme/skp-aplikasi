@@ -50,19 +50,21 @@ public class GoIndex {
         }
         return ipns;
     }
- public  String getInsertUnor(String idTambahan) throws Exception
-    {
-       String berhasil = "Data Berhasil di Update";
+
+    public String getInsertUnor(String idTambahan) throws Exception {
+        String idpath=idTambahan;
+        String berhasil = "Data Berhasil di Update";
         bacaexcel1 bacaExcel1 = new bacaexcel1();
-        bacaExcel1.main2();
+        bacaExcel1.main2(idpath);
         try {
             berhasil = "Data Berhasil di Update";
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        return berhasil; 
+        return berhasil;
     }
+
     public void getUpdateUnorPns(String nipbaru, String AtasanBaru, String UnorBaru, String NamaUnor, String NamaJabatanBaru) {
         DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
@@ -136,6 +138,7 @@ public class GoIndex {
     public PnsSkp getPns(String id) {
         DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
+        ipns=null;
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
 
         if (id == null) {
@@ -204,10 +207,10 @@ public class GoIndex {
     }
 
     public String getInsertPns(String idTambahan) throws Exception {
-
+        String idpath=idTambahan;
         String berhasil = "Data Berhasil di Update";
         bacaexcel2 bacaExcel2 = new bacaexcel2();
-        bacaExcel2.main2();
+        bacaExcel2.main2(idpath);
         try {
             berhasil = "Data Berhasil di Update";
         } catch (Exception ex) {
@@ -2581,20 +2584,20 @@ public class GoIndex {
                 String akhirAts = null;
                 PnsSkp ipns = null;
                 String oneAsString = null;
-                String strone="";
+                String strone = "";
 
                 int one = 0;
-                int two=0;
-                int tree=0;
-                int four=0;
+                int two = 0;
+                int tree = 0;
+                int four = 0;
                 Object[] obj2 = null;
                 ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
                 pnsBawahan = dbquerypns.getDBqueryPNSTambahan2(_iunorAtasan);
                 for (PnsSkp ipns2 : pnsBawahan) {
-                     one = 0;
+                    one = 0;
                     one = 1 + one;
                     oneAsString = String.valueOf(one);
-                    
+
                     ipns = new PnsSkp();
                     ipns = ipns2;
                     ipns.setLevel(oneAsString);
@@ -2602,49 +2605,46 @@ public class GoIndex {
                     akhirPns = ipns.getUnorId();
                     akhirAts = ipns.getDiAtasanId();
                     caverNip = ipns.getNipBaru();
-                     if (ipns.getNipBaru().equals("198612262009121001")){
-                    String testnip = ipns.getNipBaru();
-                }
 
                     if (!akhirAts.equals(akhirPns) && ipns.getjnsjbtn_id().equals("1")) {
                         pnsBawahan2 = dbquerypns.getDBqueryPNSTambahan2(akhirPns);
-                         two =0;
-                         String twoAsString ="";
+                        two = 0;
+                        String twoAsString = "";
                         for (PnsSkp ipns3 : pnsBawahan2) {
-                             
+
                             ipns = new PnsSkp();
                             ipns = ipns3;
                             two = 1 + two;
-                            twoAsString=String.valueOf(one) +String.valueOf(two);
+                            twoAsString = String.valueOf(one) + String.valueOf(two);
                             ipns.setLevel(twoAsString);
                             ismus.add(ipns);
                             akhirPns = ipns.getUnorId();
                             akhirAts = ipns.getDiAtasanId();
-                            if (!akhirAts.equals(akhirPns) &&  ipns.getjnsjbtn_id().equals("1")) {
+                            if (!akhirAts.equals(akhirPns) && ipns.getjnsjbtn_id().equals("1")) {
                                 pnsBawahan3 = dbquerypns.getDBqueryPNSTambahan2(akhirPns);
-                                String treeAsString ="";
-                                tree=0;
+                                String treeAsString = "";
+                                tree = 0;
                                 for (PnsSkp ipns4 : pnsBawahan3) {
                                     ipns = new PnsSkp();
                                     ipns = ipns4;
                                     tree = 1 + tree;
-                                    treeAsString=String.valueOf(one)+String.valueOf(two)+String.valueOf(tree);
+                                    treeAsString = String.valueOf(one) + String.valueOf(two) + String.valueOf(tree);
                                     ipns.setLevel(treeAsString);
-                                   
+
                                     ismus.add(ipns);
                                     akhirPns = ipns.getUnorId();
                                     akhirAts = ipns.getDiAtasanId();
                                     if (!akhirAts.equals(akhirPns) && ipns.getjnsjbtn_id().equals("1")) {
                                         pnsBawahan4 = dbquerypns.getDBqueryPNSTambahan2(akhirPns);
-                                        four=0;
-                                        String fourAsString ="";
+                                        four = 0;
+                                        String fourAsString = "";
                                         for (PnsSkp ipns5 : pnsBawahan4) {
                                             ipns = new PnsSkp();
                                             ipns = ipns5;
                                             four = 1 + four;
-                                            fourAsString=String.valueOf(one)+String.valueOf(two)+String.valueOf(tree)+String.valueOf(four);
+                                            fourAsString = String.valueOf(one) + String.valueOf(two) + String.valueOf(tree) + String.valueOf(four);
                                             ipns.setLevel(fourAsString);
-                                           
+
                                             ismus.add(ipns);
                                             akhirPns = ipns.getUnorId();
                                             akhirAts = ipns.getDiAtasanId();
@@ -2675,6 +2675,131 @@ public class GoIndex {
                     ModelLocatorSKP.Gcavernip = caverNip;
 
                     ModelLocatorSKP.arraypGcavernip.add(caverNip);
+                }
+
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return ismus;
+    }
+
+    public List<unorskp> getunorAjakListALL(String iunorAtasan) {
+        DBConnection dbConn = DBConnection.getInstance();
+        List<unorskp> pnsBawahan = new ArrayList<unorskp>();
+        List<unorskp> pnsBawahan2 = new ArrayList<unorskp>();
+        List<unorskp> pnsBawahan3 = new ArrayList<unorskp>();
+        List<unorskp> pnsBawahan4 = new ArrayList<unorskp>();
+        List<unorskp> ismus = new ArrayList<unorskp>();
+        String caverNip = null;
+        caverNip = ModelLocatorSKP.Gcaverunor;
+        caverNip = "awal";
+        DBqueryUnor dBqueryUnor = new DBqueryUnor(dbConn.getConnection());
+        if (iunorAtasan == null && iunorAtasan == null) {
+            iunorAtasan = "0";
+        }
+        String _iunorAtasan = iunorAtasan;
+        try {
+            if (!_iunorAtasan.equals("0")) {
+                String akhirPns = null;
+                String akhirAts = null;
+                unorskp unorSkp = null;
+                String oneAsString = null;
+                String strone = "";
+
+                int one = 0;
+                int two = 0;
+                int tree = 0;
+                int four = 0;
+                Object[] obj2 = null;
+                ModelLocatorSKP.arraypGcaverunor = new ArrayList<String>();
+                pnsBawahan = dBqueryUnor.getDBqueryUnorIdAjak(_iunorAtasan);
+                for (unorskp ipns2 : pnsBawahan) {
+                    one = 0;
+                    one = 1 + one;
+                    oneAsString = String.valueOf(one);
+
+                    unorSkp = new unorskp();
+                    unorSkp = ipns2;
+                    unorSkp.setLevel(oneAsString);
+                    ismus.add(unorSkp);
+                    akhirPns = unorSkp.getIdUnor();
+                    akhirAts = unorSkp.getDiAtasanId();
+                    caverNip = unorSkp.getIdUnor();
+
+                    if (!akhirAts.equals(akhirPns)) {
+                        pnsBawahan2 = dBqueryUnor.getDBqueryUnorIdAjak(akhirPns);
+                        two = 0;
+                        String twoAsString = "";
+                        for (unorskp ipns3 : pnsBawahan2) {
+
+                            unorSkp = new unorskp();
+                            unorSkp = ipns3;
+                            two = 1 + two;
+                            twoAsString = String.valueOf(one) + String.valueOf(two);
+                            unorSkp.setLevel(twoAsString);
+                            ismus.add(unorSkp);
+                            akhirPns = unorSkp.getIdUnor();
+                            akhirAts = unorSkp.getDiAtasanId();
+                            if (!akhirAts.equals(akhirPns)) {
+                                pnsBawahan3 = dBqueryUnor.getDBqueryUnorIdAjak(akhirPns);
+                                String treeAsString = "";
+                                tree = 0;
+                                for (unorskp ipns4 : pnsBawahan3) {
+                                    unorSkp = new unorskp();
+                                    unorSkp = ipns4;
+                                    tree = 1 + tree;
+                                    treeAsString = String.valueOf(one) + String.valueOf(two) + String.valueOf(tree);
+                                    unorSkp.setLevel(treeAsString);
+
+                                    ismus.add(unorSkp);
+                                    akhirPns = unorSkp.getIdUnor();
+                                    akhirAts = unorSkp.getDiAtasanId();
+                                    if (!akhirAts.equals(akhirPns)) {
+                                        pnsBawahan4 = dBqueryUnor.getDBqueryUnorIdAjak(akhirPns);
+                                        four = 0;
+                                        String fourAsString = "";
+                                        for (unorskp ipns5 : pnsBawahan4) {
+                                            unorSkp = new unorskp();
+                                            unorSkp = ipns5;
+                                            four = 1 + four;
+                                            fourAsString = String.valueOf(one) + String.valueOf(two) + String.valueOf(tree) + String.valueOf(four);
+                                            unorSkp.setLevel(fourAsString);
+
+                                            ismus.add(unorSkp);
+                                            akhirPns = unorSkp.getIdUnor();
+                                            akhirAts = unorSkp.getDiAtasanId();
+                                            caverNip = unorSkp.getIdUnor();
+                                            ModelLocatorSKP.Gcaverunor = caverNip;
+
+                                            ModelLocatorSKP.arraypGcaverunor.add(caverNip);
+                                        }
+
+                                    }
+                                    caverNip = unorSkp.getIdUnor();
+                                    ModelLocatorSKP.Gcaverunor = caverNip;
+
+                                    ModelLocatorSKP.arraypGcaverunor.add(caverNip);
+                                }
+                            }
+                            caverNip = unorSkp.getIdUnor();
+                            ModelLocatorSKP.Gcaverunor = caverNip;
+
+                            ModelLocatorSKP.arraypGcaverunor.add(caverNip);
+                        }
+
+                    } else {
+                    }
+
+
+                    //  ismus.get(0).
+                    caverNip = unorSkp.getIdUnor();
+                    ModelLocatorSKP.Gcaverunor = caverNip;
+
+                    ModelLocatorSKP.arraypGcaverunor.add(caverNip);
                 }
 
 

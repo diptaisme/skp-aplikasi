@@ -53,7 +53,7 @@
 
             #contentdalam {
                 position :  absolute;
-                top : 127px;
+                top : 110px;
                 left : 170px;
                 width : 1200px;
                 height : 501px;
@@ -61,9 +61,17 @@
             }
             #contentdalamsub{
                 position :  absolute;
-                top : 40px;
+                top : 50px;
                 left : 1px;
-                width : 960px;
+                width : 1200px;
+                height : 500px;
+                overflow: auto;
+            }
+            #contentdalamsubajak{
+                position :  absolute;
+                top : 50px;
+                left : 500px;
+                width : 500px;
                 height : 500px;
                 overflow: auto;
             }
@@ -120,7 +128,7 @@
     <body>
 
         <div id="wrapper">
-            <form method="post" name="form1" action="SalinDataUtamaServlet">  
+            <form method="post" name="form1" action="SalinDataUtamaServlet" enctype="multipart/form-data" >  
                 <input type="hidden" name="nipAtasan" id ="nipAtasan" value="${nipAtasan}"/><input type="hidden"  name="nipBaru" id ="nipBaru" value="${pns.getNipBaru()}"/>
                 <div id="headerLokal">
                     <%@ include file="SlindronHeader.jsp" %>
@@ -139,96 +147,98 @@
                     </div>
 
 
-
-
-
                     <div id="contentdalamsub">
-                        <table width="500" border="0" >
+                        <table width="500" border="1" >
                             <tr>
-                                <th colspan="2"><strong style="color: #000">IMPORT DATA</strong>
-                                    <input type="hidden" name="nipAtasan" id ="nipAtasan" value="${nipAtasan}"/> <input type="hidden"  name="nipBaru" id ="nipBaru" value="${pns.getNipBaru()}"/></th>
+                                <th colspan="3"><strong style="color: #000">SALIN DATA</strong>
+                                    <input type="hidden" name="nipAtasan" ondblclick="showComboBox(this.value)" id ="nipAtasan" value="${nipAtasan}"/> <input type="hidden"  name="nipBaru" id ="nipBaru" value="${pns.getNipBaru()}"/></th>
 
                             </tr>
                             <tr>
+                                <td colspan="3" align="left">
+                                    <input type="file" name="filechooserfoto" id="filechooserfoto" accept="xls/sql/csv" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>  
+                                    <input type="text" id="session" name="session" /> 
+                                </td>
+                                <td>
+                                    <select id="pilih_session"  name="pilih_session" onchange="validasi4W()" >
+                                        <option value="-">-</option>
+                                        <option value="pns">Pns SKP</option>
+                                        <option value="unor">Unor SKP</option>
+
+                                    </select>
+                                </td> 
+                                <td> <input type="submit" name="Submit" value="SIMPAN"/></td>
 
 
-                                <td style="background-color: #D9AD00"><a href="SalinDataUtamaServlet?action=InsertData&txtNIPBaruBData=<c:out value="${pns.getNipBaru()}"/>" id="url2" onclick="redirectInsertData()"  style="font-size: 20px"> Salin Data Utama</a></td> 
-                                <td style="background-color: #D9AD00"><a href="SalinDataUtamaServlet?action=InsertDataUnor&txtNIPBaruBDataUnor=<c:out value="${pns.getNipBaru()}"/>" id="url3" onclick="redirectInsertData2()" style="font-size: 20px">Salin Data Unit Organisasi</a></td> 
+
+                                <%--<td style="background-color: #D9AD00"><a href="SalinDataUtamaServlet?action=InsertData&txtNIPBaruBData=<c:out value="${pns.getNipBaru()}"/>?filechooserfoto=<c:out value="${pns.getNipBaru()}"/>" id="url2" onclick="redirectInsertData()"  style="font-size: 20px"> Salin Data Utama</a></td> 
+                               <td style="background-color: #D9AD00"><a href="SalinDataUtamaServlet?action=InsertDataUnor&txtNIPBaruBDataUnor=<c:out value="${pns.getNipBaru()}"/>" id="url3" onclick="redirectInsertData2()" style="font-size: 20px">Salin Data Unit Organisasi</a></td> --%>
                             </tr>
                             <tr>
 
 
 
                                 <td colspan="2">
-                                    <a href="SalinDataUtamaServlet?nipImportdata=<c:out value="${nipAtasan}"/>">lihat........</a>
+                                    <a href="SalinDataUtamaServlet?nipImportdata=<c:out value="${nipAtasan}"/>">lihat</a>
                                 </td>
 
 
                             </tr>
 
                         </table>   
-                        <ol class="tree">
+                        <ol class="tree" >
 
                             <ol>   
 
                                 <c:forEach var="pnsBaw" items="${pnsBawahan}" varStatus="count">
-                                    <c:set var="capaian" value="${pnsBaw.getRealisasi()}" /> 
+
 
                                     <li> 
-                                        <label for="folder<c:out value="${count.count}"/>"><c:out value="${pnsBaw.getNamaPns()}"/></label>
-                                        <input type="checkbox" id="folder<c:out value="${count.count}"/>" value="${pnsBaw.getNamaPns()}" />
+                                        <label for="folder<c:out value="${count.count}"/>"><c:out value="${pnsBaw.getNamaUnor()}"/></label>
+                                        <input type="checkbox" ondblclick="showComboBox(this.value)" id="folder<c:out value="${count.count}"/>" value="${pnsBaw.getIdUnor()}" />
                                         <ol>
 
                                             <c:forEach var="pnsBaw2" items="${pnsBawahan2}" varStatus="count2">
                                                 <c:choose>
-                                                    <c:when test="${(pnsBaw2.getDiAtasanId() == pnsBaw.getUnorId() &&  pnsBaw.getjnsjbtn_id()=='1' )}">  
-                                                        <c:set var="namArray" value="${pnsBaw2.getNamaPns()}"/>
-                                                        <c:set var="capaian" value="${pnsBaw2.getRealisasi()}" /> 
+                                                    <c:when test="${(pnsBaw2.getDiAtasanId() == pnsBaw.getIdUnor() )}">  
 
                                                         <li>                                                            
-                                                            <table>
-                                                                <tr>
-                                                                    <td><label for="folder2<c:out value="${count2.count}"/>"><c:out value="${pnsBaw2.getNamaPns()}"/></label></td>
-                                                                    <td><input type="checkbox" id="folder2<c:out value="${count2.count}"/>" value="${pnsBaw2.getNamaPns()}" /> </td>
-                                                                    <td><a href="SalinDataUtamaServlet?txtNIPBaruAjax=<c:out value="${pnsBaw2.getNamaPns()}"/>&_idUnorTambah=<c:out value="${pnsBaw2.getUnorId()}"/>" id="urltestAjak" onclick="redirect_testtAjak2(this.id)">Tes</a></td>
-                                                                </tr>                                                                
-                                                            </table>
-
-
+                                                            
+                                                                    <label for="folder2<c:out value="${count2.count}"/>"><c:out value="${pnsBaw2.getNamaUnor()}"/></label>
+                                                                    <input type="checkbox"  ondblclick="showComboBox(this.value)" id="folder2<c:out value="${count2.count}"/>" value="${pnsBaw2.getIdUnor()}" /> 
+                                                                   
+                                                              
 
                                                             <ol>  
                                                                 <c:forEach var="pnsBaw3" items="${pnsBawahan3}" varStatus="count3">
                                                                     <c:choose>
-                                                                        <c:when test="${(pnsBaw3.getDiAtasanId() == pnsBaw2.getUnorId() && pnsBaw2.getjnsjbtn_id()=='1' )}">  
-                                                                            <c:set var="capaian" value="${pnsBaw3.getRealisasi()}" /> 
+                                                                        <c:when test="${(pnsBaw3.getDiAtasanId()== pnsBaw2.getIdUnor() )}">  
 
                                                                             <li>
 
 
-                                                                                <table>
-                                                                                    <tr>
-                                                                                        <td><label for="folder<c:out value="${count3.count}"/>"><c:out value="${pnsBaw3.getNamaPns()}"/></label></td>
-                                                                                        <td><input type="checkbox" id="folder3<c:out value="${count3.count}"/>" value="${pnsBaw3.getNamaPns()}" /> </td>
-                                                                                        <td><a href="SalinDataUtamaServlet?txtNIPBaruAjax=<c:out value="${pnsBaw3.getNamaPns()}"/>&_idUnorTambah=<c:out value="${pnsBaw3.getUnorId()}"/>" id="urltestAjak" onclick="redirect_testtAjak2(this.id)">Tes</a></td>
-                                                                                    </tr>                                                                
-                                                                                </table>
+                                                                                        <label for="folder<c:out value="${count3.count}"/>"><c:out value="${pnsBaw3.getNamaUnor()}"/></label>
+                                                                                        <input type="checkbox"  ondblclick="showComboBox(this.value)" id="folder3<c:out value="${count3.count}"/>" value="${pnsBaw3.getIdUnor()}" /> 
+                                                                                      
+                                                                                  
 
                                                                                 <ol>
                                                                                     <c:forEach var="pnsBaw4" items="${pnsBawahan4}" varStatus="count4">
                                                                                         <c:choose>
-                                                                                            <c:when test="${(pnsBaw4.getDiAtasanId() == pnsBaw3.getUnorId() ) && pnsBaw3.getjnsjbtn_id()=='1'}"> 
-                                                                                                <c:set var="capaian" value="${pnsBaw4.getRealisasi()}" /> 
+                                                                                            <c:when test="${(pnsBaw4.getDiAtasanId() == pnsBaw3.getIdUnor() )}"> 
+
 
                                                                                                 <li>
 
 
-                                                                                                    <table>
-                                                                                                        <tr>
-                                                                                                            <td><label for="folder<c:out value="${count4.count}"/>"><c:out value="${pnsBaw4.getNamaPns()}"/></label></td>
-                                                                                                            <td><input type="checkbox" id="folder4<c:out value="${count4.count}"/>" value="${pnsBaw4.getNamaPns()}" /> </td>
-                                                                                                            <td><a href="SalinDataUtamaServlet?txtNIPBaruAjax=<c:out value="${pnsBaw4.getNamaPns()}"/>&_idUnorTambah=<c:out value="${pnsBaw4.getUnorId()}"/>" id="urltestAjak" onclick="redirect_testtAjak2(this.id)">Tes</a></td>
-                                                                                                        </tr>                                                                
-                                                                                                    </table>
+                                                                                                            <label for="folder<c:out value="${count4.count}"/>"><c:out value="${pnsBaw4.getNamaUnor()}"/></label>
+                                                                                                            <input type="checkbox"  ondblclick="showComboBox(this.value)" id="folder4<c:out value="${count4.count}"/>" value="${pnsBaw4.getNamaUnor()}" />
+                                                                                                          
+                                                                                                     
                                                                                                 </li>
 
                                                                                             </c:when>
@@ -250,44 +260,148 @@
                                 </c:forEach>
                             </ol>      
 
-                        </ol>       
+                        </ol> 
+                        <div id="contentdalamsubajak">
+                            <div style="width: 500px;overflow: scroll;background-color: #CCCCFF">
+                                <table style="width: 500px">
+                                    <td>
+
+                                        <div id="koef_kreatifitas"> </div></td></table>
+                            </div>
+                        </div> 
 
                     </div>
-                    \    
-
-
                 </div>
-
-
-                <div id="contentdalamsub2">
-
-
-                    <input type="hidden" name="nipAtasan" id="nipAtasan" value="${nipAtasan}"/>
-                    <%--<input type="button" name="param" class="button black bigrounded" onclick="kembali()" value="SELESAI"/> --%>
-                </div>    
+                
 
 
 
-            </form>			
-        </div> <!-- end of content -->
+
+        <input type="hidden" name="nipAtasan" id="nipAtasan" value="${nipAtasan}"/>
+        <%--<input type="button" name="param" class="button black bigrounded" onclick="kembali()" value="SELESAI"/> --%>
 
 
 
-        <SCRIPT TYPE="text/javascript">
-            function redirect_testtAjak2(id)
-            {
-                url2=document.getElementById("urltestAjak");
-                // urltest=document.getElementById("urltestAjak");
-                pilihan=document.getElementById("pilih_session").value;
+
+    </form>			
+</div> <!-- end of content -->
+
+
+
+<SCRIPT TYPE="text/javascript">
+    function validasi4W (){
+        var vbiaya4text =document.getElementById("pilih_session");
+        var ddtk = vbiaya4text.options[vbiaya4text.selectedIndex].text;
+        document.getElementById("session").value = ddtk;
+    };   
+
+    function redirectInsertData(){
+    
+        var answer = confirm ("Yakin  Ingin Salin Data ?")
+        if (answer){
+            pilihan=document.getElementById("filechooserfoto").value;
+            url2=document.getElementById("url2");
+            url2.href=url2.href+"&pilih_session=" + pilihan; }
+
+    }
+    function redirectInsertData2(){
+    
+        var answer = confirm ("Yakin  Ingin Salin Data ?")
+        if (answer){
+            pilihan=document.getElementById("filechooserfoto").value;
+            url3=document.getElementById("url3");
+            url3.href=url3.href+"&pilih_session=" + pilihan; }
+
+    }
+            
+    function showComboBox(value)  
+    {
+        //xmlHttp=GetXmlHttpObject()  
+        xmlHttp=GetXmlHttpObject();  
+    
+        if (xmlHttp==null)  
+        {
+            alert ("Browser does not support HTTP Request")  
+            return  ;
+        } 
+        var url="RequestServlet?page=validasi_unor&jenis_tambahan="+value;
+        xmlHttp.onreadystatechange=stateChange2  
+        xmlHttp.open("GET",url,true)  
+        xmlHttp.send(null)  
+    }  
+    
+    function showloadBox(value)  
+    {
+        //xmlHttp=GetXmlHttpObject()  
+        xmlHttp=GetXmlHttpObject();  
+    
+        if (xmlHttp==null)  
+        {
+            alert ("Browser does not support HTTP Request")  
+            return  ;
+        } 
+        var url="RequestServlet?page=validasi_unor&jenis_tambahan="+value;
+        xmlHttp.onreadystatechange=stateChange2  
+        xmlHttp.open("GET",url,true)  
+        xmlHttp.send(null)  
+    }  
+            
+    function redirect_testtAjak2(e, id)
+    {
+        var evt = e ? e:window.event;
+        if (evt.preventDefault) evt.preventDefault();
+                
+        xmlHttp=GetXmlHttpObject(); 
+        if (xmlHttp==null)  
+        {
+            alert ("Browser does not support HTTP Request")  
+            return  ;
+        } 
+        var url=document.getElementById(id);
+        // urltest=document.getElementById("urltestAjak");
+        //pilihan=document.getElementById("pilih_session").value;
                    
-                url2.href=url2.href+"&pilih_session=" + pilihan; 
+        xmlHttp.onreadystatechange=stateChange  
+        xmlHttp.open("GET",url,true)  
+        xmlHttp.send(null)  
+                   
+        // url2.href=url2.href+"&pilih_session=" + pilihan; 
 
     
-                // window.open(urltest.href, windowname, 'width=200,height=200,scrollbars=yes'); 
-            }
-        </script>
+        // window.open(urltest.href, windowname, 'width=200,height=200,scrollbars=yes'); 
+    }
+            
+    function stateChange2()   
+    {   
+        if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")  
+        {   
+            document.getElementById("koef_kreatifitas").innerHTML=xmlHttp.responseText   
+        }   
+    }   
+            
+    function stateChange()   
+    {   
+        if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")  
+        {   
+            document.getElementById("koef_kreatifitas").innerHTML=xmlHttp.responseText   
+        }   
+    }   
+            
+    function GetXmlHttpObject()
+    {
+        if (window.XMLHttpRequest)
+        {
+            return new XMLHttpRequest();
+        }
+        if (window.ActiveXObject)
+        {
+            return new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        return null;
+    }
+</script>
 
 
 
-    </body>
+</body>
 </html>

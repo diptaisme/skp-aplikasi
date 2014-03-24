@@ -17,6 +17,7 @@ public class unorskp
     private String nama_unor;
     private String nama_jabatan;
     private String pemimpin_pns_id;
+    private String lev;
     
     //FIELD = IDUNOR
     public String getIdUnor()
@@ -93,6 +94,13 @@ public class unorskp
     public void setPemimpinPnsId(String pemimpin_pns_id)
     {
         this.pemimpin_pns_id = pemimpin_pns_id;
+    }
+     public String getLevel() {
+        return lev;
+    }
+
+    public void setLevel(String lev) {
+        this.lev = lev;
     }
        
 }
