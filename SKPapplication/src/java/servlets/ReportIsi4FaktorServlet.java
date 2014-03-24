@@ -17,6 +17,7 @@ import java.util.Locale;
 import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import java.io.Serializable;
 //org.apache.commons.logging.impl.Jdk14Logger
 /**
  *
@@ -60,6 +62,10 @@ public class ReportIsi4FaktorServlet extends HttpServlet
     private static String var_prestasikerja = defaultDirectory + "prestasikerja3.jasper";
     
     private static final Log LOG = (Log) LogFactory.getLog(ReportIsi4FaktorServlet.class);
+    
+    private static final int OUTPUT_STREAM_INITIAL_SIZE = 2048;
+    public static final String TEMPLATE = "TEMPLATE";
+    public static final String START_INDEX = "START_INDEX";
         
     /**
      * Processes requests for both HTTP
@@ -1274,6 +1280,51 @@ String tuko = tukesiDomain.getNama_tupoksi()+ "(" + tmp2 +")";
 	}
     }
     
+    protected void generateXlsReport(Object[] pMyData, HttpServletResponse response,
+			Map<String, Object> myMap, String pExcelFile) throws ServletException {
+		try {
+			byte[] bytes = generateXls(pMyData, myMap);
+			ServletOutputStream servletOutputStream = response.getOutputStream();
+			// Excel 97
+			response.setContentType("application/xls");
+			// Excel 2007
+			// response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+			setAttachment(response, pExcelFile);
+			response.setContentLength(bytes.length);
+			servletOutputStream.write(bytes, 0, bytes.length);
+			servletOutputStream.flush();
+			servletOutputStream.close();
+		} catch (Exception e) {
+			LOG.error("Failed to Generate General Excel Report", e);
+			throw new ServletException(ExceptionText.I18N_OPERATION_FAILED, e);
+		}
+	}
+    
+    protected byte[] generateXls(Object[] pMyData, Map<String, Object> myMap) throws IOException {
+		ByteArrayOutputStream bt = new ByteArrayOutputStream();
+		BufferedOutputStream bos = new BufferedOutputStream(bt, OUTPUT_STREAM_INITIAL_SIZE);
+		InputStream inp = new FileInputStream(myMap.get(TEMPLATE).toString());
+		//WorkbookUnor wb = new WorkbookUnor(myMap, inp);
+		//wb.createStyles();
+		//wb.setHeader();
+		if (pMyData.length > 0) {
+			// fill excel data
+			int startIndex = Integer.parseInt(myMap.get(START_INDEX).toString());
+		//	wb.fillData(startIndex, pMyData);
+		}
+		//wb.write(bos);
+		bos.flush();
+		bos.close();
+		return bt.toByteArray();
+	}
+    protected static void setAttachment(HttpServletResponse response, String filename) {
+		response.setHeader("Content-disposition", "attachment; filename=" + filename);
+	}
+    
+    public final class ExceptionText implements CimsaFrameworkSerializable {
+       public static final String I18N_OPERATION_FAILED = "Operasi Gagal"; 
+    }
     
     private void serveReport(HttpServletRequest request, HttpServletResponse response, byte[] bytes) throws IOException
     {

@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package model;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,18 +23,21 @@ import jxl.format.Colour;
 import jxl.read.biff.BiffException;
 import jxl.write.Label;
 import jxl.write.WriteException;
+
 /**
  *
  * @author leo
  */
 public class bacaexcel1 {
-    public  String id_unor;
+
+    public String id_unor;
     private String instansi_id;
     private String diatasan_id;
     private String eselon_id;
     private String nama_unor;
     private String nama_jabatan;
     private String pemimpin_pns_id;
+
     public void bersihdata() {
         this.id_unor = "";
         this.instansi_id = "";
@@ -42,7 +46,7 @@ public class bacaexcel1 {
         this.nama_unor = "";
         this.nama_jabatan = "";
         this.pemimpin_pns_id = "";
-        
+
     }
 
     public void gettosql() throws SQLException {
@@ -70,14 +74,21 @@ public class bacaexcel1 {
             this.nama_jabatan = data;
         } else if (no == 6) {
             this.pemimpin_pns_id = data;
-        }  else {
+        } else {
         }
     }
 
-    public void main2() throws Exception, FileNotFoundException, IOException {
+    public String cekdata(String id) throws SQLException {
+        DBConnection dbConn = DBConnection.getInstance();;
+        DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
+        return dBqueryPNS.getcekUnor(id);
+    }
+
+    public void main2(String pathdata) throws Exception, FileNotFoundException, IOException {
         // TODO code application logic here
         //  bacaexcel2 baca = new bacaexcel2();
-        File datafile = new File("E:\\data.xls");
+        String _patData = pathdata;
+        File datafile = new File(_patData);
         Workbook w = Workbook.getWorkbook(datafile);
         Sheet[] sheet = w.getSheets();
         int x = sheet[0].getRows();
@@ -95,15 +106,19 @@ public class bacaexcel1 {
             // baca.gettosql();
             // baca.bersihdata();
 
+            if (cekdata(id_unor).equals("tidakada")) {
+                try {
 
-            try {
+                    dBqueryPNS.getDBqueryInsertUNOR(this.id_unor, this.instansi_id, this.diatasan_id, this.eselon_id, this.nama_unor, this.nama_jabatan, this.pemimpin_pns_id);
 
-                dBqueryPNS.getDBqueryInsertUNOR(this.id_unor, this.instansi_id, this.diatasan_id, this.eselon_id, this.nama_unor, this.nama_jabatan, this.pemimpin_pns_id);
-
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            } finally {
-                dbConn.closeConnection();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } finally {
+                    dbConn.closeConnection();
+                }
+            } else {
+                dBqueryPNS.getDBqueryUpdateImportUnor(this.diatasan_id, this.eselon_id,
+                        this.nama_unor, this.nama_jabatan, this.pemimpin_pns_id);
             }
         }
         System.out.println("SELESAI");

@@ -22,9 +22,11 @@ public class ModelLocatorSKP {
    public static String loginNipPengguna= null;
    public static String loginNipsession= null;
     public static String Gcavernip = "awal";
+     public static String Gcaverunor = "awal";
     public static String levelUser = "1";
      public static String navigasiPil="1";
     public static List<String> arraypGcavernip =new ArrayList<String>();
+     public static List<String> arraypGcaverunor =new ArrayList<String>();
            
     
     

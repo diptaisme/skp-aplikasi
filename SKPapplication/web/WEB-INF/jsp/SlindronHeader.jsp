@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script type="text/javascript" src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
+        
         <script type="text/javascript" src="/SKPapplication/js/jquery.slidertron-1.1.js"></script>
 
 

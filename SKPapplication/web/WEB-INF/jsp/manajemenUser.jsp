@@ -17,9 +17,7 @@
         <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
 
-
-
-
+        <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
 
         <script language="javascript" type="text/javascript">
             function clearText(field)

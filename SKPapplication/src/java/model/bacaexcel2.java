@@ -118,11 +118,17 @@ public class bacaexcel2 {
         } else {
         }
     }
-
-    public void main2() throws Exception, FileNotFoundException, IOException {
+public String cekdata(String id) throws SQLException
+    {
+       DBConnection dbConn = DBConnection.getInstance();;
+       DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
+       return dBqueryPNS.getcekpns(id);  
+    }
+    public void main2( String pathdata) throws Exception, FileNotFoundException, IOException {
         // TODO code application logic here
         //  bacaexcel2 baca = new bacaexcel2();
-        File datafile = new File("E:\\data.xls");
+        String _patData=pathdata;
+        File datafile = new File(_patData);
         Workbook w = Workbook.getWorkbook(datafile);
         Sheet[] sheet = w.getSheets();
         int x = sheet[0].getRows();
@@ -140,7 +146,8 @@ public class bacaexcel2 {
             // baca.gettosql();
             // baca.bersihdata();
 
-
+      if(cekdata(this.id).equals("tidakada"))
+      {
             try {
 
                 dBqueryPNS.getDBqueryInsertPNS(this.id, this.nip_lama, this.nip_baru, this.nama_pns, this.golonganid, this.namagolru, this.pangkat, this.unorid, this.namaunor, this.namajabatan, this.diatasanid, this.instansiid, this.jenisjabatan, this.jabatan_fungsional, this.jabatan_fungsional_umum);
@@ -151,8 +158,16 @@ public class bacaexcel2 {
                 dbConn.closeConnection();
             }
         }
-        System.out.println("SELESAI");
-        JOptionPane.showMessageDialog(null, "data berhasil", "Alert", JOptionPane.INFORMATION_MESSAGE);
+       else
+            {
+                dBqueryPNS.getDBqueryUpdateImportPNS(this.golonganid,this.namagolru,
+                this.pangkat,this.unorid,this.namaunor,this.namajabatan,this.diatasanid,
+                this.jenisjabatan,this.jabatan_fungsional,this.jabatan_fungsional_umum);
+            }
+       
 
     }
+         System.out.println("SELESAI");
+        JOptionPane.showMessageDialog(null, "data berhasil", "Alert", JOptionPane.INFORMATION_MESSAGE);
+}
 }

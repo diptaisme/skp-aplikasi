@@ -15,7 +15,8 @@
          <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
-         <style>
+        <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
+        <style>
 	 
 	#merah { color : red }
 	 
@@ -290,6 +291,7 @@ alert("Data Berhasil diupdate!");
                             <option value="SPM">SPM</option>
                             <option value="Modul">Modul</option>
                             <option value="Jabatan">Jabatan</option>
+                              <option value="TataNaskah">Tata Naskah</option>
                          </select>
                     </td>
                 </tr>

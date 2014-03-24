@@ -162,8 +162,13 @@ public class NavigasiProfile extends HttpServlet {
         } else if (nip_Entri_Tupoksi != null) {
             HttpSession session = request.getSession();
             ModelLocatorSKP.navigasiPil = "2";
+
             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+           //  request.setAttribute("navigasiPilihanjns", "2");
+          //  request.setAttribute("navigasiPilihan", '2');
+            
+            
             dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
             dis.forward(request, response);
         } else if (nip_Monitoring != null) {
@@ -195,18 +200,20 @@ public class NavigasiProfile extends HttpServlet {
             }
         } else if (nip_salin_data != null) {
             ModelLocatorSKP.navigasiPil = "3";
-             HttpSession session = request.getSession();
-
+            HttpSession session = request.getSession();
+            String unorAtasan = null;
             //=====================
             String id = nip_salin_data;
             PnsSkp pns = new GoIndex().getPns(id);
-            String unorAtasan = pns.getDiAtasanId();
-            String UnorPns = pns.getUnorId();
-            String InstansiPns = pns.getInstansiId();
-            String NipPns = pns.getNipBaru();
+            if (pns != null) {
+                unorAtasan = pns.getDiAtasanId();
+                String UnorPns = pns.getUnorId();
+                String InstansiPns = pns.getInstansiId();
+                String NipPns = pns.getNipBaru();
+            }
 
             PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-          request.setAttribute("nipAtasan", nip_salin_data);
+            request.setAttribute("nipAtasan", nip_salin_data);
             request.setAttribute("pns", pns);
             request.setAttribute("UnorAts", UnorAts);
             session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
@@ -214,7 +221,7 @@ public class NavigasiProfile extends HttpServlet {
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
             dis = request.getRequestDispatcher("/WEB-INF/jsp/ImportData.jsp");
             dis.forward(request, response);
-            
+
 
         } else {
             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);

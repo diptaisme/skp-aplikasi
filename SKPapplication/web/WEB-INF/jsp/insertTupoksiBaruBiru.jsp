@@ -14,6 +14,7 @@
         <title>SASARAN KERJA INDIVIDU</title>
         <meta name="keywords" content="corporate, free web template" />
         <meta name="description" content="SKI" />
+        <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
         <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
         <link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
         <script language="javascript" type="text/javascript">
@@ -28,7 +29,7 @@
     
   
             function testHilang() {
-    
+     
                 if (document.getElementById('jabatan1').checked) {
                     //return document.getElementById('tombolInstansi').disabled = false;
 
@@ -37,11 +38,13 @@
                     document.getElementById('kelJab').style.visibility='hidden'; 
                     document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
                     document.getElementById('tombolJabatan').style.visibility='hidden'; 
-                    document.getElementById('jabatanfungfum').style.visibility='hidden'; 
+                    //  document.getElementById('jabatanfungfum').style.visibility='hidden'; 
                     document.getElementById('kredit').style.visibility='hidden'; 
                     document.getElementById('cariUmum').style.display = 'none';
                     document.getElementById('namaUnorText').style.visibility='visible'; 
                     document.getElementById('namaInstansiText').style.visibility='visible';  
+                    document.getElementById('navigasiPilihan_').value='3';
+                    document.form1.navigasiPilihan_.value='3';
       
                 } else if (document.getElementById('jabatan2').checked){
                     // return   document.getElementById('tombolInstansi').disabled = true;
@@ -50,11 +53,15 @@
                     document.getElementById('kelJab').style.visibility='visible'; 
                     document.getElementById('tombolKeloJabatan').style.visibility='visible'; 
                     document.getElementById('tombolJabatan').style.visibility='visible'; 
-                    document.getElementById('jabatanfungfum').style.visibility='visible'; 
+                    //  document.getElementById('jabatanfungfum').style.visibility='visible'; 
                     document.getElementById('kredit').style.visibility='visible'; 
                     document.getElementById('cariUmum').style.display = 'none';
                     document.getElementById('namaUnorText').style.visibility='hidden'; 
                     document.getElementById('namaInstansiText').style.visibility='hidden';  
+                    document.getElementById('navigasiPilihan_').value='2';
+                    document.form1.navigasiPilihan_.value='2';
+                   
+           
                 }
     
     
@@ -64,11 +71,15 @@
                     document.getElementById('kelJab').style.visibility='hidden'; 
                     document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
                     document.getElementById('tombolJabatan').style.visibility='visible'; 
-                    document.getElementById('jabatanfungfum').style.visibility='visible';
+                    // document.getElementById('jabatanfungfum').style.visibility='visible';
                     document.getElementById('kredit').style.visibility='hidden'; 
                     document.getElementById('cariUmum').style.display = 'block'; 
                     document.getElementById('namaUnorText').style.visibility='hidden'; 
                     document.getElementById('namaInstansiText').style.visibility='hidden';  
+                    document.getElementById('navigasiPilihan_').value='2';
+                    document.form1.navigasiPilihan_.value='2';
+          
+           
                 }
             }  
     
@@ -102,7 +113,7 @@
         <style type="text/css"> 
             #headerLokal {
                 padding: 0px;
-                width: 1000px;
+                width: 1200px;
 
                 position: relative;
                 height: 80px;
@@ -182,7 +193,6 @@
                         </tr>
                         <tr>
                             <td>
-
                                 <input type="radio" name="jabatan"   value="1" id="jabatan1" onclick="testHilang()" <c:if test="${jabatan == '1'}">checked</c:if> />&nbsp;Struktural
                                 <input type="radio" name="jabatan" value="2" id="jabatan2" onclick="testHilang()" <c:if test="${jabatan == '2'}">checked</c:if> />&nbsp;Fungsional Tertentu
                                 <input type="radio" name="jabatan" value="4" id="jabatan4" onclick="testHilang()" <c:if test="${jabatan == '4'}">checked</c:if> />&nbsp;Fungsional Umum
@@ -190,13 +200,13 @@
                         </tr> 
                     </table>
 
-                    <table width="600" height="300" border="0">
+                    <table width="900" height="300" border="0">
 
-                        <tr>
-                            <td style="width: 50px">INSTANSI   :</td>
+                        <tr style="width: 900px">
+                            <td style="width: 500px">INSTANSI   :</td>
 
-                            <td><c:out value="${namaInstansi}" /></td>
-                            <input size="75" type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/>
+                            <td ><c:out value="${namaInstansi}" /></td>
+                            <input  type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/>
                             <input  type="hidden"  name="idInstansiText" value="${kodeInstansi}"/>
 
                             <%--<td width="275"><c:out value="${instansie.getNamaInstansi()}" /></td>--%>
@@ -208,11 +218,11 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td style="width: 50px">UNIT ORGANISASI   :</td>
+                        <tr style="width: 900px">
+                            <td style="width: 500px">UNIT ORGANISASI   :</td>
 
                             <td><c:out value="${namaUnor}" /></td>
-                            <input size="40" type="hidden" align="right" style="visibility:hidden;" id="namaUnorText" name="namaUnorText" value="${namaUnor}"/>
+                            <input  type="hidden" align="right" style="visibility:hidden;" id="namaUnorText" name="namaUnorText" value="${namaUnor}"/>
                             <input  type="hidden"  name="idUnorText" value="${kodeUnor}"/> 
                             <%--<input type="text" align="right" name="namaUnorText" value="${unorie.getNamaUnor()}" style="text-align: right">--%>
                             <td >
@@ -224,41 +234,56 @@
                             </td>
                         </tr>
 
-                        <tr>
-                            <td style="width: 50px"> KELOMPOK JABATAN   :</td> 
+                        <tr style="width: 900px">
+                            <td style="width: 500px"> KELOMPOK JABATAN   :</td> 
                             <td colspan="2"><input type="submit" name="Submit"  style="visibility:hidden;" value="CARI KELOMPOK" id="tombolKeloJabatan"/>
-                                <select id ="kelJab" name ="kelJab"style="visibility:hidden;" >
+                                <select id ="kelJab" name ="kelJab" >
                                     <c:forEach var="kelJab" items="${kelJab}" varStatus="count">
                                         <option value=${kelJab.getId()} >${kelJab.getNama()}</option>
                                     </c:forEach>
                                 </select>
                             </td>
 
-                        </tr>          
-                        <tr>
-                            <td style="width: 50px"> JABATAN   :</td>   
-                            <td> <input type="text" name="cariUmum"  size="25" id="cariUmum"/>
-                                <input type="submit" name="Submit" style="visibility:hidden;"  value="CARI JABATAN" id="tombolJabatan"/>
-                                <select id ="jabatanfungfum" name ="jabatanfungfum" style="visibility:hidden;" >
-                                    <c:forEach var="jabatanfungfum" items="${jabatanfungfum}" varStatus="count">
-                                        <option value=${jabatanfungfum.getId()} >${jabatanfungfum.getNama()}</option>
-                                    </c:forEach>
-                                </select>
+                        </tr>
+                        <c:set var="navigasi_pilihan" value="${navigasiPilihanjns}" /> 
+                        <input  type="text"  name="navigasiPilihan_" id="navigasiPilihan_"  onchange="validasijns()"/>
+                        <tr style="width:900px">
+
+                            <td style="width: 400px"> 
+                                <table style="width: 400px">
+                                    
+                                    <td> JABATAN  <input type="button" name="Submit" onclick="showloadBox2()" style="visibility:hidden;"  value="CARI JABATAN" id="tombolJabatan" /> </td>
+                                    <td><input type="text" name="cariUmum"  size="25" id="cariUmum" /></td>
+                                </table></td>
+                        
+                            <td colspan="2">
+                                <div style="width: 200px;overflow: auto">
+
+                                    <c:if test="${navigasi_pilihan=='2'}">
+                                        <div  id ="jabatanfungfum1" name ="jabatanfungfum1"> </div>  
+                                    </c:if>
+
+                                    <c:if test="${navigasi_pilihan=='3' }">
+                                        <select id ="jabatanfungfum" name ="jabatanfungfum">
+                                            <c:forEach var="jabatanfungfum" items="${jabatanfungfum}" varStatus="count">
+                                                <option value=${jabatanfungfum.getId()} >${jabatanfungfum.getNama()}</option>
+                                            </c:forEach>
+
+                                        </select>
+                                    </c:if>   
+                                </div>
                             </td>
 
-                            <td>
 
-                                <input type="submit" class="button black bigrounded" name="Submit" value="LIHAT TUPOKSI"/>
-
-                            </td>
                         </tr>          
-                        <tr>
-                            <td style="width: 50px">TUGAS POKOK DAN FUNGSI </td>
+                        <tr style="width: 900px">
+                            <td style="width: 500px">TUGAS POKOK DAN FUNGSI </td>
                             <td><textarea id="textarea1" name="textarea1" cols="40" rows="6"></textarea></td>
                             <td>
-                                <div align="center">
+                                <div align="center" style="height: 200px;font-size: medium;overflow: auto">
 
                                     <%--<input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi();"/>--%>
+                                    <input type="submit" class="button black bigrounded" name="Submit" value="LIHAT TUPOKSI"/>
                                     <input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi()"/>
                                     <input type="submit" class="button black bigrounded" name="Submit" value="BATAL"/>
                                     <input type="submit" class="button black bigrounded" name="Submit" value="KELUAR"/>
@@ -266,10 +291,8 @@
                             </td>
                         </tr>
 
-
-
-                        <tr>
-                            <td style="width: 50px">NILAI ANGKA KREDIT (AK)   :</td>
+                        <tr style="width: 900px">
+                            <td style="width: 500px">NILAI ANGKA KREDIT (AK)   :</td>
                             <td><input  type="text" align="right"  name="angka_krdtText" style="visibility:hidden;" id="kredit" onkeypress="return alertnipnull1(event)"/></td>
                             <td>
                                 <div align="center">  
@@ -337,7 +360,12 @@
 
         </div>          
         <SCRIPT TYPE="text/javascript">
-      
+            function validasijns (){
+                var ddtk =document.getElementById("navigasiPilihan_");
+               
+                document.getElementById("navigasiPilihan_").value = ddtk;
+                alert(ddtk);
+            }; 
             function updateClock()
             {
                 var now = new Date();
@@ -557,6 +585,82 @@
                     window.alert("Masukkan NIP anda terlebih dahulu");
                 }
             }
+            
+            function GetXmlHttpObject()
+            {
+                if (window.XMLHttpRequest)
+                {
+                    return new XMLHttpRequest();
+                }
+                if (window.ActiveXObject)
+                {
+                    return new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                return null;
+            }
+            
+            function showloadBox2()  
+            {
+                //xmlHttp=GetXmlHttpObject()  
+                xmlHttp=GetXmlHttpObject();  
+    
+                if (xmlHttp==null)  
+                {
+                    alert ("Browser does not support HTTP Request")  
+                    return  ;
+                } 
+           
+                //var keljabtext = vbiaya4text.options[vbiaya4text.selectedIndex].text;(i
+                var jabatan2 ="4";
+                // /for// ( i=0;1 < document.forms[0].jabatan.length;i++){
+                //    if(document.forms[0].jabatan[i].checked){
+                //      jabatan2=  document.forms[0].jabatan[i].value;
+                //     }
+                // }
+                var vbiaya4text =document.getElementById("kelJab");
+                //  var vbiaya4text=document.form1.keljab.value;
+                var keljabtext = vbiaya4text.options[vbiaya4text.selectedIndex].value;
+                
+                
+                if (document.getElementById('jabatan2').checked){
+                    jabatan2=  document.getElementById('jabatan2').value;
+                    //vbiaya4text =document.getElementById("keljab").value;
+                    // keljabtext = vbiaya4text.options[vbiaya4text.selectedIndex].text;
+                }
+                if (document.getElementById('jabatan4').checked){
+                    jabatan2=  document.getElementById('jabatan4').value;
+                }
+       
+                var carinama=document.getElementById("cariUmum").value;
+                var nav='3';
+                
+                if(nav=='3'){
+                    // var url="referensiInstansiServlet?carijabatan=cari_jabatan&cari_nama="+ carinama +"&jabatan2="+jabatan2+"&kelJab=" + keljabtext +"&nav="+nav  ;
+                    // url.href=url.href; 
+                    
+                    var url="referensiInstansiServlet?carijabatan=cari_jabatan&cari_nama="+ carinama +"&jabatan2="+jabatan2+"&kelJab=" + keljabtext +"&nav="+nav ;
+                    xmlHttp.onreadystatechange=stateChange2  
+                    xmlHttp.open("GET",url,true)  
+                    xmlHttp.send(null) 
+                }else{
+                 
+                    var url="referensiInstansiServlet?carijabatan=cari_jabatan&cari_nama="+ carinama +"&jabatan2="+jabatan2+"&kelJab=" + keljabtext +"&nav="+nav ;
+                    xmlHttp.onreadystatechange=stateChange2  
+                    xmlHttp.open("GET",url,true)  
+                    xmlHttp.send(null)  
+                }
+                //   var url="referensiInstansiServlet&carijabatan=cari_jabatan?cari_nama="+carinama + "?kelJab=" +keljabtext +"?jabatan2="+jabatan2 +"?jabatan4="+jabatan4;
+               
+            }
+            
+            function stateChange2()   
+            {   
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")  
+                {   
+                    document.getElementById("jabatanfungfum1").innerHTML=xmlHttp.responseText   
+                }   
+            }   
+            
         </script>
 
         <style type="text/css"> 

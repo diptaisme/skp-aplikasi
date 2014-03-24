@@ -6,6 +6,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,12 +39,13 @@ public class RequestServlet extends HttpServlet {
             throws ServletException, IOException {
         // controller untuk halaman
         String page = request.getParameter("page");
+        String jenis_tambahan = request.getParameter("jenis_tambahan");
         String page1 = request.getParameter("page1");
         if (page == null) {
-            page=page1;
-            if (page1==null) {
-                 cetakNotAvailable(response);
-            }else{
+            page = page1;
+            if (page1 == null) {
+                cetakNotAvailable(response);
+            } else {
                 page = "/WEB-INF/jsp/" + page + ".jsp";
                 try {
                     RequestDispatcher rd = request.getRequestDispatcher(page);
@@ -51,10 +53,10 @@ public class RequestServlet extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                     cetakNotAvailable(response);
-                } 
+                }
             }
-            
-           
+
+
         } else {
             if (page.equalsIgnoreCase("validasi")) {
                 if (request.getParameter("jenis_tambahan").toString().equals("Keterampilan")) {
@@ -62,6 +64,49 @@ public class RequestServlet extends HttpServlet {
                     out.print("<select name='koef_kreatifitas'><option value='10'>Unit Organisasi</option><option value='20'>Instansi</option><option value='30'>Nasional</option> </select>");
                     out.close();
                 }
+            }
+            if (page.equalsIgnoreCase("validasi_unor")) {
+                ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
+                //    unorskp Unorskp = new GoIndex().getIdUnorskp(jenis_tambahan);
+                //    String iUnorTambahan =Unorskp.getDiAtasanId();
+
+                List<PnsSkp> pnsList = new GoIndex().getTugasTambahanBawahanListALL(jenis_tambahan);
+                request.setAttribute("pnsList", pnsList);
+                PrintWriter out = response.getWriter();
+                StringBuilder sb = new StringBuilder();
+                String warna = "b";
+                for (int i = 0; i < pnsList.size(); i++) {
+                    if (warna.equals("b")) {
+                        sb.append("<tr style ='background: #7FFFD4'>"
+                                + "<td width='30' align='center'>" + (i + 1) + "</td>"
+                                + "<td width='100'><div align='left'><a href='GetPnsServlet?action=Monitor&txtNIPBaru='" + pnsList.get(i).getNipBaru() + ">" + pnsList.get(i).getNipBaru() + "</a></div></td>"
+                                + "  <td width ='100'><div align='left'><a href='GetPnsServlet?action=Monitor&txtNIPBaru='" + pnsList.get(i).getNipBaru() + ">" + pnsList.get(i).getNamaPns() + "</a></div></td>"
+                                + "  <td width ='250'><div align='left'>" + pnsList.get(i).getNamaJabatan() + "</div></td>"
+                                + "</tr>");
+                         warna="c";
+                    } else {
+                        sb.append("<tr style='background: #ADFF2F'>"
+                                + "<td width='30' align='center'>" + (i + 1) + "</td>"
+                                + "<td width='100'><div align='left'><a href='GetPnsServlet?action=Monitor&txtNIPBaru='" + pnsList.get(i).getNipBaru() + ">" + pnsList.get(i).getNipBaru() + "</a></div></td>"
+                                + "  <td width ='100'><div align='left'><a href='GetPnsServlet?action=Monitor&txtNIPBaru='" + pnsList.get(i).getNipBaru() + ">" + pnsList.get(i).getNamaPns() + "</a></div></td>"
+                                + "  <td width ='250'><div align='left'>" + pnsList.get(i).getNamaJabatan() + "</div></td>"
+                                + "</tr>");
+                        warna = "b";
+                    }
+                }
+                out.print("<table  width='500'>");
+
+                out.print("<tr>");
+                out.print("<td width ='30'>No.</td>");
+                out.print("<td  width ='100' >NIP BARU</td>");
+                out.print("<td width ='100' >NAMA</td>");
+                 out.print("<td width ='250' >JABATAN</td>");
+                out.print("</tr>");
+                out.print("<tr>");
+                out.print(sb);
+                out.print("</tr>");
+                out.print("</table>");
+                out.close();
             } else {
                 if (ModelLocatorSKP.levelUser.equals("3") || ModelLocatorSKP.levelUser.equals("2")) {
                     page = "navigasiPenggunadat";

@@ -15,6 +15,7 @@
         <title>JSP Page</title>
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
         <link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
+        <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
 
         <style type="text/css"> 
             #headerLokal {

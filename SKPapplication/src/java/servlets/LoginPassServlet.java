@@ -6,6 +6,9 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -22,6 +25,8 @@ import model.GoIndex;
 import model.TupoksiKeIsi4Faktor;
 import model.loginweb;
 import model.PnsSkp;
+import model.RealisasiIsi4faktorTupoksi;
+import model.nilaiPerilaku;
 import model.unorskp;
 
 /**
@@ -40,12 +45,10 @@ public class LoginPassServlet extends HttpServlet {
             DBProperties.DB_USERNAME = properties.getProperty("db.username");
             DBProperties.DB_PASSWORD = properties.getProperty("db.password");
             DBProperties.DB_DRIVER = properties.getProperty("db.driver");
-
         } catch (IOException ex) {
             ex.printStackTrace();
-            Logger.getLogger(LoginPassServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
         }
+
     }
 
     /**
@@ -192,7 +195,7 @@ public class LoginPassServlet extends HttpServlet {
                                 ModelLocatorSKP.loginNipPengguna = NipPns;
                                 ModelLocatorSKP.IdUnorUser = pns.getUnorId();
                                 session.setAttribute("NipPnsSession", NipPns);
-                                 session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
+                                session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
                                 UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
                                 ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
                                 if (UnorAts == null) {
@@ -206,14 +209,38 @@ public class LoginPassServlet extends HttpServlet {
                                     ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
                                 }
 
+                                DateFormat tglskrg = new SimpleDateFormat("dd-MM-yyyy");
+                                String rf = tglskrg.format(Calendar.getInstance().getTime());
+                                rf = rf.substring(6, 10);
+                                //   List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
+                                // realkesiServlet = new GoIndex().getRealkesiSession(ModelLocatorSKP.IdUnorUser, id, rf);
+                                String nilaiSKP = null;
+                                String ratarata = "20";
+                                nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+                                nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(id);
+                                if (perilakuPns != null) {
+                                    ratarata = perilakuPns.getRatarata();
+                                }
+                                if (nilaiSKP == null) {
+                                    nilaiSKP = "20";
+                                }
                                 List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
                                 request.setAttribute("pns", pns);
                                 request.setAttribute("UnorAts", UnorAts);
                                 request.setAttribute("tukesiServlet", tukesiServlet);
+                                request.setAttribute("nilaiSKP", nilaiSKP);
+                                request.setAttribute("ratarata", ratarata);
 
                                 session.setAttribute("user", user);
                             }
 
+                            if (user.equals("Administrator") && pass.equals("Administrator")) {
+                                user = request.getParameter("usernametext");
+                            }
+                            pass = request.getParameter("passwordtext");
+                            session.setAttribute("user", user);
+                            {
+                            }
 
                         }
 
@@ -288,6 +315,21 @@ public class LoginPassServlet extends HttpServlet {
 
 
                         }
+                        DateFormat tglskrg = new SimpleDateFormat("dd-MM-yyyy");
+                        String rf = tglskrg.format(Calendar.getInstance().getTime());
+                        rf = rf.substring(6, 10);
+
+                        String nilaiSKP = null;
+                        String ratarata = "20";
+                        nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+                        nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(id);
+                        if (perilakuPns != null) {
+                            ratarata = perilakuPns.getRatarata();
+                        }
+                        if (nilaiSKP == null) {
+                            nilaiSKP = "20";
+                        }
+
 
                         ModelLocatorSKP.levelUser = "2";
                         String levelUser = ModelLocatorSKP.levelUser;
@@ -296,6 +338,9 @@ public class LoginPassServlet extends HttpServlet {
 
                         request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
                         request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                        request.setAttribute("nilaiSKP", nilaiSKP);
+                        request.setAttribute("ratarata", ratarata);
+
                         dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
                         dis.forward(request, response);
 
@@ -378,7 +423,25 @@ public class LoginPassServlet extends HttpServlet {
 
 
         request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
-session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
+        session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
+        DateFormat tglskrg = new SimpleDateFormat("dd-MM-yyyy");
+        String rf = tglskrg.format(Calendar.getInstance().getTime());
+        rf = rf.substring(6, 10);
+
+        String nilaiSKP = null;
+        String ratarata = "20";
+        nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+        nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(id);
+        if (perilakuPns != null) {
+            ratarata = perilakuPns.getRatarata();
+        }
+        if (nilaiSKP == null) {
+            nilaiSKP = "20";
+        }
+        request.setAttribute("nilaiSKP", nilaiSKP);
+        request.setAttribute("ratarata", ratarata);
+
+
 
         RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
         dis.forward(request, response);
@@ -455,7 +518,22 @@ session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
 
             //RequestDispatcher dis2 = getServletContext().getRequestDispatcher("/NavigasiProfile?etst=test");
             // dis2.forward(request, response);
+            DateFormat tglskrg = new SimpleDateFormat("dd-MM-yyyy");
+            String rf = tglskrg.format(Calendar.getInstance().getTime());
+            rf = rf.substring(6, 10);
 
+            String nilaiSKP = null;
+            String ratarata = "20";
+            nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+            nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(id);
+            if (perilakuPns != null) {
+                ratarata = perilakuPns.getRatarata();
+            }
+            if (nilaiSKP == null) {
+                nilaiSKP = "20";
+            }
+            request.setAttribute("nilaiSKP", nilaiSKP);
+            request.setAttribute("ratarata", ratarata);
 
 
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
