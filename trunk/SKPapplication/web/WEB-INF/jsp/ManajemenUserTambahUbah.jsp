@@ -168,8 +168,8 @@
                     <div id="metw">
 
 
-                        <a href="referensiInstansiServlet?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Kembali</a> 
-
+                      <!--  <a href="referensiInstansiServlet?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Kembali</a> -->
+                            <a href="#" id="btnBack">Kembali</a>
 
                     </div>
                         <div style="margin-left: 10px">
@@ -195,11 +195,11 @@
                             <td class="table1" align="center">Kewenangan</td>
                             <td class="table2">
                                 <select name="kewenangan" nama="kewenangan" >
-                                                <option value="-">-</option>
-                                                <option value="user">Entry Data Personal</option>
-                                                <option value="operator">operator</option>
+                                                <option value="user">Operator Tugas Jabatan</option>
+                                                <option value="operator">Operator SKP Seluruh</option>
+                                                <option value="Perwakilan_user">Operator SKP Personal</option>
                                                 <option value="administrator">Administrator</option>
-                                                <option value="Perwakilan_user">Entry Data tk. Esl II</option>
+                                                
                                  </select>
                             </td>    
                             <td></td>
@@ -207,7 +207,7 @@
                             <tr>
                                 <td colspan="3" class="table1">
                                     <input type="submit" name="param" value="ubah"></input>        
-                                    <input type="submit" name="param" value="TambahKewenangan"></input> 
+                                    <!--<input type="submit" name="param" value="TambahKewenangan"></input> -->
                                     
                                 </td>
                         </tr> 
@@ -217,5 +217,19 @@
                             
                        
   </form>
+                            
+                            <form action="administratorFunctionServlet" method="post" id="formBackToUserManagement" >
+                                <input type="hidden" name="nipbaru" id="nipBaru" value="<c:out value="${nip}"/>" />
+                                <input type="hidden" name="param" value="AMBIL" />  
+                                
+                            </form>    
     </body>
 </html>
+                                <script>                                
+$(document).ready(function(){
+    $('#btnBack').click(function (event){
+        event.preventDefault();
+        $('#formBackToUserManagement').submit();
+    });  
+});
+</script>
