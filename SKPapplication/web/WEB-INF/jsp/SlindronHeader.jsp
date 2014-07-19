@@ -175,8 +175,8 @@
             <div id="foobar">   
                 <div id="col2">
                     <div class="viewer">        <div class="reel"> 
-                            <div class="slide">                     <img src="images/sweet-white-blue-swirl-powerpoint-backgrounds.1440x300.jpg" width="1200" height="100" alt=""  /> <span>Direktorat Pengolahan Data.</span>
-                            </div><div class="slide">                <img src="images/Abstract Blue backgrounds 3.1440x300.jpg" width="1200" height="100" alt="" /> <span>direktorat Pengolahan Data</span>
+                            <div class="slide">                     <img src="images/sweet-white-blue-swirl-powerpoint-backgrounds.1440x300.jpg" width="1200" height="100" alt=""  /> <span></span>
+                            </div><div class="slide">                <img src="images/Abstract Blue backgrounds 3.1440x300.jpg" width="1200" height="100" alt="" /> <span></span>
                             </div></div></div></div></div>
 
 
@@ -193,7 +193,7 @@
                     </td>
                 </tr>
                 <tr><td>
-                        BKN
+                        DIREKTORAT PENGOLAHAN DATA BKN
                     </td></tr>
 
             </table>
@@ -208,7 +208,7 @@
         </div>
         <div id="slideText">
         <div style="width: 1180px ">
-            <font face="georgia"   color="White"><strong><marquee bgcolor="#CCCCFF" width="100%" scrollamount="3" behavior="alternate"><span id="warnass">Sasaran Kinerja Pegawai.. </span></marquee></strong></font></div>
+            
         </div>
 
         <script type="text/javascript">
