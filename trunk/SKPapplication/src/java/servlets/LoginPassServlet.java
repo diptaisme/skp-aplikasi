@@ -194,9 +194,15 @@ public class LoginPassServlet extends HttpServlet {
                                 ModelLocatorSKP.nipBaruAtasan = NipPns;
                                 ModelLocatorSKP.loginNipPengguna = NipPns;
                                 ModelLocatorSKP.IdUnorUser = pns.getUnorId();
+                                ModelLocatorSKP.logininstansi = pns.getInstansiId();
                                 session.setAttribute("NipPnsSession", NipPns);
                                 session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
+
                                 UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                                if (UnorAts == null) {
+                                    unorAtasan = "A8ACA7397AEB3912E040640A040269BB"; //kepala atasan dikbud
+                                    UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                                }
                                 ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
                                 if (UnorAts == null) {
                                     unorskp unorAtasanLagi = new GoIndex().getIdUnorAtasan(unorAtasan);
@@ -216,7 +222,8 @@ public class LoginPassServlet extends HttpServlet {
                                 // realkesiServlet = new GoIndex().getRealkesiSession(ModelLocatorSKP.IdUnorUser, id, rf);
                                 String nilaiSKP = null;
                                 String ratarata = "20";
-                                nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+                                //  nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+                                nilaiSKP = new GoIndex().getNilaiAllSession(ModelLocatorSKP.IdUnorUser, id, rf);
                                 nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(id);
                                 if (perilakuPns != null) {
                                     ratarata = perilakuPns.getRatarata();
@@ -291,8 +298,13 @@ public class LoginPassServlet extends HttpServlet {
                                 ModelLocatorSKP.nipBaruAtasan = NipPns;
                                 ModelLocatorSKP.loginNipPengguna = NipPns;
                                 ModelLocatorSKP.IdUnorUser = pns.getUnorId();
+                                ModelLocatorSKP.logininstansi = pns.getInstansiId();
                                 session.setAttribute("NipPnsSession", NipPns);
                                 UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                                if (UnorAts == null) {
+                                    unorAtasan = "A8ACA73A52483912E040640A040269BB";
+                                    UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                                }
                                 ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
                                 if (UnorAts == null) {
                                     unorskp unorAtasanLagi = new GoIndex().getIdUnorAtasan(unorAtasan);
@@ -321,7 +333,8 @@ public class LoginPassServlet extends HttpServlet {
 
                         String nilaiSKP = null;
                         String ratarata = "20";
-                        nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+                        // nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+                        nilaiSKP = new GoIndex().getNilaiAllSession(ModelLocatorSKP.IdUnorUser, id, rf);
                         nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(id);
                         if (perilakuPns != null) {
                             ratarata = perilakuPns.getRatarata();
@@ -392,6 +405,7 @@ public class LoginPassServlet extends HttpServlet {
                 ModelLocatorSKP.loginNipsession = NipPns;
                 ModelLocatorSKP.nipBaruAtasan = NipPns;
                 ModelLocatorSKP.loginNipPengguna = NipPns;
+                ModelLocatorSKP.logininstansi = pns.getInstansiId();
                 ModelLocatorSKP.IdUnorUser = pns.getUnorId();
                 session.setAttribute("NipPnsSession", NipPns);
                 UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
@@ -430,7 +444,8 @@ public class LoginPassServlet extends HttpServlet {
 
         String nilaiSKP = null;
         String ratarata = "20";
-        nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+        // nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+        nilaiSKP = new GoIndex().getNilaiAllSession(ModelLocatorSKP.IdUnorUser, id, rf);
         nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(id);
         if (perilakuPns != null) {
             ratarata = perilakuPns.getRatarata();
@@ -479,6 +494,7 @@ public class LoginPassServlet extends HttpServlet {
                 String NipPns = pns.getNipBaru();
                 ModelLocatorSKP.nipBaruAtasan = NipPns;
                 ModelLocatorSKP.IdUnorUser = pns.getUnorId();
+                 ModelLocatorSKP.logininstansi = pns.getInstansiId();
                 session.setAttribute("NipPnsSession", NipPns);
                 UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
                 ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
@@ -524,7 +540,13 @@ public class LoginPassServlet extends HttpServlet {
 
             String nilaiSKP = null;
             String ratarata = "20";
-            nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+            // nilaiSKP = new GoIndex().getNilaiAllSession_unor(id, ModelLocatorSKP.IdUnorUser, rf);
+
+
+
+            nilaiSKP = new GoIndex().getNilaiAllSession(ModelLocatorSKP.IdUnorUser, id, rf);
+
+
             nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(id);
             if (perilakuPns != null) {
                 ratarata = perilakuPns.getRatarata();

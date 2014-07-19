@@ -16,6 +16,8 @@
         <meta name="description" content="SKI" />
         <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
         <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
+        <link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
+
         <script language="javascript" type="text/javascript">
             function clearText(field)
             {
@@ -45,7 +47,7 @@
             #contentdalam {
                 position :  absolute;
                 top : 80px;
-                left : 185px;
+                left : 10px;
                 width : 1200px;
                 height : 501px;
 
@@ -54,12 +56,12 @@
                 position: relative;
                 width:  1200px;
                 height: 501px;
-              
+
                 top : 50px;
-               
+
                 font-family: arial;
                 padding-left: 3px;
-              
+
             }
             #metik {
                 position: relative;
@@ -79,7 +81,7 @@
 
 
             #metik  a {
-                  display:inline;
+                display:inline;
                 text-decoration: none;
                 color: #FFF;
                 float: left;
@@ -100,63 +102,54 @@
         </style>
     </head>
     <body>
-        <div id="wrapper">
 
-            <form name="form1" method="post" action="referensiInstansiServlet">
-                <div id="headerLokal">
-                    <%@ include file="SlindronHeader.jsp" %>
-                </div>   
-                <div id="leftside">
-                    <%@ include file="navigasiPro.jsp" %>
-                </div> 
+        <form name="form1" method="post" action="referensiInstansiServlet">
 
-                <div id="contentdalam">
-                    <div id="metik">
+            <div id="contentdalamsub">
+                <table  style="padding-top: 20px" width="1194" border="1">
+                    <p>Pencarian Instansi : <input name="cariInstansi" type="text" size="75"/>   <input name="submit" type="Submit" value="CARI" class="button black bigrounded"/>   <%--<input name="button" type="button" value="KEMBALI" onclick="ButtonBack()" class="button black bigrounded"/>   <input name="button" type="button" value="KELUAR" onclick="ButtonExit()" class="button black bigrounded"/></p>--%>
 
+                        <table width="1194" border="1">
+                            <tr>
+                                <td colspan="3"><div align="center" class="style1"><strong><h3>TABEL REFERENSI INSTANSI</h3></strong></div></td>
+                            </tr>    
+                            <tr>
+                                <td width="40"><div align="center" class="style2 style3">NO</div></td>
 
-                        <a href="referensiInstansiServlet?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Kembali</a> 
-
-
-                    </div>
-                    <div id="contentdalamsub">
-                        <table  style="padding-top: 20px" width="1194" border="1">
-                            <p>Pencarian Instansi : <input name="cariInstansi" type="text" size="75"/>   <input name="submit" type="Submit" value="CARI" class="button black bigrounded"/>   <input name="button" type="button" value="KEMBALI" onclick="ButtonBack()" class="button black bigrounded"/>   <input name="button" type="button" value="KELUAR" onclick="ButtonExit()" class="button black bigrounded"/></p>
-
-                            <table width="1194" border="1">
-                                <tr>
-                                    <td colspan="3"><div align="center" class="style1"><strong><h3>TABEL REFERENSI INSTANSI</h3></strong></div></td>
-                                </tr>    
-                                <tr>
-                                    <td width="40"><div align="center" class="style2 style3">NO</div></td>
-                              
-                                    <td width="750"><div align="center" class="style5">NAMA INSTANSI </div></td>
-                                </tr>
-                            </table>
-
-
-                            <div id="templatemo_content_p" class="scroll3">
-                                <table width="1194" border="1">
-                                    <c:forEach var="listInstansies" items="${instansies}" varStatus="count">
-                                        <tr>
-                                            <td width="40"><div align="center">${(count.index)+1}</div></td>
-                                           
-                                            <td width="750"><a href="referensiInstansiServlet?&idInstkode=<c:out value="${listInstansies.getIdInstansi()}"/>&namaInstansiL=<c:out value="${listInstansies.getNamaInstansi()}"/>">${listInstansies.getNamaInstansi()}</a></td>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
+                                <td width="750"><div align="center" class="style5">NAMA INSTANSI </div></td>
+                            </tr>
                         </table>
-                    </div>
-                </div>
-            </form> 
-
-        </div>
 
 
+                        <div id="templatemo_content_p" class="scroll3">
+                            <table width="1194" border="1">
+                                <c:forEach var="listInstansies" items="${instansies}" varStatus="count">
+                                    <tr>
+                                        <td width="40"><div align="center">${(count.index)+1}</div></td>
 
+                                        <%-- <td width="750"><a href="referensiInstansiServlet?&idInstkode=<c:out value="${listInstansies.getIdInstansi()}"/>&namaInstansiL=<c:out value="${listInstansies.getNamaInstansi()}"/>" >${listInstansies.getNamaInstansi()}</a></td>--%>
 
+                                        <td width="750"><a href="referensiInstansiServlet?idInstkode=<c:out value="${listInstansies.getIdInstansi()}"/>&namaInstansiL=<c:out value="${listInstansies.getNamaInstansi()}"/>" id="url3test<c:out value="${count.count}"/>" onclick="redirectToFB(this.id)">${listInstansies.getNamaInstansi()}</a>  </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                </table>
+            </div>
+
+        </form> 
 
         <SCRIPT TYPE="text/javascript">
+            
+            function redirectToFB(id){
+                
+                
+                url3test=document.getElementById(id);
+               
+                window.opener.location.href=url3test;
+                self.close();
+            }
+
             function ButtonBack()
             {
                 location = 'RequestServlet?page=insertTupoksiBaruBiru';
@@ -400,7 +393,7 @@
                 color:white;
             }
 
-          
+
 
 
             form fieldset

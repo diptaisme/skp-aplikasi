@@ -65,8 +65,9 @@ public class updateServlets extends HttpServlet {
         String instansiAtasan = request.getParameter("instansiAtasan");
         String instansiIdpns = request.getParameter("instansiIdpns");
         String instansiIdunorbwhan = request.getParameter("instansiIdunorbwhan");
-
-
+        String nip_baruuser = request.getParameter("nip_baruuser");
+        String unoratasanlama = request.getParameter("unoratasanlama");
+        String nipatasanlama = request.getParameter("nipatasanlama");
 
         if (id != null && id != "" && id != " ") {
             //domain PnsSkp
@@ -107,9 +108,11 @@ public class updateServlets extends HttpServlet {
             request.setAttribute("instansiAtasan", instansiAtasan);
             request.setAttribute("instansiIdpns", instansiIdpns);
             request.setAttribute("instansiIdunorbwhan", instansiIdunorbwhan);
-            
+            request.setAttribute("nip_baruuser", nip_baruuser);
             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+            request.setAttribute("unoratasanlama", unoratasanlama);
+            request.setAttribute("nipatasanlama", nipatasanlama);
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/UpdateAtasan.jsp");
             dis.forward(request, response);
         } else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " ")) {

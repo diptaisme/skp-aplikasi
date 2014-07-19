@@ -44,9 +44,6 @@ public class DBqueryLogin
         return ipns;
     }
     
-    
-    
-    
     public loginweb getDBqueryLoginPassByNip(String nip) throws SQLException
     {
         String sql = "SELECT username_login, password_login, nippns_login, kewenangan_login FROM loginweb WHERE nippns_login =?";
@@ -64,10 +61,21 @@ public class DBqueryLogin
         }
         return ipns;
     }
-    
-    
-    
-    
+       public void ubahUser(String username,String password,String nip_baru) throws SQLException
+       {
+         String sql = "update loginweb set username_login = '"+username+"',password_login = '"+password+"' where nippns_login = '"+nip_baru+"'" ;
+         PreparedStatement st = this.conn.prepareStatement(sql);    
+         st.executeUpdate(sql);
+         st.close();
+       }
+        public void TambahKewenangan(String username,String password,String TambahKewenangan,String nip_baru) throws SQLException
+       {
+         //String sql = "update loginweb set kewenangan_login = '"+TambahKewenangan+"' where nippns_login = '"+nip_baru+"'" ;
+         String sql = "insert into loginweb values('"+username+"','"+password+"','"+TambahKewenangan+"','"+nip_baru+"')";
+         PreparedStatement st = this.conn.prepareStatement(sql);    
+         st.executeUpdate(sql);
+         st.close();
+       }
        public void hapusUser(String nipbaru) throws SQLException
        {
        
@@ -75,5 +83,22 @@ public class DBqueryLogin
             PreparedStatement st = this.conn.prepareStatement(sql);    
             st.executeUpdate(sql);
             st.close();
+        }
+       public String hapuskewenangan(String nip_baru,String kewenangan) throws SQLException
+        {
+            String pesan;
+            String sql = "DELETE FROM loginweb where nippns_login ='"+ nip_baru +"' and kewenangan_login = '"+kewenangan+"'";
+            PreparedStatement st = this.conn.prepareStatement(sql);    
+            int hasil = st.executeUpdate(sql);
+            if(hasil == 1)
+            {
+              pesan = "berhasil";  
+            }      
+            else
+            {
+              pesan = "gagal";
+            }
+            st.close();
+            return pesan;        
         }
 }

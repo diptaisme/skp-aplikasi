@@ -176,50 +176,79 @@
                                     </tr>
                                     <tr>
                                         <td><div align="left"><span class="style3">6</span></div></td>
-                                        <td align="left"><span class="style3">USERNAME</span></td>
-                                        <td><input type="text" name="usernameinputan"></input></td>
+                                        
+                                        <td align="left">
+                                            <c:if test="${userkewenagan eq 'ada' }"> 
+                                            <c:out value="${userkewenagan}"/>
+                                            </c:if>
+                                            <span class="style3">     
+                                                USERNAME 
+                                                </span></td>         
+                                        <td> 
+                                            
+                                            <c:choose>
+                                                <c:when test="${userkewenagan == 'ada'}">
+                                                <c:set var="cocok" value="disabled" />
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:set var="cocok1" value="disabled" />
+                                                </c:otherwise>
+                                            </c:choose>
+                                            
+                                            <input type="text" name="usernameinputan" ${cocok} value="<c:out value="${namauser}"/>"></input>         
+                                        </td> 
+                                                  <td> </td> 
                                     </tr>
                                     <tr>
                                         <td><div align="left"><span class="style3">7</span></div></td>
-                                        <td align="left"><span class="style3">PASSWORD</span></td>
-                                        <td><input type="text" name="passwordinputan"></input></td>
+                                        <td align="left"><span class="style3" >PASSWORD</span></td>
+                                        <td><input type="text" name="passwordinputan" ${cocok}></input></td>
+                                       
                                     </tr>
                                     <tr>
                                         <td><div align="left"><span class="style3">8</span></div></td>
                                         <td><div align="left"><span class="style3">KEWENANGAN</span></div></td>
                                         <td>
-                                            <select name="kewenangan" id="kewenangan">
+                                            <select name="kewenangan" id="kewenangan" ${cocok}>
                                                 <option value="-">-</option>
-                                                <option value="user">user</option>
+                                                <option value="user">Entry Data Personal</option>
                                                 <option value="operator">operator</option>
                                                 <option value="administrator">Administrator</option>
-                                                <option value="Perwakilan_user">Perwakilan User</option>
+                                                <option value="Perwakilan_user">Entry Data tk. Esl II</option>
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
-
                                         <td>
-                                            <input type="submit" name="param"  value="Simpan" /> 
+                                            <input type="submit" name="param" value="Simpan" ${cocok}/> 
                                         </td>
                                         <td>
-                                            <input type="submit" name="param"  value="Hapus" /> 
+                                            <input type="submit" name="param" value="ubah" ${cocok1}/> 
                                         </td>
                                         <td>
-                                            <input type="submit" name="param"  value="Kembali" /> 
+                                          
                                         </td>
                                     </tr>
                                 </table>
                             </td>
 
                         </tr>
+                              
+                                
                     </table>
-                </div>                  
-
-
-            </form>  
-
-
-        </div>             
+                                    <table style="margin-top: 20px">
+                                        <tr>
+                                            <td height="20" align="center" > Status Kewenangan</td> 
+                                            <td align="center" width="40">Hapus</td>
+                                        </tr>
+                                        <c:forEach var="listkewenangan" items="${kewenaganuser}">      
+                                            <tr bgcolor="#b9c9fe">
+                                                <td><div align="center"><c:out value="${listkewenangan.kewenangan_login}"/></div></td>
+                                                <td align="center"><a href="administratorFunctionServlet?nip_ubah=<c:out value="${pns.getNipBaru()}"/>&status=masuk&nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>&kewenangan=<c:out value="${listkewenangan.kewenangan_login}"/>"><img src="images/hapus2.png"></img></a></td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                </div>    
+            </form>
     </body>
 </html>

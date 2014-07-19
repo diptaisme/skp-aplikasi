@@ -27,6 +27,7 @@ public class DBConnection {
     }
 
     private DBConnection() {
+        
         try {
             Class.forName(DBProperties.DB_DRIVER);            
         } catch (Exception e) {

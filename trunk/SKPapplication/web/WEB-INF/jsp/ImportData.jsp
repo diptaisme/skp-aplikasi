@@ -69,7 +69,7 @@
             }
             #contentdalamsubajak{
                 position :  absolute;
-                top : 50px;
+                top : 10px;
                 left : 500px;
                 width : 500px;
                 height : 500px;
@@ -236,7 +236,7 @@
 
 
                                                                                                             <label for="folder<c:out value="${count4.count}"/>"><c:out value="${pnsBaw4.getNamaUnor()}"/></label>
-                                                                                                            <input type="checkbox"  ondblclick="showComboBox(this.value)" id="folder4<c:out value="${count4.count}"/>" value="${pnsBaw4.getNamaUnor()}" />
+                                                                                                            <input type="checkbox"  ondblclick="showComboBox(this.value)" id="folder4<c:out value="${count4.count}"/>" value="${pnsBaw4.getIdUnor()}" />
                                                                                                           
                                                                                                      
                                                                                                 </li>
@@ -262,11 +262,12 @@
 
                         </ol> 
                         <div id="contentdalamsubajak">
-                            <div style="width: 500px;overflow: scroll;background-color: #CCCCFF">
-                                <table style="width: 500px">
+                            <div style="width: 460px;overflow: scroll;background-color: #CCCCFF">
+                                <table style="width: 460px">
                                     <td>
-
-                                        <div id="koef_kreatifitas"> </div></td></table>
+                                        <div id="koef_kreatifitas"> </div>
+                                    </td>
+                                </table>
                             </div>
                         </div> 
 

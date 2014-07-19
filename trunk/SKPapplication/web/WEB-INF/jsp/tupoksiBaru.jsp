@@ -61,7 +61,7 @@ function clearText(field)
                     <td height="23"><strong>INSTANSI</strong></td>
                     <td><c:out value="${ins.getNamaInstansi()}" /></td>
                 </tr>
-                <tr>
+                <tr>    
                     <td width="92" height="23"><strong>JABATAN</strong></td>
                     <td width="712"><c:out value="${pns.getNamaJabatan()}" /></td>
                 </tr>

@@ -38,7 +38,9 @@
                     document.getElementById('kelJab').style.visibility='hidden'; 
                     document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
                     document.getElementById('tombolJabatan').style.visibility='hidden'; 
-                    //  document.getElementById('jabatanfungfum').style.visibility='hidden'; 
+                    document.getElementById('tombolJabatanfum').style.visibility='hidden'; 
+                   //  document.getElementById('jabatanfungfum').style.visibility='hidden'; 
+                   //   document.getElementById('jabatanfungfum1').style.visibility='hidden'; 
                     document.getElementById('kredit').style.visibility='hidden'; 
                     document.getElementById('cariUmum').style.display = 'none';
                     document.getElementById('namaUnorText').style.visibility='visible'; 
@@ -50,10 +52,12 @@
                     // return   document.getElementById('tombolInstansi').disabled = true;
                     document.getElementById('tombolInstansi').style.visibility='hidden';
                     document.getElementById('tombolUnitOrganisasi').style.visibility='hidden'; 
-                    document.getElementById('kelJab').style.visibility='visible'; 
+                   document.getElementById('kelJab').style.visibility='visible'; 
                     document.getElementById('tombolKeloJabatan').style.visibility='visible'; 
                     document.getElementById('tombolJabatan').style.visibility='visible'; 
-                    //  document.getElementById('jabatanfungfum').style.visibility='visible'; 
+                    document.getElementById('tombolJabatanfum').style.visibility='hidden'; 
+                  //  document.getElementById('jabatanfungfum').style.visibility='visible'; 
+                  //  document.getElementById('jabatanfungfum1').style.visibility='visible'; 
                     document.getElementById('kredit').style.visibility='visible'; 
                     document.getElementById('cariUmum').style.display = 'none';
                     document.getElementById('namaUnorText').style.visibility='hidden'; 
@@ -68,10 +72,13 @@
                 else if (document.getElementById('jabatan4').checked){
                     document.getElementById('tombolInstansi').style.visibility='hidden';
                     document.getElementById('tombolUnitOrganisasi').style.visibility='hidden'; 
-                    document.getElementById('kelJab').style.visibility='hidden'; 
+                     document.getElementById('kelJab').style.visibility='hidden'; 
                     document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
-                    document.getElementById('tombolJabatan').style.visibility='visible'; 
+                    document.getElementById('tombolJabatan').style.visibility='hidden'; 
+                    document.getElementById('tombolJabatanfum').style.visibility='visible'; 
                     // document.getElementById('jabatanfungfum').style.visibility='visible';
+                   // document.getElementById('jabatanfungfum').style.visibility='visible'; 
+                   // document.getElementById('jabatanfungfum1').style.visibility='visible'; 
                     document.getElementById('kredit').style.visibility='hidden'; 
                     document.getElementById('cariUmum').style.display = 'block'; 
                     document.getElementById('namaUnorText').style.visibility='hidden'; 
@@ -83,7 +90,7 @@
                 }
             }  
     
- 
+           
             function myFunction()
             {
                 var e = document.getElementById("pilih_output_Jabatan");
@@ -105,7 +112,9 @@
                     return document.getElementById('chq').style.visibility='hidden';
                     return document.getElementById('chq2').style.visibility='hidden';
                 }
-            } 
+            }
+            
+            
 
 
         </script> 
@@ -114,10 +123,10 @@
             #headerLokal {
                 padding: 0px;
                 width: 1200px;
-
+                margin-left : -30px;
                 position: relative;
                 height: 80px;
-                left : -50px;
+                
             }
             #leftside {
 
@@ -131,7 +140,7 @@
             #contentdalam {
                 position :  absolute;
                 top : 110px;
-                left : 185px;
+                left : 170px;
                 width : 1200px;
                 height : 501px;
                 overflow: auto;
@@ -139,7 +148,7 @@
 
             #met {
                 position: relative;
-                width: 947px;
+                width: 990px;
                 height: 40px;
                 background: #9999CC;
 
@@ -187,41 +196,44 @@
                             </li>
                         </ul>
                     </div>
-                    <table width="500" height="50" border="0">
+                            <table width="500" height="50" border="1" >
                         <tr>
-                            <td colspan="3"><div align="center" ><strong><h2 style="color: #000">FORM PENGISIAN TUGAS POKOK FUNGSI</h2></strong></div></td>
+                            <td colspan="3"><div align="left" ><h2 style="color: #000">ENTRY DATA KEGIATAN TUGAS JABATAN</h2></div></td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="radio" name="jabatan"   value="1" id="jabatan1" onclick="testHilang()" <c:if test="${jabatan == '1'}">checked</c:if> />&nbsp;Struktural
+                                <input type="radio" name="jabatan" value="1" id="jabatan1" onclick="testHilang()" <c:if test="${jabatan == '1'}">checked</c:if> />&nbsp;Struktural
                                 <input type="radio" name="jabatan" value="2" id="jabatan2" onclick="testHilang()" <c:if test="${jabatan == '2'}">checked</c:if> />&nbsp;Fungsional Tertentu
                                 <input type="radio" name="jabatan" value="4" id="jabatan4" onclick="testHilang()" <c:if test="${jabatan == '4'}">checked</c:if> />&nbsp;Fungsional Umum
                             </td>
                         </tr> 
                     </table>
+                    <input  type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/>
+                    <input  type="hidden"  name="idInstansiText" id="idInstansiText" value="${kodeInstansi}"/>
 
-                    <table width="900" height="300" border="0">
+                    <table width="900" height="300" border="1">
 
                         <tr style="width: 900px">
-                            <td style="width: 500px">INSTANSI   :</td>
-
-                            <td ><c:out value="${namaInstansi}" /></td>
-                            <input  type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/>
-                            <input  type="hidden"  name="idInstansiText" value="${kodeInstansi}"/>
-
+                            <td style="width: 150px">INSTANSI </td>
+                            <td style="width: 20px">:</td>
+                            <td colspan="2"><c:out value="${namaInstansi}" /></td>
                             <%--<td width="275"><c:out value="${instansie.getNamaInstansi()}" /></td>--%>
-                            <td >
+                            <td>
                                 <div align="center">
-                                    <input type="submit" name="Submit" style="visibility:hidden;" class="button black bigrounded" id="tombolInstansi" value="CARI INSTANSI"/>
+                                    <%--<input type="submit" name="Submit" style="visibility:hidden;" class="button black bigrounded" id="tombolInstansi" value="CARI INSTANSI"/> --%>
+                                    <input type="button" name="Submit"  onclick="popup_showws()" style="visibility:hidden;"   class="button black bigrounded" value="CARI iNSTANSI" id="tombolInstansi"   />
+
+
                                     <%-- <input type="submit" name="Submit" value="CARI" onclick="myPopupInstansi()"> --%>
                                     <%--<a href="referensiInstansiServlet?asd=asd">INSTANSI</a>--%>
                                 </div>
                             </td>
+                               
                         </tr>
                         <tr style="width: 900px">
-                            <td style="width: 500px">UNIT ORGANISASI   :</td>
-
-                            <td><c:out value="${namaUnor}" /></td>
+                            <td style="width: 150px">UNIT ORGANISASI   </td>
+                            <td style="width: 20px">:</td>
+                            <td colspan="2"><c:out value="${namaUnor}" /></td>
                             <input  type="hidden" align="right" style="visibility:hidden;" id="namaUnorText" name="namaUnorText" value="${namaUnor}"/>
                             <input  type="hidden"  name="idUnorText" value="${kodeUnor}"/> 
                             <%--<input type="text" align="right" name="namaUnorText" value="${unorie.getNamaUnor()}" style="text-align: right">--%>
@@ -229,39 +241,44 @@
                                 <div align="center">
                                     <%--<input type="submit" name="Submit" value="CARI UNOR" onclick="myPopupUnor()">--%>
 
-                                    <input type="submit" name="Submit" style="visibility: hidden;" class="button black bigrounded" id="tombolUnitOrganisasi" value="CARI UNOR"/>
+                                    <%--<input type="submit" name="Submit" style="visibility: hidden;" class="button black bigrounded" id="tombolUnitOrganisasi" value="CARI UNOR"/>--%>
+                                    <input type="button" name="Submit" style="visibility: hidden;" class="button black bigrounded" value="CARI UNOR" onclick="popup_showwsUnitOr()"    id="tombolUnitOrganisasi" />
                                 </div>
                             </td>
+                                  
                         </tr>
 
                         <tr style="width: 900px">
-                            <td style="width: 500px"> KELOMPOK JABATAN   :</td> 
-                            <td colspan="2"><input type="submit" name="Submit"  style="visibility:hidden;" value="CARI KELOMPOK" id="tombolKeloJabatan"/>
+                            <td style="width: 150px"> KELOMPOK JABATAN   </td> 
+                            <td style="width: 20px">:</td>
+                            <td style="width: 50px"><input type="submit" name="Submit"  style="visibility:hidden;background-color: #FF9900" value="CARI KELOMPOK" id="tombolKeloJabatan"/>
+                                
+                            </td>
+                            <td colspan="2">
                                 <select id ="kelJab" name ="kelJab" >
                                     <c:forEach var="kelJab" items="${kelJab}" varStatus="count">
                                         <option value=${kelJab.getId()} >${kelJab.getNama()}</option>
                                     </c:forEach>
-                                </select>
-                            </td>
-
+                                </select></td>
+                            
+                           
                         </tr>
                         <c:set var="navigasi_pilihan" value="${navigasiPilihanjns}" /> 
-                        <input  type="text"  name="navigasiPilihan_" id="navigasiPilihan_"  onchange="validasijns()"/>
+                        <input  type="hidden"  name="navigasiPilihan_" id="navigasiPilihan_"  onchange="validasijns()"/>
                         <tr style="width:900px">
-
-                            <td style="width: 400px"> 
-                                <table style="width: 400px">
-                                    
-                                    <td> JABATAN  <input type="button" name="Submit" onclick="showloadBox2()" style="visibility:hidden;"  value="CARI JABATAN" id="tombolJabatan" /> </td>
-                                    <td><input type="text" name="cariUmum"  size="25" id="cariUmum" /></td>
-                                </table></td>
-                        
-                            <td colspan="2">
+                                    <td style="width: 150px"> JABATAN  </td> 
+                                    <td style="width: 20px">:</td>
+                                    <td > 
+                                        <input type="hidden" name="cariUmum"  size="10" id="cariUmum" />
+                                        <input type="button" name="Submit" onclick="showloadBox2fum()"  style="visibility:hidden;background-color: #FF9900;width: 100px"  value="CARI JABFUM" id="tombolJabatanfum" />      
+                                        <input type="button" name="Submit" onclick="showloadBox2()"  style="visibility:hidden;background-color: #FF9900"  value="CARI JABATAN" id="tombolJabatan" /> 
+                                    </td>                    
+                                    <td colspan="2">
                                 <div style="width: 200px;overflow: auto">
 
-                                    <c:if test="${navigasi_pilihan=='2'}">
-                                        <div  id ="jabatanfungfum1" name ="jabatanfungfum1"> </div>  
-                                    </c:if>
+                                    <%-- <c:if test="${navigasi_pilihan=='2'}">
+                                         <div  id ="jabatanfungfum1" name ="jabatanfungfum1"> </div>  
+                                     </c:if>
 
                                     <c:if test="${navigasi_pilihan=='3' }">
                                         <select id ="jabatanfungfum" name ="jabatanfungfum">
@@ -270,34 +287,54 @@
                                             </c:forEach>
 
                                         </select>
-                                    </c:if>   
+                                    </c:if>   --%>
+
+                                    <c:choose>
+                                        <c:when test="${navigasi_pilihan=='3'}">
+                                            <select id ="jabatanfungfum" name ="jabatanfungfum">
+                                                <c:forEach var="jabatanfungfum" items="${jabatanfungfum}" varStatus="count">
+                                                    <option value=${jabatanfungfum.getId()} >${jabatanfungfum.getNama()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div  id ="jabatanfungfum1" name ="jabatanfungfum1" > </div>  
+
+                                        </c:otherwise>  
+
+                                    </c:choose>
+
+
                                 </div>
-                            </td>
-
-
+                            </td>  
                         </tr>          
                         <tr style="width: 900px">
-                            <td style="width: 500px">TUGAS POKOK DAN FUNGSI </td>
-                            <td><textarea id="textarea1" name="textarea1" cols="40" rows="6"></textarea></td>
+                            <td style="width: 150px">TUGAS KEGIATAN JABATAN</td>
+                            <td style="width: 20px">:</td>
+                            <td colspan="2"><textarea id="textarea1" name="textarea1" cols="40" rows="6"></textarea></td>
                             <td>
-                                <div align="center" style="height: 200px;font-size: medium;overflow: auto">
-
+                                <div style="height: 200px;font-size: medium;overflow: auto">
                                     <%--<input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi();"/>--%>
-                                    <input type="submit" class="button black bigrounded" name="Submit" value="LIHAT TUPOKSI"/>
-                                    <input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi()"/>
-                                    <input type="submit" class="button black bigrounded" name="Submit" value="BATAL"/>
-                                    <input type="submit" class="button black bigrounded" name="Submit" value="KELUAR"/>
-                                </div>
+                                    <input style="width: 120px" type="submit" class="button black bigrounded" name="Submit" value="LIHAT TUPOKSI" />
+                                    <input style="width: 120px" type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi()"/>
+                                    <input style="width: 120px;margin-top: 20px" type="submit" class="button black bigrounded" name="Submit" value="BATAL"/>
+                                    <input style="width: 120px" type="submit" class="button black bigrounded" name="Submit" value="KELUAR"/>
+                                </div>        
                             </td>
+                                    
                         </tr>
 
                         <tr style="width: 900px">
-                            <td style="width: 500px">NILAI ANGKA KREDIT (AK)   :</td>
+                            <td style="width: 150px">NILAI ANGKA KREDIT (AK)   </td>
+                            <td style="width: 20px">:</td>
                             <td><input  type="text" align="right"  name="angka_krdtText" style="visibility:hidden;" id="kredit" onkeypress="return alertnipnull1(event)"/></td>
                             <td>
                                 <div align="center">  
                                 </div>
                             </td>
+                         <td>
+                             
+                         </td>
                         </tr>
 
                     </table>
@@ -599,6 +636,33 @@
                 return null;
             }
             
+            function showloadBox2fum()  
+            {
+                //xmlHttp=GetXmlHttpObject()  
+                xmlHttp=GetXmlHttpObject();  
+    
+                if (xmlHttp==null)  
+                {
+                    alert ("Browser does not support HTTP Request")  
+                    return  ;
+                } 
+           
+                //var keljabtext = vbiaya4text.options[vbiaya4text.selectedIndex].text;(i
+                var jabatan2 ="4";
+              
+                jabatan2=  document.getElementById('jabatan4').value;
+            
+                var carinama=document.getElementById("cariUmum").value;
+                var nav='3';
+              
+                var url="referensiInstansiServlet?carijabatan=cari_jabatan&cari_nama="+ carinama +"&jabatan2="+jabatan2+"&nav="+nav ;
+                xmlHttp.onreadystatechange=stateChange2  
+                xmlHttp.open("GET",url,true)  
+                xmlHttp.send(null) 
+              
+            }
+            
+            
             function showloadBox2()  
             {
                 //xmlHttp=GetXmlHttpObject()  
@@ -659,8 +723,38 @@
                 {   
                     document.getElementById("jabatanfungfum1").innerHTML=xmlHttp.responseText   
                 }   
-            }   
+            } 
             
+            function popup_showws() {
+                jabatan2=  document.getElementById('namaInstansiText').value;
+                var w = 700;
+                var h = 400;
+                var winl = (screen.width-w)/2;
+                var wint = (screen.height-h)/2;
+                if (winl < 0) winl = 0;
+                if (wint < 0) wint = 0;
+                var page = "referensiInstansiServlet?pagepop=popshow&namaInstansiText="+jabatan2;
+              
+                windowprops = "height="+h+",width="+w+",top="+ wint +",left="+ winl +",location=no,"
+                    + "scrollbars=yes,menubars=no,toolbars=no,resizable=no,status=yes";
+                window.open(page, "myWindow", windowprops);
+            }
+            function popup_showwsUnitOr() {
+                jabatan2=  document.getElementById('namaUnorText').value;
+                unitOrg= document.getElementById('idInstansiText').value;
+                idInstansi=document.getElementById('idInstansiText').value;
+                var w = 700;
+                var h = 400;
+                var winl = (screen.width-w)/2;
+                var wint = (screen.height-h)/2;
+                if (winl < 0) winl = 0;
+                if (wint < 0) wint = 0;
+                var page = "referensiInstansiServlet?pagepopUnor=popshow&namaUnorText="+jabatan2+"&idInstansiText="+unitOrg+"&idInstansi="+idInstansi;
+              
+                windowprops = "height="+h+",width="+w+",top="+ wint +",left="+ winl +",location=no,"
+                    + "scrollbars=yes,menubars=no,toolbars=no,resizable=no,status=yes";
+                window.open(page, "myWindow", windowprops);
+            }
         </script>
 
         <style type="text/css"> 
@@ -704,6 +798,10 @@
             {
                 border: solid 1px #D9AD00;
                 background: #FFF7D7;
+            }
+            .button_03{
+                width: 65px;
+                background: url(/SKPapplication/images/cari.png) 0 0 no-repeat;
             }
 
             .button {

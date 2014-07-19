@@ -6,7 +6,10 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.GoIndex;
 import model.PnsSkp;
 import model.TupoksiKeIsi4Faktor;
+import model.nilaiPerilaku;
 import model.unorskp;
 
 /**
@@ -41,6 +45,10 @@ public class RequestServlet extends HttpServlet {
         String page = request.getParameter("page");
         String jenis_tambahan = request.getParameter("jenis_tambahan");
         String page1 = request.getParameter("page1");
+        if(ModelLocatorSKP.loginNipsession!=null){
+              ModelLocatorSKP.loginNipPengguna=ModelLocatorSKP.loginNipsession;
+        }
+        ModelLocatorSKP.loginNipPengguna=ModelLocatorSKP.loginNipsession;
         if (page == null) {
             page = page1;
             if (page1 == null) {
@@ -83,7 +91,7 @@ public class RequestServlet extends HttpServlet {
                                 + "  <td width ='100'><div align='left'><a href='GetPnsServlet?action=Monitor&txtNIPBaru='" + pnsList.get(i).getNipBaru() + ">" + pnsList.get(i).getNamaPns() + "</a></div></td>"
                                 + "  <td width ='250'><div align='left'>" + pnsList.get(i).getNamaJabatan() + "</div></td>"
                                 + "</tr>");
-                         warna="c";
+                        warna = "c";
                     } else {
                         sb.append("<tr style='background: #ADFF2F'>"
                                 + "<td width='30' align='center'>" + (i + 1) + "</td>"
@@ -100,7 +108,7 @@ public class RequestServlet extends HttpServlet {
                 out.print("<td width ='30'>No.</td>");
                 out.print("<td  width ='100' >NIP BARU</td>");
                 out.print("<td width ='100' >NAMA</td>");
-                 out.print("<td width ='250' >JABATAN</td>");
+                out.print("<td width ='250' >JABATAN</td>");
                 out.print("</tr>");
                 out.print("<tr>");
                 out.print(sb);
@@ -141,6 +149,27 @@ public class RequestServlet extends HttpServlet {
                             UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
                             ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
                         }
+
+
+                        DateFormat tglskrg = new SimpleDateFormat("dd-MM-yyyy");
+                        String rf = tglskrg.format(Calendar.getInstance().getTime());
+                        rf = rf.substring(6, 10);
+                        //   List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
+                        // realkesiServlet = new GoIndex().getRealkesiSession(ModelLocatorSKP.IdUnorUser, id, rf);
+                        String nilaiSKP = null;
+                        String ratarata = "20";
+                        nilaiSKP = new GoIndex().getNilaiAllSession_unor(NipPns, ModelLocatorSKP.IdUnorUser, rf);
+                        nilaiPerilaku perilakuPns = new GoIndex().getPrilaku(NipPns);
+                        if (perilakuPns != null) {
+                            ratarata = perilakuPns.getRatarata();
+                        }
+                        if (nilaiSKP == null) {
+                            nilaiSKP = "20";
+                        }
+
+                        request.setAttribute("nilaiSKP", nilaiSKP);
+                        request.setAttribute("ratarata", ratarata);
+
 
                         List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
                         request.setAttribute("pns", pns);

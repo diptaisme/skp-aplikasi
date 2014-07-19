@@ -831,10 +831,12 @@ public class GetPnsServlet extends HttpServlet {
 
         String id = request.getParameter("txtNIPBaru");
         String action = request.getParameter("action");
+        String idTupoksiR = request.getParameter("idTupoksiR");
 
         //String tupo = request.getParameter("idTupoksi");
         String _pilih_session = request.getParameter("pilih_session");
         String idNiptambahan = (String) request.getAttribute("idNiptambahan");
+        List<RealisasiIsi4faktorTupoksi> tukesiServlet2 = new ArrayList<RealisasiIsi4faktorTupoksi>();
         if (_pilih_session == null) {
             _pilih_session = "-";
         }
@@ -862,21 +864,96 @@ public class GetPnsServlet extends HttpServlet {
 
                 List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 
-                List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-
-                List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
-                if (_pilih_session.equals("-")) {
+                //List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+                List<TupoksiRevisiTarget> tukesiServlet = new ArrayList<TupoksiRevisiTarget>();
+              //  List<RealisasiIsi4faktorTupoksi> realkesiServlet = new GoIndex().getRealkesi(id);
+               /* if (_pilih_session.equals("-")) {
                     realkesiServlet = new GoIndex().getRealkesi(id);
                 } else {
 
                     realkesiServlet = new GoIndex().getRealkesiSession(ModelLocatorSKP.IdUnorUser, id, _pilih_session);
+                }*/
+
+                if (_pilih_session.equals("-")) {
+                    tukesiServlet = new GoIndex().getDBqueryTupoksiRevisiTarget(idTupoksiR, _pilih_session, NipPns);
+                } else {
+                    tukesiServlet = new GoIndex().getDBqueryTupoksiRevisiTargetSesion(idTupoksiR, _pilih_session, NipPns);
                 }
+                
+                 List<RealisasiIsi4faktorTupoksi> realkesiServlet = new ArrayList<RealisasiIsi4faktorTupoksi>();
+                if (_pilih_session.equals("-")) {
+                    realkesiServlet = new GoIndex().getRealkesiRevisi(id);
+                } else {
+
+                    realkesiServlet = new GoIndex().getRealkesiSessionRevisi(ModelLocatorSKP.IdUnorUser, id, _pilih_session);
+                }
+
                 //StringBuffer Keterangan = new StringBuffer();
+                tukesiServlet2 = realkesiServlet;
+
+                //StringBuffer Keterangan = new StringBuffer();
+                 int i = 0;
+                String awal = "1";
+                String id4faktor = "-";
+
+                for (RealisasiIsi4faktorTupoksi tukesiDomain : realkesiServlet) {
+                    if (awal.equals("1")) {
+                        awal = "2";
+                        id4faktor = tukesiDomain.getId_isi4faktor();
+                    }
+                    if (id4faktor.equals(tukesiDomain.getId_isi4faktor())) {
+
+
+                        if (i > 0) {
+                            int testnum = tukesiDomain.getjns_perubahani().length();
+                            tukesiServlet2.get(i - 1).setvar_perubahan1("x");
+                            tukesiServlet2.get(i - 1).setvar_perubahan2("x");
+                            tukesiServlet2.get(i - 1).setvar_perubahan3("x");
+                            tukesiServlet2.get(i - 1).setvar_perubahan4("x");
+
+
+                            String t1 = tukesiServlet2.get(i - 1).getvar_perubahan1();
+                            String t2 = tukesiServlet2.get(i - 1).getvar_perubahan2();
+                            String t3 = tukesiServlet2.get(i - 1).getvar_perubahan3();
+                            String t4 = tukesiServlet2.get(i - 1).getvar_perubahan4();
+                            for (int k = 0; k < tukesiDomain.getjns_perubahani().length(); k++) {
+                                String test = tukesiDomain.getjns_perubahani().substring(k, k + 1);
+
+
+                                if (tukesiDomain.getjns_perubahani().substring(k, k + 1).equals("u")) {
+                                    if (k == 0) {
+                                        tukesiServlet2.get(i - 1).setvar_perubahan1("u");
+                                        tukesiServlet2.get(i - 1).getvar_perubahan1();
+                                    } else if (k == 1) {
+                                        tukesiServlet2.get(i - 1).setvar_perubahan2("u");
+                                        tukesiServlet2.get(i - 1).getvar_perubahan2();
+                                    } else if (k == 2) {
+                                        tukesiServlet2.get(i - 1).setvar_perubahan3("u");
+                                        tukesiServlet2.get(i - 1).getvar_perubahan3();
+                                    } else if (k == 3) {
+                                        tukesiServlet2.get(i - 1).setvar_perubahan4("u");
+                                        tukesiServlet2.get(i - 1).getvar_perubahan4();
+                                    }
+
+                                    //break;
+                                }
+                            }
+
+
+                        }
+                        i = i + 1;
+                    } else {
+                        id4faktor = tukesiDomain.getId_isi4faktor();
+                        i = i + 1;
+                    }
+                }
+                //tukesiServlet = tukesiServlet2;
+                realkesiServlet= tukesiServlet2 ;
 
                 int nomorHitung = 0;
                 String nomorstr;
 
-                for (TupoksiKeIsi4Faktor tukesiDomain : tukesiServlet) {
+                for (TupoksiRevisiTarget tukesiDomain : tukesiServlet) {
                     nomorHitung = nomorHitung + 1;
                     Map<String, Object> test = new HashMap<String, Object>();
                     String idTupoksi = tukesiDomain.getIdTupoksi();
@@ -1041,6 +1118,7 @@ public class GetPnsServlet extends HttpServlet {
         
          if (_vnipInputan != null) {
           ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
+           ModelLocatorSKP.loginNipPengguna= _vnipInputan;
             
         }
 

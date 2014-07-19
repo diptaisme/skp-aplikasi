@@ -72,6 +72,7 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
         //processRequest(request, response);
 
         String id = request.getParameter("nipnilai2");
+         String idRevisi = request.getParameter("nipnilaiRevisi");
         String idR = request.getParameter("nipnilai2R");
         String idU = request.getParameter("nipnilai2U");
         String idSB = request.getParameter("nipnilai2SB");
@@ -84,8 +85,9 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
 
         String pilihSession = request.getParameter("pilih_session");
         String nipatasanMonitoringCetak = request.getParameter("nipatasanMonitoringCetak");
+        String nipatasanMonitoringLaporan = request.getParameter("nipatasanMonitoringLaporan");
 
-        if ((id != null && !"".equals(id) && !" ".equals(id)) || (nipatasanMonitoringCetak != null) || (idR != null && !"".equals(idR) && !" ".equals(idR)) || (idU != null && !"".equals(idU) && !" ".equals(idU)) || (idSB != null && !"".equals(idSB) && !" ".equals(idSB)) || (idP != null && !"".equals(idP) && !" ".equals(idP))) {
+        if ((id != null && !"".equals(id) && !" ".equals(id)) || (idRevisi != null) || (nipatasanMonitoringCetak != null) || (idR != null && !"".equals(idR) && !" ".equals(idR)) || (idU != null && !"".equals(idU) && !" ".equals(idU)) || (idSB != null && !"".equals(idSB) && !" ".equals(idSB)) || (idP != null && !"".equals(idP) && !" ".equals(idP))) {
             if (id != null) {
                 idp = id;
                 PnsSkp pnsp = new GoIndex().getPns(idp);
@@ -116,6 +118,55 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
                 // }else
                 // {
                 typeReport = "report_isi4faktor";
+                // }
+
+                request.setAttribute("typeReport", typeReport);
+
+                request.setAttribute("namaPNScetak", namaPNScetak);
+                request.setAttribute("nipPNScetak", nipPNScetak);
+                request.setAttribute("golruPNScetak", golruPNScetak);
+                request.setAttribute("jabatanPNScetak", jabatanPNScetak);
+                request.setAttribute("unkerPNScetak", unkerPNScetak);
+
+                request.setAttribute("unorAtasan", unorAtasan);
+                request.setAttribute("UnorPnsid", UnorPnsid);
+                request.setAttribute("InstansiPns", InstansiPns);
+                request.setAttribute("NipPns", NipPns);
+                request.setAttribute("_pilih_session", pilihSession);
+                request.setAttribute("tglCetak", tglCetak);
+
+                RequestDispatcher dis = getServletContext().getRequestDispatcher("/ReportIsi4FaktorServlet?etst=test");
+                dis.forward(request, response);
+            } else if (idRevisi != null) {
+                idp = idRevisi;
+                PnsSkp pnsp = new GoIndex().getPns(idp);
+                request.setAttribute("pnsp", pnsp);
+
+                HttpSession session = request.getSession();
+                cetak = "t";
+                session.setAttribute("CeTaK", cetak);
+
+                PnsSkp cetakPns = new GoIndex().getPns(idp);
+
+               
+                //***************CETAK PNS
+                String namaPNScetak = cetakPns.getNamaPns();
+                String nipPNScetak = cetakPns.getNipBaru();
+                String golruPNScetak = cetakPns.getNamaGolru();
+                golruPNScetak = cetakPns.getNamaGolru() + " / " + cetakPns.getPangkat();
+                String jabatanPNScetak = cetakPns.getNamaJabatan();
+                String unkerPNScetak = cetakPns.getNamaUnor();
+
+                String unorAtasan = cetakPns.getDiAtasanId();
+                String UnorPnsid = cetakPns.getUnorId();
+                String InstansiPns = cetakPns.getInstansiId();
+                String NipPns = cetakPns.getNipBaru();
+                String typeReport;
+                // if (){
+                // typeReport ="report_isi4faktor";
+                // }else
+                // {
+                typeReport = "report_isi4faktorRevisi";
                 // }
 
                 request.setAttribute("typeReport", typeReport);

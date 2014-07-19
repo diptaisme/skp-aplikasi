@@ -203,7 +203,7 @@
         
         <div id="headermetting" > 
             <div id='sol'>
-                <td  width="200" >  <img src="images/meeting 01.png" width="200" height="100"/>    </td>
+                <td  width="500" >  <img src="images/cetak.jpg" width="160" height="105"/>    </td>
             </div>
         </div>
         <div id="slideText">

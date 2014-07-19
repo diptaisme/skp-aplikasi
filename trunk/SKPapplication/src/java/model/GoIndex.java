@@ -15,6 +15,7 @@ import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
 import javax.imageio.ImageIO;
 import servlets.ModelLocatorSKP;
 
+
 /**
  *
  * @author diptaisme
@@ -50,9 +51,69 @@ public class GoIndex {
         }
         return ipns;
     }
+public List<RealisasiIsi4faktorTupoksi> getRealkesiRevisi(String snippns) {
+        //KONEKSi
+        DBConnection dbConn = DBConnection.getInstance();
+
+        //DOMAIN
+        List<RealisasiIsi4faktorTupoksi> Realkesi = new ArrayList<RealisasiIsi4faktorTupoksi>();
+
+        //DAO
+        DBqueryRealisasiIsi4faktorTupoksi dbQueryrealkesi = new DBqueryRealisasiIsi4faktorTupoksi(dbConn.getConnection());
+
+
+        if (snippns == null) {
+            snippns = "0";
+        }
+
+        String _snippns = snippns;
+
+
+
+        try {
+            if (!_snippns.equals("0")) {
+                Realkesi = dbQueryrealkesi.getDBqueryRealisasiIsi4faktorTupoksiReviai(_snippns);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return Realkesi;
+    }
+public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPns, String snippns, String _pilih_session) {
+        //KONEKSi
+        DBConnection dbConn = DBConnection.getInstance();
+
+        //DOMAIN
+        List<RealisasiIsi4faktorTupoksi> Realkesi = new ArrayList<RealisasiIsi4faktorTupoksi>();
+
+        //DAO
+        DBqueryRealisasiIsi4faktorTupoksi dbQueryrealkesi = new DBqueryRealisasiIsi4faktorTupoksi(dbConn.getConnection());
+
+
+        if (snippns == null) {
+            snippns = "0";
+        }
+
+        String _snippns = snippns;
+
+
+
+        try {
+            if (!_snippns.equals("0")) {
+                Realkesi = dbQueryrealkesi.getDBqueryRealisasiIsi4faktorTupoksiSessionRevisi(unorIdPns, _snippns, _pilih_session);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return Realkesi;
+    }
 
     public String getInsertUnor(String idTambahan) throws Exception {
-        String idpath=idTambahan;
+        String idpath = idTambahan;
         String berhasil = "Data Berhasil di Update";
         bacaexcel1 bacaExcel1 = new bacaexcel1();
         bacaExcel1.main2(idpath);
@@ -64,7 +125,19 @@ public class GoIndex {
 
         return berhasil;
     }
-
+    public void getUpdateLogUnor(String nip_baru,String unor_lama,String unor_baru)
+    {
+        DBConnection dbConn = DBConnection.getInstance();
+        DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
+        try { 
+            //getDBqueryinsertrw_unor
+            dBqueryPNS.getDBqueryinsertrw_unor(nip_baru, unor_lama, unor_baru);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
     public void getUpdateUnorPns(String nipbaru, String AtasanBaru, String UnorBaru, String NamaUnor, String NamaJabatanBaru) {
         DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
@@ -134,11 +207,24 @@ public class GoIndex {
         }
         return ipns;
     }
-
+    public List<loginweb> getKewengan(String sid_pns)
+    {
+        List<loginweb> kewenagan = new ArrayList<loginweb>();
+        DBConnection dbConn = DBConnection.getInstance();
+        DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
+        try {
+                kewenagan = dBqueryPNS.getlistUser(sid_pns);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return kewenagan;
+    }
     public PnsSkp getPns(String id) {
         DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
-        ipns=null;
+        ipns = null;
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
 
         if (id == null) {
@@ -182,6 +268,108 @@ public class GoIndex {
         return unorKeTupoksi;
     }
 
+    public List<Revisi4FaktorTarget> getDBqueryRevsi4FaktorTargetSesion(String sId_Tupoksi, String snip_pns, String session) {
+        DBConnection dbConn = DBConnection.getInstance();
+        List<Revisi4FaktorTarget> revisi4FaktorTargets = new ArrayList<Revisi4FaktorTarget>();
+        DBqueryRevsi4FaktorTarget dBqueryRevsi4FaktorTarget = new DBqueryRevsi4FaktorTarget(dbConn.getConnection());
+
+        if (sId_Tupoksi == null) {
+            sId_Tupoksi = "0";
+        }
+        String _sId_Tupoksi = sId_Tupoksi;
+
+        try {
+            if (!sId_Tupoksi.equals("0")) {
+                revisi4FaktorTargets = dBqueryRevsi4FaktorTarget.getDBqueryRevsi4FaktorTargetSesion(sId_Tupoksi, snip_pns, session);
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return revisi4FaktorTargets;
+    }
+
+    public List<TupoksiRevisiTarget> getDBqueryTupoksiRevisiTargetSesion(String sId_Tupoksi, String session, String snip_pns) {
+        DBConnection dbConn = DBConnection.getInstance();
+        List<TupoksiRevisiTarget> revisi4FaktorTargets = new ArrayList<TupoksiRevisiTarget>();
+        DBqueryRevsi4FaktorTarget dBqueryRevsi4FaktorTarget = new DBqueryRevsi4FaktorTarget(dbConn.getConnection());
+
+        if (sId_Tupoksi == null) {
+            sId_Tupoksi = "0";
+        }
+        String _sId_Tupoksi = sId_Tupoksi;
+
+        try {
+            if (!sId_Tupoksi.equals("0")) {
+                revisi4FaktorTargets = dBqueryRevsi4FaktorTarget.getDBqueryRevsi4FaktorTargetFaktor2Session(sId_Tupoksi, session, snip_pns);
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return revisi4FaktorTargets;
+    }
+
+    public List<TupoksiRevisiTarget> getDBqueryTupoksiRevisiTarget(String sId_Tupoksi, String session, String snip_pns) {
+        DBConnection dbConn = DBConnection.getInstance();
+        List<TupoksiRevisiTarget> revisi4FaktorTargets = new ArrayList<TupoksiRevisiTarget>();
+        DBqueryRevsi4FaktorTarget dBqueryRevsi4FaktorTarget = new DBqueryRevsi4FaktorTarget(dbConn.getConnection());
+
+        if (sId_Tupoksi == null) {
+            sId_Tupoksi = "0";
+        }
+        String _sId_Tupoksi = sId_Tupoksi;
+
+        try {
+            if (!sId_Tupoksi.equals("0")) {
+                revisi4FaktorTargets = dBqueryRevsi4FaktorTarget.getDBqueryRevsi4FaktorTargetFaktor2(sId_Tupoksi, session, snip_pns);
+
+            } else {
+                revisi4FaktorTargets = dBqueryRevsi4FaktorTarget.getDBqueryRevsi4FaktorTargetFaktor2(sId_Tupoksi, session, snip_pns);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return revisi4FaktorTargets;
+    }
+    public void getubahUser(String username,String password,String nip_baru)
+    {
+        DBConnection dbConn = DBConnection.getInstance();
+        //  isi4faktor Isi4faktor = new isi4faktor();
+        DBqueryLogin dBqueryLogin = new DBqueryLogin(dbConn.getConnection());
+        try {
+            
+                dBqueryLogin.ubahUser(username,password,nip_baru);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        
+    }
+    public void gettambahkeweanagan(String username,String password,String kewenangan,String nip_baru)
+    {
+        DBConnection dbConn = DBConnection.getInstance();
+        //  isi4faktor Isi4faktor = new isi4faktor();
+        DBqueryLogin dBqueryLogin = new DBqueryLogin(dbConn.getConnection());
+        try {
+            
+                dBqueryLogin.TambahKewenangan(username,password,kewenangan,nip_baru);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        
+    }
     public String getdeleteUser(String idTambahan) {
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
@@ -205,9 +393,24 @@ public class GoIndex {
         }
         return berhasil;
     }
+    public String getdeletekewenagan(String nip_baru,String kewenangan)
+    {
+        String pesan = null;
+        DBConnection dbConn = DBConnection.getInstance();
+        //  isi4faktor Isi4faktor = new isi4faktor();
+        DBqueryLogin dBqueryLogin = new DBqueryLogin(dbConn.getConnection());
+        try {  
+          pesan = dBqueryLogin.hapuskewenangan(nip_baru, kewenangan);  
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return pesan;    
+    }
 
     public String getInsertPns(String idTambahan) throws Exception {
-        String idpath=idTambahan;
+        String idpath = idTambahan;
         String berhasil = "Data Berhasil di Update";
         bacaexcel2 bacaExcel2 = new bacaexcel2();
         bacaExcel2.main2(idpath);
@@ -769,6 +972,30 @@ public class GoIndex {
         return berhasil;
     }
 
+     public String getHapusRealitaRevisi(String _id_tupoksi, String _nip) {
+        DBConnection dbConn = DBConnection.getInstance();
+        //  isi4faktor Isi4faktor = new isi4faktor();
+
+        String berhasil = "Data Berhasil di Hapus";
+        DBqueryTupoksiKeIsi4Faktor dBqueryTupoksiKeIsi4Faktor = new DBqueryTupoksiKeIsi4Faktor(dbConn.getConnection());
+        if (_id_tupoksi == null) {
+            _id_tupoksi = "0";
+        }
+
+        String t_id_tupoksi = _id_tupoksi;
+
+        try {
+            if (!t_id_tupoksi.equals("0")) {
+                dBqueryTupoksiKeIsi4Faktor.hapusTupoksiKeIsi4FaktorRevisi(t_id_tupoksi, _nip);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return berhasil;
+    }
+    
     public String getInsertTugasTambahan(String maks, String idTambahan, String jenisTambahan, String nama, String TmtPeriode, String nilai1, String nilai2, String idNip, String hitungtambahan, String nilaitambahan, String koef_kreatifitas) {
         DBConnection dbConn = DBConnection.getInstance();
 
@@ -1424,6 +1651,27 @@ public class GoIndex {
         }
         return TKI4F;
     }
+    public TupoksiKeIsi4Faktor getTupoksi4(String inputTupoksi) {
+        DBConnection dbConn = DBConnection.getInstance();
+        TupoksiKeIsi4Faktor TKI4F = new TupoksiKeIsi4Faktor();
+        DBqueryTupoksiKeIsi4Faktor dBquerytupoksi = new DBqueryTupoksiKeIsi4Faktor(dbConn.getConnection());
+
+        if (inputTupoksi == null) {
+            inputTupoksi = "0";
+        }
+        String _inputTupoksi = inputTupoksi;
+
+        try {
+            if (!_inputTupoksi.equals("0")) {
+                TKI4F = dBquerytupoksi.getDBqueryTupoksiKeIsi4FaktorId4(_inputTupoksi);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return TKI4F;
+    }
 
     public RealisasiIsi4faktorTupoksi getRealkesiid(String sidnippns, String sidtupoksi) {
         DBConnection dbConn = DBConnection.getInstance();
@@ -1475,6 +1723,47 @@ public class GoIndex {
             if (!_idTupoksi.equals("0")) {
                 // dBqueryUpdateTupoksi.updateTupoksi(_iNip_id,_idTupoksi,_ikuantitas4,_ikualitas4,_iWaktu4,_iBiaya, _pilih, _waktuL,_angkaKreditr);
                 dBqueryUpdateTupoksi.updateTupoksi(_iNip_id, _idTupoksi, _ikuantitas4, _ikualitas4, _iWaktu4, _iBiaya, _pilih, _waktuL, _angkaKreditr, s_pilih_session, _getidUnor4jspSesiion4);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return berhasil;
+    }
+
+    public String getsimpanIsiEmpatFaktorRevisi(String iNip_id, String idTupoksi, String idisi4faktor, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String pilih, String waktuL, String _angkaKredit, String _pilih_session, String _getidUnor4jspSesiion) throws SQLException {
+        DBConnection dbConn = DBConnection.getInstance();
+        //  isi4faktor Isi4faktor = new isi4faktor();
+        DBqueryRevsi4FaktorTarget dBqueryRevsi4FaktorTarget = new DBqueryRevsi4FaktorTarget(dbConn.getConnection());
+        String berhasil = "Data Berhasil di Update";
+
+        if (idTupoksi == null) {
+            idTupoksi = "0";
+        }
+
+        String maksid = dBqueryRevsi4FaktorTarget.makRevisi4faktorId();
+        String maksrevisi = dBqueryRevsi4FaktorTarget.makRevisi4faktorRevisi(idisi4faktor);
+        String _iNip_id = iNip_id;
+        String _idTupoksi = idTupoksi;
+        String _ikuantitas4 = ikuantitas4;
+        String _ikualitas4 = ikualitas4;
+        String _iWaktu4 = iWaktu4;
+        String _iBiaya = iBiaya;
+        String _pilih = pilih;
+        String _waktuL = waktuL;
+        String _angkaKreditr = _angkaKredit;
+        String _getidUnor4jspSesiion4 = _getidUnor4jspSesiion;
+
+        String s_pilih_session = _pilih_session;
+        try {
+            if (!_idTupoksi.equals("0")) {
+                // dBqueryUpdateTupoksi.updateTupoksi(_iNip_id,_idTupoksi,_ikuantitas4,_ikualitas4,_iWaktu4,_iBiaya, _pilih, _waktuL,_angkaKreditr);
+                dBqueryRevsi4FaktorTarget.insertRevisi4faktorRevisi(maksid,maksrevisi, idisi4faktor, _iNip_id, _getidUnor4jspSesiion4,_idTupoksi, ikuantitas4, ikualitas4, iWaktu4, iBiaya,_angkaKreditr, _pilih, _waktuL,s_pilih_session);
+
+
+                //   insertRevisi4faktorRevisi(String maksId, String maksrevisi, String idisi4faktor, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String ipilih, String iwaktuL) throws SQLException {
+
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1908,7 +2197,11 @@ public class GoIndex {
         return berhasil;
 
     }
-
+    public String getRiwayatUpdateUser(String nama)
+    {
+        return null;
+        
+    }
     public RiwayatAtasanBawahan getSimpanRiwayatAtasan_Bawahan(String s_idAtasani, String s_instansiIdAtasan, String s_UnorIdatasan, String s_instansiIdpnsBawahan, String s_instansiIdunorbawahan) {
         DBConnection dbConn = DBConnection.getInstance();
         RiwayatAtasanBawahan ipns = new RiwayatAtasanBawahan();
@@ -2832,6 +3125,152 @@ public class GoIndex {
         }
         return pnsBawahan;
     }
+    
+     public List<unorskp> getDBqueryUnorIdEselon(String iunorAtasan) {
+        DBConnection dbConn = DBConnection.getInstance();
+        List<unorskp> eselonids = new ArrayList<unorskp>();
+        DBqueryUnor dBqueryUnor = new DBqueryUnor(dbConn.getConnection());
+        if (iunorAtasan == null && iunorAtasan == null) {
+            iunorAtasan = "0";
+        }
+        String _iunorAtasan = iunorAtasan;
+        try {
+            if (!_iunorAtasan.equals("0")) {
+
+                eselonids =dBqueryUnor.getDBqueryUnorIdEselon(_iunorAtasan);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return eselonids;
+    }
+      public List<PnsSkp> getDBqueryUnorIdRekapitulasi(String iunorAtasan, String thnSession) {
+         DBConnection dbConn = DBConnection.getInstance();
+        List<PnsSkp> pnsBawahan = new ArrayList<PnsSkp>();
+        List<PnsSkp> pnsBawahan2 = new ArrayList<PnsSkp>();
+        List<PnsSkp> pnsBawahan3 = new ArrayList<PnsSkp>();
+        List<PnsSkp> pnsBawahan4 = new ArrayList<PnsSkp>();
+        List<PnsSkp> ismus = new ArrayList<PnsSkp>();
+        String caverNip = null;
+        caverNip = ModelLocatorSKP.Gcavernip;
+        caverNip = "awal";
+        DBqueryPNS dbquerypns = new DBqueryPNS(dbConn.getConnection());
+        if (iunorAtasan == null && iunorAtasan == null) {
+            iunorAtasan = "0";
+        }
+        String _iunorAtasan = iunorAtasan;
+        try {
+            if (!_iunorAtasan.equals("0")) {
+                String akhirPns = null;
+                String akhirAts = null;
+                PnsSkp ipns = null;
+                String oneAsString = null;
+                String strone = "";
+
+                int one = 0;
+                int two = 0;
+                int tree = 0;
+                int four = 0;
+                Object[] obj2 = null;
+                ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
+                ModelLocatorSKP.globalNilaivalTarget=0;
+                ModelLocatorSKP.globalNilainonvalTarget=0;
+                pnsBawahan = dbquerypns.getDBqueryPNSTambahan2(_iunorAtasan);
+                for (PnsSkp ipns2 : pnsBawahan) {
+                    one = 0;
+                    one = 1 + one;
+                    oneAsString = String.valueOf(one);
+
+                    ipns = new PnsSkp();
+                    ipns = ipns2;
+                    ipns.setLevel(oneAsString);
+                    ismus.add(ipns);
+                    akhirPns = ipns.getUnorId();
+                    akhirAts = ipns.getDiAtasanId();
+                    caverNip = ipns.getNipBaru();
+
+                    if (!akhirAts.equals(akhirPns) && ipns.getjnsjbtn_id().equals("1")) {
+                        pnsBawahan2 = dbquerypns.getDBqueryPNSTambahan2(akhirPns);
+                        two = 0;
+                        String twoAsString = "";
+                        for (PnsSkp ipns3 : pnsBawahan2) {
+
+                            ipns = new PnsSkp();
+                            ipns = ipns3;
+                            two = 1 + two;
+                            twoAsString = String.valueOf(one) + String.valueOf(two);
+                            ipns.setLevel(twoAsString);
+                            ismus.add(ipns);
+                            akhirPns = ipns.getUnorId();
+                            akhirAts = ipns.getDiAtasanId();
+                            if (!akhirAts.equals(akhirPns) && ipns.getjnsjbtn_id().equals("1")) {
+                                pnsBawahan3 = dbquerypns.getDBqueryPNSTambahan2(akhirPns);
+                                String treeAsString = "";
+                                tree = 0;
+                                for (PnsSkp ipns4 : pnsBawahan3) {
+                                    ipns = new PnsSkp();
+                                    ipns = ipns4;
+                                    tree = 1 + tree;
+                                    treeAsString = String.valueOf(one) + String.valueOf(two) + String.valueOf(tree);
+                                    ipns.setLevel(treeAsString);
+
+                                    ismus.add(ipns);
+                                    akhirPns = ipns.getUnorId();
+                                    akhirAts = ipns.getDiAtasanId();
+                                    if (!akhirAts.equals(akhirPns) && ipns.getjnsjbtn_id().equals("1")) {
+                                        pnsBawahan4 = dbquerypns.getDBqueryPNSTambahan2(akhirPns);
+                                        four = 0;
+                                        String fourAsString = "";
+                                        for (PnsSkp ipns5 : pnsBawahan4) {
+                                            ipns = new PnsSkp();
+                                            ipns = ipns5;
+                                            four = 1 + four;
+                                            fourAsString = String.valueOf(one) + String.valueOf(two) + String.valueOf(tree) + String.valueOf(four);
+                                            ipns.setLevel(fourAsString);
+
+                                            ismus.add(ipns);
+                                            akhirPns = ipns.getUnorId();
+                                            akhirAts = ipns.getDiAtasanId();
+                                            caverNip = ipns.getNipBaru();
+                                            ModelLocatorSKP.Gcavernip = caverNip;
+
+                                            ModelLocatorSKP.arraypGcavernip.add(caverNip);
+                                        }
+
+                                    }
+                                    caverNip = ipns.getNipBaru();
+                                    ModelLocatorSKP.Gcavernip = caverNip;
+                                    ModelLocatorSKP.arraypGcavernip.add(caverNip);
+                                }
+                            }
+                            caverNip = ipns.getNipBaru();
+                            ModelLocatorSKP.Gcavernip = caverNip;
+
+                            ModelLocatorSKP.arraypGcavernip.add(caverNip);
+                        }
+
+                    } else {
+                    }
+
+
+                    //  ismus.get(0).
+                    caverNip = ipns.getNipBaru();
+                    ModelLocatorSKP.Gcavernip = caverNip;
+
+                    ModelLocatorSKP.arraypGcavernip.add(caverNip);
+                }
+
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return ismus;
+    }
 
     public List<PnsSkp> getTugasTambahanBawahanList2(String iunorAtasan) {
         DBConnection dbConn = DBConnection.getInstance();
@@ -2989,8 +3428,12 @@ public class GoIndex {
         DBConnection dbConn = DBConnection.getInstance();
         List<kelompokJabatan> jabfung = new ArrayList<kelompokJabatan>();
         DBqueryJabatan dBqueryJabatan = new DBqueryJabatan(dbConn.getConnection());
-
-        if (kelompok.equals(null) || kelompok.equals("") || kelompok.equals("null")) {
+        String kelompokt = kelompok;
+        if (kelompokt == null) {
+            kelompok = "0";
+        } else if (kelompokt.length() < 5) {
+            kelompok = "0";
+        } else if (kelompokt.equals("null")) {
             kelompok = "0";
         }
 

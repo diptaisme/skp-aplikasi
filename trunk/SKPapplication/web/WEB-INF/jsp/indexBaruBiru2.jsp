@@ -274,8 +274,8 @@
                             <%-- <a href="GetPnsServlet?action=HitungtupoksiServlet3&txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" id="url" onclick="redirect2()"class="current_page_item" target="_parent" title="Target Sasaran SKI">Target</a> --%>
                             <a href="tupoksiServlet2?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&_idUnorTambah=<c:out value="${pns.getUnorId()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>" id="urltest" onclick="redirect_testt()"><img src="images/tambah.png"/></a>
                         </td>
-                        <td>
-                            <a id="url3test"  onclick="redirect3Test()"><img src="/SKPapplication/images/tambah.png"/></a>
+                        <td>  
+                         <a id="url3test"  onclick="redirect3Test()"><img src="/SKPapplication/images/tambah.png"/></a>
                         </td>
 
                         <td>
