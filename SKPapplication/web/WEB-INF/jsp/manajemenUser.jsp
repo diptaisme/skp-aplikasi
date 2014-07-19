@@ -108,24 +108,18 @@
     </head>
     <body>
         <div style="width: 1200px" >
+            <div id="headerLokal">
+                <%@ include file="SlindronHeader.jsp" %>
+            </div>   
+            <div id="leftside">
+                <%@ include file="navigasiPro.jsp" %>
+            </div> 
 
-
-            <form action="administratorFunctionServlet" method="post">
-                <div id="headerLokal">
-                    <%@ include file="SlindronHeader.jsp" %>
-                </div>   
-                <div id="leftside">
-                    <%@ include file="navigasiPro.jsp" %>
-                </div> 
-
-                <div id="content">
-                    <div id="metw">
-
-
-                        <a href="referensiInstansiServlet?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Kembali</a> 
-
-
-                    </div>
+            <div id="content">
+                <div id="metw">
+                    <a href="referensiInstansiServlet?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Kembali</a> 
+                </div>
+                <form action="administratorFunctionServlet" method="post" id="formSearchByNip">    
                     <table >
                         <tr>
                             <td>
@@ -143,9 +137,9 @@
                                     </tr>
                                     <tr>
                                         <td width="30"><div align="left"><span class="style3">NIP BARU</span></div></td>
-                                        <td><input type="text" name="nipbaru" onkeypress="return alertnipnull(event)" maxlength="18"></input></td>
+                                        <td><input type="text" name="nipbaru" id="nipBaru" value="<c:out value="${nip}"/>" maxlength="18"/></td>
                                         <td>
-                                            <input type="submit" name="param"  value="AMBIL" />
+                                            <input type="button" name="param" value="AMBIL" id="ambilBtn"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -176,79 +170,136 @@
                                     </tr>
                                     <tr>
                                         <td><div align="left"><span class="style3">6</span></div></td>
-                                        
+
                                         <td align="left">
                                             <c:if test="${userkewenagan eq 'ada' }"> 
-                                            <c:out value="${userkewenagan}"/>
+                                                <c:out value="${userkewenagan}"/>
                                             </c:if>
                                             <span class="style3">     
                                                 USERNAME 
-                                                </span></td>         
+                                            </span></td>         
                                         <td> 
-                                            
+
                                             <c:choose>
                                                 <c:when test="${userkewenagan == 'ada'}">
-                                                <c:set var="cocok" value="disabled" />
+                                                    <c:set var="cocok" value="disabled" />
                                                 </c:when>
                                                 <c:otherwise>
                                                     <c:set var="cocok1" value="disabled" />
                                                 </c:otherwise>
                                             </c:choose>
-                                            
-                                            <input type="text" name="usernameinputan" ${cocok} value="<c:out value="${namauser}"/>"></input>         
+
+                                            <input type="text" id="username" name="usernameinputan" ${cocok} value="<c:out value="${nipUsername}"/>"/>         
                                         </td> 
-                                                  <td> </td> 
+                                        <td> </td> 
                                     </tr>
                                     <tr>
                                         <td><div align="left"><span class="style3">7</span></div></td>
                                         <td align="left"><span class="style3" >PASSWORD</span></td>
-                                        <td><input type="text" name="passwordinputan" ${cocok}></input></td>
-                                       
+                                        <td><input type="text" name="passwordinputan" ${cocok} /></td>
+
                                     </tr>
                                     <tr>
                                         <td><div align="left"><span class="style3">8</span></div></td>
                                         <td><div align="left"><span class="style3">KEWENANGAN</span></div></td>
                                         <td>
                                             <select name="kewenangan" id="kewenangan" ${cocok}>
-                                                <option value="-">-</option>
-                                                <option value="user">Entry Data Personal</option>
-                                                <option value="operator">operator</option>
-                                                <option value="administrator">Administrator</option>
-                                                <option value="Perwakilan_user">Entry Data tk. Esl II</option>
+                                                <option value="user">Operator Tugas Jabatan</option>
+                                                <option value="operator">Operator SKP Seluruh</option>
+                                                <option value="Perwakilan_user">Operator SKP Personal</option>
+                                                <option value="administrator">Administrator</option>                                                
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <input type="submit" name="param" value="Simpan" ${cocok}/> 
+                                        <td><input type="hidden" name="param" id="param" /> 
+                                            <input type="button" id="simpanBtn" name="param" value="Simpan" ${cocok}/> 
                                         </td>
                                         <td>
-                                            <input type="submit" name="param" value="ubah" ${cocok1}/> 
+                                            <input type="button" id="ubahBtn" name="param" value="ubah" ${cocok1}/> 
                                         </td>
                                         <td>
-                                          
+
                                         </td>
                                     </tr>
                                 </table>
                             </td>
 
                         </tr>
-                              
-                                
+
+
                     </table>
-                                    <table style="margin-top: 20px">
-                                        <tr>
-                                            <td height="20" align="center" > Status Kewenangan</td> 
-                                            <td align="center" width="40">Hapus</td>
-                                        </tr>
-                                        <c:forEach var="listkewenangan" items="${kewenaganuser}">      
-                                            <tr bgcolor="#b9c9fe">
-                                                <td><div align="center"><c:out value="${listkewenangan.kewenangan_login}"/></div></td>
-                                                <td align="center"><a href="administratorFunctionServlet?nip_ubah=<c:out value="${pns.getNipBaru()}"/>&status=masuk&nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>&kewenangan=<c:out value="${listkewenangan.kewenangan_login}"/>"><img src="images/hapus2.png"></img></a></td>
-                                            </tr>
-                                        </c:forEach>
-                                    </table>
-                </div>    
-            </form>
+                </form>
+            </div>    
+
+            <div id="javaValues" style="display: none">
+                <div id="isAda">
+                    <c:if test="${pns != null}"> 
+                        hasAmbil
+                    </c:if>
+                    <c:if test="${pns == null}"> 
+                        noPns
+                    </c:if>    
+                </div>
+            </div>                            
     </body>
 </html>
+<script>
+    $(document).ready(function(){
+    
+        /*$('#formSearchByNip').submit(function (event){
+            var nip = $('#nipBaru').val();
+            if (nip == ""){
+                alert('nip tidak boleh kosong');
+                return false;
+            }
+              var isAda = $('#isAda').html().trim();
+         if (isAda == 'hasAmbil'){
+            if ($('#username').val() == ""){
+                alert('username tidak boleh kosong');
+                return false;
+            }
+         } else {
+             if (nip == ""){
+                alert('nip tidak boleh kosong');
+                return false;
+            }
+         }    
+        }); */
+    
+        
+        $('#ambilBtn').click(function(){
+           // $('#formSearchByNip').append()
+           // $('#formSearchByNip').submit();
+           var nip = $('#nipBaru').val();
+           if (nip == ""){
+                alert('nip tidak boleh kosong');
+           } else {
+                $('#param').val("AMBIL");
+                $('#formSearchByNip').submit(); 
+           }
+           
+        }); 
+        
+         $('#simpanBtn').click(function(){
+           // $('#formSearchByNip').append()
+           // $('#formSearchByNip').submit();
+            if ($('#username').val() == ""){
+                alert('username tidak boleh kosong');
+                //return false;
+            } else {
+                $('#param').val("Simpan");
+                $('#formSearchByNip').submit();
+            }
+           
+        }); 
+        
+        $('#ubahBtn').click(function(){
+           // $('#formSearchByNip').append()
+           // $('#formSearchByNip').submit();
+           $('#param').val("ubah");
+           $('#formSearchByNip').submit();
+        }); 
+    });
+</script>
+
