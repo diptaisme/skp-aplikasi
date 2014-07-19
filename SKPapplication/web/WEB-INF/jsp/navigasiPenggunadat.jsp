@@ -1089,6 +1089,55 @@
 
                             </table>
                         </div>
+<div>&nbsp;</div>
+                        <div>TUGAS TAMBAHAN</div>
+
+
+                        <div class="scroll3" id="hof">
+                            <table >
+                                <tr style="background:#9999ff">
+                                    <th style="font-weight:normal; font-size: 12px" width="31"><div align="center">NO.</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">KODE</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">JENIS TUGAS</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="383"><div align="center">NAMA TUGAS TAMBAHAN</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">TARGET</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">REALISASI</div></th>
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">PENGHITUNGAN </div>  </th>        
+                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">NILAI CAPAIAN SKP</div></th>
+                                </tr>
+
+                                <c:forEach var="tambahans" items="${tugasTambahans}" varStatus ="count">
+                                    <c:choose>
+                                        <c:when test="${count.index % 2 == 0}">
+                                            <tr bgcolor="#7FFFD4">
+                                                <td style="font-weight:normal; font-size: 12px"width="31" align="center">${(count.index)+1}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="center">${tambahans.getIdTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px" width="138" align="left">${tambahans.getJenisTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="383" align="left">${tambahans.getNama()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai1()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai2()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getHitungTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
+                                            </tr>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <tr bgcolor=#ADFF2F">
+                                                <td style="font-weight:normal; font-size: 12px"width="31" align="center">${(count.index)+1}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="center">${tambahans.getIdTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="left">${tambahans.getJenisTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="383" align="left">${tambahans.getNama()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai1()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai2()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getHitungTambahan()}</td>
+                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
+                                            </tr>
+                                        </c:otherwise>
+
+                                    </c:choose>
+                                </c:forEach>
+
+                            </table>
+                        </div>
 
                         <div>
                             <%-- <a href="tupoksiServlet?txtNIPBaruTB=<c:out value="${pns.getNipBaru()}"/>"><img src="images/tambah.png"/>
