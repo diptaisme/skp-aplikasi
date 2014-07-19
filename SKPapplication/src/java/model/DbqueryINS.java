@@ -83,5 +83,22 @@ public class DbqueryINS
         }
         return instansiesByCriteria;
     }
+    public instansiri getDBqueryCariINSNip(String NipBaru) throws SQLException
+    {
+        instansiri instansiobjek = new instansiri();
+       String sql = "SELECT ins.* FROM pnsskp pns "
+                + "inner join instansiri ins on pns.instansi_id = ins.id_instansi"
+                + " WHERE NIP_BARU = '"+NipBaru+"'";
+        PreparedStatement pst = this.conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next())
+        {
+            instansiobjek.setIdInstansi(rs.getString(1));
+            instansiobjek.setNamaInstansi(rs.getString(2));
+            instansiobjek.setCepatKode(rs.getString(3));
+            
+        }
+        return instansiobjek;
+    }
     
 }
