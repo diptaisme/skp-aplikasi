@@ -2514,6 +2514,21 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return unori;
     }
 
+    public instansiri getCariInstansiNip(String NipBaru) {
+        DBConnection dbConn = DBConnection.getInstance();
+        instansiri instansiobjek = null;
+        DbqueryINS dbqueryINS = new DbqueryINS(dbConn.getConnection());
+        try {
+                instansiobjek = dbqueryINS.getDBqueryCariINSNip(NipBaru);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return instansiobjek;
+    }
+    
     public List<instansiri> getCariInstansi(String snamaInstansi) {
         DBConnection dbConn = DBConnection.getInstance();
         List<instansiri> instansies = new ArrayList<instansiri>();
