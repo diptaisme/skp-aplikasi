@@ -26,7 +26,7 @@ import model.PnsSkp;
 import model.TupoksiRevisiTarget;
 import model.unorskp;
 import servlets.ModelLocatorSKP;
-
+import model.instansiri;
 /**
  *
  * @author Sony
@@ -168,9 +168,14 @@ public class NavigasiProfile extends HttpServlet {
             //====================
 
         } else if (nip_Entri_Tupoksi != null) {
+            String nipengguna = ModelLocatorSKP.loginNipPengguna;
             HttpSession session = request.getSession();
             ModelLocatorSKP.navigasiPil = "2";
-
+            instansiri objekinstansi = new GoIndex().getCariInstansiNip(nipengguna);
+            String namaInstansi = objekinstansi.getNamaInstansi();
+            String kodeInstansi = objekinstansi.getIdInstansi();
+            request.setAttribute("namaInstansi", namaInstansi);
+            request.setAttribute("kodeInstansi", kodeInstansi);
             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
             //  request.setAttribute("navigasiPilihanjns", "2");
