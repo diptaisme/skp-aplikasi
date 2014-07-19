@@ -116,7 +116,7 @@ public class RequestServlet extends HttpServlet {
                 out.print("</table>");
                 out.close();
             } else {
-                if (ModelLocatorSKP.levelUser.equals("3") || ModelLocatorSKP.levelUser.equals("2")) {
+                if (!page.equalsIgnoreCase("validasi") && (ModelLocatorSKP.levelUser.equals("3") || ModelLocatorSKP.levelUser.equals("2"))) {
                     page = "navigasiPenggunadat";
                     PnsSkp pns = new GoIndex().getPns(ModelLocatorSKP.loginNipsession);
                     if (pns == null) {
@@ -182,8 +182,9 @@ public class RequestServlet extends HttpServlet {
 
 
                     }
+                 //   page = "/WEB-INF/jsp/" + page + ".jsp";
                 }
-                page = "/WEB-INF/jsp/" + page + ".jsp";
+               page = "/WEB-INF/jsp/" + page + ".jsp";
                 try {
                     RequestDispatcher rd = request.getRequestDispatcher(page);
                     rd.forward(request, response);
