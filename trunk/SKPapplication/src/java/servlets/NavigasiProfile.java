@@ -78,7 +78,7 @@ public class NavigasiProfile extends HttpServlet {
 
         RequestDispatcher dis = null;
         String action = request.getParameter("action");
-
+        
         String nip_Manajemen_Pengguna = request.getParameter("nipManajemenPengguna");
         String nip_Perwakilan = request.getParameter("nipPerwakilan");
         String nip_Pengguna = request.getParameter("nipPengguna");
