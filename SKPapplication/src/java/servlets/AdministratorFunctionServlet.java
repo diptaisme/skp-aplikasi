@@ -121,6 +121,7 @@ public class AdministratorFunctionServlet extends HttpServlet {
 
         if (param.equalsIgnoreCase("AMBIL")) {
             String namauser = null;
+            String nipUsername="";
             String nip = request.getParameter("nipbaru");
             String userkewenagan = null;
             List<loginweb> kewenaganuser = new ArrayList<loginweb>();
@@ -136,6 +137,7 @@ public class AdministratorFunctionServlet extends HttpServlet {
                new GoIndex().getSudahAdaUser(nip);
                loginweb ambiluser = new GoIndex().getSudahAdaUser(nip);
                namauser = ambiluser.getusername_login();
+               //nipUsername = ambiluser.getusername_login();
             }
             
             if(namauser != null && !namauser.equals("null"))
@@ -148,6 +150,13 @@ public class AdministratorFunctionServlet extends HttpServlet {
                namauser = ""; 
                kewenaganuser = null;
             }
+            
+            loginweb hasUser = new GoIndex().getSudahAdaUser(nip);
+            if (hasUser != null){
+                nipUsername = hasUser.getusername_login();
+            }
+            request.setAttribute("nipUsername", nipUsername);
+            request.setAttribute("nip", nip);
             request.setAttribute("pns", pns);
             request.setAttribute("kewenaganuser", kewenaganuser);
             request.setAttribute("userkewenagan", userkewenagan);
@@ -164,7 +173,7 @@ public class AdministratorFunctionServlet extends HttpServlet {
             String passwordbaru = request.getParameter("passwordinputan");
             String kewenangan = request.getParameter("kewenangan");
             String apakah;
-
+            
             if (!"-".equals(kewenangan)) {
                 loginweb getSudahAdaUser = new GoIndex().getSudahAdaUser(nipbaru);
                 if (getSudahAdaUser == null) {
