@@ -32,8 +32,6 @@
      
                 if (document.getElementById('jabatan1').checked) {
                     //return document.getElementById('tombolInstansi').disabled = false;
-
-                    document.getElementById('tombolInstansi').style.visibility='visible';
                     document.getElementById('tombolUnitOrganisasi').style.visibility='visible'; 
                     document.getElementById('kelJab').style.visibility='hidden'; 
                     document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
@@ -132,7 +130,7 @@
 
                 position :  absolute;
                 top : 60px;
-                left : 10px;
+                left : 25px;
                 width : 156px;
                 height : 501px;
             }
