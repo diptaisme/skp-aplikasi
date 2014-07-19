@@ -233,6 +233,8 @@ alert("Data Berhasil diupdate!");
                     <td  ><c:out value="${idtupoksidijsp}" /></td>
                     <input type="hidden"  name="idtupoksidiSesiion" value="${idtupoksidijsp}" />
                     <input type="hidden"  name="_getidUnor4jspSesiion" value="${_getidUnor4jsp}" />
+                     <input type="hidden"  name="getIdIsi4Faktor" value="${getIdIsi4Faktor}" />
+                    
                 </tr> 
                 <tr >
                 

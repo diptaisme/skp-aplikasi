@@ -15,26 +15,27 @@
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
+        <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
 
         <style type="text/css"> 
-            
-             #headerLokal {
-	padding: 0px;
-        width: 1000px;
-       
-	position: relative;
-	height: 80px;
-        left : -50px;
-}
 
- #logoLokal {
-	margin-top:  2px;
-        width: 500px;
-       
-	position: relative;
-	height: 80px;
-        left : 10px;
-}
+            #headerLokal {
+                padding: 0px;
+                width: 1000px;
+
+                position: relative;
+                height: 80px;
+                left : -50px;
+            }
+
+            #logoLokal {
+                margin-top:  2px;
+                width: 500px;
+
+                position: relative;
+                height: 80px;
+                left : 10px;
+            }
             #leftside {
 
                 position :  absolute;
@@ -46,7 +47,7 @@
 
             #content {
                 position :  absolute;
-                top : 86px;
+                top : 120px;
                 left : 200px;
                 width : 1000px;
                 height : 501px;
@@ -59,12 +60,13 @@
                 position: absolute;
                 width: 600px;
                 height: 20px;
-                background-color:#ffcc33
+                background-color:#9999ff
 
             }
 
             #menu3 ul li a:hover {
                 background-color: #CCCCFF;
+                
                 color: darkorange;
                 font-size: medium
 
@@ -80,7 +82,7 @@
                 text-decoration:none;
                 width:100px;
                 margin-top: -9px;
-                 padding-left:20px;
+                padding-left:20px;
                 padding-top: 0px;
                 height:auto;
                 border-radius: 0px 0px 10px 10px;
@@ -92,43 +94,43 @@
     </head>
     <body>
         <div id="wrapper">
- 
 
-          
+
+
 
 
             <form name="form1" method="post" action="tupoksiServlet2">
                 <div id="headerLokal">
                     <%@ include file="SlindronHeader.jsp" %>
                 </div>   
-                
+
                 <div id="leftside">
                     <%@ include file="navigasiPro.jsp" %>
                 </div>   
-                
- 
+
+
                 <div id="content">
 
                     <div style="padding-top:40px">
                         <table width="600" border="0" >
                             <tr>
                                 <td width="200" rowspan="4"><p align="center" class="style1">&nbsp;</p>      </td>
-                                <th colspan="3" style="background:darkorange"><div align="center">DAFTAR TUPOKSI</div></th>
+                                <th colspan="3" style="background:#9999ff"><div align="center">DAFTAR TUPOKSI</div></th>
                             </tr>
                             <tr>
-                                <td  style="background:darkorange" height="23">INSTANSI</td>
+                                <td  style="background:#9999ff" height="23">INSTANSI</td>
                                 <td>:</td>
-                                <td style="background-color: #ffcc33"><c:out value="${ins.getNamaInstansi()}" /></td>
+                                <td style="background-color: #9999ff"><c:out value="${ins.getNamaInstansi()}" /></td>
                             </tr>
                             <tr>
-                                <td style="background:darkorange" width="92" height="23">JABATAN</td>
+                                <td style="background:#9999ff" width="92" height="23">JABATAN</td>
                                 <td>:</td>
-                                <td style="background-color: #ffcc33" width="712"><c:out value="${pns.getNamaJabatan()}" /></td>
+                                <td style="background-color: #9999ff" width="712"><c:out value="${pns.getNamaJabatan()}" /></td>
                             </tr>
                             <tr>
-                                <td style="background:darkorange">UNIT KERJA</td>
+                                <td style="background:#9999ff">UNIT KERJA</td>
                                 <td>:</td>
-                                <td style="background-color: #ffcc33"><c:out value="${pns.getNamaUnor()}" /></td>
+                                <td style="background-color: #9999ff"><c:out value="${pns.getNamaUnor()}" /></td>
                             </tr>
 
 
@@ -166,9 +168,9 @@
                             <thead>
 
                                 <tr>
-                                    <th style="background:darkorange"> NO </th>
-                                    <th style="background:darkorange">>KODE </th>
-                                    <th style="background:darkorange">>NAMA TUGAS DAN FUNGSI</th>
+                                    <th style="background:#9999ff"> NO </th>
+                                    <th style="background:#9999ff">KODE </th>
+                                    <th style="background: #9999ff">KEGIATAN TUGAS JABATAN</th>
                                     <c:if test="${jabatan == '2'}">
                                         <th style="background:darkorange">>ANGKA KREDIT</th>
                                     </c:if>
@@ -191,8 +193,8 @@
                     </div>
 
                     <div id="menu3">
-                        <ul>
-                            <li style="border-collapse: collapse"><a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" target="_parent">KEMBALI</a></li>
+                        <ul >
+                            <li style="border-collapse: collapse" ><a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" target="_parent">KEMBALI</a></li>
                             <%--  <li><a href="RequestServlet?page=indexloginBaru" target="_parent" title="Keluar">Keluar</a></li> --%>
                         </ul>
 

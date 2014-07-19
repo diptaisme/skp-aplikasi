@@ -925,7 +925,7 @@ public class DbqueryTugasTambahan {
         int kurang_thn;
 
 
-        String sql = "SELECT SUM(nilai_capaian_skp) as s_sum_skp FROM realisasi r,tupoksi  WHERE r.nip_pns = '" + nippns + "' and r.session ='" + _pilih_session + "'  and r.id_unor='" + unorid + "' ";
+        String sql = "SELECT SUM(nilai_capaian_skp) as s_sum_skp FROM realisasi r  WHERE r.nip_pns = '" + nippns + "' and r.session ='" + _pilih_session + "'  and r.id_unor='" + unorid + "' ";
         PreparedStatement pst = this.conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         if (rs.next()) {
@@ -935,7 +935,7 @@ public class DbqueryTugasTambahan {
                 s_sum_skp = Integer.toString(kurang_thn);
                 
                 _pilih_session = s_sum_skp;
-                String sql2 = "SELECT SUM(nilai_capaian_skp) as s_sum_skp FROM realisasi r,tupoksi  WHERE r.nip_pns = '" + nippns + "' and r.session ='" + _pilih_session + "'  and r.id_unor='" + unorid + "' ";
+                String sql2 = "SELECT SUM(nilai_capaian_skp) as s_sum_skp FROM realisasi r  WHERE r.nip_pns = '" + nippns + "' and r.session ='" + _pilih_session + "'  and r.id_unor='" + unorid + "' ";
                 PreparedStatement pst2 = this.conn.prepareStatement(sql2);
                 ResultSet rs2 = pst2.executeQuery();
                 if (rs2.next()) {

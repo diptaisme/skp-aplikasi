@@ -98,6 +98,7 @@ public class IsiPerilakuServlet extends HttpServlet {
         String nipAtasanMonitoring2 = request.getParameter("nipatasanMonitoring2");
         String pilih_session_monit = request.getParameter("pilih_session_monit");
         String nipatasanMonitoringCetak = request.getParameter("nipatasanMonitoringCetak");
+        String nipatasanMonitoringView = request.getParameter("nipatasanMonitoringView");
 
 
         /* if (action != null && action.equalsIgnoreCase("CariBawahan")){
@@ -266,7 +267,50 @@ public class IsiPerilakuServlet extends HttpServlet {
 
             //RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/monitoring.jsp");
             // dis.forward(request, response);
-        } else if (action == null && nipatasanMonitoringCetak != null) {
+        } else if (nipatasanMonitoringView!=null){
+            ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
+            String idNipTambahan = nipatasanMonitoringView;
+            PnsSkp pns = new GoIndex().getPns(idNipTambahan);
+            String iUnorTambahan = pns.getUnorId();
+           
+            List<PnsSkp> pnsList = new GoIndex().getTugasTambahanBawahanListALL(iUnorTambahan);
+            PnsSkp ipns = null;
+            List<PnsSkp> pnsBawahan = new ArrayList<PnsSkp>();
+            List<PnsSkp> pnsBawahan2 = new ArrayList<PnsSkp>();
+            List<PnsSkp> pnsBawahan3 = new ArrayList<PnsSkp>();
+            List<PnsSkp> pnsBawahan4 = new ArrayList<PnsSkp>();
+            for (PnsSkp ipns3 : pnsList) {
+                ipns = new PnsSkp();
+                if (ipns3.getNipBaru().equals("198612262009121001")){
+                    String testnip = ipns3.getNipBaru();
+                }
+                if (ipns3.getLevel().length() == 1) {
+                    pnsBawahan.add(ipns3);
+                } else if (ipns3.getLevel().length() == 2) {
+                    pnsBawahan2.add(ipns3);
+                } else if (ipns3.getLevel().length() == 3) {
+                    pnsBawahan3.add(ipns3);
+                } else if (ipns3.getLevel().length() == 4) {
+                    pnsBawahan4.add(ipns3);
+                }
+            }
+            request.setAttribute("pnsBawahan", pnsBawahan);
+            request.setAttribute("pnsBawahan2", pnsBawahan2);
+            request.setAttribute("pnsBawahan3", pnsBawahan3);
+            request.setAttribute("pnsBawahan4", pnsBawahan4);
+
+            request.setAttribute("pnsList", pnsList);
+            request.setAttribute("pns", pns);
+
+            request.setAttribute("nipAtasan", idNipTambahan);
+            ModelLocatorSKP.navigasiPil = "46";
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+            dis.forward(request, response);
+
+        }else if (action == null && nipatasanMonitoringCetak != null) {
             ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
             String idNipTambahan = nipatasanMonitoringCetak;
             PnsSkp pns = new GoIndex().getPns(idNipTambahan);

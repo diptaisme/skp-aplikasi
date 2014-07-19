@@ -183,7 +183,7 @@
             }
             #place-nav #nav li:hover ul li a:hover, #place-nav #nav li ul li a:hover {
                 text-decoration:none;
-                color:#FF9900;
+                color:#000000;
                 font-size:20px;
 
 
@@ -200,37 +200,37 @@
 <p hidden="true">     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.NipPnsSession}" /> </p>
 <p hidden="true">     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP <c:out value="${sessionScope.levelPemakaian}" /> </p>
 
-<c:set var="tingkat" value="${sessionScope.levelPemakaian}" />               
+<c:set var="tingkat" value="${sessionScope.levelPemakaian}" />   <div>
 <div id="leftside">     
     <div id="place-nav" >
         <ul id="nav">
-            <li><a href="#"><div style="font-size: 20px;color:#ff9900">Navigasi</div></a>
+            <li><a href="#"><div style="font-size: 20px">...</div></a>
 
                 <ul>
                    <c:if test="${tingkat=='3'}">
                                 <li><a href="NavigasiProfile?nipManajemenPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Manajemen Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Perwakilan Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Tupoksi</a></li>
+                                <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data tk. Esl II</a></li>
+                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data Personal</a></li>
+                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Kegiatan Tugas Jabatan</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
                                  <li><a href="NavigasiProfile?salindata=<c:out value="${sessionScope.NipPnsSession}"/>">Salin Data </a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">Keluar</a></li>    
                             </c:if>
                             <c:if test="${tingkat=='2'}">
-                                <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Perwakilan Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Tupoksi</a></li>
+                                <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data tk. Esl II</a></li>
+                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data Personal</a></li>
+                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Kegiatan Tugas Jabatan</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">Keluar</a></li>
                             </c:if>
                             <c:if test="${tingkat=='1'}">
-                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Tupoksi</a></li>
+                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data Personal</a></li>
+                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Kegiatan Tugas Jabatan</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">Keluar</a></li>
                             </c:if> 
                             <c:if test="${tingkat=='0'}">
-                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
+                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data Personal</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">Keluar</a></li>
                             </c:if>
@@ -241,5 +241,6 @@
         </ul>
     </div> 
 </div>
+
 </body>
 </html>

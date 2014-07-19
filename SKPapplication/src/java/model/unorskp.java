@@ -18,6 +18,8 @@ public class unorskp
     private String nama_jabatan;
     private String pemimpin_pns_id;
     private String lev;
+     private String jum1;
+      private String jum2;
     
     //FIELD = IDUNOR
     public String getIdUnor()
@@ -101,6 +103,21 @@ public class unorskp
 
     public void setLevel(String lev) {
         this.lev = lev;
+    }
+    
+     public String getjum1() {
+        return jum1;
+    }
+
+    public void setjum1(String jum1) {
+        this.jum1 = jum1;
+    }
+    public String getjum2() {
+        return jum2;
+    }
+
+    public void setjum2(String jum2) {
+        this.jum2 = jum2;
     }
        
 }

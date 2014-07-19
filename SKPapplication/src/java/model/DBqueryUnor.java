@@ -78,6 +78,27 @@ public class DBqueryUnor {
         return unoriesByCriteria;
     }
 
+    public List<unorskp> getDBqueryUnorIdEselon(String eselon_id) throws SQLException {
+        List<unorskp> unoriesByCriteria = new ArrayList<unorskp>();
+        String _eselon_id = eselon_id.substring(0, 1);
+        String sql = "SELECT idunor, instansi_id, diatasan_id, eselon_id, nama_unor, nama_jabatan, pemimpin_pns_id FROM unorskp WHERE substring(eselon_id,1,1) ='" + _eselon_id + "' order by eselon_id";
+        PreparedStatement pst = this.conn.prepareStatement(sql);
+        unorskp iunor = null;
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            unorskp _iunor = new unorskp();
+            _iunor.setIdUnor(rs.getString(1));
+            _iunor.setInstansiId(rs.getString(2));
+            _iunor.setDiAtasanId(rs.getString(3));
+            _iunor.setEselonId(rs.getString(4));
+            _iunor.setNamaUnor(rs.getString(5));
+            _iunor.setNamaJabatan(rs.getString(6));
+            _iunor.setPemimpinPnsId(rs.getString(7));
+            unoriesByCriteria.add(_iunor);
+        }
+        return unoriesByCriteria;
+    }
+
     public void getDBqueryUnorAtasanKosong(String NipPns, String unorAtasan) throws SQLException {
 
         // String sql = "SELECT idunor, instansi_id, diatasan_id, eselon_id, nama_unor, nama_jabatan, pemimpin_pns_id FROM unorskp WHERE idunor  ='"+sidUnor+"'";

@@ -76,7 +76,7 @@
                             <tr>
                                 <td><div align="center">${(count.index)+1}</div></td>
                                 <td>${listatasans.getNipBaru()}</td>
-                                <td><a href="SimpanatasanBawahanRiwayatServlet?getIdPns=<c:out value="${listatasans.getNipBaru()}"/>&getinstansiId=<c:out value="${listatasans.getInstansiId()}"/>&getUnorId=<c:out value="${listatasans.getUnorId()}"/>"  id="url" onclick="redirect2()">${listatasans.getNamaPns()}</a></td>
+                                <td><a href="SimpanatasanBawahanRiwayatServlet?instansiIdunorbawahan=<c:out value="${instansiIdpns}"/>&unoratasanlama=<c:out value="${unoratasanlama}"/>&nipatasanlama=<c:out value="${nipatasanlama}"/>&nip_baruuser=<c:out value="${nip_baruuser}"/>&instansiIdpns=<c:out value="${instansiIdpns}"/>&getIdPns=<c:out value="${listatasans.getNipBaru()}"/>&getinstansiId=<c:out value="${listatasans.getInstansiId()}"/>&getUnorId=<c:out value="${listatasans.getUnorId()}"/>"  id="url" onclick="redirect2()">${listatasans.getNamaPns()}</a></td>
                             </tr>
                         </c:forEach>
                     </table>

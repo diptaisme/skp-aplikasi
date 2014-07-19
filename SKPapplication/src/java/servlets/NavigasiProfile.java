@@ -23,6 +23,7 @@ import model.GoIndex;
 import model.TupoksiKeIsi4Faktor;
 import model.loginweb;
 import model.PnsSkp;
+import model.TupoksiRevisiTarget;
 import model.unorskp;
 import servlets.ModelLocatorSKP;
 
@@ -71,6 +72,7 @@ public class NavigasiProfile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //   processRequest(request, response);
+
         PrintWriter out = response.getWriter();
 
 
@@ -83,12 +85,18 @@ public class NavigasiProfile extends HttpServlet {
         String nip_Entri_Tupoksi = request.getParameter("nipentriTupoksi");
         String nip_Monitoring = request.getParameter("nipmonitoring");
         String nip_salin_data = request.getParameter("salindata");
+        String refisidata = request.getParameter("refisidata");
+        String rekapdata = request.getParameter("rekapdata");
+
         String nipAtasanMonitoring = nip_Monitoring;
 
         request.setAttribute("namaPNScetak", nip_Manajemen_Pengguna);
         request.setAttribute("nipPNScetak", nip_Perwakilan);
         request.setAttribute("golruPNScetak", nip_Pengguna);
         request.setAttribute("jabatanPNScetak", nip_Entri_Tupoksi);
+        if (ModelLocatorSKP.loginNipsession != null) {
+            ModelLocatorSKP.loginNipPengguna = ModelLocatorSKP.loginNipsession;
+        }
 
         if (nip_Manajemen_Pengguna != null) {
             ModelLocatorSKP.navigasiPil = "3";
@@ -124,7 +132,7 @@ public class NavigasiProfile extends HttpServlet {
             dis.forward(request, response);
 
         } else if (nip_Pengguna != null) {
-
+            
             ModelLocatorSKP.navigasiPil = "1";
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
 
@@ -165,10 +173,10 @@ public class NavigasiProfile extends HttpServlet {
 
             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
-           //  request.setAttribute("navigasiPilihanjns", "2");
-          //  request.setAttribute("navigasiPilihan", '2');
-            
-            
+            //  request.setAttribute("navigasiPilihanjns", "2");
+            //  request.setAttribute("navigasiPilihan", '2');
+
+
             dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
             dis.forward(request, response);
         } else if (nip_Monitoring != null) {
@@ -222,6 +230,55 @@ public class NavigasiProfile extends HttpServlet {
             dis = request.getRequestDispatcher("/WEB-INF/jsp/ImportData.jsp");
             dis.forward(request, response);
 
+
+        } else if (refisidata != null) {
+            ModelLocatorSKP.navigasiPil = "47";
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            //=====================
+            String id = refisidata;
+            PnsSkp pns = new GoIndex().getPns(id);
+            String unorAtasan = pns.getDiAtasanId();
+            String UnorPns = pns.getUnorId();
+            String InstansiPns = pns.getInstansiId();
+            String NipPns = pns.getNipBaru();
+
+            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+
+            //  List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+
+
+
+            //   List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+
+            List<TupoksiRevisiTarget> tukesiServlet = new GoIndex().getDBqueryTupoksiRevisiTarget(UnorPns, InstansiPns, NipPns);
+            // tukesiServlet = new GoIndex().getDBqueryTupoksiRevisiTarget(idTupoksiR, _pilih_session, NipPns);
+
+            request.setAttribute("pns", pns);
+            request.setAttribute("UnorAts", UnorAts);
+
+            request.setAttribute("tukesiServlet", tukesiServlet);
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            dis = request.getRequestDispatcher("/WEB-INF/jsp/revisiTarget.jsp");
+            dis.forward(request, response);
+
+        } else if (rekapdata != null) {
+            ModelLocatorSKP.navigasiPil = "57";
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            String id = rekapdata;
+            
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            dis = request.getRequestDispatcher("/WEB-INF/jsp/RekapitulasiView.jsp");
+            dis.forward(request, response);
 
         } else {
             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);

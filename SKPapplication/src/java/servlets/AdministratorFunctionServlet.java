@@ -6,6 +6,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import model.loginweb;
 import model.PnsSkp;
 import model.TupoksiKeIsi4Faktor;
 import model.unorskp;
-
+import model.loginweb;
 /**
  *
  * @author diptaisme
@@ -69,6 +70,37 @@ public class AdministratorFunctionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        String nip_ubah = request.getParameter("nip_ubah");
+        String nip = request.getParameter("nip_ubah");
+        String status = request.getParameter("status");
+        String kewenangan = request.getParameter("kewenangan");
+        if(status.equalsIgnoreCase("masuk"))
+        {
+            String namauser = ""; 
+            String userkewenagan = ""; 
+            String status1 = new GoIndex().getdeletekewenagan(nip_ubah, kewenangan);
+            PnsSkp pns = new GoIndex().getPns(nip_ubah);
+            List<loginweb> kewenaganuser = new ArrayList<loginweb>();
+            kewenaganuser = new GoIndex().getKewengan(nip_ubah);
+            loginweb ambiluser = new GoIndex().getSudahAdaUser(nip_ubah);
+            namauser = ambiluser.getusername_login();
+            if(namauser != null && !namauser.equals("null"))
+            {
+                userkewenagan = "ada";
+                namauser = "";
+            }
+            else
+            {
+               namauser = ""; 
+               kewenaganuser = null;
+            }
+            request.setAttribute("pns", pns);
+            request.setAttribute("kewenaganuser", kewenaganuser);
+            request.setAttribute("userkewenagan", userkewenagan);
+            request.setAttribute("namauser", namauser);
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/manajemenUser.jsp");
+            dis.forward(request, response);
+        }
     }
 
     /**
@@ -88,12 +120,43 @@ public class AdministratorFunctionServlet extends HttpServlet {
         String param = request.getParameter("param");
 
         if (param.equalsIgnoreCase("AMBIL")) {
+            String namauser = null;
             String nip = request.getParameter("nipbaru");
+            String userkewenagan = null;
+            List<loginweb> kewenaganuser = new ArrayList<loginweb>();
             PnsSkp pns = new GoIndex().getPns(nip);
+            kewenaganuser = new GoIndex().getKewengan(nip);
+            int jjk = kewenaganuser.size();
+            if(jjk == 0)
+            {
+                namauser = "null";
+            }
+            else
+            {
+               new GoIndex().getSudahAdaUser(nip);
+               loginweb ambiluser = new GoIndex().getSudahAdaUser(nip);
+               namauser = ambiluser.getusername_login();
+            }
+            
+            if(namauser != null && !namauser.equals("null"))
+            {
+                userkewenagan = "ada";
+                namauser = "";
+            }
+            else
+            {
+               namauser = ""; 
+               kewenaganuser = null;
+            }
             request.setAttribute("pns", pns);
+            request.setAttribute("kewenaganuser", kewenaganuser);
+            request.setAttribute("userkewenagan", userkewenagan);
+            request.setAttribute("namauser", namauser);
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/manajemenUser.jsp");
             dis.forward(request, response);
-        } else if (param.equalsIgnoreCase("Simpan")) {
+        } 
+        
+        else if (param.equalsIgnoreCase("Simpan")) {
             RequestDispatcher dis = null;
             PnsSkp pns = new PnsSkp();
             String nipbaru = request.getParameter("getNipBaruPns");
@@ -204,8 +267,19 @@ public class AdministratorFunctionServlet extends HttpServlet {
                     dis.forward(request, response);
 
                 }
-        } else if (param.equalsIgnoreCase("HAPUS")) {
-        } else if (param == null) {
+        } else if (param.equalsIgnoreCase("ubah")) {
+            String nipygmaudibuatlogin = request.getParameter("getNipBaruPns");
+            loginweb getSudahAdaUser = new GoIndex().getSudahAdaUser(nipygmaudibuatlogin);
+            String username = getSudahAdaUser.getusername_login();
+            String password = getSudahAdaUser.getpassword_login();
+            request.setAttribute("nip", nipygmaudibuatlogin);
+            request.setAttribute("username", username);
+            request.setAttribute("password", password);
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/ManajemenUserTambahUbah.jsp");
+            dis.forward(request, response);
+        } 
+        
+        else if (param == null) {
         }
     }
 

@@ -6,10 +6,13 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -86,6 +89,7 @@ public class Isi4FaktorServlet extends HttpServlet {
         String action = request.getParameter("action");
         String nipsendiriR = request.getParameter("nipsendiriR");
         String nipsendiriMonitoring = request.getParameter("nipsendiriMonitoring");
+          String getIdIsi4Faktor = request.getParameter("getIdIsi4Faktor");
         P_idTupoksi = STupoksiKode;
         P_nipbaru = Snipbaru;
         String idtupoksidijspreal;
@@ -187,6 +191,8 @@ public class Isi4FaktorServlet extends HttpServlet {
                 //RequestDispatcher dis = request.getRequestDispatcher("indexBaru.jsp");
                 request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
                 request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                
+
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
                 // RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
                 dis.forward(request, response);
@@ -196,11 +202,19 @@ public class Isi4FaktorServlet extends HttpServlet {
                 String _idUnor4 = request.getParameter("_idUnor");
                 _getidUnor4 = request.getParameter("_idUnor");
                 PnsSkp pnsp = new GoIndex().getPns(nipnilai4);
-                TupoksiKeIsi4Faktor tupoksiKeIsi4Faktor = new GoIndex().getTupoksi(idTupoksi4);
+              //  TupoksiKeIsi4Faktor tupoksiKeIsi4Faktor = new GoIndex().getTupoksi(idTupoksi4);
+                 TupoksiKeIsi4Faktor tupoksiKeIsi4Faktor = new GoIndex().getTupoksi4(getIdIsi4Faktor);
                 idtupoksidijsp = tupoksiKeIsi4Faktor.getIdTupoksi();
                 namaTupoksijsp = tupoksiKeIsi4Faktor.getNamaTupoksi();
                 namaAngka_krdtjsp = tupoksiKeIsi4Faktor.getangka_krdt();
                 namaAngka_krdtjspR = tupoksiKeIsi4Faktor.getangka_krdtR();
+
+
+                ModelLocatorSKP.globalKuantitasTarget = tupoksiKeIsi4Faktor.getKuantitas4();
+                ModelLocatorSKP.globalKualitasTarget = tupoksiKeIsi4Faktor.getKualitas4();
+                ModelLocatorSKP.globalWaktuTarget = tupoksiKeIsi4Faktor.getWaktu4();
+                ModelLocatorSKP.globalBiayaTarget = tupoksiKeIsi4Faktor.getBiaya4();
+                ModelLocatorSKP.globalNilaiKreditTarget = tupoksiKeIsi4Faktor.getangka_krdtR();
 
                 request.setAttribute("pnsp", pnsp);
                 request.setAttribute("idtupoksidijsp", idtupoksidijsp);
@@ -209,6 +223,7 @@ public class Isi4FaktorServlet extends HttpServlet {
                 request.setAttribute("namaAngka_krdtjsp", namaAngka_krdtjsp);
 
                 request.setAttribute("_getidUnor4jsp", _getidUnor4);
+                request.setAttribute("getIdIsi4Faktor", getIdIsi4Faktor);
 
                 //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
@@ -440,6 +455,7 @@ public class Isi4FaktorServlet extends HttpServlet {
         P_idTupoksi = request.getParameter("idtupoksidiSesiion");
         String NipPnsSession = (String) session.getAttribute("NipPnsSession");
         String _pilih_session = request.getParameter("pilih_session");
+        String idisi4faktor = request.getParameter("getIdIsi4Faktor");
 
         if (param != null) {
             P_idTupoksi = request.getParameter("idtupoksidiSesiion");
@@ -452,8 +468,12 @@ public class Isi4FaktorServlet extends HttpServlet {
                 String _biaya4text = request.getParameter("biaya4text");
                 String _angkaKredit = request.getParameter("akt");
                 String __getidUnor4jspSesiion = request.getParameter("_getidUnor4jspSesiion");
-
-                String iNip_id = NipPnsSession;
+                String iNip_id = null;
+                if (ModelLocatorSKP.loginNipPengguna != null) {
+                    iNip_id = ModelLocatorSKP.loginNipPengguna;
+                } else {
+                    iNip_id = NipPnsSession;
+                }
 
                 String pilih = request.getParameter("pilih_output");
                 String waktuL = "bln";
@@ -462,8 +482,16 @@ public class Isi4FaktorServlet extends HttpServlet {
                     // isi4faktor Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text);
 
                     //  String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id,_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL,_angkaKredit);
-
+                    String _Isi4FaktorRevisi = null;
                     String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, _idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
+                    try {
+                        //_Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, _idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
+
+                        _Isi4FaktorRevisi = new GoIndex().getsimpanIsiEmpatFaktorRevisi(iNip_id, _idTupoksi, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Isi4FaktorServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     String xidTupoksi = request.getParameter("idTupoksi");
                     String nip = request.getParameter("nipnilai");
 
@@ -576,6 +604,9 @@ public class Isi4FaktorServlet extends HttpServlet {
         } else if (paramRealisasi != null) {
             //if(paramRealisasi.equalsIgnoreCase("SAVE"))
             NipPnsSession = (String) session.getAttribute("NipPnsSession");
+            if (ModelLocatorSKP.loginNipPengguna != null) {
+                NipPnsSession = ModelLocatorSKP.loginNipPengguna;
+            }
             _pilih_session = request.getParameter("_pilih_session");
             if (paramRealisasi.equalsIgnoreCase("SIMPAN")) {
                 //String _idTupoksi = request.getParameter("idTupoksiR");

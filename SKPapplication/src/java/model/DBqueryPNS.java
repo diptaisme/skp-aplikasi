@@ -12,11 +12,11 @@ import servlets.ModelLocatorSKP;
 /**
  *
  * @author diptaisme
- * 
+ *
  * ini seperti DAO di Framework NCSIS **************
- * 
+ *
  * DAO PNS
- * 
+ *
  */
 public class DBqueryPNS {
 
@@ -34,10 +34,14 @@ public class DBqueryPNS {
         st.executeUpdate(sql);
         st.close();
 
-
-
     }
-
+    public void getDBqueryinsertrw_unor(String nip_baru,String unor_lama,String unor_baru) throws SQLException
+    {
+        String sql = "insert into rw_perubahanunor values ('"+nip_baru+"','"+unor_lama+"','"+unor_baru+"',NOW())";
+        PreparedStatement st = this.conn.prepareStatement(sql);
+        st.executeUpdate(sql);
+        st.close();  
+    }
     public void getDBqueryUpdateImportUnor(String diatasan_id, String eselon_id,
             String nama_unor, String nama_jabatan, String pemimpin_pns_id) throws SQLException {
         String sql = "update unorskp "
@@ -175,10 +179,10 @@ public class DBqueryPNS {
             }
 
             /*
-            1	Jabatan Struktural
-            2	Jabatan Fungsional Tertentu
-            4	Jabatan Fungsional Umum
-            3	Jabatan Rangkap (Struktural dan Fungsional)
+             1	Jabatan Struktural
+             2	Jabatan Fungsional Tertentu
+             4	Jabatan Fungsional Umum
+             3	Jabatan Rangkap (Struktural dan Fungsional)
             
              * 
              * 
@@ -186,26 +190,26 @@ public class DBqueryPNS {
              * 
              */
             /*      if (z == null || "".equals(z) || " ".equals(z))
-            {
-            String y = getDBqueryPNSnamaJabfum(x);
-            if (y == null || "".equals(y) || " ".equals(y))
-            { 
-            y = getDBqueryPNSnamaJabfung(x);
-            if (y == null || "".equals(y) || " ".equals(y)){
-            ipns.setNamaJabatan("PELAKSANA");
-            }else{
-            ipns.setNamaJabatan(y);
-            }
-            }
-            else 
-            {
-            ipns.setNamaJabatan(y);
-            }
-            }
-            else
-            {
-            ipns.setNamaJabatan(rs.getString(10));
-            }
+             {
+             String y = getDBqueryPNSnamaJabfum(x);
+             if (y == null || "".equals(y) || " ".equals(y))
+             { 
+             y = getDBqueryPNSnamaJabfung(x);
+             if (y == null || "".equals(y) || " ".equals(y)){
+             ipns.setNamaJabatan("PELAKSANA");
+             }else{
+             ipns.setNamaJabatan(y);
+             }
+             }
+             else 
+             {
+             ipns.setNamaJabatan(y);
+             }
+             }
+             else
+             {
+             ipns.setNamaJabatan(rs.getString(10));
+             }
              */
         }
         return ipns;
@@ -498,10 +502,10 @@ public class DBqueryPNS {
     }
 
     public List<PnsSkp> getDBqueryPNSTambahan2(String sid_unor) throws SQLException {
-
+        String instInduk = ModelLocatorSKP.logininstansi;
         List<PnsSkp> pnsies = new ArrayList<PnsSkp>();
         //  String sql = "SELECT distinct p.idpns, p.nip_lama, p.nip_baru, p.namapns, p.golongan_id, p.namagolru, p.pangkat, p.unorid, p.namaunor, p.namajabatan, p.diatasanid, p.instansi_id FROM PnsSkp p WHERE p.diatasanid = '"+sid_unor+"' AND p.nip_baru not in (select s.nippns from jabfungt_bkn s)";
-        String sql = "SELECT distinct p.idpns, p.nip_lama, p.nip_baru, p.namapns, p.golongan_id, p.namagolru, p.pangkat, p.unorid, p.namaunor, p.namajabatan, p.diatasanid, p.instansi_id, p.jenis_jabatan,p.JABATAN_FUNGSIONAL, p.JABATAN_UMUM FROM pnsskp p WHERE p.diatasanid = '" + sid_unor + "'";
+        String sql = "SELECT distinct p.idpns, p.nip_lama, p.nip_baru, p.namapns, p.golongan_id, p.namagolru, p.pangkat, p.unorid, p.namaunor, p.namajabatan, p.diatasanid, p.instansi_id, p.jenis_jabatan,p.JABATAN_FUNGSIONAL, p.JABATAN_UMUM FROM pnsskp p WHERE p.instansi_id ='" + instInduk + "' and p.diatasanid = '" + sid_unor + "'";
         //String sql = "SELECT distinct p.idpns, p.nip_lama, p.nip_baru, p.namapns, p.golongan_id, p.namagolru, p.pangkat, p.unorid, p.namaunor, p.namajabatan, p.diatasanid, p.instansi_id FROM PnsSkp p, jabfungt_bkn s WHERE p.diatasanid = '"+sid_unor+"' AND p.nip_baru <> j.nipbaru";
         //String sql = "SELECT distinct p.idpns, p.nip_lama, p.nip_baru, p.namapns, p.golongan_id, p.namagolru, p.pangkat, p.unorid, p.namaunor, p.namajabatan, p.diatasanid, p.instansi_id FROM PnsSkp p, struktural_bkn s WHERE p.diatasanid ='"+sid_unor+"'";
         PreparedStatement pst = this.conn.prepareStatement(sql);
@@ -560,9 +564,15 @@ public class DBqueryPNS {
             nilaiprestasikerja nilaiprestasikerjas = new GoIndex().getNilaiPrestasiKerjaAllNotList(ipns.getNipBaru());
             if (nilaiprestasikerjas == null) {
                 String nilprest = "0";
+
+                ModelLocatorSKP.globalNilainonvalTarget = ModelLocatorSKP.globalNilainonvalTarget + 1;
                 //   nilaiprestasikerjas.setRealisasi(nilprest);
                 ipns.setRealisasi(nilprest);
+            } else {
+                ModelLocatorSKP.globalNilaivalTarget = ModelLocatorSKP.globalNilaivalTarget + 1;
+                ipns.setRealisasi(nilaiprestasikerjas.getRealisasi());
             }
+
 
             String statyus = "tdk";
             // pnsies.add(ipns);
@@ -780,5 +790,21 @@ public class DBqueryPNS {
             System.out.println("rs KOSONG");
         }
         return ipns;
+    }
+    public List<loginweb> getlistUser(String sid_pns) throws SQLException {
+        List<loginweb> listuser = new ArrayList<loginweb>();
+        String sql = "SELECT username_login, password_login, kewenangan_login, nippns_login FROM loginweb WHERE nippns_login = '" + sid_pns + "' ";
+        PreparedStatement pst = this.conn.prepareStatement(sql);
+        loginweb ipns = null;
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            ipns = new loginweb();
+            ipns.setusername_login(rs.getString(1));
+            ipns.setpassword_login(rs.getString(2));
+            ipns.setkewenangan_login(rs.getString(3));
+            ipns.setnippns_login(rs.getString(4));
+            listuser.add(ipns);
+        } 
+        return listuser;
     }
 }

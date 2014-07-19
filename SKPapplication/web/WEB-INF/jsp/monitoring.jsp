@@ -662,7 +662,7 @@
                                                 <c:set var="capaian" value="${pnsBaw.getRealisasi()}" /> 
                                                 <c:choose>    
                                                     <c:when test="${(pnsBaw.getRealisasi()) <'45'}">
-                                                        <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw.getNamaPns()}</div></a>
+                                                        <li><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="biru"> ${pnsBaw.getNamaPns()}</div></a>
                                                         </c:when> 
 
                                                         <c:when test="${(pnsBaw.getRealisasi()) <'76'}">
@@ -881,7 +881,7 @@
                         </td>
                         <td>
 
-                            <table width="300" border ="0">
+                            <table width="300" border ="0" >
                                 <tr >
                                     <td colspan="4">
                                 <center>REALISASI</center>

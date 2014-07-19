@@ -44,17 +44,20 @@ public class SimpanatasanBawahanRiwayatServlet extends HttpServlet {
           String idAtasan=request.getParameter("getIdPns"); //ambil NIPBARU dari lemparan hiperlink index.jsp (parameter : txtNIPBaru)
           String instansiIdAtasan= request.getParameter("getinstansiId");        
           String UnorIdatasan= request.getParameter("getUnorId");
-          
+          String nip_baruuser = request.getParameter("nip_baruuser");
           String instansiIdpnsBawahan= request.getParameter("instansiIdpns");
           String instansiIdunorbawahan= request.getParameter("instansiIdunorbwhandocument");
-         
+          String unoratasanlama = request.getParameter("unoratasanlama");
+          String nipatasanlama = request.getParameter("nipatasanlama");
+          String loginnipbaru= ModelLocatorSKP.loginNipsession;
           if(instansiIdpnsBawahan==null ||instansiIdpnsBawahan.equals("") || instansiIdpnsBawahan.equals(" ") ){
               instansiIdpnsBawahan= ModelLocatorSKP.nipBaruUser;
               instansiIdunorbawahan=ModelLocatorSKP.IdUnorUser;
           }
            String _pesan = new GoIndex().getsimpanRiwayatAtasan_Bawahan(idAtasan,instansiIdAtasan,UnorIdatasan,instansiIdpnsBawahan,instansiIdunorbawahan);
-            
+           
            RiwayatAtasanBawahan riwayatAtasanBawahan  = new GoIndex().getSimpanRiwayatAtasan_Bawahan(idAtasan,instansiIdAtasan,UnorIdatasan,instansiIdpnsBawahan,instansiIdunorbawahan);
+           String updateriwayat = new GoIndex().getRiwayatUpdateUser(nip_baruuser);
            PnsSkp pns = new GoIndex().getPns(instansiIdpnsBawahan);   
            PnsSkp UnorAts=null;
             if (riwayatAtasanBawahan==null){

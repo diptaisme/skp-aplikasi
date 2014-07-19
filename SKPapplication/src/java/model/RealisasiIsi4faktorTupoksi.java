@@ -10,6 +10,9 @@ package model;
  */
 public class RealisasiIsi4faktorTupoksi
 {
+     private String revisi;
+    private String id_revisiTarget;
+   
     private String id_realisasi;
     private String id_isi4faktor;
     private String nip_pns;
@@ -22,7 +25,6 @@ public class RealisasiIsi4faktorTupoksi
     private String nilai_capaian_skp;
     private String waktu;
     private String angkaKrdtr;
-    
     private String id_tupoksi_dariTupoksi;
     private String nama_tupoksi;
     private String id_unor;
@@ -30,20 +32,24 @@ public class RealisasiIsi4faktorTupoksi
     private String id_instansi;
     private String id_diatasan;
     private String instansi_nama;
-    
     private String id_isi4faktor_dariIsi4Faktor;
     private String nip_pns_dariIsi4Faktor;
     private String id_tupoksi_dariIsi4Faktor;
     private String kuantitas4;
-    private String kualitas4;    
+    private String kualitas4;
     private String waktu4;
     private String biaya4;
     private String kuantitas_label;
     private String waktu_label;
     private String angkaKrdt4;
-       private String _pilih_session;
-     private String _idUnor;
-    
+    private String _pilih_session;
+    private String _idUnor;
+    private String jns_perubahan;
+    private String var_perubahan1;
+    private String var_perubahan2;
+    private String var_perubahan3;
+    private String var_perubahan4;
+
 //    //FIELD = ID_REALISASI
 //    public String getIdRealisasi()
 //    {
@@ -348,7 +354,62 @@ public class RealisasiIsi4faktorTupoksi
 //    {
 //        this.waktu_label = swaktu_label;
 //    }
+    
+     public String getvar_perubahan1() {
+        return var_perubahan1;
+    }
 
+    public void setvar_perubahan1(String svar_perubahan1) {
+        this.var_perubahan1 = svar_perubahan1;
+    }
+
+    public String getvar_perubahan2() {
+        return var_perubahan2;
+    }
+
+    public void setvar_perubahan2(String svar_perubahan2) {
+        this.var_perubahan2 = svar_perubahan2;
+    }
+
+    public String getvar_perubahan3() {
+        return var_perubahan3;
+    }
+
+    public void setvar_perubahan3(String svar_perubahan3) {
+        this.var_perubahan3 = svar_perubahan3;
+    }
+
+    public String getvar_perubahan4() {
+        return var_perubahan4;
+    }
+
+    public void setvar_perubahan4(String svar_perubahan4) {
+        this.var_perubahan4 = svar_perubahan4;
+    }
+
+    public String getjns_perubahani() {
+        return jns_perubahan;
+    }
+
+    public void setjns_perubahan(String sjns_perubahan) {
+        this.jns_perubahan = sjns_perubahan;
+    }
+
+    public String getrevisi() {
+        return revisi;
+    }
+
+    public void setrevisi(String srevisi) {
+        this.revisi = srevisi;
+    }
+
+    public String getid_revisiTarget() {
+        return id_revisiTarget;
+    }
+
+    public void setid_revisiTarget(String sid_revisiTarget) {
+        this.id_revisiTarget = sid_revisiTarget;
+    }
     public String getBiaya4() {
         return biaya4;
     }
@@ -564,34 +625,36 @@ public class RealisasiIsi4faktorTupoksi
     public void setWaktur(String waktur) {
         this.waktur = waktur;
     }
-     public String getangkaKrdtr() {
+
+    public String getangkaKrdtr() {
         return angkaKrdtr;
     }
 
     public void setangkaKrdtr(String angkaKrdtr) {
-        this.angkaKrdtr =angkaKrdtr;
+        this.angkaKrdtr = angkaKrdtr;
     }
-    
-     public String getangkaKrdt4() {
+
+    public String getangkaKrdt4() {
         return angkaKrdt4;
     }
 
     public void setangkaKrdt4(String angkaKrdt4) {
-        this.angkaKrdt4 =angkaKrdt4;
+        this.angkaKrdt4 = angkaKrdt4;
     }
-    
-     public String get_pilih_session() {
+
+    public String get_pilih_session() {
         return _pilih_session;
     }
 
     public void set_pilih_session(String _pilih_session) {
-        this._pilih_session =_pilih_session;
+        this._pilih_session = _pilih_session;
     }
-      public String get_idUnor() {
+
+    public String get_idUnor() {
         return _idUnor;
     }
 
     public void set_idUnor(String _idUnor) {
-        this._idUnor =_idUnor;
+        this._idUnor = _idUnor;
     }
 }

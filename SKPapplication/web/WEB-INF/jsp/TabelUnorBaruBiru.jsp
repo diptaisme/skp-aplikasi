@@ -22,6 +22,16 @@
                 if (field.defaultValue == field.value) field.value = '';
                 else if (field.value == '') field.value = field.defaultValue;
             }
+            function redirectToFB(id){
+                
+                
+                url3test=document.getElementById(id);
+               
+                window.opener.location.href=url3test;
+                //url3test.href=url3test.href;
+                self.close();
+            }
+            
         </script>
 
         <style type="text/css"> 
@@ -102,65 +112,42 @@
     </head>
     <body>
 
-        <div id="wrapper">
-            <form name="form1" method="post" action="referensiInstansiServlet">
-                <div id="headerLokal">
-                    <%@ include file="SlindronHeader.jsp" %>
-                </div>   
-                <div id="leftside">
-                    <%@ include file="navigasiPro.jsp" %>
-                </div> 
-                <div id="contentdalam">
-                    <div id="metik">
 
+        <form name="form1" method="post" action="referensiInstansiServlet">
+            <p>Pencarian Unit Organisasi : <input name="cariUnor" id="cariUnor" type="text" size="75"/>   <input name="submit" type="Submit" value="CARI UNOR" class="button black bigrounded"/>   <%--<input name="button" type="button" value="KEMBALI" onclick="ButtonBack()" class="button black bigrounded"/>   <input name="button" type="button" value="KELUAR" onclick="ButtonExit()" class="button black bigrounded"/></p>--%>
+                <input type ="hidden" name ="idInstansiText" id="idInstansiText" value="${instansi}"/>     
+                <table width="1194" border="1">
 
-                        <a href="referensiInstansiServlet?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Kembali</a> 
+                    <table width="1194" border="1">
+                        <tr>
 
+                            <td colspan="3"><div align="center" class="style1"><strong><h3>TABEL REFERENSI UNIT ORGANISASI</h3></strong></div></td>
 
-                    </div>
-                    <div id="contentdalamsub">
-                        <table width="1194" border="1">
-                            <p>Pencarian Unit Organisasi : <input name="cariUnor" type="text" size="75"/>   <input name="submit" type="Submit" value="CARI" class="button black bigrounded"/>   <input name="button" type="button" value="KEMBALI" onclick="ButtonBack()" class="button black bigrounded"/>   <input name="button" type="button" value="KELUAR" onclick="ButtonExit()" class="button black bigrounded"/></p>
-                            <table width="1194" border="1">
-                                <tr>
-                                    <td>
-                                        <input type ="hidden" name ="idInstansiText" value="${instansi}"/>
-                                    </td>
-                                    <td colspan="4"><div align="center" class="style1"><strong><h3>TABEL REFERENSI UNIT ORGANISASI</h3></strong></div></td>
+                        </tr>
+                        <tr>
+                            <td width="20"><div align="center" class="style2 style3">NO</div></td>
 
-                                </tr>
-                                <tr>
-                                    <td width="20"><div align="center" class="style2 style3">NO</div></td>
-                                   
-                                    <td width="750"><div align="center" class="style5">NAMA UNIT ORGANISASI</div></td>
-                                    <td width="750"><div align="center" class="style5">NAMA JABATAN STRUKTURAL</div></td>
-                                </tr>
-                            </table>
+                            <td width="750"><div align="center" class="style5">NAMA UNIT ORGANISASI</div></td>
+                            <td width="750"><div align="center" class="style5">NAMA JABATAN STRUKTURAL</div></td>
+                        </tr>
+                    </table>
 
+                    <table width="1194" border="1">
+                        <c:forEach var="listUnories" items="${unories}" varStatus="count">
+                            <tr>
+                                <td width="20"><div align="center">${(count.index)+1}</div></td>
 
+                                <td width="750"><a href="referensiInstansiServlet?idInstkode=<c:out value="${listUnories.getInstansiId()}"/>&idUnorKode=<c:out value="${listUnories.getIdUnor()}"/>&namaUnorL=<c:out value="${listUnories.getNamaUnor()}"/>&namaIDInstansiUnor=<c:out value="${listUnories.getInstansiId()}"/>" id="url3test<c:out value="${count.count}"/>"   onclick="redirectToFB(this.id)" >${listUnories.getNamaUnor()}</a></td>
+                                <%-- <td>${listUnories.getNamaJabatan()}</td> --%>
+                                <td width="750">${listUnories.getNamaJabatan()}</td>
+                                <%--<td><a href="referensiInstansiServlet?&idInstkode=<c:out value="${listInstansies.getIdInstansi()}"/>&namaInstansiL=<c:out value="${listInstansies.getNamaInstansi()}"/>">${listInstansies.getNamaInstansi()}</a></td>--%>
+                            </tr>
+                        </c:forEach>
+                    </table>
 
+                </table>
+        </form> 
 
-                            <div class="cleaner_h30"></div>	
-
-                            <div id="templatemo_content_p" class="scroll3">
-                                <table width="1194" border="1">
-                                    <c:forEach var="listUnories" items="${unories}" varStatus="count">
-                                        <tr>
-                                            <td width="20"><div align="center">${(count.index)+1}</div></td>
-                                           
-                                            <td width="750"><a href="referensiInstansiServlet?&idUnorKode=<c:out value="${listUnories.getIdUnor()}"/>&namaUnorL=<c:out value="${listUnories.getNamaUnor()}"/>&namaIDInstansiUnor=<c:out value="${listUnories.getInstansiId()}"/>">${listUnories.getNamaUnor()}</a></td>
-                                            <%-- <td>${listUnories.getNamaJabatan()}</td> --%>
-                                            <td width="750">${listUnories.getNamaJabatan()}</td>
-                                            <%--<td><a href="referensiInstansiServlet?&idInstkode=<c:out value="${listInstansies.getIdInstansi()}"/>&namaInstansiL=<c:out value="${listInstansies.getNamaInstansi()}"/>">${listInstansies.getNamaInstansi()}</a></td>--%>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
-                        </table>
-                    </div>
-                </div>
-            </form> 
-        </div>
 
 
 
@@ -170,7 +157,7 @@
             {
                 location = 'RequestServlet?page=insertTupoksiBaruBiru';
             }
-
+           
             function ButtonExit()
             {
                 location = 'RequestServlet?page=indexloginBaru';
@@ -409,7 +396,7 @@
                 color:white;
             }
 
-           
+
 
             form fieldset
             {

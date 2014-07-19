@@ -80,6 +80,18 @@
         <servlet-name>NavigasiProfile</servlet-name>
         <servlet-class>servlets.NavigasiProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RevisiServlet</servlet-name>
+        <servlet-class>servlets.RevisiServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RekapitulasiTarget</servlet-name>
+        <servlet-class>servlets.RekapitulasiTarget</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdministratorKewenangan</servlet-name>
+        <servlet-class>servlets.AdministratorKewenangan</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GetPnsServlet</servlet-name>
         <url-pattern>/GetPnsServlet</url-pattern>
@@ -159,6 +171,18 @@
     <servlet-mapping>
         <servlet-name>NavigasiProfile</servlet-name>
         <url-pattern>/NavigasiProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RevisiServlet</servlet-name>
+        <url-pattern>/RevisiServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RekapitulasiTarget</servlet-name>
+        <url-pattern>/RekapitulasiTarget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdministratorKewenangan</servlet-name>
+        <url-pattern>/AdministratorKewenangan</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -3,6 +3,19 @@
 	<property name="ireport.zoom" value="1.024520183047606"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<style name="Table40" isDefault="false">
+		<box topPadding="2" bottomPadding="2">
+			<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#999999"/>
+			<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#999999"/>
+			<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table41" isDefault="false">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FF0000"/>
+		</box>
+	</style>
 	<field name="id_realisasi" class="java.lang.String"/>
 	<field name="id_isi4faktor" class="java.lang.String"/>
 	<field name="nip_pns" class="java.lang.String"/>
@@ -32,6 +45,10 @@
 	<field name="waktu_label" class="java.lang.String"/>
 	<field name="angkaKrdt4" class="java.lang.String"/>
 	<field name="angkaKrdtr" class="java.lang.String"/>
+	<field name="var_perubahan1" class="java.lang.String"/>
+	<field name="var_perubahan2" class="java.lang.String"/>
+	<field name="var_perubahan3" class="java.lang.String"/>
+	<field name="var_perubahan4" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -283,7 +300,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{kuantitasr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u" || $F{var_perubahan2}=="u" ||  $F{var_perubahan1}=="u" || $F{var_perubahan4} =="u" ?  " - " : $F{kuantitasr}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="633" y="0" width="64" height="36"/>
@@ -297,7 +314,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{kualitasr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u" || $F{var_perubahan2}=="u" ||  $F{var_perubahan1}=="u" || $F{var_perubahan4} =="u" ?  " - " : $F{kualitasr}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="697" y="0" width="38" height="36"/>
@@ -311,7 +328,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{waktur}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u" || $F{var_perubahan2}=="u" ||  $F{var_perubahan1}=="u" || $F{var_perubahan4} =="u" ?  " - " : $F{waktur}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="735" y="0" width="82" height="36"/>
@@ -325,7 +342,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{biayar}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u" || $F{var_perubahan2}=="u" ||  $F{var_perubahan1}=="u" || $F{var_perubahan4} =="u" ?  " - " : $F{biayar}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="397" y="0" width="39" height="36"/>
@@ -336,10 +353,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{waktu4}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u"  ?  "<style isStrikeThrough='true'>"+ $F{waktu4} + "</style>" : $F{waktu4}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="253" y="0" width="82" height="36"/>
@@ -350,10 +367,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{kuantitas4}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan1} == "u"  ?  "<style isStrikeThrough='true'>"+ $F{kuantitas4} + "</style>" : $F{kuantitas4}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="817" y="0" width="59" height="36"/>
@@ -367,7 +384,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{penghitungan}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u" || $F{var_perubahan2}=="u" ||  $F{var_perubahan1}=="u" || $F{var_perubahan4} =="u" ?  " - " : $F{penghitungan}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="876" y="0" width="50" height="36"/>
@@ -381,7 +398,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nilai_capaian_skp}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u" || $F{var_perubahan2}=="u" ||  $F{var_perubahan1}=="u" || $F{var_perubahan4} =="u" ?  " - " : $F{nilai_capaian_skp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="2" y="0" width="20" height="36"/>
@@ -406,10 +423,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{biaya4}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u"  ?  "<style isStrikeThrough='true'>"+ $F{biaya4} + "</style>" : $F{biaya4}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="22" y="0" width="199" height="36"/>
@@ -420,10 +437,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement verticalAlignment="Middle" markup="styled">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_tupoksi}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u" || $F{var_perubahan2}=="u" ||  $F{var_perubahan1}=="u" || $F{var_perubahan4} =="u" ?  "<style='Table40'>" + $F{nama_tupoksi}+ "</style>" : "<style='Table40'>" + $F{nama_tupoksi}+ "</style>"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement stretchType="RelativeToBandHeight" x="221" y="0" width="32" height="36"/>
@@ -448,10 +465,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{kualitas4}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan2} == "u"  ?  "<style isStrikeThrough='true'>"+ $F{kualitas4} + "</style>" : $F{kualitas4}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement stretchType="RelativeToBandHeight" x="519" y="0" width="35" height="36"/>
@@ -465,7 +482,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{angkaKrdtr}==null?" ":$F{angkaKrdtr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{var_perubahan3} == "u" || $F{var_perubahan2}=="u" ||  $F{var_perubahan1}=="u" || $F{var_perubahan4} =="u" ?  " - " : $F{angkaKrdtr}==null?" ":$F{angkaKrdtr}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

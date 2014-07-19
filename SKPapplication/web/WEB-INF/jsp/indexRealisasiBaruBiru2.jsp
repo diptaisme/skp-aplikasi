@@ -332,8 +332,8 @@ document.getElementById("button1").style.backgroundColor = '#FFFF00';
                        </table>
                        
                    </div>
-            <div>
-                             <%--<a href="tupoksiServlet?txtNIPBaruTB=<c:out value="${pns.getNipBaru()}"/>"><img src="images/tambah.png"/>
+            <div>    
+                    <%--<a href="tupoksiServlet?txtNIPBaruTB=<c:out value="${pns.getNipBaru()}"/>"><img src="images/tambah.png"/>
                            --%>
                            <a href="tupoksiServlet2?txtNIPBaruTB=<c:out value="${pns.getNipBaru()}"/>"><img src="/SKPapplication/images/tambah.png"/></a>
                        </div>

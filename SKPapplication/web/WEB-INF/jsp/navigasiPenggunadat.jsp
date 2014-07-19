@@ -42,6 +42,14 @@
         var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
         location = 'isiPerilakuServlet?nipatasanMonitoring2=<c:out value="${nipAtasan}"/>&pilih_session_monit='+pilihanSelected;
     };
+    
+    function ButtonBackNitView()
+    {
+        pilihan=document.getElementById("pilih_session_monit");
+        var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
+        location = 'isiPerilakuServlet?nipatasanMonitoringView=<c:out value="${nipAtasan}"/>&pilih_session_monit='+pilihanSelected;
+    };
+    
     function ButtonBackCetak()
     {
         pilihan=document.getElementById("pilih_session_monit");
@@ -122,7 +130,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>SASARAN KERJA INDIVIDU</title>
-          <script type='text/javascript' src='/SKPapplication/js/jquery.min.js'></script>
+        <script type='text/javascript' src='/SKPapplication/js/jquery.min.js'></script>
         <script src="/SKPapplication/js/jquery-ui-1.8.21.custom.min.js"></script>
         <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
         <script type='text/javascript' src='/SKPapplication/js/FusionCharts.js'></script>
@@ -135,14 +143,14 @@
         <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
         <style type="text/css"> 
             /*=======================Monitoring*/
-            
-             #headerLokalUtama {
+
+            #headerLokalUtama {
                 padding: 0px;
-                width: 1000px;
+                width: 1020px;
 
                 position: relative;
                 height: 80px;
-                left : -20px;
+                left : 1px;
             }
             #headermetting {
 
@@ -163,8 +171,8 @@
 
             #warnass {color:#ff9900;font-weight:bold; font-size:14px;text-decoration:blink;font-family:Arial, Helvetica, sans-serif}
 
-           
-            
+
+
 
             .arrow-left {
                 background: blue;
@@ -247,7 +255,7 @@
                 height : 600px;
                 overflow: auto;
             }
-             #content50 {
+            #content50 {
                 position :  absolute;
                 top : 40px;
                 left : 140px;
@@ -265,26 +273,26 @@
                 height : 501px;
             }
 
-            #contentMonitor {
 
-                position :  absolute;
-                top : 60px;
-                left : 280px;
-                width : 1000px;
-                overflow: auto;
-                height : 501px;}
 
 
             #leftsideMonitor {
-
 
                 position :  absolute;
                 top : 60px;
                 left : 1px;
                 width : 173px;
-                height : 501px;
+                height : 400px;
 
             }
+            #contentMonitor {
+
+                position :  absolute;
+                top : 60px;
+                margin-left:150px;
+                width : 1000px;
+                overflow: auto;
+                height : 501px;}
 
             #place-nav {
                 width:100px;
@@ -435,7 +443,7 @@
             }
             #place-nav #nav li:hover ul li a:hover, #place-nav #nav li ul li a:hover {
                 text-decoration:none;
-                color:#FF9900;
+                color:#000000;
                 font-size:20px;
 
 
@@ -446,31 +454,31 @@
             div#place-nav li li:hover ul
             {display:block;}
         </style>
- 
-                  
+
+
 
 
     </head>
 
     <body>
-         <div id="headerLokalUtama">
-                    <%@ include file="SlindronHeader.jsp" %>
-                    
-                </div>   
+        <div id="headerLokalUtama">
+            <%@ include file="SlindronHeader.jsp" %>
+
+        </div>   
         <div id="wrapperUtama">
-           
-           
-             <input type="hidden" name="nippns" value="${sessionScope.user}"/>
-              <input type="hidden" name="nippns" value="${sessionScope.NipPnsSession}"/>
-            
-           
-           
+
+
+            <input type="hidden" name="nippns" value="${sessionScope.user}"/>
+            <input type="hidden" name="nippns" value="${sessionScope.NipPnsSession}"/>
+
+
+
             <%-- ===================================== ======================================================	--%>      
             <c:set var="navigasi_pilihan" value="${navigasiPilihan}" />   
             <div id="content50">
                 <c:if test="${navigasi_pilihan =='0'}">
                     <div style ="height: 300px;overflow: auto">
- 
+
                         <table style="margin-top: 0px ;font-size: 12px">
                             <td style="font-size: 12px; width:500px; font-family: sans-serif; text-align: center; font: bold ">
 
@@ -552,38 +560,38 @@
                                 </table>
 
                             </td>
-                            
+
                         </table>
-                                       
+
                     </div>
-                            <div id="graph">
-                                <div id="chartContainer20"></div>  
-                                        </div>            
-                                       
-                                        <style type="text/css"> 
+                    <div id="graph">
+                        <div id="chartContainer20"></div>  
+                    </div>            
+
+                    <style type="text/css"> 
                         /*=======================Monitoring*/
                         #graph {
 
                             position :  absolute;
                             top : 145px;
                             left : 10px;
-                            width : 300px;
-                            height : 200px;
+                            width : 400px;
+                            height : 250px;
                             overflow: auto;
 
                         }	 </style>
 
-                        
-                        
-                   
-                     <script>
+
+
+
+                    <script>
                         $(document).ready(
                         function() {
                    
 
                             $("#chartContainer20").insertFusionCharts({
                                 type: "MSColumn3D",
-                                width: "300",
+                                width: "350",
                                 height: "250",
                                
                                 dataFormat: "json",
@@ -727,7 +735,7 @@
                                         <td style="font-weight:normal; font-size: 12px" align="left">NIP</td>
                                         <td>:</td>
 
-                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNipBaru()}" /> <a href="updateServlets?instansiAtasan=<c:out value="${ UnorAts.getInstansiId()}"/>&instansiIdpns=<c:out value="${pns.getNipBaru()}"/>&instansiIdunorbwhan=<c:out value="${pns.getUnorId()}"/>">  <img src="images/ubah2.png"/> </a></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${UnorAts.getNipBaru()}" /> <a href="updateServlets?instansiAtasan=<c:out value="${ UnorAts.getInstansiId()}"/>&unoratasanlama=<c:out value="${ UnorAts.getNamaUnor()}"/>&nipatasanlama=<c:out value="${ UnorAts.getNipBaru()}"/>&nip_baruuser=<c:out value="${NipPnsSession}"/>&instansiIdpns=<c:out value="${pns.getNipBaru()}"/>&instansiIdunorbwhan=<c:out value="${pns.getUnorId()}"/>">  <img src="images/ubah2.png"/> </a></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:normal; font-size: 12px"><div align="left">3</div></td>
@@ -777,16 +785,17 @@
                                         <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getPangkat()}" /> / <c:out value="${pns.getNamaGolru()}" /></td>
                                     </tr>
                                     <tr>
-                                        <td><div align="left">4</div></td>
-                                        <td align="left">Jabatan</td>
+                                        <td><div style="font-weight:normal; font-size: 12px" align="left">4</div></td>
+                                        <td align="left" style="font-weight:normal; font-size: 12px"align="left">Jabatan</td>
                                         <td>:</td>
-                                        <td align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
+                                        <td align="left" style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:normal; font-size: 12px"><div align="left">5</div></td>
-                                        <td style="font-weight:normal; font-size: 12px"align="left">Unit Kerja </td>
+                                        <td style="font-weight:normal; font-size: 12px" align="left">Unit Kerja </td>
                                         <td>:</td>
-                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaUnor()}" /> <a href="updateServlets?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>">  <img src="images/ubah2.png"/> </a></td>
+                                        <td style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaUnor()}" /> 
+                                        </td><td><a href="updateServlets?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>">  <img src="images/ubah2.png"/> </a></td>
 
                                     </tr>
 
@@ -824,7 +833,7 @@
                                         <c:when test="${count.index % 2 == 0}">
                                             <tr bgcolor="#b9c9fe">
                                                 <td style="font-weight:normal; font-size: 12px"width="31"><div align="center">${(count.index)+1}</div></td>
-                                                <td style="font-weight:normal; font-size: 12px" width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px" width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&getIdIsi4Faktor=<c:out value="${listTukesi.getIdIsi4Faktor()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="383"><div align="left">${listTukesi.getNamaTupoksi()} </div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getangka_krdtR()}</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="105"><div align="right">${listTukesi.getKuantitas4()} ${listTukesi.getkuantitas_label()} </div></td>
@@ -837,7 +846,7 @@
                                         <c:otherwise>
                                             <tr bgcolor="#e8edff">
                                                 <td style="font-weight:normal; font-size: 12px"width="31"><div align="center">${(count.index)+1}</div></td>
-                                                <td style="font-weight:normal; font-size: 12px"width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&getIdIsi4Faktor=<c:out value="${listTukesi.getIdIsi4Faktor()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="383"><div align="left">${listTukesi.getNamaTupoksi()}</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getangka_krdtR()}</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="105"><div align="right">${listTukesi.getKuantitas4()} ${listTukesi.getkuantitas_label()} </div></td>
@@ -861,10 +870,7 @@
                                     <%-- <a href="GetPnsServlet?action=HitungtupoksiServlet3&txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" id="url" onclick="redirect2()"class="current_page_item" target="_parent" title="Target Sasaran SKI">Target</a> --%>
                                     <a href="tupoksiServlet2?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&_idUnorTambah=<c:out value="${pns.getUnorId()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>" id="urltest" onclick="redirect_testt()"><img src="images/tambah.png"/></a>
                                 </td>
-                                <td>
-                                    <a id="url3test"  onclick="redirect3Test()"><img src="/SKPapplication/images/tambah.png"/></a>
-                                </td>
-
+                                
                                 <td>
                                     <%--     <a href="cetakIsi4FaktorServlet?nipnilai2=<c:out value="${pns.getNipBaru()}"/>&target=target" target="_blank" title="Cetak"><img src="images/cetak.png"/></a> --%>
 
@@ -894,7 +900,6 @@
                             <li><a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" target="_parent" title="Target Sasaran SKI">TARGET</a>
                                 <%--   <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>" class="current_page_item" target="_parent" title="Realisasi Capaian SKI">REALISASI</a> --%>
                             <li> <a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getId_tupoksi()}"/>" class="current_page_item" target="_parent" title="Realisasi Capaian SKI" id="url" onclick="redirect2K()">REALISASI</a>  
-
                             <li>
                                 <input type="text" id="session" name="sessionw" /> 
                             </li>
@@ -912,7 +917,7 @@
                                 </select>
                             </li>
 
-                            <li><a href="RequestServlet?page=indexloginBaru" target="_parent" title="Keluar">KELUAR</a>
+                            <li><a href="RequestServlet?page=indexloginBaru" target="_parent" title="Keluar">Kembali</a>
                                 <c:if test="${pns.getjnsjbtn_id() == '1'}">
                                 <li> <a href="isiPerilakuServlet?nipAtasan=<c:out value="${pns.getNipBaru()}"/>">Persetujuan</a></li>
 
@@ -961,89 +966,121 @@
                                                 <td  style="font-weight:normal; font-size: 12px" width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
                                                 <td style="font-weight:normal; font-size: 12px" width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
                                                 <td style="font-weight:normal; font-size: 12px" width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
+                                                <c:if test="${(listTukesi.getvar_perubahan1())=='u'}">
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center"><strike>${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</strike></td>
+                                                </c:if>
+                                                <c:if test="${(listTukesi.getvar_perubahan1())!='u'}">
                                                 <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
+                                            </c:if>
+
+                                            <c:if test="${(listTukesi.getvar_perubahan2())=='u'}">
+                                                <td style="font-weight:normal; font-size: 12px"width="78" align="center"><strike>${listTukesi.getKualitas4()} %</strike></td>
+                                            </c:if>
+                                            <c:if test="${(listTukesi.getvar_perubahan2())!='u'}">
                                                 <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitas4()} %</td>
+                                            </c:if>  
+                                            <c:if test="${(listTukesi.getvar_perubahan3())=='u'}">
+                                                <td style="font-weight:normal; font-size: 12px"width="68"align="center"><strike>${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</strike> </td>
+                                            </c:if>
+
+                                            <c:if test="${(listTukesi.getvar_perubahan3())!='u'}">
                                                 <td style="font-weight:normal; font-size: 12px"width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
+                                            </c:if>
+                                            <c:if test="${(listTukesi.getvar_perubahan4())=='u'}">
+
+                                                <td style="font-weight:normal; font-size: 12px" width="91" align="center"><strike>Rp. ${listTukesi.getBiaya4()}</strike></td>
+                                            </c:if>
+
+                                            <c:if test="${(listTukesi.getvar_perubahan4())!='u'}">
+
                                                 <td style="font-weight:normal; font-size: 12px" width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
-                                                <%--<td align="left">${listTukesi.getangkaKrdtr()}</td>--%>
-                                                <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitasr()} %</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getPenghitungan()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>
+                                            </c:if>
+                                            <%--<td align="left">${listTukesi.getangkaKrdtr()}</td>--%>
+
+                                            <c:choose>
+                                                <c:when test="${(listTukesi.getvar_perubahan1()=='u' || listTukesi.getvar_perubahan2()=='u' || listTukesi.getvar_perubahan3()=='u' || listTukesi.getvar_perubahan4()=='u' )}">
+
+
+
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center">"-"</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="78" align="center">"-"</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="68" align="center">"-"</td>                        
+                                                    <td style="font-weight:normal; font-size: 12px"width="95" align="center">"-"</td>                       
+                                                    <td style="font-weight:normal; font-size: 12px"width="80" align="center">"-"</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="80" align="center">"-"</td>
+                                                </c:when>     
+                                                <c:otherwise>
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitasr()} %</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>                        
+                                                    <td style="font-weight:normal; font-size: 12px"width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>                       
+                                                    <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getPenghitungan()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>           
+                                                </c:otherwise>
+                                            </c:choose>
+
                                             </tr>
                                         </c:when>
                                         <c:otherwise>
                                             <tr bgcolor="#e8edff">
 
-                                                <td style="font-weight:normal; font-size: 12px"width="38" align="center">${(count.index)+1}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
-                                                <td style="font-weight:normal; font-size: 12px"width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
+                                              <td style="font-weight:normal ; font-size: 12px" width="38" align="center">${(count.index)+1}</td>
+                                                <td  style="font-weight:normal; font-size: 12px" width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px" width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
+                                                <td style="font-weight:normal; font-size: 12px" width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
+                                                <c:if test="${(listTukesi.getvar_perubahan1())=='u'}">
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center"><strike>${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</strike></td>
+                                                </c:if>
+                                                <c:if test="${(listTukesi.getvar_perubahan1())!='u'}">
                                                 <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitas4()} ${listTukesi.getKuantitas_label()}</td>
+                                            </c:if>
+
+                                            <c:if test="${(listTukesi.getvar_perubahan2())=='u'}">
+                                                <td style="font-weight:normal; font-size: 12px"width="78" align="center"><strike>${listTukesi.getKualitas4()} %</strike></td>
+                                            </c:if>
+                                            <c:if test="${(listTukesi.getvar_perubahan2())!='u'}">
                                                 <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitas4()} %</td>
+                                            </c:if>  
+                                            <c:if test="${(listTukesi.getvar_perubahan3())=='u'}">
+                                                <td style="font-weight:normal; font-size: 12px"width="68"align="center"><strike>${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</strike> </td>
+                                            </c:if>
+
+                                            <c:if test="${(listTukesi.getvar_perubahan3())!='u'}">
                                                 <td style="font-weight:normal; font-size: 12px"width="68"align="center">${listTukesi.getWaktu4()} ${listTukesi.getWaktu_label()}</td>
+                                            </c:if>
+                                            <c:if test="${(listTukesi.getvar_perubahan4())=='u'}">
+
+                                                <td style="font-weight:normal; font-size: 12px" width="91" align="center"><strike>Rp. ${listTukesi.getBiaya4()}</strike></td>
+                                            </c:if>
+
+                                            <c:if test="${(listTukesi.getvar_perubahan4())!='u'}">
+
                                                 <td style="font-weight:normal; font-size: 12px" width="91" align="center">Rp. ${listTukesi.getBiaya4()}</td>
-                                                <%--<td align="left">${listTukesi.getangkaKrdtr()}</td>--%>
-                                                <td style="font-weight:normal; font-size: 12px" width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitasr()} %</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getPenghitungan()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>
-                                            </tr>
-                                        </c:otherwise>
+                                            </c:if>
+                                            <%--<td align="left">${listTukesi.getangkaKrdtr()}</td>--%>
 
-                                    </c:choose>
-                                </c:forEach>
-
-                            </table>
+                                            <c:choose>
+                                                <c:when test="${(listTukesi.getvar_perubahan1()=='u' || listTukesi.getvar_perubahan2()=='u' || listTukesi.getvar_perubahan3()=='u' || listTukesi.getvar_perubahan4()=='u' )}">
 
 
-                        </div>   
 
-                        <div>&nbsp;</div>
-                        <div>TUGAS TAMBAHAN</div>
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center">"-"</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="78" align="center">"-"</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="68" align="center">"-"</td>                        
+                                                    <td style="font-weight:normal; font-size: 12px"width="95" align="center">"-"</td>                       
+                                                    <td style="font-weight:normal; font-size: 12px"width="80" align="center">"-"</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="80" align="center">"-"</td>
+                                                </c:when>     
+                                                <c:otherwise>
+                                                    <td style="font-weight:normal; font-size: 12px"width="85" align="center">${listTukesi.getKuantitasr()} ${listTukesi.getKuantitas_label()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="78" align="center">${listTukesi.getKualitasr()} %</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="68" align="center">${listTukesi.getWaktur()} ${listTukesi.getWaktu_label()}</td>                        
+                                                    <td style="font-weight:normal; font-size: 12px"width="95" align="center">Rp. ${listTukesi.getBiayar()}</td>                       
+                                                    <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getPenghitungan()}</td>
+                                                    <td style="font-weight:normal; font-size: 12px"width="80" align="center">${listTukesi.getNilai_capaian_skp()}</td>           
+                                                </c:otherwise>
+                                            </c:choose>
 
-
-                        <div class="scroll30" id="hof">
-                            <table >
-                                <tr style="background:#9999ff">
-                                    <th style="font-weight:normal; font-size: 12px" width="31"><div align="center">NO.</div></th>
-                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">KODE</div></th>
-                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">JENIS TUGAS</div></th>
-                                <th style="font-weight:normal; font-size: 12px" width="383"><div align="center">NAMA TUGAS TAMBAHAN</div></th>
-                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">TARGET</div></th>
-                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">REALISASI</div></th>
-                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">PENGHITUNGAN </div>  </th>        
-                                <th style="font-weight:normal; font-size: 12px" width="138"><div align="center">NILAI CAPAIAN SKP</div></th>
-                                </tr>
-
-                                <c:forEach var="tambahans" items="${tugasTambahans}" varStatus ="count">
-                                    <c:choose>
-                                        <c:when test="${count.index % 2 == 0}">
-                                            <tr bgcolor="#7FFFD4">
-                                                <td style="font-weight:normal; font-size: 12px"width="31" align="center">${(count.index)+1}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td style="font-weight:normal; font-size: 12px" width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="383" align="left">${tambahans.getNama()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
-                                            </tr>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <tr bgcolor=#ADFF2F">
-                                                <td style="font-weight:normal; font-size: 12px"width="31" align="center">${(count.index)+1}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="center">${tambahans.getIdTambahan()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="left">${tambahans.getJenisTambahan()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="383" align="left">${tambahans.getNama()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai1()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilai2()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getHitungTambahan()}</td>
-                                                <td style="font-weight:normal; font-size: 12px"width="138" align="right">${tambahans.getNilaiTambahan()}</td>
                                             </tr>
                                         </c:otherwise>
 
@@ -1067,7 +1104,7 @@
 
 
 
-                        <div class="scroll30" id="hof">
+                        <div class="scroll3" id="hof">
                             <table  >
                                 <tr style="background:#9999ff">
 
@@ -1128,7 +1165,8 @@
                                     <td><a href="cetakIsi4FaktorServlet?nipPrestasi=<c:out value="${pns.getNipBaru()}"/>&realisasi2=realisasi2"  target="_blank" id="url4"  onclick="redirect4K()" title="Prestasi"><center><img src="images/cetakprestasi.png"/></center></a></td> 
                                     <td><a target="_blank" id="url3"  onclick="redirect3K()" title="Cetak"><center><img src="/SKPapplication/images/cetak.png"/></center></a></td>
                                     <td>Tanggal Cetak </td>
-                                    <td>&nbsp;&nbsp;&nbsp;<input type="text" id="tglCetakw" name="tglCetakw" maxlength="8"onfocus="clearText2WW()()" onblur="clearTextWW()()"onkeypress="return alertnipnull3(event)"/> </td>
+                                    <td>&nbsp;&nbsp;&nbsp;<input type="text" id="tglCetakw" name="tglCetakw" on maxlength="8" onfocus="clearText2WW()" onblur="clearTextWW()" onkeypress="return alertnipnull3(event)"/> </td>
+
                                     <td>DDMMYYYY </td>          
                                 </tr>
                             </table>
@@ -1150,7 +1188,7 @@
                     <form method="post" name="form1"  onsubmit="return validasitest()"  action="isiPerilakuServlet"> 
 
                         <div id="leftsideMonitor">
-                            <div STYLE=" height: 501px;   width: 300px; font-size: 8px; overflow: auto;">                  
+                            <div STYLE=" height: 400px;   width: 300px; font-size: 8px; overflow: auto;">                  
                                 <table  align="top" width="173">
 
                                     <tr>
@@ -1168,10 +1206,7 @@
                                     </tr> 
 
                                     <tr>
-
-                                        <td >
-                                            &nbsp;&nbsp;&nbsp;
-                                        </td>  
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</td>
 
                                         <td style ="width: 5px">
                                             <select id="pilih_session_monit" name="pilih_session_monit" onchange="validasi4()" >
@@ -1186,9 +1221,9 @@
                                                 <option value="2020">2020</option>
                                             </select>
                                         <td>
-                                            <input type="button"  name="param" onclick="ButtonBackNit()" value="Lihat"/> 
+                                            <input type="button"  name="param" onclick="ButtonBackNit()" value="Lihat Staf"/> 
                                         </td>  
-                                        </td>  
+
                                         <td>
                                             <input type="button" name="CetakSeluruh" onclick="ButtonBackCetak()" target="_blank" value="Print ALL"/>
                                         </td>
@@ -1196,6 +1231,11 @@
 
                                     </tr>      
 
+                                    <tr>
+                                        <td colspan="3">
+                                            <input type="button" name="CetakSeluruh" onclick="ButtonBackNitView()" value="Listing Laporan Staf"/>
+                                        </td>
+                                    </tr>
 
                                 </table>
                                 <style type="text/css"> 
@@ -1289,8 +1329,6 @@
 
                                                     </c:otherwise>   
                                                 </c:choose>           
-
-
 
                                                 <ul>
 
@@ -1444,7 +1482,7 @@
 
                         </div>
                         <div  id="contentMonitor">
-                            <div style="height: 200px; overflow: auto;background: #ffffff">
+                            <div style="height: 200px; overflow:  auto;background: #ffffff;">
                                 <table >
                                     <tr  BGCOLOR="#9999ff">
                                         <th style="font-weight:normal; font-size: 12px" width="38" rowspan="2" style="font-weight:normal">NO.</th>
@@ -1520,7 +1558,7 @@
 
                                 </table>
                             </div>
-                            <div style="height: 100px; overflow: auto;background: #ffffff" >
+                            <div style="height: 100px;overflow: auto;background: #ffffff" >
                                 <table>
                                     <thead>
 
@@ -1646,6 +1684,14 @@
                                 left : 50px;
                                 width : 500px;
                                 height : 300px;
+                            }
+                            #rightIsiansub2 {
+                                position :  absolute;
+                                top : 1px;
+                                margin-left: 720px;
+                                width : 300px;
+                                height : 300px;
+                                overflow: auto;
                             }
 
 
@@ -1822,8 +1868,32 @@
                                 </table>
 
                                 </td>
-
                                 </table>
+                                <div id="rightIsiansub2">
+                                    <table>
+                                        <c:forEach var="pnsBaw" items="${pnsList}" varStatus="count">
+                                            <c:choose>
+                                                <c:when test="${count.index % 2 == 0}">
+                                                    <tr bgcolor="#7FFFD4">
+                                                        <td style="font-weight:normal;font-size: 12px" width="150" align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw.getNamaPns()}</div></a></td>
+                                                        <td style="font-weight:normal;font-size: 12px" width="50" align="right">${pnsBaw.getRealisasi()}</td>   
+                                                      
+                                                    </tr>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <tr  bgcolor=#ADFF2F">
+                                                        <td style="font-weight:normal;font-size: 12px" width="150" align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw.getNamaPns()}</div></a></td>  
+                                                          <td style="font-weight:normal;font-size: 12px" width="50" align="right">${pnsBaw.getRealisasi()}</td>   
+                                                         
+                                                    </tr>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+
+                                    </table>
+
+                                </div>
+
 
                             </div>   
 
@@ -1945,6 +2015,8 @@
    
                 //   url3.href=url3.href+"&pilih_session=" + pilihan+"&tglCetak="+tglCetak;
                 url3.href=hr+"&pilih_session=" + pilihan+"&tglCetak="+tglCetak; 
+                
+                
    
             }
             function redirectNip()       
@@ -2019,39 +2091,45 @@
 
         </script>
 
-        
+
         <c:set var="tingkat" value="${tingkatPengguna}" />               
         <div id="leftside">     
             <div id="place-nav" >
                 <ul id="nav">
-                    <li><a href="#"><div style="font-size: 20px;color:darkorange">Navigasi </div></a>
+                    <li><a href="#"><div style="font-size: 20px">... </div></a>
 
                         <ul>
                             <c:if test="${tingkat=='3'}">
                                 <li><a href="NavigasiProfile?nipManajemenPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Manajemen Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Perwakilan Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Tupoksi</a></li>
+                                <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data tk. Esl II</a></li>
+                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data Personal</a></li>
+                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Kegiatan Tugas Jabatan</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
                                 <li><a href="NavigasiProfile?salindata=<c:out value="${sessionScope.NipPnsSession}"/>">Salin Data </a></li>
+                                <li><a href="NavigasiProfile?refisidata=<c:out value="${sessionScope.NipPnsSession}"/>">Revisi </a></li>
+                                <li><a href="NavigasiProfile?rekapdata=<c:out value="${sessionScope.NipPnsSession}"/>">rekapitulasi </a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">KELUAR</a></li>    
                             </c:if>
                             <c:if test="${tingkat=='2'}">
-                                <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Perwakilan Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Tupoksi</a></li>
+                                <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data tk. Esl II</a></li>
+                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data Personal</a></li>
+                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Kegiatan Tugas Jabatan</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
+                                <li><a href="NavigasiProfile?refisidata=<c:out value="${sessionScope.NipPnsSession}"/>">Revisi </a></li>
+                                <li><a href="NavigasiProfile?rekapdata=<c:out value="${sessionScope.NipPnsSession}"/>">rekapitulasi </a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">KELUAR</a></li>
                             </c:if>
                             <c:if test="${tingkat=='1'}">
-                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
-                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Tupoksi</a></li>
+                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data Personal</a></li>
+                                <li><a href="NavigasiProfile?nipentriTupoksi=<c:out value="${sessionScope.NipPnsSession}"/>">Entri Kegiatan Tugas Jabatan</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
+                                <li><a href="NavigasiProfile?refisidata=<c:out value="${sessionScope.NipPnsSession}"/>">Revisi </a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">KELUAR</a></li>
                             </c:if> 
                             <c:if test="${tingkat=='0'}">
-                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Login Pengguna</a></li>
+                                <li><a href="NavigasiProfile?nipPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data Personal</a></li>
                                 <li><a href="NavigasiProfile?nipmonitoring=<c:out value="${sessionScope.NipPnsSession}"/>">Monitoring</a></li>
+                                <li><a href="NavigasiProfile?refisidata=<c:out value="${sessionScope.NipPnsSession}"/>">Revisi </a></li>
                                 <li><a href="RequestServlet?page1=indexloginBaru" target="_parent" title="Keluar">KELUAR</a></li>
                             </c:if>
                         </ul>
