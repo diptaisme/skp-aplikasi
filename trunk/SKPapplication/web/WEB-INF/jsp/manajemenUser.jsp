@@ -139,7 +139,7 @@
                                         <td width="30"><div align="left"><span class="style3">NIP BARU</span></div></td>
                                         <td><input type="text" name="nipbaru" id="nipBaru" value="<c:out value="${nip}"/>" maxlength="18"/></td>
                                         <td>
-                                            <input type="button" name="param" value="AMBIL" id="ambilBtn"/>
+                                            <input type="button" name="param" value="AMBIL NIP" id="ambilBtn"/>
                                         </td>
                                     </tr>
                                     <tr>
