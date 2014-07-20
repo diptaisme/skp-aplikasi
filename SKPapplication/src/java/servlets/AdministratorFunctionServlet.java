@@ -220,10 +220,14 @@ public class AdministratorFunctionServlet extends HttpServlet {
 
                     List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
                     request.setAttribute("pns", pns);
+                    request.setAttribute("nipbaru", nipbaru);
+                    
                     request.setAttribute("UnorAts", UnorAts);
                     request.setAttribute("tukesiServlet", tukesiServlet);
                     request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
-                    dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat.jsp");
+                    String prevPage = "";
+                    request.setAttribute("prevPage", "AdmUser.simpan");
+                    dis = request.getRequestDispatcher("/WEB-INF/jsp/navigasiPenggunadat_1.jsp");
                     dis.forward(request, response);
 
                 }
