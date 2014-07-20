@@ -55,7 +55,7 @@
 
                 position :  absolute;
                 top : 60px;
-                left : 20px;
+                left : 50px;
                 width : 156px;
                 height : 501px;
             }
