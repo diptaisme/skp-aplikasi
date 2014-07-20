@@ -2077,7 +2077,12 @@
                 _nipInputan=document.getElementById("nipInputan").value;
    
                 //   url3.href=url3.href+"&pilih_session=" + pilihan+"&tglCetak="+tglCetak;
-                urlNip.href=hr+"&pilih_session=" + pilihan+"&vnipInputan="+_nipInputan; 
+                if (_nipInputan == ""){
+                    alert('input nip tidak boleh kosong');
+                } else {
+                    urlNip.href=hr+"&pilih_session=" + pilihan+"&vnipInputan="+_nipInputan; 
+                }
+                
    
             }
             function redirect3Test       ()
