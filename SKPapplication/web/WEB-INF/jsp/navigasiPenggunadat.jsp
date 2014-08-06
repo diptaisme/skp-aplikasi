@@ -2151,8 +2151,7 @@
             <div id="place-nav" >
                 <ul id="nav">
                     <li><a href="#"><div style="font-size: 20px">... </div></a>
-
-                        <ul>
+                         <ul>
                             <c:if test="${tingkat=='3'}">
                                 <li><a href="NavigasiProfile?nipManajemenPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Manajemen Pengguna</a></li>
                                 <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data tk. Esl II</a></li>
