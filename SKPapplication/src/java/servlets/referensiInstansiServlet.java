@@ -662,7 +662,10 @@ public class referensiInstansiServlet extends HttpServlet {
                 jenisJabatan = request.getParameter("jabatan");
                 String namaInstansiTextJ = request.getParameter("namaInstansiText");
                 String _kodeIdInstansi = request.getParameter("idInstansiText");
-                String JabatanId = request.getParameter("jabatanfungfum1");
+                String JabatanId = request.getParameter("jabatanfungfum");
+                if (JabatanId == null){
+                    JabatanId = request.getParameter("jabatanfungfum1");
+                }
                 String namaUnorTextJ = request.getParameter("namaUnorText");
                 String idUnorTextJ = request.getParameter("idUnorText");
 
