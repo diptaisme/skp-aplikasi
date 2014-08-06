@@ -341,7 +341,8 @@ public class DBqueryTupoksiKeIsi4Faktor
         List<TupoksiKeIsi4Faktor> TupoksiKeIsi4Faktories = new ArrayList<TupoksiKeIsi4Faktor>();
                 
         String sql = "SELECT T.id_tupoksi, T.nama_tupoksi, T.id_unor, T.id_instansi, T.id_atasan, T.instansi_nama, "
-                + " I.id_isi4faktor, I.nip_pns, I.id_tupoksi, I.kuantitas4, I.kualitas4, I.waktu4, I.biaya4, I.kuantitas_label, I.waktu_label,T.angka_krdt,I.angka_krdt,I.session "
+                + " I.id_isi4faktor, I.nip_pns, I.id_tupoksi, I.kuantitas4, I.kualitas4, I.waktu4, I.biaya4, I.kuantitas_label, "
+                + "I.waktu_label,T.angka_krdt,I.angka_krdt,I.session,I.detailtupoksi"
                 + " FROM TUPOKSI T, ISI4FAKTOR I "
                 + " WHERE T.id_tupoksi = I.id_tupoksi AND I.nip_pns =? ";
         
@@ -351,9 +352,17 @@ public class DBqueryTupoksiKeIsi4Faktor
         ResultSet rs = pst.executeQuery();
         while (rs.next())
         {
+            String detailtupoksi = rs.getString(19);
             TupoksiKeIsi4Faktor tukeisi = new TupoksiKeIsi4Faktor();
             tukeisi.setIdTupoksi(rs.getString(1));
-            tukeisi.setNamaTupoksi(rs.getString(2));
+            if(detailtupoksi.equals("") || detailtupoksi == null)
+            {
+                tukeisi.setNamaTupoksi(rs.getString(2));
+            }
+            else
+            {
+                tukeisi.setNamaTupoksi(rs.getString(2) + "-" + rs.getString(19));
+            }
             tukeisi.setIdUnor(rs.getString(3));
             tukeisi.setIdInstansi(rs.getString(4));
             tukeisi.setIdDiAtasan(rs.getString(5));
