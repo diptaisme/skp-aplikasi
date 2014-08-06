@@ -462,6 +462,7 @@ public class Isi4FaktorServlet extends HttpServlet {
             //if(param.equalsIgnoreCase("SAVE"))
             if (param.equalsIgnoreCase("SIMPAN")) {
                 String _idTupoksi = P_idTupoksi;
+                String _detailkegiatan = request.getParameter("detailkegiatan");
                 String _kuantitas4text = request.getParameter("kuantitas4text");
                 String _kualitas4text = request.getParameter("kualitas4text");
                 String _waktu4text = request.getParameter("waktu4text");
@@ -483,11 +484,11 @@ public class Isi4FaktorServlet extends HttpServlet {
 
                     //  String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id,_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL,_angkaKredit);
                     String _Isi4FaktorRevisi = null;
-                    String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, _idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
+                    String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, _idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion,_detailkegiatan);
                     try {
                         //_Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, _idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
 
-                        _Isi4FaktorRevisi = new GoIndex().getsimpanIsiEmpatFaktorRevisi(iNip_id, _idTupoksi, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
+                        _Isi4FaktorRevisi = new GoIndex().getsimpanIsiEmpatFaktorRevisi(iNip_id, _idTupoksi, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion, _detailkegiatan);
                     } catch (SQLException ex) {
                         Logger.getLogger(Isi4FaktorServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -742,6 +743,7 @@ public class Isi4FaktorServlet extends HttpServlet {
         //String _idTupoksi=idTupoksi4;
         //String _idTupoksi=P_idTupoksi;
         HttpSession session = request.getSession();
+        String _detailkegiatan = request.getParameter("detailkegiatan");
         String _kuantitas4text = request.getParameter("kuantitas4text");
         String _kualitas4text = request.getParameter("kualitas4text");
         String _waktu4text = request.getParameter("waktu4text");
@@ -758,7 +760,7 @@ public class Isi4FaktorServlet extends HttpServlet {
 
         //String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id,_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text);
         // String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(P_nipbaru,P_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL,_angkaKredit);
-        String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(P_nipbaru, P_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
+        String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(P_nipbaru, P_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion,_detailkegiatan);
         String xidTupoksi = request.getParameter("idTupoksi");
         String nip = request.getParameter("nipnilai");
 
