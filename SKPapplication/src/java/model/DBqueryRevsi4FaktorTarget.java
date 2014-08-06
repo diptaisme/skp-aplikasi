@@ -267,7 +267,7 @@ public class DBqueryRevsi4FaktorTarget {
         return max;
     }
 
-    public void insertRevisi4faktorRevisi(String maksId, String maksrevisi, String idisi4faktor, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String _angkaKreditr, String ipilih, String iwaktuL, String s_pilih_session) throws SQLException {
+    public void insertRevisi4faktorRevisi(String maksId, String maksrevisi, String idisi4faktor, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String _angkaKreditr, String ipilih, String iwaktuL, String s_pilih_session,String _detailkegiatan) throws SQLException {
         String _maksId = maksId;
         String _maksrevisi = maksrevisi;
         String __iNip_id = _iNip_id;
