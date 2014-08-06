@@ -25,7 +25,7 @@ public class DBqueryUpdateTupoksi {
         this.conn = conn;
     }
 
-    public void updateTupoksi(String _iNip_id, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String pilih, String waktuL, String _angkaKredit, String _pilih_session, String _getidUnor4jspSesiion4) throws SQLException {
+    public void updateTupoksi(String _iNip_id, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String pilih, String waktuL, String _angkaKredit, String _pilih_session, String _getidUnor4jspSesiion4,String _detailkegiatan) throws SQLException {
         String __iNip_id = _iNip_id;
         String _IdTupoksi = IdTupoksi;
         String _ikuantitas4 = ikuantitas4;
@@ -84,7 +84,7 @@ public class DBqueryUpdateTupoksi {
         _waktuL = vs.getmashudi();
 
 
-        String sql = "UPDATE isi4faktor SET angka_krdt='" + _angkaKreditik + "',kuantitas4 ='" + _ikuantitas4 + "', kualitas4='" + _ikualitas4 + "', waktu4='" + _iWaktu4 + "', biaya4='" + _iBiaya + "', kuantitas_label='" + _pilih + "', waktu_label='" + _waktuL + "', session='" + s_pilih_session + "', id_unor='" + s_getidUnor4jspSesiion4 + "' where id_tupoksi='" + _IdTupoksi + "' and nip_pns ='" + __iNip_id + "' ";
+        String sql = "UPDATE isi4faktor SET detailtupoksi='"+_detailkegiatan+"',angka_krdt='" + _angkaKreditik + "',kuantitas4 ='" + _ikuantitas4 + "', kualitas4='" + _ikualitas4 + "', waktu4='" + _iWaktu4 + "', biaya4='" + _iBiaya + "', kuantitas_label='" + _pilih + "', waktu_label='" + _waktuL + "', session='" + s_pilih_session + "', id_unor='" + s_getidUnor4jspSesiion4 + "' where id_tupoksi='" + _IdTupoksi + "' and nip_pns ='" + __iNip_id + "' ";
         //  PreparedStatement st = (PreparedStatement) conn.prepareStatement(sql);
         PreparedStatement st = this.conn.prepareStatement(sql);
         //   st.setString(1,IdTupoksi);
