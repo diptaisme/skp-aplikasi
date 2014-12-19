@@ -69,8 +69,8 @@ public class RequestServlet extends HttpServlet {
             if (page.equalsIgnoreCase("validasi")) {
                 if (request.getParameter("jenis_tambahan").toString().equals("Keterampilan")) {
                     PrintWriter out = response.getWriter();
-                    out.print("<select name='koef_kreatifitas'><option value='10'>Unit Organisasi</option><option value='20'>Instansi</option><option value='30'>Nasional</option> </select>");
-                    out.close();
+                   // out.print("<select name='koef_kreatifitas'><option value='10'>Unit Organisasi</option><option value='20'>Instansi</option><option value='30'>Nasional</option> </select>");
+                   // out.close();
                 }
             }
             if (page.equalsIgnoreCase("validasi_unor")) {

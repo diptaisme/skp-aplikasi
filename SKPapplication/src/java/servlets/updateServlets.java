@@ -68,8 +68,8 @@ public class updateServlets extends HttpServlet {
         String nip_baruuser = request.getParameter("nip_baruuser");
         String unoratasanlama = request.getParameter("unoratasanlama");
         String nipatasanlama = request.getParameter("nipatasanlama");
-
-        if (id != null && id != "" && id != " ") {
+        String NIPBaruUbahjabatan = request.getParameter("NIPBaruUbahjabatan");
+        if (id != null && id != "" && id != " " ) {
             //domain PnsSkp
             PnsSkp pns = new GoIndex().getPns(id); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
             String unorAtasan = pns.getDiAtasanId(); //ambil satu2 dari "pns" diatas
@@ -115,8 +115,43 @@ public class updateServlets extends HttpServlet {
             request.setAttribute("nipatasanlama", nipatasanlama);
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/UpdateAtasan.jsp");
             dis.forward(request, response);
-        } else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " ")) {
+        } else if ((id == null || id == "" || id == " ") && (idTB == null || idTB == "" || idTB == " ") 
+                && (NIPBaruUbahjabatan == null || NIPBaruUbahjabatan == "" || NIPBaruUbahjabatan == " ")) {
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/indexBaruBiru2.jsp");
+            dis.forward(request, response);
+        }
+        else if(NIPBaruUbahjabatan != null && NIPBaruUbahjabatan != "" && NIPBaruUbahjabatan != " " )
+        {
+            PnsSkp pns = new GoIndex().getPns(NIPBaruUbahjabatan); //ambil data dari tabel pns (semuanya), ke business (goindex) lalu ke dao (ada where = id (nipbaru))
+            String unorAtasan = pns.getDiAtasanId(); //ambil satu2 dari "pns" diatas
+            String UnorPns = pns.getUnorId();
+            String InstansiPns = pns.getInstansiId();
+            String NipPns = pns.getNipBaru();
+
+            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+
+            //baru 22022012
+            instansiri ins = new GoIndex().getInstansi(InstansiPns);
+            String NamaInstansi = ins.getNamaInstansi();
+
+            //baru 22022012 -- untuk list
+            //String insA = request.getParameter("instansiA");
+            //String unoA = request.getParameter("unorA");
+            List<UnorKeTupoksi> unosiServlet = new GoIndex().getUnosi(UnorPns, InstansiPns);
+
+            request.setAttribute("pns", pns);
+            String nama_jab = pns.getNamaJabatan();
+            request.setAttribute("UnorAts", UnorAts);
+            request.setAttribute("ins", ins);
+
+            request.setAttribute("tukesiServlet", tukesiServlet);
+            request.setAttribute("unosiServlet", unosiServlet);
+
+            request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+            request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/updateMenu_Jabatan.jsp");
             dis.forward(request, response);
         }
     }

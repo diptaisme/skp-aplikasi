@@ -61,9 +61,9 @@ public class DBqueryLogin
         }
         return ipns;
     }
-       public void ubahUser(String username,String password,String nip_baru) throws SQLException
+       public void ubahUser(String username,String password,String nip_baru,String kewenangan_login) throws SQLException
        {
-         String sql = "update loginweb set username_login = '"+username+"',password_login = '"+password+"' where nippns_login = '"+nip_baru+"'" ;
+         String sql = "update loginweb set username_login = '"+username+"',password_login = '"+password+"',kewenangan_login = '"+kewenangan_login+"' where nippns_login = '"+nip_baru+"'" ;
          PreparedStatement st = this.conn.prepareStatement(sql);    
          st.executeUpdate(sql);
          st.close();

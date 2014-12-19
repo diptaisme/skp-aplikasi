@@ -168,7 +168,7 @@ function clearText(field)
                 
                 <div id="menuKecil">
 					<ul>
-                                            <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pnsp.getNipBaru()}"/>&idTupoksi=<c:out value="${idtupoksidijsp}"/>" target="_parent" title="Realisasi Capaian SKI">Kembali</a></li>	
+                                            <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pnsp.getNipBaru()}"/>&pilih_session=<c:out value="${_pilih_session}"/>&idTupoksi=<c:out value="${idtupoksidijsp}"/>" target="_parent" title="Realisasi Capaian SKI">Kembali</a></li>	
 						 <li><a href="RequestServlet?page=indexloginBaru" target="_parent" title="Keluar"><span></span>Keluar</a></li>
 					
                                         </ul>
@@ -207,7 +207,8 @@ function clearText(field)
                     <td  ><c:out value="${pnsp.getNamaPns()}" /></td>
                 </tr> 
                 <input type="hidden" name="_pilih_session" value="${_pilih_session}"/>
-                <tr >
+                <input type="hidden" id = "idrealisasi" name="idrealisasi" value="${idrealisasi}"/>
+                <tr>
                 
                     <td width="80">KODE TUPOKSI</td>
                     <td width="5">:</td>

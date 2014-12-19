@@ -14,6 +14,8 @@ import java.util.List;
 public class ModelLocatorSKP {
 
     public static int jenisJabatan = 0;
+    public static String inserttupoksiperwakilan = null;
+    public static String inserttupoksipersonal = null;
     public static String nipBaruAtasan = null;
     public static String nipBaruUser = null;
     public static String IdUnorUser = null;

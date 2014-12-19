@@ -89,6 +89,8 @@ public class Isi4FaktorServlet extends HttpServlet {
         String action = request.getParameter("action");
         String nipsendiriR = request.getParameter("nipsendiriR");
         String nipsendiriMonitoring = request.getParameter("nipsendiriMonitoring");
+        String sesiontahun = request.getParameter("sesiontahun");
+        String sessionrealisasi = request.getParameter("sessionw");
           String getIdIsi4Faktor = request.getParameter("getIdIsi4Faktor");
         P_idTupoksi = STupoksiKode;
         P_nipbaru = Snipbaru;
@@ -179,11 +181,12 @@ public class Isi4FaktorServlet extends HttpServlet {
                     PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
                     String _hasilHapus = new GoIndex().getHapusRealita(vi_dTupoksiHapus, NipPns);
 
-                    List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-
+                    List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesiSession(UnorPns, InstansiPns, NipPns, _pilih_session);
+                    
                     request.setAttribute("pns", pns);
                     request.setAttribute("UnorAts", UnorAts);
                     request.setAttribute("tukesiServlet", tukesiServlet);
+                    request.setAttribute("sesiontahun", _pilih_session);
                 }
 
                 //kirim ke jsp lagi
@@ -224,7 +227,7 @@ public class Isi4FaktorServlet extends HttpServlet {
 
                 request.setAttribute("_getidUnor4jsp", _getidUnor4);
                 request.setAttribute("getIdIsi4Faktor", getIdIsi4Faktor);
-
+                request.setAttribute("sesiontahun", _pilih_session);
                 //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/isi4faktorBaru.jsp");
                 dis.forward(request, response);
@@ -234,7 +237,8 @@ public class Isi4FaktorServlet extends HttpServlet {
                 PnsSkp pnsp = new GoIndex().getPns(nipnilaiR);
                 //TupoksiKeIsi4Faktor tupoksiKeIsi4Faktor = new GoIndex().getTupoksi(idTupoksiR);
                 //List<RealisasiIsi4faktorTupoksi> realisasiIsi4faktorTupoksi  = new GoIndex().getRealkesi(nipnilaiR);
-                RealisasiIsi4faktorTupoksi realisasiIsi4faktorTupoksiId = new GoIndex().getRealkesiid(nipnilaiR, idTupoksiR);
+                RealisasiIsi4faktorTupoksi realisasiIsi4faktorTupoksiId = new GoIndex().getRealkesiSessionNip(nipnilaiR, idTupoksiR, _pilih_session);
+                
                 //idtupoksidijspreal = realisasiIsi4faktorTupoksiId.getIdTupoksi();
                 //namaTupoksijspreal = realisasiIsi4faktorTupoksiId.getNamaTupoksi();
                 String kuantitas4 = realisasiIsi4faktorTupoksiId.getKuantitas4();
@@ -257,11 +261,11 @@ public class Isi4FaktorServlet extends HttpServlet {
 
                     idtupoksidijsp = realisasiIsi4faktorTupoksiId.getId_tupoksi();
                     namaTupoksijsp = realisasiIsi4faktorTupoksiId.getNama_tupoksi();
-
+                    String idrealisasi = realisasiIsi4faktorTupoksiId.getId_realisasi();
                     request.setAttribute("idtupoksidijsp", idtupoksidijsp);
                     request.setAttribute("namaTupoksijsp", namaTupoksijsp);
                     request.setAttribute("_pilih_session", _pilih_session4);
-
+                    request.setAttribute("idrealisasi", idrealisasi);
                     //RequestDispatcher dis=request.getRequestDispatcher("realisasi.jsp");
 
                     RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/realisasiBaru2.jsp");
@@ -456,6 +460,7 @@ public class Isi4FaktorServlet extends HttpServlet {
         String NipPnsSession = (String) session.getAttribute("NipPnsSession");
         String _pilih_session = request.getParameter("pilih_session");
         String idisi4faktor = request.getParameter("getIdIsi4Faktor");
+        String sessionwaktu = request.getParameter("session");
 
         if (param != null) {
             P_idTupoksi = request.getParameter("idtupoksidiSesiion");
@@ -467,15 +472,20 @@ public class Isi4FaktorServlet extends HttpServlet {
                 String _kualitas4text = request.getParameter("kualitas4text");
                 String _waktu4text = request.getParameter("waktu4text");
                 String _biaya4text = request.getParameter("biaya4text");
+                
+                
+                
                 String _angkaKredit = request.getParameter("akt");
                 String __getidUnor4jspSesiion = request.getParameter("_getidUnor4jspSesiion");
                 String iNip_id = null;
-                if (ModelLocatorSKP.loginNipPengguna != null) {
-                    iNip_id = ModelLocatorSKP.loginNipPengguna;
-                } else {
-                    iNip_id = NipPnsSession;
-                }
+//                if (ModelLocatorSKP.loginNipPengguna != null) {
+//                    iNip_id = ModelLocatorSKP.loginNipPengguna;
+//                } else {
+//                    iNip_id = NipPnsSession;
+//                }
 
+                iNip_id = NipPnsSession;
+                
                 String pilih = request.getParameter("pilih_output");
                 String waktuL = "bln";
 
@@ -484,11 +494,11 @@ public class Isi4FaktorServlet extends HttpServlet {
 
                     //  String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id,_idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL,_angkaKredit);
                     String _Isi4FaktorRevisi = null;
-                    String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, _idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion,_detailkegiatan);
+                    String _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, sessionwaktu, __getidUnor4jspSesiion,_detailkegiatan);
                     try {
                         //_Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, _idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
 
-                        _Isi4FaktorRevisi = new GoIndex().getsimpanIsiEmpatFaktorRevisi(iNip_id, _idTupoksi, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion, _detailkegiatan);
+                        _Isi4FaktorRevisi = new GoIndex().getsimpanIsiEmpatFaktorRevisi(iNip_id, _idTupoksi, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, sessionwaktu, __getidUnor4jspSesiion, _detailkegiatan);
                     } catch (SQLException ex) {
                         Logger.getLogger(Isi4FaktorServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -498,6 +508,7 @@ public class Isi4FaktorServlet extends HttpServlet {
 
                     PnsSkp pnsp = new GoIndex().getPns(iNip_id);
                     TupoksiKeIsi4Faktor tupoksiKeIsi4Faktor = new GoIndex().getTupoksi(_idTupoksi);
+                 //    TupoksiKeIsi4Faktor tupoksiKeIsi4Faktor = new GoIndex().getTupoksi4(getIdIsi4Faktor);
 
                     request.setAttribute("pnsp", pnsp);
                     request.setAttribute("tupoksiKeIsi4Faktor", tupoksiKeIsi4Faktor);
@@ -510,6 +521,7 @@ public class Isi4FaktorServlet extends HttpServlet {
                         request.setAttribute("idtupoksidijsp", idtupoksidijsp);
                         request.setAttribute("namaTupoksijsp", namaTupoksijsp);
                         request.setAttribute("namaAngka_krdtjsp", namaAngka_krdtjspR);
+                        request.setAttribute("sesiontahun", sessionwaktu);
                     }
                     request.setAttribute("alerting", _Isi4Faktor);
                     //RequestDispatcher dis=request.getRequestDispatcher("isi4faktor.jsp");
@@ -543,9 +555,52 @@ public class Isi4FaktorServlet extends HttpServlet {
                     PrintWriter out = response.getWriter();
                     dis.include(request, response);
                     out.println("Pilih Jenis Kuantitas");
+                } 
+            }else if(param.equalsIgnoreCase("LANJUT")) {
+                  String _idTupoksi = P_idTupoksi;
+                String _detailkegiatan = request.getParameter("detailkegiatan");
+                String _kuantitas4text = request.getParameter("kuantitas4text");
+                String _kualitas4text = request.getParameter("kualitas4text");
+                String _waktu4text = request.getParameter("waktu4text");
+                String _biaya4text = request.getParameter("biaya4text");
+                String _angkaKredit = request.getParameter("akt");
+                String __getidUnor4jspSesiion = request.getParameter("_getidUnor4jspSesiion");
+                String iNip_id = null;
+                if (ModelLocatorSKP.loginNipPengguna != null) {
+                    iNip_id = ModelLocatorSKP.loginNipPengguna;
+                } else {
+                    iNip_id = NipPnsSession;
                 }
+                
+                 String xidTupoksi = request.getParameter("idTupoksi");
+                    String nip = request.getParameter("nipnilai");
 
-            } else if (param.equalsIgnoreCase("BATAL")) {
+                    PnsSkp pnsp = new GoIndex().getPns(iNip_id);
+                    TupoksiKeIsi4Faktor tupoksiKeIsi4Faktor = new GoIndex().getTupoksi(_idTupoksi);
+
+                    request.setAttribute("pnsp", pnsp);
+                    request.setAttribute("tupoksiKeIsi4Faktor", tupoksiKeIsi4Faktor);
+
+                    if (tupoksiKeIsi4Faktor != null) {
+                        tupoksi_lama Tupoksi = new GoIndex().getIdtupoksi(P_idTupoksi);
+                        idtupoksidijsp = Tupoksi.getIdTupoksi();
+                        namaTupoksijsp = Tupoksi.getNamaTupoksi();
+                        namaAngka_krdtjspR = Tupoksi.getangka_krdt();
+                        request.setAttribute("idtupoksidijsp", idtupoksidijsp);
+                        request.setAttribute("namaTupoksijsp", namaTupoksijsp);
+                        request.setAttribute("namaAngka_krdtjsp", namaAngka_krdtjspR);
+                        request.setAttribute("sesiontahun", sessionwaktu);
+                        request.setAttribute("getIdIsi4Faktor", idisi4faktor);
+                    }
+                  //  request.setAttribute("alerting", _Isi4Faktor);
+                     request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
+                      session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
+                    
+                    RequestDispatcher dis = getServletContext().getRequestDispatcher("/LaporanBulananServlet?etst=test");
+                dis.forward(request, response);
+                
+            
+        } else if (param.equalsIgnoreCase("BATAL")) {
                 String _idTupoksi = P_idTupoksi;
                 String _kuantitas4text = request.getParameter("kuantitas4text");
                 String _kualitas4text = request.getParameter("kualitas4text");
@@ -619,7 +674,7 @@ public class Isi4FaktorServlet extends HttpServlet {
                 int t_ikuantitas4 = 0;
                 String _kuantitas4text = request.getParameter("kuantitas4text");
                 String _kuantitasRtext = request.getParameter("kuantitasRtext");
-
+                String idrealisasi = request.getParameter("idrealisasi");
                 if (!"-".equals(_kuantitasRtext) || !" ".equals(_kuantitasRtext) || !"".equals(_kuantitasRtext) || _kuantitasRtext != null) {
                     t_ikuantitas4 = Integer.parseInt(_kuantitasRtext);
                 } else {
@@ -661,13 +716,13 @@ public class Isi4FaktorServlet extends HttpServlet {
 
                 //  String _realisasi = new GoIndex().getsimpanRealisasi(iNip_id,_idTupoksi, _kuantitasRtext, _kualitasRtext, _waktuRtext, _biayaRtext,_angkakrdt4t);
 
-                String _realisasi = new GoIndex().getsimpanRealisasi(iNip_id, _idTupoksi, _kuantitasRtext, _kualitasRtext, _waktuRtext, _biayaRtext, _angkakrdt4t, _pilih_session);
+                String _realisasi = new GoIndex().getsimpanidRealisasi(iNip_id, _idTupoksi, _kuantitasRtext, _kualitasRtext, _waktuRtext, _biayaRtext, _angkakrdt4t, _pilih_session,idrealisasi);
 
                 String xidTupoksi = request.getParameter("idTupoksi");
                 String nip = request.getParameter("nipnilai");
 
                 PnsSkp pnsp = new GoIndex().getPns(iNip_id);
-                RealisasiIsi4faktorTupoksi realisasiIsi4faktorTupoksi = new GoIndex().getRealkesiid(iNip_id, _idTupoksi);
+                RealisasiIsi4faktorTupoksi realisasiIsi4faktorTupoksi = new GoIndex().getRealkesiSessionNip(iNip_id, _idTupoksi,_pilih_session);
 
                 if ("-".equals(_kuantitas4text) || "-".equals(_kualitas4text) || "-".equals(_waktu4text) || "-".equals(_biaya4text) || "-".equals(_kuantitasRtext) || "-".equals(_kualitasRtext) || "-".equals(_waktuRtext) || "-".equals(_biayaRtext)) {
                     request.setAttribute("pnsp", pnsp);
@@ -679,7 +734,7 @@ public class Isi4FaktorServlet extends HttpServlet {
                     request.setAttribute("namaTupoksijsp", namaTupoksijsp);
                     // request.setAttribute("realisasiIsi4faktorTupoksi", realisasiIsi4faktorTupoksi);
                     request.setAttribute("realisasiIsi4faktorTupoksiId", realisasiIsi4faktorTupoksi);
-
+                    request.setAttribute("_pilih_session", _pilih_session);
 
                     //RequestDispatcher dis=request.getRequestDispatcher("realisasi.jsp");
                     RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/realisasiBaru2.jsp");
@@ -687,11 +742,11 @@ public class Isi4FaktorServlet extends HttpServlet {
                     dis.include(request, response);
                     out.println(_realisasi);
                 } else {
-                    RealisasiIsi4faktorTupoksi hitungannya = new GoIndex().getFormatPenghitunganIsi4FaktorBusiness(_idTupoksi, iNip_id);
+                    RealisasiIsi4faktorTupoksi hitungannya = new GoIndex().getFormatPenghitunganSesionIsi4FaktorBusiness(_idTupoksi, iNip_id,_pilih_session);
                     String penghitungan = hitungannya.getPenghitungan();
                     String nilaicapaian = hitungannya.getNilai_capaian_skp();
 
-                    String _hitungan = new GoIndex().getsimpanHitungRealisasi(iNip_id, _idTupoksi, penghitungan, nilaicapaian);
+                    String _hitungan = new GoIndex().getsimpanHitungSessionRealisasi(iNip_id, _idTupoksi, penghitungan, nilaicapaian,_pilih_session);
 
                     request.setAttribute("pnsp", pnsp);
 
@@ -702,7 +757,7 @@ public class Isi4FaktorServlet extends HttpServlet {
                     request.setAttribute("namaTupoksijsp", namaTupoksijsp);
                     // request.setAttribute("realisasiIsi4faktorTupoksi", realisasiIsi4faktorTupoksi);
                     request.setAttribute("realisasiIsi4faktorTupoksiId", realisasiIsi4faktorTupoksi);
-
+                    request.setAttribute("_pilih_session", _pilih_session);
                     //RequestDispatcher dis=request.getRequestDispatcher("realisasi.jsp");
                     RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/realisasiBaru2.jsp");
                     PrintWriter out = response.getWriter();

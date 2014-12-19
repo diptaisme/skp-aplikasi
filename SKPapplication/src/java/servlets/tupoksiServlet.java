@@ -169,12 +169,17 @@ public class tupoksiServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-      // String id=request.getParameter("txtNIPBaru"); //ambil NIPBARU dari lemparan hiperlink index.jsp (parameter : txtNIPBaru)
+      PrintWriter out =response.getWriter();
+        // String id=request.getParameter("txtNIPBaru"); //ambil NIPBARU dari lemparan hiperlink index.jsp (parameter : txtNIPBaru)
        String cariKriteria = request.getParameter("cariKriteria");
        String  cariKriteriaKlTgs = request.getParameter("cariKriteriaKlTgs");
        String submitCari = request.getParameter("submitCari");
        String id=request.getParameter("idnipText"); //ambil NIPBARU dari lemparan hiperlink index.jsp (parameter : txtNIPBaru)
        String idTB = request.getParameter("txtNIPBaruTB");
+       String [] favoritetupoksis=request.getParameterValues("tupoksipaporit");
+       
+       
+       
        
        if (submitCari.equalsIgnoreCase("CARI")){
             if (cariKriteria != null && cariKriteria!= "" && cariKriteria != " " ||  cariKriteria.equals(""))

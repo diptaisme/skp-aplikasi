@@ -103,7 +103,7 @@ public class DBqueryRevsi4FaktorTarget {
 
         String sql = "SELECT T.id_tupoksi, T.nama_tupoksi, T.id_unor, T.id_instansi, T.id_atasan, T.instansi_nama, "
                 + " I.id_isi4faktor, I.nip_pns, I.id_tupoksi, I.kuantitas4, I.kualitas4, I.waktu4, I.biaya4, I.kuantitas_label, I.waktu_label,T.angka_krdt,I.angka_krdt,I.session, "
-                + " I.revisi,I.id_revisiTarget,I.jnsperubahan FROM TUPOKSI T, revisi4faktor I "
+                + " I.revisi,I.id_revisiTarget,I.jnsperubahan FROM tupoksi T, revisi4faktor I "
                 + " WHERE T.id_tupoksi = I.id_tupoksi AND I.nip_pns =? order by I.id_isi4faktor,I.revisi";
 
         PreparedStatement pst = this.conn.prepareStatement(sql);
@@ -162,7 +162,7 @@ public class DBqueryRevsi4FaktorTarget {
 
         String sql = "SELECT T.id_tupoksi, T.nama_tupoksi, T.id_unor, T.id_instansi, T.id_atasan, T.instansi_nama, "
                 + " I.id_isi4faktor, I.nip_pns, I.id_tupoksi, I.kuantitas4, I.kualitas4, I.waktu4, I.biaya4, I.kuantitas_label, I.waktu_label,T.angka_krdt,I.angka_krdt,I.session, "
-                + " I.revisi,I.id_revisiTarge,I.jnsperubahan FROM TUPOKSI T, revisi4faktor I "
+                + " I.revisi,I.id_revisiTarget,I.jnsperubahan FROM tupoksi T, revisi4faktor I "
                 + " WHERE T.id_tupoksi = I.id_tupoksi AND I.nip_pns =? and I.session =? order by I.id_isi4faktor,I.revisi";
 
         PreparedStatement pst = this.conn.prepareStatement(sql);
@@ -319,7 +319,7 @@ public class DBqueryRevsi4FaktorTarget {
         if (!ModelLocatorSKP.globalBiayaTarget.equals(_iBiaya)) {
             perubahan_Biaya = "u";
         }
-        if (ModelLocatorSKP.globalNilaiKreditTarget != null || ModelLocatorSKP.globalNilaiKreditTarget.equals("")) {
+        if (ModelLocatorSKP.globalNilaiKreditTarget != null) {
             if (!ModelLocatorSKP.globalNilaiKreditTarget.equals(__angkaKreditr)) {
                 perubahan_krdt = "u";
             }

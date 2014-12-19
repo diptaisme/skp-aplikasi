@@ -554,6 +554,7 @@ public class IsiPerilakuServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String pilihan = request.getParameter("pilihan"); 
         String param = request.getParameter("param");
         String NipDicari = request.getParameter("cariNip");
         String NipBaruAtasan = request.getParameter("nipBaru");
@@ -912,7 +913,7 @@ public class IsiPerilakuServlet extends HttpServlet {
             String pencarian = "";
             String kriteria = "";
             if (!NamaDicari.equals("")) {
-                pencarian = NamaDicari;
+                pencarian = NamaDicari.toUpperCase();
                 kriteria = "nama";
             } else if (!NipDicari.equals("")) {
                 pencarian = NipDicari;

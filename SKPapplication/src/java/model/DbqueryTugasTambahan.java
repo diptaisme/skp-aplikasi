@@ -1018,13 +1018,13 @@ public class DbqueryTugasTambahan {
                 std.executeUpdate(sqld);
                 std.close();
             } else {
-                String sqlb = "INSERT INTO nilaiprestasikerja(nip_pns,skp, realisasi, tugastambahan, kreatifitas, perilaku, prestasi,id_unor) VALUES('" + nippns + "', '" + _skp + "','" + _realisasi + "', '" + _tugastambahan + "', '" + _kreatifitas + "', '" + _perilaku + "', '" + _prestasi + "', '" + _pilih_session + "','" + unorid + "')";
+                String sqlb = "INSERT INTO nilaiprestasikerja(nip_pns,skp, realisasi, tugastambahan, kreatifitas, perilaku, prestasi,periode,id_unor) VALUES('" + nippns + "', '" + _skp + "','" + _realisasi + "', '" + _tugastambahan + "', '" + _kreatifitas + "', '" + _perilaku + "', '" + _prestasi + "', '" + _pilih_session + "','" + unorid + "')";
                 PreparedStatement stb = this.conn.prepareStatement(sqlb);
                 stb.executeUpdate(sqlb);
                 stb.close();
             }
         } else {
-            String sqlb = "INSERT INTO nilaiprestasikerja(nip_pns,skp, realisasi, tugastambahan, kreatifitas, perilaku, prestasi,id_unor) VALUES('" + nippns + "', '" + _skp + "','" + _realisasi + "', '" + _tugastambahan + "', '" + _kreatifitas + "', '" + _perilaku + "', '" + _prestasi + "', '" + _pilih_session + "','" + unorid + "')";
+            String sqlb = "INSERT INTO nilaiprestasikerja(nip_pns,skp, realisasi, tugastambahan, kreatifitas, perilaku, prestasi,periode,id_unor) VALUES('" + nippns + "', '" + _skp + "','" + _realisasi + "', '" + _tugastambahan + "', '" + _kreatifitas + "', '" + _perilaku + "', '" + _prestasi + "', '" + _pilih_session + "','" + unorid + "')";
             PreparedStatement stb = this.conn.prepareStatement(sqlb);
             stb.executeUpdate(sqlb);
             stb.close();

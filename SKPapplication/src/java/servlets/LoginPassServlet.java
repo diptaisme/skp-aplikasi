@@ -531,6 +531,9 @@ public class LoginPassServlet extends HttpServlet {
 
             request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
+            // session.setAttribute("levelPemakaian", ModelLocatorSKP.levelUser);
+            
+          
 
             //RequestDispatcher dis2 = getServletContext().getRequestDispatcher("/NavigasiProfile?etst=test");
             // dis2.forward(request, response);

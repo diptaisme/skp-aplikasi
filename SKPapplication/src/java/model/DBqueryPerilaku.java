@@ -123,7 +123,7 @@ public class DBqueryPerilaku
     {
         List<nilaiPerilaku> prilakus = new ArrayList<nilaiPerilaku>();
         
-        String sql = "SELECT NIPPNS, Pelayanan, Integritas, Komitmen, Disiplin, Kerjasama, Kepemimpinan, Jumlah, ratarata, periode FROM nilaiPerilaku WHERE NIPPNS =?";
+        String sql = "SELECT NIPPNS, Pelayanan, Integritas, Komitmen, Disiplin, Kerjasama, Kepemimpinan, Jumlah, ratarata, periode FROM nilaiperilaku WHERE NIPPNS =?";
         PreparedStatement pst = this.conn.prepareStatement(sql);
         nilaiPerilaku np = null;
         pst.setString(1, idPns);
@@ -166,7 +166,7 @@ public class DBqueryPerilaku
         nilaiPerilaku np;
         ResultSet rs;
         
-        sql = "SELECT NIPPNS, Pelayanan, Integritas, Komitmen, Disiplin, Kerjasama, Kepemimpinan, Jumlah, ratarata, periode FROM nilaiPerilaku WHERE NIPPNS = '"+nippns+"'";
+        sql = "SELECT NIPPNS, Pelayanan, Integritas, Komitmen, Disiplin, Kerjasama, Kepemimpinan, Jumlah, ratarata, periode FROM nilaiperilaku WHERE NIPPNS = '"+nippns+"'";
         pst = this.conn.prepareStatement(sql);
         np = null;
         //pst.setString(1, nippns);

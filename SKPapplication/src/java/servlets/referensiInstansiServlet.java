@@ -35,7 +35,7 @@ public class referensiInstansiServlet extends HttpServlet {
     public String namaUnorBaru;
     public String namaJabatanBaru;
     public String jenisJab;
-
+    public String updateJabatan;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -72,7 +72,7 @@ public class referensiInstansiServlet extends HttpServlet {
         String updateUnorAtasan = request.getParameter("jenisStatus");
         String InstansiId = request.getParameter("idInstansiText");
         String carijabatan = request.getParameter("carijabatan");
-
+        String UbahJabatan = request.getParameter("UbahJabatan");
         StringBuilder sb = new StringBuilder();
 
         String getIdPns = request.getParameter("getIdPns");
@@ -198,8 +198,9 @@ public class referensiInstansiServlet extends HttpServlet {
 
 
 
-        } else if (updateUnorAtasan != null && updateUnorAtasan.equalsIgnoreCase("updateUnorAtasan")) {
-
+        } 
+        
+        else if (updateUnorAtasan != null && updateUnorAtasan.equalsIgnoreCase("updateUnorAtasan")) {
             updateUnor = request.getParameter("idUnorBaru"); //id unor baru
             jenisJab = request.getParameter("jenis");
             if (jenisJab.equals("2") || jenisJab.equals("4")) {
@@ -233,9 +234,45 @@ public class referensiInstansiServlet extends HttpServlet {
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/updateMenu.jsp");
                 dis.forward(request, response);
             }
-
-
-        } else if (action != null && action.equalsIgnoreCase("UpdateTupoksi")) {
+            
+        
+        } 
+        
+         else if (UbahJabatan != null && UbahJabatan.equalsIgnoreCase("updateJabatan")) {
+            String idjabatan = request.getParameter("idJabatan");
+            String jenisjabatanidubah = request.getParameter("jenisjabatanidubah");
+            nipbaru = request.getParameter("nipBaru");
+            PnsSkp pns = new GoIndex().getPns(nipbaru);
+            if (UbahJabatan != null) {
+                if(jenisjabatanidubah.equals("4"))
+                {
+                DBConnection dbConn = DBConnection.getInstance();
+                //pnsskp pns = (PnsSkp) new GoIndex().getUpdateUnor(nipbaru, updateUnor, diatasanUnor);
+                new GoIndex().getUpdateJabatanUmumPns(idjabatan, nipbaru);
+                }
+                else if(jenisjabatanidubah.equals("2"))
+                {
+                DBConnection dbConn = DBConnection.getInstance();
+                //pnsskp pns = (PnsSkp) new GoIndex().getUpdateUnor(nipbaru, updateUnor, diatasanUnor);
+                new GoIndex().getUpdateJabatanFungPns(idjabatan, nipbaru);
+                }
+                unorskp namaUnor = new GoIndex().getIdUnorskp(pns.getUnorId());  
+                request.setAttribute("namaUnor", namaUnor);
+                namaUnorBaru = namaUnor.getNamaUnor();
+                namaJabatanBaru = namaUnor.getNamaJabatan();
+                //new GoIndex().getUpdateLogUnor(nipbaru,ambilunorlama.getUnorId(),updateUnor);
+                request.setAttribute("pns", pns);
+                instansiri ins = new GoIndex().getInstansi(namaUnor.getInstansiId());
+                request.setAttribute("ins", ins);
+                //RequestDispatcher dis = request.getRequestDispatcher("TabelUnor.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/updateMenu_Jabatan.jsp");
+                dis.forward(request, response);
+            }
+            
+        
+        } 
+        
+        else if (action != null && action.equalsIgnoreCase("UpdateTupoksi")) {
             tupoksi_lama _getIdInstansiIdUnorDariIdTupoksi = new GoIndex().getallDariIdTupoksi(idTupoksiUntukUpdate);
             tupoksi Tupoksi = new GoIndex().getIdtupoksiAll(idTupoksiUntukUpdate);
 
@@ -470,7 +507,8 @@ public class referensiInstansiServlet extends HttpServlet {
         String jenisJabatan = request.getParameter("jabatan");
         request.setAttribute("navigasiPilihanjns", "3");
         StringBuilder sb = new StringBuilder();
-
+        String ubahjenisjabatan = request.getParameter("ubahjenisjabatan");
+        
         if (jenisJabatan == null) {
             jenisJabatan = Integer.toString(ModelLocatorSKP.jenisJabatan);
 
@@ -487,18 +525,20 @@ public class referensiInstansiServlet extends HttpServlet {
         cariInstansi = request.getParameter("cariInstansi");
         cariUnor = request.getParameter("cariUnor");
         updateUnor = request.getParameter("updateUnor");
-
+        updateJabatan = request.getParameter("UpdateJabatan");
         if (isAllInstansi != null || cariInstansi != null) {
             ambilDataInstansi(request, response);
-        }
-
+        }   
         if (isAllInstansi != null || cariUnor != null) {
             ambilDataUnor(request, response);
         }
         if (updateUnor != null) {
             ambilDataUnorForUpdate(request, response);
         }
-
+        if(updateJabatan != null)
+        {
+            ambilDataJabatan(request, response);
+        }
 
         if (Submit != null) {
             //dari klik 'cari instansi' di insertTupoksi.jsp   
@@ -546,8 +586,8 @@ public class referensiInstansiServlet extends HttpServlet {
                 }
             } else if (Submit.equalsIgnoreCase("CARI KELOMPOK")) {
                 jenisJabatan = request.getParameter("jabatan");
-
-
+                String namaInstansi = request.getParameter("namaInstansiText");
+                String kodeInstansi = request.getParameter("idInstansiText");
                 ModelLocatorSKP.jenisJabatan = Integer.valueOf(jenisJabatan);
 
                 if (ModelLocatorSKP.jenisJabatan == 2) {
@@ -558,6 +598,8 @@ public class referensiInstansiServlet extends HttpServlet {
                 }
                 request.setAttribute("jabatan", jenisJabatan);
                 request.setAttribute("navigasiPilihanjns", "2");
+                request.setAttribute("namaInstansi", namaInstansi);
+                request.setAttribute("kodeInstansi", kodeInstansi);
                 // List<kelompokJabatan> kelompok = new GoIndex().getUnoriUN(SkodeInstansi);
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/insertTupoksiBaruBiru.jsp");
                 //request.setAttribute("jabatan", ModelLocatorSKP.jenisJabatan );
@@ -1047,6 +1089,39 @@ public class referensiInstansiServlet extends HttpServlet {
         }
 
 
+    }
+    
+    private void ambilDataJabatan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //isAllInstansi = request.getParameter("isAllInstansi");
+        String jenisjabatanidubah = "";
+        String idubahjabatan = request.getParameter("idubahjabatan");
+        updateJabatan = request.getParameter("UpdateJabatan");
+        instansi = request.getParameter("instansi");
+        nipbaru = request.getParameter("idnip");
+        diatasanUnor = request.getParameter("diatasanId");  
+        PnsSkp pns = new GoIndex().getPns(nipbaru);
+        if (updateJabatan != null && idubahjabatan.equals("4") && !pns.getjnsjbtn_id().equals("1")) {
+            jenisjabatanidubah = "4";
+            DBConnection dbConn = DBConnection.getInstance();
+            List<jabfum> unories = new GoIndex().getListJabatanUmum(updateJabatan);
+            request.setAttribute("unories", unories);
+            request.setAttribute("jenisjabatanidubah", jenisjabatanidubah);
+            
+            //RequestDispatcher dis = request.getRequestDispatcher("TabelUnor.jsp");
+        }
+        else if(updateJabatan != null && idubahjabatan.equals("2") && !pns.getjnsjbtn_id().equals("1"))
+        {
+            jenisjabatanidubah = "2";
+            DBConnection dbConn = DBConnection.getInstance();
+            List<jabfung> unories = new GoIndex().getListJabatanFungWithName(updateJabatan);
+            request.setAttribute("unories", unories);
+            request.setAttribute("jenisjabatanidubah", jenisjabatanidubah);
+        }
+        request.setAttribute("pns", pns);
+        instansiri ins = new GoIndex().getInstansi(instansi);
+        request.setAttribute("ins", ins);
+        RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/updateMenu_Jabatan.jsp");
+        dis.forward(request, response);
     }
 
     private void ambilDataUnorForUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

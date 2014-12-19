@@ -121,6 +121,7 @@ public class AdministratorFunctionServlet extends HttpServlet {
 
         if (param.equalsIgnoreCase("AMBIL")) {
             String namauser = null;
+             String kewenaganuser1 = null;
             String nipUsername="";
             String nip = request.getParameter("nipbaru");
             String userkewenagan = null;
@@ -137,6 +138,7 @@ public class AdministratorFunctionServlet extends HttpServlet {
                new GoIndex().getSudahAdaUser(nip);
                loginweb ambiluser = new GoIndex().getSudahAdaUser(nip);
                namauser = ambiluser.getusername_login();
+                kewenaganuser1 = ambiluser.getkewenangan_login();
                //nipUsername = ambiluser.getusername_login();
             }
             
@@ -160,6 +162,7 @@ public class AdministratorFunctionServlet extends HttpServlet {
             request.setAttribute("pns", pns);
             request.setAttribute("kewenaganuser", kewenaganuser);
             request.setAttribute("userkewenagan", userkewenagan);
+            request.setAttribute("kewenaganuser1", kewenaganuser1);
             request.setAttribute("namauser", namauser);
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/manajemenUser.jsp");
             dis.forward(request, response);
@@ -171,18 +174,18 @@ public class AdministratorFunctionServlet extends HttpServlet {
             String nipbaru = request.getParameter("getNipBaruPns");
             String usernamebaru = request.getParameter("usernameinputan");
             String passwordbaru = request.getParameter("passwordinputan");
-            String kewenangan = request.getParameter("kewenangan");
+            String kewenanganuser1 = request.getParameter("kewenanganuser1");
             String apakah;
             
-            if (!"-".equals(kewenangan)) {
+            if (!"-".equals(kewenanganuser1)) {
                 loginweb getSudahAdaUser = new GoIndex().getSudahAdaUser(nipbaru);
                 if (getSudahAdaUser == null) {
                     apakah = "simpan";
-                    String masukLogin = new GoIndex().getSimpanLogin(usernamebaru, passwordbaru, kewenangan, nipbaru, apakah);
+                    String masukLogin = new GoIndex().getSimpanLogin(usernamebaru, passwordbaru, kewenanganuser1, nipbaru, apakah);
                     pns = new GoIndex().getPns(ModelLocatorSKP.loginNipPengguna);
                 } else {
                     apakah = "ubah";
-                    String updateLogin = new GoIndex().getSimpanLogin(usernamebaru, passwordbaru, kewenangan, nipbaru, apakah);
+                    String updateLogin = new GoIndex().getSimpanLogin(usernamebaru, passwordbaru, kewenanganuser1, nipbaru, apakah);
                     pns = new GoIndex().getPns(ModelLocatorSKP.loginNipPengguna);
                 }
 

@@ -17,6 +17,7 @@
         <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
         <link href="/SKPapplication/css/styleBiru.css" rel="stylesheet" type="text/css" />
         <link href="/SKPapplication/css/style2.css" rel="stylesheet" type="text/css" />
+        <link href="/SKPapplication/css/StylecssinsertTupoksiBaruBiru.css" rel="stylesheet" type="text/css" />
         <script language="javascript" type="text/javascript">
    
             function clearText(field)
@@ -32,6 +33,8 @@
      
                 if (document.getElementById('jabatan1').checked) {
                     //return document.getElementById('tombolInstansi').disabled = false;
+
+                    document.getElementById('tombolInstansi').style.visibility='visible';
                     document.getElementById('tombolUnitOrganisasi').style.visibility='visible'; 
                     document.getElementById('kelJab').style.visibility='hidden'; 
                     document.getElementById('tombolKeloJabatan').style.visibility='hidden'; 
@@ -41,6 +44,7 @@
                    //   document.getElementById('jabatanfungfum1').style.visibility='hidden'; 
                     document.getElementById('kredit').style.visibility='hidden'; 
                     document.getElementById('cariUmum').style.display = 'none';
+                    document.getElementById('cariUmum').style.visibility='hidden';
                     document.getElementById('namaUnorText').style.visibility='visible'; 
                     document.getElementById('namaInstansiText').style.visibility='visible';  
                     document.getElementById('navigasiPilihan_').value='3';
@@ -121,7 +125,7 @@
             #headerLokal {
                 padding: 0px;
                 width: 1200px;
-                margin-left : -30px;
+                left : -40px;
                 position: relative;
                 height: 80px;
                 
@@ -129,16 +133,16 @@
             #leftside {
 
                 position :  absolute;
-                top : 60px;
-                left : 25px;
+                top : 55px;
+                left : 30px;
                 width : 156px;
                 height : 501px;
             }
 
             #contentdalam {
                 position :  absolute;
-                top : 110px;
-                left : 170px;
+                top : 65px;
+                left : 175px;
                 width : 1200px;
                 height : 501px;
                 overflow: auto;
@@ -194,27 +198,24 @@
                             </li>
                         </ul>
                     </div>
-                            <table width="500" height="50" border="1" >
+                    <input  type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/>
+                    <input  type="hidden"  name="idInstansiText" id="idInstansiText" value="${kodeInstansi}"/>
+
+                    <table width="900" height="300" border="1" style="border-collapse: collapse;margin-top: 25px;margin-left: 25px;">
                         <tr>
-                            <td colspan="3"><div align="left" ><h2 style="color: #000">ENTRY DATA KEGIATAN TUGAS JABATAN</h2></div></td>
+                            <td colspan="5" align="center" class="table1"><div><h2 style="color: #000">ENTRY DATA KEGIATAN TUGAS JABATAN</h2></div></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="5" align="center" class="table1">
                                 <input type="radio" name="jabatan" value="1" id="jabatan1" onclick="testHilang()" <c:if test="${jabatan == '1'}">checked</c:if> />&nbsp;Struktural
                                 <input type="radio" name="jabatan" value="2" id="jabatan2" onclick="testHilang()" <c:if test="${jabatan == '2'}">checked</c:if> />&nbsp;Fungsional Tertentu
                                 <input type="radio" name="jabatan" value="4" id="jabatan4" onclick="testHilang()" <c:if test="${jabatan == '4'}">checked</c:if> />&nbsp;Fungsional Umum
                             </td>
                         </tr> 
-                    </table>
-                    <input  type="hidden"  style="visibility:hidden;" align="right"  id="namaInstansiText" name="namaInstansiText" value="${namaInstansi}"/>
-                    <input  type="hidden"  name="idInstansiText" id="idInstansiText" value="${kodeInstansi}"/>
-
-                    <table width="900" height="300" border="1">
-
                         <tr style="width: 900px">
-                            <td style="width: 150px">INSTANSI </td>
-                            <td style="width: 20px">:</td>
-                            <td colspan="2"><c:out value="${namaInstansi}" /></td>
+                            <td style="width: 150px" align="center">INSTANSI </td>
+                            <td style="width: 20px" align="center">:</td>
+                            <td colspan="2" ><c:out value="${namaInstansi}" /></td>
                             <%--<td width="275"><c:out value="${instansie.getNamaInstansi()}" /></td>--%>
                             <td>
                                 <div align="center">
@@ -229,8 +230,8 @@
                                
                         </tr>
                         <tr style="width: 900px">
-                            <td style="width: 150px">UNIT ORGANISASI   </td>
-                            <td style="width: 20px">:</td>
+                            <td style="width: 150px" align="center">UNIT ORGANISASI   </td>
+                            <td style="width: 20px" align="center">:</td>
                             <td colspan="2"><c:out value="${namaUnor}" /></td>
                             <input  type="hidden" align="right" style="visibility:hidden;" id="namaUnorText" name="namaUnorText" value="${namaUnor}"/>
                             <input  type="hidden"  name="idUnorText" value="${kodeUnor}"/> 
@@ -240,16 +241,16 @@
                                     <%--<input type="submit" name="Submit" value="CARI UNOR" onclick="myPopupUnor()">--%>
 
                                     <%--<input type="submit" name="Submit" style="visibility: hidden;" class="button black bigrounded" id="tombolUnitOrganisasi" value="CARI UNOR"/>--%>
-                                    <input type="button" name="Submit" style="visibility: hidden;" class="button black bigrounded" value="CARI UNOR" onclick="popup_showwsUnitOr()"    id="tombolUnitOrganisasi" />
+                                    <input  type="button" name="Submit" style="visibility: hidden;" class="button black bigrounded" value="CARI UNOR" onclick="popup_showwsUnitOr()"    id="tombolUnitOrganisasi" />
                                 </div>
                             </td>
                                   
                         </tr>
 
-                        <tr style="width: 900px">
-                            <td style="width: 150px"> KELOMPOK JABATAN   </td> 
-                            <td style="width: 20px">:</td>
-                            <td style="width: 50px"><input type="submit" name="Submit"  style="visibility:hidden;background-color: #FF9900" value="CARI KELOMPOK" id="tombolKeloJabatan"/>
+                        <tr>
+                            <td style="width: 150px" align="center"> KELOMPOK JABATAN   </td> 
+                            <td style="width: 20px" align="center">:</td>
+                            <td style="width: 150px" height="50px" align="center"><input type="submit" name="Submit"  style="visibility:hidden;background-color: #FF9900" value="CARI KELOMPOK" id="tombolKeloJabatan"/>
                                 
                             </td>
                             <td colspan="2">
@@ -264,9 +265,9 @@
                         <c:set var="navigasi_pilihan" value="${navigasiPilihanjns}" /> 
                         <input  type="hidden"  name="navigasiPilihan_" id="navigasiPilihan_"  onchange="validasijns()"/>
                         <tr style="width:900px">
-                                    <td style="width: 150px"> JABATAN  </td> 
-                                    <td style="width: 20px">:</td>
-                                    <td > 
+                                    <td style="width: 150px" align="center"> JABATAN  </td> 
+                                    <td style="width: 20px" align="center">:</td>
+                                    <td align="center"> 
                                         <input type="hidden" name="cariUmum"  size="10" id="cariUmum" />
                                         <input type="button" name="Submit" onclick="showloadBox2fum()"  style="visibility:hidden;background-color: #FF9900;width: 100px"  value="CARI JABFUM" id="tombolJabatanfum" />      
                                         <input type="button" name="Submit" onclick="showloadBox2()"  style="visibility:hidden;background-color: #FF9900"  value="CARI JABATAN" id="tombolJabatan" /> 
@@ -306,51 +307,50 @@
                                 </div>
                             </td>  
                         </tr>          
-                        <tr style="width: 900px">
-                            <td style="width: 150px">TUGAS KEGIATAN JABATAN</td>
-                            <td style="width: 20px">:</td>
+                        <tr style="width: 900px" >
+                            <td style="width: 150px" align="center">TUGAS KEGIATAN JABATAN</td>
+                            <td style="width: 20px" align="center">:</td>
                             <td colspan="2"><textarea id="textarea1" name="textarea1" cols="40" rows="6"></textarea></td>
-                            <td>
-                                <div style="height: 200px;font-size: medium;overflow: auto">
-                                    <%--<input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi();"/>--%>
-                                    <input style="width: 120px" type="submit" class="button black bigrounded" name="Submit" value="LIHAT TUPOKSI" />
-                                    <input style="width: 120px" type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi()"/>
-                                    <input style="width: 120px;margin-top: 20px" type="submit" class="button black bigrounded" name="Submit" value="BATAL"/>
-                                    <input style="width: 120px" type="submit" class="button black bigrounded" name="Submit" value="KELUAR"/>
-                                </div>        
-                            </td>
+                            
                                     
                         </tr>
 
                         <tr style="width: 900px">
-                            <td style="width: 150px">NILAI ANGKA KREDIT (AK)   </td>
-                            <td style="width: 20px">:</td>
-                            <td><input  type="text" align="right"  name="angka_krdtText" style="visibility:hidden;" id="kredit" onkeypress="return alertnipnull1(event)"/></td>
-                            <td>
-                                <div align="center">  
-                                </div>
-                            </td>
-                         <td>
-                             
-                         </td>
+                            <td style="width: 150px" align="center">NILAI ANGKA KREDIT (AK)   </td>
+                            <td style="width: 20px" align="center">:</td>
+                            <td colspan="3"><input  type="text" align="right"  name="angka_krdtText" style="visibility:hidden;" id="kredit" onkeypress="return alertnipnull1(event)"/></td>
+                            
                         </tr>
 
                     </table>
+                    
+                <table style="margin-left: 190px;" >
+                        <tr>
+                           <td>
+                                    <%--<input type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi();"/>--%>
+                                    <input style="width: 100px;font-size: x-small;" type="submit" class="button black bigrounded" name="Submit" value="LIHAT TUPOKSI" />
+                                    <input style="width: 100px;font-size: x-small;" type="submit" class="button black bigrounded" name="Submit" value="SIMPAN" onclick="return validasi()"/>
+                                    <input style="width: 100px;font-size: x-small;" type="submit" class="button black bigrounded" name="Submit" value="BATAL"/>
+                                    <input style="width: 101px;font-size: x-small;" type="submit" class="button black bigrounded" name="Submit" value="KELUAR"/>
+                                   
+                            </td> 
+                        </tr>                    
+                    </table>
 
                     <div id="templatemo_content2" class="scroll">                 
-                        <table  width="800"border="1" align="left" > 
+                        <table  width="900"border="1" align="left"  style="border-collapse: collapse;margin-top: 15px;margin-left: 25px;"> 
                             <tr>
-                                <td width="5" style="font-size: medium;background-color: #9999ff"><div align="center">NO</div></td>
-                                <td width="10" style="font-size: medium;background-color: #9999ff"><div align="center">KODE</div></td>
-                                <td width="300" style="font-size: medium;background-color: #9999ff"><div align="center">NAMA TUPOKSI</div></td>
+                                <td width="5" style="font-size: small;background-color: #9999ff"><div align="center">NO</div></td>
+                                <td width="10" style="font-size: small;background-color: #9999ff"><div align="center">KODE</div></td>
+                                <td width="300" style="font-size: small;background-color: #9999ff"><div align="center">NAMA TUPOKSI</div></td>
                                 <c:if test="${jabatan == '2'}">
-                                    <td width="5" style="font-size: medium;background-color: #9999ff"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
+                                    <td width="5" style="font-size: small;background-color: #9999ff"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
                                 </c:if>
                                 <c:if test="${jabatan != '2'}">
-                                    <td width="5" style="font-size: medium;background-color: #9999ff"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
+                                    <td width="5" style="font-size: small;background-color: #9999ff"><div align="center"><span class="style3"><strong>NILAI AK</strong></span></div></td>
                                 </c:if>
-                                <td width="8" style="font-size: medium;background-color: #9999ff"><div align="center"> Hapus</div></td> 
-                                <td width="8" style="font-size: medium;background-color: #9999ff"><div align="center"> Edit</div></td>
+                                <td width="8" style="font-size: small;background-color: #9999ff"><div align="center"> Hapus</div></td> 
+                                <td width="8" style="font-size: small;background-color: #9999ff"><div align="center"> Edit</div></td>
                             </tr>
                             <tr></tr>
 

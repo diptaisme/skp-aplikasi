@@ -70,6 +70,7 @@ public class IsiTupoksiServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String isCetak = request.getParameter("isCetak");
+        
         //String nipbarupns = request.getParameter("nipnilai");
         //String idtupoksi = request.getParameter("idTupoksi");
         
@@ -130,6 +131,7 @@ public class IsiTupoksiServlet extends HttpServlet {
         String _nipPnstext = request.getParameter("nipnilai");
         String _idTupoksitext = request.getParameter("idTupoksi");
          String _UnorIdisert = request.getParameter("UnorIdisert");
+         String sesiontahun = request.getParameter("sesiontahun");
         String _kuantitas4text = "-";
         String _kualitas4text = "-";
         String _waktu4text = "-";
@@ -152,15 +154,15 @@ public class IsiTupoksiServlet extends HttpServlet {
         String _waktu_label = "-";
         String _angkakrdt = " ";
         
-        isi4faktor banding = new GoIndex().getSamaNipDanTupoksi(_nipPnstext, _idTupoksitext);
+        isi4faktor banding = new GoIndex().getSamaNipDanTupoksi(_nipPnstext, _idTupoksitext,sesiontahun);
         if (banding == null)
         {
-            String _Isi4Faktor = new GoIndex().getInsertIsiEmpatFaktor(_idIsi4Faktortext, _nipPnstext, _UnorIdisert,_idTupoksitext, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, _kuantitas_label, _waktu_label, _realisasitext, _kuantitasRtext, _kualitasRtext, _waktuRtext, _biayaRtext, _penghitungan, _nilaiCapaian, _waktunya,_angkakrdt);
+            String _Isi4Faktor = new GoIndex().getInsertIsiEmpatFaktor(_idIsi4Faktortext, _nipPnstext, _UnorIdisert,_idTupoksitext, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, _kuantitas_label, _waktu_label, _realisasitext, _kuantitasRtext, _kualitasRtext, _waktuRtext, _biayaRtext, _penghitungan, _nilaiCapaian, _waktunya,_angkakrdt,sesiontahun);
             //String _idIsi4Faktortext4realisasi = _idIsi4Faktortext;
             //String _realisasi = new GoIndex().getInsertRealisasi(_realisasitext, _idIsi4Faktortext, _nipPnstext, _idTupoksitext, _kuantitasRtext, _kualitasRtext, _waktuRtext, _biayaRtext, _penghitungan, _nilaiCapaian, _waktunya);
         
             request.setAttribute("NipPns", _nipPnstext);
-
+            request.setAttribute("sesiontahun", sesiontahun);
             RequestDispatcher dis = request.getRequestDispatcher("/GetPnsServlet?nipnilai=nipnilai");
             //RequestDispatcher dis = request.getRequestDispatcher("/GetPnsServlet");
             PrintWriter out = response.getWriter();
@@ -182,15 +184,29 @@ public class IsiTupoksiServlet extends HttpServlet {
             String InstansiPns = pns.getInstansiId();
             String NipPns = pns.getNipBaru();
 
-            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            //PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            PnsSkp UnorAts = null;
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {
+                                  
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                            }
 
+            List<TupoksiKeIsi4Faktor> tukesiServlet = null;
            //Ubahan List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-            
-              List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesiNonUnor(UnorPns, InstansiPns, NipPns);
+            if(sesiontahun.equalsIgnoreCase("") && sesiontahun == null)
+            {
+               tukesiServlet = new GoIndex().getTukesiNonUnor(UnorPns, InstansiPns, NipPns);
+            }else
+            {
+                tukesiServlet = new GoIndex().getTukesiSession(UnorPns, InstansiPns, NipPns, sesiontahun);
+            }
+              
 
             request.setAttribute("pns", pns);
             request.setAttribute("UnorAts", UnorAts);
-
+            request.setAttribute("sesiontahun", sesiontahun);
             request.setAttribute("tukesiServlet", tukesiServlet);
 
             //kirim ke jsp lagi
