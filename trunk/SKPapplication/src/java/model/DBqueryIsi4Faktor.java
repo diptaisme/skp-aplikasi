@@ -87,13 +87,14 @@ public class DBqueryIsi4Faktor
     
     
     
-    public isi4faktor getDBqueryCariNipTupoksiDiIsi4Faktor(String nip_pns,String id_tupoksi) throws SQLException
+    public isi4faktor getDBqueryCariNipTupoksiDiIsi4Faktor(String nip_pns,String id_tupoksi, String sesiontahun) throws SQLException
     {
-        String sql = "SELECT id_isi4faktor,nip_pns,id_tupoksi,kuantitas4,kualitas4,waktu4,biaya4 FROM isi4faktor WHERE nip_pns =? AND id_tupoksi =?";
+        String sql = "SELECT id_isi4faktor,nip_pns,id_tupoksi,kuantitas4,kualitas4,waktu4,biaya4 FROM isi4faktor WHERE nip_pns =? AND id_tupoksi =? AND session=?";
         PreparedStatement pst = this.conn.prepareStatement(sql);
         isi4faktor band = null;
         pst.setString(1, nip_pns);
         pst.setString(2, id_tupoksi);
+        pst.setString(3, sesiontahun);
         ResultSet rs = pst.executeQuery();
         if (rs.next())
         {
