@@ -476,11 +476,11 @@ function alertnipnull(evt)
     if (charCode > 31 && (charCode < 48 || charCode > 57)) 
     {
         status = "This field accepts numbers only."
-        return false
+        return false;
     }
     status = ""
     return true
-}
+}}
 </script>
 
 <style type="text/css"> 

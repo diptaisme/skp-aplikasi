@@ -365,7 +365,7 @@ function alertnipnull()
     {
         window.alert("Masukkan NIP anda terlebih dahulu");
     }
-}
+}}
 </script>
 
 <style type="text/css"> 
