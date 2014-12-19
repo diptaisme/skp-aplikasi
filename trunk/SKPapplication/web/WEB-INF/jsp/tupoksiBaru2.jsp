@@ -18,6 +18,40 @@
         <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
 
         <style type="text/css"> 
+            .submit
+            {
+                -moz-border-radius:1px;
+                -webkit-border-radius:1px;
+                border-radius:10px;
+                background:#a1d8f0;
+                background:-moz-linear-gradient(top, #badff3, #7acbed);
+                background:-webkit-gradient(linear, left top, left bottom, from(#badff3), to(#7acbed));
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#badff3', EndColorStr='#7acbed')";
+                border:1px solid #7db0cc !important;
+                cursor: pointer;
+                padding:11px 16px;
+                font:bold 11px/14px Verdana, Tahomma, Geneva;
+                text-shadow:rgba(0,0,0,0.2) 0 1px 0px;
+                color:#fff;
+                -moz-box-shadow:inset rgba(255,255,255,0.6) 0 1px 1px, rgba(0,0,0,0.1) 0 1px 1px;
+                -webkit-box-shadow:inset rgba(255,255,255,0.6) 0 1px 1px, rgba(0,0,0,0.1) 0 1px 1px;
+                box-shadow:inset rgba(255,255,255,0.6) 0 1px 1px, rgba(0,0,0,0.1) 0 1px 1px;
+                margin-left:12px;
+                padding:7px 21px;
+            }
+
+            .submit:hover,
+            .submit:focus,
+            .submit:active{
+                background:#a1d8f0;
+                background:-moz-linear-gradient(top, #7acbed, #badff3);
+                background:-webkit-gradient(linear, left top, left bottom, from(#7acbed), to(#badff3));
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#7acbed', EndColorStr='#badff3')";
+            }
+            .submit:active
+            {
+                text-shadow:rgba(0,0,0,0.3) 0 -1px 0px;
+            }
 
             #headerLokal {
                 padding: 0px;
@@ -40,14 +74,14 @@
 
                 position :  absolute;
                 top : 64px;
-                left : 10px;
+                left : 35px;
                 width : 156px;
                 height : 501px;
             }
 
             #content {
                 position :  absolute;
-                top : 120px;
+                top : 70px;
                 left : 200px;
                 width : 1000px;
                 height : 501px;
@@ -59,14 +93,14 @@
                 padding-top: 20px;
                 position: absolute;
                 width: 600px;
-                height: 20px;
+                height: 30px;
                 background-color:#9999ff
 
             }
 
             #menu3 ul li a:hover {
                 background-color: #CCCCFF;
-                
+
                 color: darkorange;
                 font-size: medium
 
@@ -95,10 +129,6 @@
     <body>
         <div id="wrapper">
 
-
-
-
-
             <form name="form1" method="post" action="tupoksiServlet2">
                 <div id="headerLokal">
                     <%@ include file="SlindronHeader.jsp" %>
@@ -107,12 +137,12 @@
                 <div id="leftside">
                     <%@ include file="navigasiPro.jsp" %>
                 </div>   
-
-
                 <div id="content">
 
                     <div style="padding-top:40px">
                         <table width="600" border="0" >
+                            <input type="hidden" value="${sesiontahun}" name="sesiontahun">
+                            <c:set var="sesiontahun" value="${sesiontahun}" /> 
                             <tr>
                                 <td width="200" rowspan="4"><p align="center" class="style1">&nbsp;</p>      </td>
                                 <th colspan="3" style="background:#9999ff"><div align="center">DAFTAR TUPOKSI</div></th>
@@ -132,8 +162,6 @@
                                 <td>:</td>
                                 <td style="background-color: #9999ff"><c:out value="${pns.getNamaUnor()}" /></td>
                             </tr>
-
-
                         </table>
                     </div>
 
@@ -166,7 +194,6 @@
                     <div style=" padding-top:40px;overflow: auto">
                         <table width="600" border="0">
                             <thead>
-
                                 <tr>
                                     <th style="background:#9999ff"> NO </th>
                                     <th style="background:#9999ff">KODE </th>
@@ -174,29 +201,24 @@
                                     <c:if test="${jabatan == '2'}">
                                         <th style="background:darkorange">>ANGKA KREDIT</th>
                                     </c:if>
+                                    <th style="background: #9999ff">Check Box</th>
                                 </tr>
-
                             </thead>
                             <c:forEach var="listUnosi" items="${unosiServlet}" varStatus="count">
                                 <tr>
                                     <td>${(count.index)+1}</td>
-                                    <td><a href="isiTupoksiServlet?isCetak=true&nipnilai=<c:out value="${pns.getNipBaru()}"/>&kelompokTugas=<c:out value="${namaKelompok}"/>&UnorIdisert=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listUnosi.getIdTupoksi()}"/>">${listUnosi.getIdTupoksi()}</a></td>
+                                    <td><a href="isiTupoksiServlet?isCetak=true&nipnilai=<c:out value="${pns.getNipBaru()}"/>&kelompokTugas=<c:out value="${namaKelompok}"/>&UnorIdisert=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listUnosi.getIdTupoksi()}"/>&sesiontahun=<c:out value="${sesiontahun}"/>">${listUnosi.getIdTupoksi()}</a></td>
                                     <td>${listUnosi.getNamaTupoksi()}</td>
                                     <c:if test="${jabatan == '2'}">   
                                         <td><center> ${listUnosi.getangka_krdt()} </center></td>
                                     </c:if>
+                                <td style="text-align: right"><input type="checkbox" name ="tupoksipaporit" value="${listUnosi.getIdTupoksi()}"/></td>
                                 </tr>
                             </c:forEach> 
-
                         </table>
-
                     </div>
-
                     <div id="menu3">
-                        <ul >
-                            <li style="border-collapse: collapse" ><a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" target="_parent">KEMBALI</a></li>
-                            <%--  <li><a href="RequestServlet?page=indexloginBaru" target="_parent" title="Keluar">Keluar</a></li> --%>
-                        </ul>
+                        <a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" target="_parent" class="submit" style="font: bold;color: #000000">KEMBALI</a>  <input type="submit"  class="submit" name="submitCari" value="SIMPAN" style="font: bold;color: #000000"/>
 
                     </div>
                 </div>

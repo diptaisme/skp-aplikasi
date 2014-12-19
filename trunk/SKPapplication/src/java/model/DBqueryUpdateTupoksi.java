@@ -84,7 +84,7 @@ public class DBqueryUpdateTupoksi {
         _waktuL = vs.getmashudi();
 
 
-        String sql = "UPDATE isi4faktor SET detailtupoksi='"+_detailkegiatan+"',angka_krdt='" + _angkaKreditik + "',kuantitas4 ='" + _ikuantitas4 + "', kualitas4='" + _ikualitas4 + "', waktu4='" + _iWaktu4 + "', biaya4='" + _iBiaya + "', kuantitas_label='" + _pilih + "', waktu_label='" + _waktuL + "', session='" + s_pilih_session + "', id_unor='" + s_getidUnor4jspSesiion4 + "' where id_tupoksi='" + _IdTupoksi + "' and nip_pns ='" + __iNip_id + "' ";
+        String sql = "UPDATE isi4faktor SET detailtupoksi='"+_detailkegiatan+"',angka_krdt='" + _angkaKreditik + "',kuantitas4 ='" + _ikuantitas4 + "', kualitas4='" + _ikualitas4 + "', waktu4='" + _iWaktu4 + "', biaya4='" + _iBiaya + "', kuantitas_label='" + _pilih + "', waktu_label='" + _waktuL + "', session='" + s_pilih_session + "', id_unor='" + s_getidUnor4jspSesiion4 + "' where id_isi4faktor='" + _IdTupoksi + "' and nip_pns ='" + __iNip_id + "' and session='"+s_pilih_session+"' ";
         //  PreparedStatement st = (PreparedStatement) conn.prepareStatement(sql);
         PreparedStatement st = this.conn.prepareStatement(sql);
         //   st.setString(1,IdTupoksi);
@@ -92,7 +92,7 @@ public class DBqueryUpdateTupoksi {
         st.close();
     }
 
-    public void insertTupoksi(String maks, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String ipilih, String iwaktuL) throws SQLException {
+    public void insertTupoksi(String maks, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String ipilih, String iwaktuL,String sesiontahun) throws SQLException {
         String _maks = maks;
         String __iNip_id = _iNip_id;
         String _IdTupoksi = IdTupoksi;
@@ -103,7 +103,7 @@ public class DBqueryUpdateTupoksi {
         String _ipilih = ipilih;
         String _iwaktuL = iwaktuL;
         String _UnorIdisertL = UnorIdisert;
-
+        String detailtupoksi = null;
         validasiString vs = new validasiString();
         vs.setmashudi(_maks);
         _maks = vs.getmashudi();
@@ -124,7 +124,7 @@ public class DBqueryUpdateTupoksi {
 //        _ipilih = vs.getmashudi();
 //        _iwaktuL = vs.getmashudi();
 
-        String sql = "INSERT INTO isi4faktor(id_isi4faktor, nip_pns, id_unor,id_tupoksi, kuantitas4, kualitas4, waktu4, biaya4, kuantitas_label, waktu_label) VALUES('" + _maks + "', '" + __iNip_id + "', '" + _UnorIdisertL + "', '" + _IdTupoksi + "', '" + _ikuantitas4 + "', '" + _ikualitas4 + "', '" + _iWaktu4 + "', '" + _iBiaya + "', '" + _ipilih + "', '" + _iwaktuL + "')";
+        String sql = "INSERT INTO isi4faktor(id_isi4faktor, nip_pns, id_unor,id_tupoksi, kuantitas4, kualitas4, waktu4, biaya4, kuantitas_label, waktu_label,session,detailtupoksi) VALUES('" + _maks + "', '" + __iNip_id + "', '" + _UnorIdisertL + "', '" + _IdTupoksi + "', '" + _ikuantitas4 + "', '" + _ikualitas4 + "', '" + _iWaktu4 + "', '" + _iBiaya + "', '" + _ipilih + "', '" + _iwaktuL + "','"+sesiontahun+"','"+detailtupoksi+"')";
         PreparedStatement st = this.conn.prepareStatement(sql);
 //        st.setString(1, maks);
 //        st.setString(2, _iNip_id);
@@ -202,7 +202,42 @@ public class DBqueryUpdateTupoksi {
         st.executeUpdate(sql);
         st.close();
     }
+    public void updateTupoksiidRealisasi(String _iNip_id, String IdTupoksi, String ikuantitasR, String ikualitasR, String iWaktuR, String iBiayaR, String angkakrdtR, String _pilih_sessionR,String idrealisasi) throws SQLException {
+        String __iNip_id = _iNip_id;
+        String _IdTupoksi = IdTupoksi;
+        String _ikuantitasR = ikuantitasR;
+        String _ikualitasR = ikualitasR;
+        String _iWaktuR = iWaktuR;
+        String _iBiayaR = iBiayaR;
+        String _angkakrdtR = angkakrdtR;
+        String _pilih_sessionRr = _pilih_sessionR;
+        validasiString vs = new validasiString();
+        vs.setmashudi(__iNip_id);
+        __iNip_id = vs.getmashudi();
 
+        vs.setkoma(_angkakrdtR);
+        _angkakrdtR = vs.getmashudi();
+
+        vs.setmashudi(_IdTupoksi);
+        _IdTupoksi = vs.getmashudi();
+
+        vs.setmashudi(_ikuantitasR);
+        _ikuantitasR = vs.getmashudi();
+
+        vs.setmashudi(_ikualitasR);
+        _ikualitasR = vs.getmashudi();
+
+        vs.setmashudi(_iWaktuR);
+        _iWaktuR = vs.getmashudi();
+
+        vs.setmashudi(_iBiayaR);
+        _iBiayaR = vs.getmashudi();
+
+        String sql = "UPDATE realisasi SET kuantitasR ='" + _ikuantitasR + "', kualitasR ='" + _ikualitasR + "', waktuR='" + _iWaktuR + "', biayaR='" + _iBiayaR + "',angka_krdt='" + _angkakrdtR + "',session='" + _pilih_sessionRr + "'  where id_tupoksi='" + _IdTupoksi + "' and nip_pns ='" + __iNip_id + "' and id_realisasi = '"+idrealisasi+"' ";
+        PreparedStatement st = this.conn.prepareStatement(sql);
+        st.executeUpdate(sql);
+        st.close();
+    }
     public void updateHitunganRealisasi(String _iNip_id, String IdTupoksi, String penghitungan, String nilaicapaian) throws SQLException {
         String __iNip_id = _iNip_id;
         String _IdTupoksi = IdTupoksi;
@@ -223,6 +258,31 @@ public class DBqueryUpdateTupoksi {
 //        _nilaicapaian = vs.getmashudi();
 
         String sql = "UPDATE realisasi SET penghitungan = '" + _penghitungan + "', nilai_capaian_skp = '" + _nilaicapaian + "' where id_tupoksi='" + _IdTupoksi + "' and nip_pns ='" + __iNip_id + "' ";
+        PreparedStatement st = this.conn.prepareStatement(sql);
+        st.executeUpdate(sql);
+        st.close();
+    }
+    
+    public void updateHitunganSessionRealisasi(String _iNip_id, String IdTupoksi, String penghitungan, String nilaicapaian,String session) throws SQLException {
+        String __iNip_id = _iNip_id;
+        String _IdTupoksi = IdTupoksi;
+        String _penghitungan = penghitungan;
+        String _nilaicapaian = nilaicapaian;
+
+        validasiString vs = new validasiString();
+        vs.setmashudi(__iNip_id);
+        __iNip_id = vs.getmashudi();
+
+        vs.setmashudi(_IdTupoksi);
+        _IdTupoksi = vs.getmashudi();
+
+//        vs.setmashudi(_penghitungan);
+//        _penghitungan = vs.getmashudi();
+//        
+//        vs.setmashudi(_nilaicapaian);
+//        _nilaicapaian = vs.getmashudi();
+
+        String sql = "UPDATE realisasi SET penghitungan = '" + _penghitungan + "', nilai_capaian_skp = '" + _nilaicapaian + "' where id_tupoksi='" + _IdTupoksi + "' and nip_pns ='" + __iNip_id + "' and session = '"+session+"' ";
         PreparedStatement st = this.conn.prepareStatement(sql);
         st.executeUpdate(sql);
         st.close();

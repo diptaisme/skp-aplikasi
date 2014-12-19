@@ -85,7 +85,7 @@
 
                 position :  absolute;
                 top : 60px;
-                left : 20px;
+                left : 35px;
                 width : 156px;
                 height : 501px;
             }
@@ -185,6 +185,7 @@
                             </td>
 
                             <input  type="hidden"  name="idTambahanText" value="${idTambahan}"/>
+                            <input  type="hidden"  name="pilih_session" id="pilih_session"value="${sesiontahun}"/>
                             <input  type="hidden"  name="idNipText" id="idNipTextId" value="${idNip}"/>
                             <input  type="hidden"  name="namaPnsText" value="${namaPns}"/>
                             <input  type="hidden"  name="JenisTambahanText" value="${JenisTambahan}"/>
@@ -469,8 +470,9 @@
             function ButtonBack()
             {
                 ddtk = document.form1.idNipTextId.value;
+                pilih_session = document.form1.pilih_session.value;
                 //location = 'TugasTambahanServlet?idNiptambahan=<c:out value="${idNip}"/>';
-                location = 'TugasTambahanServlet?idNiptambahan='+ddtk;
+                location = 'TugasTambahanServlet?idNiptambahan='+ddtk+'&pilih_session='+pilih_session;
             }
         </script>
 

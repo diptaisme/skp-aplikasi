@@ -34,7 +34,7 @@ public class DBqueryTupoksi
     
     public tupoksi_lama getDBqueryTupoksiId(String sId_Tupoksi) throws SQLException
     {
-        String sql = "SELECT id_tupoksi,nama_tupoksi,id_unor,id_instansi,id_atasan,instansi_nama,angka_krdt FROM TUPOKSI WHERE id_tupoksi =? ";
+        String sql = "SELECT id_tupoksi,nama_tupoksi,id_unor,id_instansi,id_atasan,instansi_nama,angka_krdt FROM tupoksi WHERE id_tupoksi =? ";
         
         PreparedStatement pst = this.conn.prepareStatement(sql);
         tupoksi_lama iTupoksi = null;
@@ -59,7 +59,7 @@ public class DBqueryTupoksi
     {
 //        String sql = "SELECT id_tupoksi,nama_tupoksi,id_unor,id_instansi,id_atasan,instansi_nama,angka_krdt FROM TUPOKSI WHERE id_tupoksi =? ";
         
-     String sql =   "Select ID_TUPOKSI,NAMA_TUPOKSI,ID_UNOR,NAMA_UNOR,ID_INSTANSI,INSTANSI_NAMA,ID_ATASAN,ANGKA_KRDT,KELOMPOK_JAB_ID,JENIS_JABATAN,JABATAN_ID,SATUAN FROM TUPOKSI WHERE id_tupoksi =? ";
+     String sql =   "Select ID_TUPOKSI,NAMA_TUPOKSI,ID_UNOR,NAMA_UNOR,ID_INSTANSI,INSTANSI_NAMA,ID_ATASAN,ANGKA_KRDT,KELOMPOK_JAB_ID,JENIS_JABATAN,JABATAN_ID,SATUAN FROM tupoksi WHERE id_tupoksi =? ";
 
         PreparedStatement pst = this.conn.prepareStatement(sql);
         tupoksi iTupoksi = null;

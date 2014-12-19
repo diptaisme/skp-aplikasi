@@ -68,7 +68,7 @@ public class TugasTambahanServlet extends HttpServlet {
         String action = request.getParameter("action");
         String idTupoksiUntukHapus = request.getParameter("idTambahanHapus");
         String idTupoksiUntukUpdate = request.getParameter("idTambahanUpdate");
-               
+        String pilih_session = request.getParameter("pilih_session");
         String SidNipe =  request.getParameter("idNip");
         String SidNip =  request.getParameter("idTambahan");
         
@@ -133,6 +133,7 @@ public class TugasTambahanServlet extends HttpServlet {
         else if (action == null && idNiptambahan != null)
         {
             request.setAttribute("idNiptambahan", idNiptambahan);
+            request.setAttribute("pilih_session", pilih_session);
             RequestDispatcher dis = request.getRequestDispatcher("/GetPnsServlet?etst=test");
             dis.forward(request, response);   
         }
@@ -156,6 +157,7 @@ public class TugasTambahanServlet extends HttpServlet {
         {
             if (Submit.equalsIgnoreCase("SIMPAN"))
             {
+                String pilih_session = request.getParameter("pilih_session");
                 String _idTambahan = request.getParameter("idTambahanText");
                 String _JenisTambahan = request.getParameter("JenisTambahanText");
 
@@ -207,7 +209,7 @@ public class TugasTambahanServlet extends HttpServlet {
                 request.setAttribute("kereaktifitas", kereaktifitas);
                 request.setAttribute("namaPns", _nama);
                 request.setAttribute("idNip", _idNip);
-                
+                request.setAttribute("sesiontahun", pilih_session);
 
                 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/TugasTambahan.jsp");
                 dis.forward(request, response);

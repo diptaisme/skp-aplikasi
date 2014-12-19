@@ -148,7 +148,14 @@ public class RevisiServlet extends HttpServlet {
             String NipPns = pns.getNipBaru();
             List<TupoksiRevisiTarget> tukesiServlet = new ArrayList<TupoksiRevisiTarget>();
             List<TupoksiRevisiTarget> tukesiServlet2 = new ArrayList<TupoksiRevisiTarget>();
-            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            //PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            PnsSkp UnorAts = null;
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {
+                                  
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                            }
             if (_pilih_session == null) {
                 _pilih_session = "-";
             }
@@ -238,7 +245,14 @@ public class RevisiServlet extends HttpServlet {
             String NipPns = pns.getNipBaru();
             List<TupoksiRevisiTarget> tukesiServlet = new ArrayList<TupoksiRevisiTarget>();
             List<TupoksiRevisiTarget> tukesiServlet2 = new ArrayList<TupoksiRevisiTarget>();
-             PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+             //PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+             PnsSkp UnorAts = null;
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {
+                                  
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                            }
              String berhasil= new GoIndex().getHapusRealitaRevisi(idRevisiHapus, NipPns);
             if (_pilih_session == null) {
                 _pilih_session = "-";
@@ -291,6 +305,7 @@ public class RevisiServlet extends HttpServlet {
 
             if (param.equalsIgnoreCase("SIMPAN")) {
                 String _idTupoksi = P_idTupoksi;
+                String _detailkegiatan = request.getParameter("detailkegiatan");
                 String _kuantitas4text = request.getParameter("kuantitas4text");
                 String _kualitas4text = request.getParameter("kualitas4text");
                 String _waktu4text = request.getParameter("waktu4text");
@@ -312,9 +327,9 @@ public class RevisiServlet extends HttpServlet {
 
                     String _Isi4Faktor = "-";
                     String _Isi4FaktorRevisi = null;
-                    _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, _idTupoksi, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
+                    _Isi4Faktor = new GoIndex().getsimpanIsiEmpatFaktor(iNip_id, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion,_detailkegiatan);
                     try {
-                        _Isi4FaktorRevisi = new GoIndex().getsimpanIsiEmpatFaktorRevisi(iNip_id, _idTupoksi, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion);
+                        _Isi4FaktorRevisi = new GoIndex().getsimpanIsiEmpatFaktorRevisi(iNip_id, _idTupoksi, idisi4faktor, _kuantitas4text, _kualitas4text, _waktu4text, _biaya4text, pilih, waktuL, _angkaKredit, _pilih_session, __getidUnor4jspSesiion, _detailkegiatan);
                     } catch (SQLException ex) {
                         Logger.getLogger(RevisiServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -428,8 +443,11 @@ public class RevisiServlet extends HttpServlet {
                 dis.forward(request, response);
 
             } else {
+                
+                
             }
         } else {
+            
         }
     }
 

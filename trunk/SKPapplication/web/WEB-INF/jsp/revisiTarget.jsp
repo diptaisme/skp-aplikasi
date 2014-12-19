@@ -48,21 +48,21 @@
 
                 position: relative;
                 height: 80px;
-                left : -50px;
+                left : -35px;
             }
             #leftside {
 
                 position :  absolute;
-                top : 60px;
-                left : 10px;
+                top : 55px;
+                left : 30px;
                 width : 156px;
                 height : 501px;
             }
 
             #contentdalam {
                 position :  absolute;
-                top : 110px;
-                left : 170px;
+                top : 70px;
+                left : 160px;
                 width : 1000px;
                 height :1000px;
 
@@ -102,12 +102,12 @@
 
             #met {
                 position: relative;
-                width: 960px;
+                width: 980px;
                 height: 40px;
                 background: #9999CC;
-
+                
                 font-family: arial;
-                padding-left: 1px;
+                padding-left: 10px;
                 top :0px;
                 text-decoration: none;
 
@@ -160,7 +160,7 @@
                             <li>        
                                 <input type="text" id="session" name="session" /> 
                             </li>
-
+                            
                             <li> 
                                 <select id="pilih_session"  name="pilih_session" onchange="validasi4()" >
                                     <option value="-">-</option>
@@ -176,8 +176,6 @@
                             </li>
                         </ul>
                     </div>
-
-
                     <div id="contentdalamsub">
                         <table>
                             <td style="width: 500px">

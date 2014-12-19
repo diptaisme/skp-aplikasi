@@ -27,101 +27,119 @@
     };   
  
     function validate(evt) {
-        var theEvent = evt || window.event;
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode( key );
-        var regex = /[0-9]|\./;
-        if( !regex.test(key) ) {
-            theEvent.returnValue = false;
-            if(theEvent.preventDefault) theEvent.preventDefault();
-        }
-    };
-    function ButtonBackNit()
-    {
-        pilihan=document.getElementById("pilih_session_monit");
-        var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
-        location = 'isiPerilakuServlet?nipatasanMonitoring2=<c:out value="${nipAtasan}"/>&pilih_session_monit='+pilihanSelected;
-    };
+    <%-- 
+    var theEvent = evt || window.event;
+     var key = theEvent.keyCode || theEvent.which;
+     key = String.fromCharCode( key );
+     var regex = /[0-9]|\./;
+     if( !regex.test(key) ) {
+         theEvent.returnValue = false;
+         if(theEvent.preventDefault) theEvent.preventDefault();
+    --%>
+            var panjangkata = evt.length
+            var unicode=evt.charCode? evt.charCode : evt.keyCode 
+            if (unicode!=8){ //if the key isn't the backspace key (which we should allow)
+                if ((unicode<48||unicode>57)) //if not a number
+                    return false //disable key press
+            }     
+        };
+        function ButtonBackNit()
+        {
+            pilihan=document.getElementById("pilih_session_monit");
+            var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
+            location = 'isiPerilakuServlet?nipatasanMonitoring2=<c:out value="${nipAtasan}"/>&pilih_session_monit='+pilihanSelected;
+        };
     
-    function ButtonBackNitView()
-    {
-        pilihan=document.getElementById("pilih_session_monit");
-        var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
-        location = 'isiPerilakuServlet?nipatasanMonitoringView=<c:out value="${nipAtasan}"/>&pilih_session_monit='+pilihanSelected;
-    };
+        function ButtoncarinipMonitoring()
+        {
+            pilihan=document.getElementById("pilih_session_monit");
+            var nipatasanMonitoring2 = document.getElementById("nipAtasan");
+            nipatasanMonitoring2.value.text;
+            statusbutton=document.getElementById("statusbutton");
+            statusbutton.value = "cari";
+            var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
+            location = 'isiPerilakuServlet?nipatasanMonitoring2='+nipatasanMonitoring2+'&statusbutton='+statusbutton+'&pilih_session_monit='+pilihanSelected;
+        };
     
-    function ButtonBackCetak()
-    {
-        pilihan=document.getElementById("pilih_session_monit");
-        var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
-        location = 'cetakIsi4FaktorServlet?nipatasanMonitoringCetak=<c:out value="${nipAtasan}"/>&pilih_session_monit='+pilihanSelected ;
-    };
-    function validasi4Monitor(){
-        var vbiaya4text =document.getElementById("pilih_session_monit");
-        var ddtk = vbiaya4text.options[vbiaya4text.selectedIndex].text;
-        //   document.getElementById("session").value = ddtk;
-    }; 
-    function validasitestMonitor(){ 
-        //document.getElementById("kuantitas4text").value
-        var vkuantitas4text = document.getElementById("kuantitasRtext"); 
-        var vidkualitas4text = document.getElementById("kualitasRtext"); 
-        var vwaktu4text = document.getElementById("waktuRtext");
-        var vbiaya4text =  document.getElementById("biayaRtext");
-        //var namaUnorText= document.getElementById("namaUnorTex");
-        //        var cariUmum = document.getElementById("cariUmum");
+        function ButtonBackNitView()
+        {
+            pilihan=document.getElementById("pilih_session_monit");
+            var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
+            location = 'isiPerilakuServlet?nipatasanMonitoringView=<c:out value="${nipAtasan}"/>&pilih_session_monit='+pilihanSelected;
+        };
+    
+        function ButtonBackCetak()
+        {
+            pilihan=document.getElementById("pilih_session_monit");
+            var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
+            location = 'cetakIsi4FaktorServlet?nipatasanMonitoringCetak=<c:out value="${nipAtasan}"/>&pilih_session_monit='+pilihanSelected ;
+        };
+        function validasi4Monitor(){
+            var vbiaya4text =document.getElementById("pilih_session_monit");
+            var ddtk = vbiaya4text.options[vbiaya4text.selectedIndex].text;
+            //   document.getElementById("session").value = ddtk;
+        }; 
+        function validasitestMonitor(){ 
+            //document.getElementById("kuantitas4text").value
+            var vkuantitas4text = document.getElementById("kuantitasRtext"); 
+            var vidkualitas4text = document.getElementById("kualitasRtext"); 
+            var vwaktu4text = document.getElementById("waktuRtext");
+            var vbiaya4text =  document.getElementById("biayaRtext");
+            //var namaUnorText= document.getElementById("namaUnorTex");
+            //        var cariUmum = document.getElementById("cariUmum");
  
-        if(vkuantitas4text.value == "-" || vkuantitas4text.value == "" ){ 
+            if(vkuantitas4text.value == "-" || vkuantitas4text.value == "" ){ 
       
-            vkuantitas4text.focus(); 
-            return false; 
-        }
-        else if(vidkualitas4text.value == "-" || vidkualitas4text.value == ""){ 
+                vkuantitas4text.focus(); 
+                return false; 
+            }
+            else if(vidkualitas4text.value == "-" || vidkualitas4text.value == ""){ 
       
-            vidkualitas4text.focus(); 
-            return false; 
-        }
-        else if(vwaktu4text.value == "-" || vwaktu4text.value == ""){ 
+                vidkualitas4text.focus(); 
+                return false; 
+            }
+            else if(vwaktu4text.value == "-" || vwaktu4text.value == ""){ 
        
-            vwaktu4text.focus(); 
-            return false; 
-        }
-        else if(vbiaya4text.value == "-" || vbiaya4text.value == ""){ 
+                vwaktu4text.focus(); 
+                return false; 
+            }
+            else if(vbiaya4text.value == "-" || vbiaya4text.value == ""){ 
       
-            vbiaya4text.focus(); 
-            return false; 
-        }else{
+                vbiaya4text.focus(); 
+                return false; 
+            }else{
      
      
-            return true; 
-        } 
+                return true; 
+            } 
     
-    };
-    function redirect()
-    {
-        pilihan=document.getElementById("pilih_session");
-        var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
-        url=document.getElementById("url");   
-        url.href=url.href+"&pilih_session=" + pilihanSelected;    
-    };
+        };
+        function redirect()
+        {
+            pilihan=document.getElementById("pilih_session");
+            var pilihanSelected = pilihan.options[pilihan.selectedIndex].text;
+            url=document.getElementById("url");   
+            url.href=url.href+"&pilih_session=" + pilihanSelected;    
+        };
 
-    function onchangecombo()
-    {
-        document.getElementById("button1").style.bgColor = 0xFFFF00;
+        function onchangecombo()
+        {
+            document.getElementById("button1").style.bgColor = 0xFFFF00;
     
-        var vbiaya4text =document.getElementById("pilih_session");
-        var ddtk2 = vbiaya4text.options[vbiaya4text.selectedIndex].text;
-        //  document.getElementById("session").value = ddtk2;
+            var vbiaya4text =document.getElementById("pilih_session");
+            var ddtk2 = vbiaya4text.options[vbiaya4text.selectedIndex].text;
+            //  document.getElementById("session").value = ddtk2;
     
-        //    var e2 = document.getElementById("idKreaf");
-        //   var ddtk2 = e2.value;
+            //    var e2 = document.getElementById("idKreaf");
+            //   var ddtk2 = e2.value;
     
-        // var e = document.getElementById("koef_kreatifitas");
-        // var ddtk = e.options[e.selectedIndex].text;
+            // var e = document.getElementById("koef_kreatifitas");
+            // var ddtk = e.options[e.selectedIndex].text;
 
-        location = 'tupoksiServlet2?action=HitungtupoksiServlet2&txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>&pilih_session='+ddtk2;
-        document.getElementById("button1").style.backgroundColor = '#FFFF00';
+            location = 'tupoksiServlet2?action=HitungtupoksiServlet2&txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>&pilih_session='+ddtk2;
+            document.getElementById("button1").style.backgroundColor = '#FFFF00';
 
-    };
+        };
           
 </script>
 <!DOCTYPE html>
@@ -130,17 +148,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>SASARAN KERJA INDIVIDU</title>
+
+       
         <script type='text/javascript' src='/SKPapplication/js/jquery.min.js'></script>
         <script src="/SKPapplication/js/jquery-ui-1.8.21.custom.min.js"></script>
         <script src="/SKPapplication/js/jquery-1.7.1.min.js"></script>
         <script type='text/javascript' src='/SKPapplication/js/FusionCharts.js'></script>
         <script type='text/javascript' src='/SKPapplication/js/FusionCharts.jQueryPlugin.js'></script>
         <script type='text/javascript' src='/SKPapplication/js/FusionCharts.HTMLTableDataHandler.js'></script>
+         
 
 
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
+     
         <style type="text/css"> 
             /*=======================Monitoring*/
 
@@ -458,6 +480,7 @@
 
 
 
+
     </head>
 
     <body>
@@ -470,6 +493,7 @@
 
             <input type="hidden" name="nippns" value="${sessionScope.user}"/>
             <input type="hidden" name="nippns" value="${sessionScope.NipPnsSession}"/>
+            <input type="hidden" name="tingkatuser" value="${sessionScope.levelPemakaian}"/>
 
 
 
@@ -667,7 +691,7 @@
                     }
 
                 </style>
-
+                
                 <c:if test="${navigasi_pilihan =='3' || navigasi_pilihan =='1' || navigasi_pilihan =='2'}">
 
 
@@ -677,15 +701,14 @@
                         <ul>
                             <li>
                                 <%-- <a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>"class="current_page_item" target="_parent" title="Target Sasaran SKI"><span></span>Target</a> --%>
-
-                                <a href="GetPnsServlet?action=HitungtupoksiServlet3&txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" id="url" onclick="redirect2()"  target="_parent" >Target</a>
+                                <c:set var="sesiontahun" value="${sesiontahun}" /> 
+                                <a href="GetPnsServlet?action=HitungtupoksiServlet3&txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>&menutarget=ada" id="url" onclick="redirect2()"  target="_parent" >Target</a>
                             </li>
-                            <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>"  target="_parent" ><span></span>Realisasi</a></li> 
-
+                            <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&pilih_session=<c:out value="${sesiontahun}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>"  target="_parent" ><span></span>Realisasi</a></li> 
 
 
                             <li>        
-                                <input type="text" id="session" name="session" /> 
+                                <input type="text" id="session" name="session" value="${sesiontahun}" /> 
                             </li>
 
                             <li> 
@@ -789,6 +812,7 @@
                                         <td align="left" style="font-weight:normal; font-size: 12px"align="left">Jabatan</td>
                                         <td>:</td>
                                         <td align="left" style="font-weight:normal; font-size: 12px"align="left"><c:out value="${pns.getNamaJabatan()}" /></td>
+                                        <td><a href="updateServlets?NIPBaruUbahjabatan=<c:out value="${pns.getNipBaru()}"/>">  <img src="images/ubah2.png"/> </a></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:normal; font-size: 12px"><div align="left">5</div></td>
@@ -833,27 +857,27 @@
                                         <c:when test="${count.index % 2 == 0}">
                                             <tr bgcolor="#b9c9fe">
                                                 <td style="font-weight:normal; font-size: 12px"width="31"><div align="center">${(count.index)+1}</div></td>
-                                                <td style="font-weight:normal; font-size: 12px" width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&getIdIsi4Faktor=<c:out value="${listTukesi.getIdIsi4Faktor()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px" width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&pilih_session=${sesiontahun}&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&getIdIsi4Faktor=<c:out value="${listTukesi.getIdIsi4Faktor()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="383"><div align="left">${listTukesi.getNamaTupoksi()} </div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getangka_krdtR()}</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="105"><div align="right">${listTukesi.getKuantitas4()} ${listTukesi.getkuantitas_label()} </div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="100"><div align="right">${listTukesi.getKualitas4()} %</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getWaktu4()} ${listTukesi.getwaktu_label()} (${listTukesi.getpilih_session()})</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="136"><div align="right">Rp. ${listTukesi.getBiaya4()}</div></td>
-                                                <td style="font-weight:normal; font-size: 12px"width="31"><div align="Left"><a href="Isi4FaktorServlet?idTupoksiHapus=<c:out value="${listTukesi.getIdTupoksi()}"/>&nipHapus=<c:out value="${pns.getNipBaru()}"/>"><img src="images/hapus2.png"></img></a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31"><div align="Left"><a href="Isi4FaktorServlet?idTupoksiHapus=<c:out value="${listTukesi.getIdTupoksi()}"/>&pilih_session=${sesiontahun}&nipHapus=<c:out value="${pns.getNipBaru()}"/>"><img src="images/hapus2.png"></img></a></div></td>
                                             </tr>
                                         </c:when>
                                         <c:otherwise>
                                             <tr bgcolor="#e8edff">
                                                 <td style="font-weight:normal; font-size: 12px"width="31"><div align="center">${(count.index)+1}</div></td>
-                                                <td style="font-weight:normal; font-size: 12px"width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&getIdIsi4Faktor=<c:out value="${listTukesi.getIdIsi4Faktor()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="80"><div align="center"><a href ="Isi4FaktorServlet?nipnilai=<c:out value="${pns.getNipBaru()}"/>&pilih_session=${sesiontahun}&_idUnor=<c:out value="${pns.getUnorId()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&getIdIsi4Faktor=<c:out value="${listTukesi.getIdIsi4Faktor()}"/>">${listTukesi.getIdTupoksi()}</a></div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="383"><div align="left">${listTukesi.getNamaTupoksi()}</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getangka_krdtR()}</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="105"><div align="right">${listTukesi.getKuantitas4()} ${listTukesi.getkuantitas_label()} </div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="100"><div align="right">${listTukesi.getKualitas4()} %</div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="70"><div align="right">${listTukesi.getWaktu4()} ${listTukesi.getwaktu_label()} (${listTukesi.getpilih_session()}) </div></td>
                                                 <td style="font-weight:normal; font-size: 12px"width="136"><div align="right">Rp. ${listTukesi.getBiaya4()}</div></td>
-                                                <td style="font-weight:normal; font-size: 12px"width="31"><div align="Left"><a href="Isi4FaktorServlet?idTupoksiHapus=<c:out value="${listTukesi.getIdTupoksi()}"/>&nipHapus=<c:out value="${pns.getNipBaru()}"/>"><img src="images/hapus2.png"></img></a></div></td>
+                                                <td style="font-weight:normal; font-size: 12px"width="31"><div align="Left"><a href="Isi4FaktorServlet?idTupoksiHapus=<c:out value="${listTukesi.getIdTupoksi()}"/>&pilih_session=${sesiontahun}&nipHapus=<c:out value="${pns.getNipBaru()}"/>"><img src="images/hapus2.png"></img></a></div></td>
                                             </tr>
                                         </c:otherwise>
 
@@ -868,9 +892,9 @@
                                 <td>
                                     <%-- <a href="tupoksiServlet2?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&_idUnorTambah=<c:out value="${pns.getUnorId()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>"><img src="images/tambah.png"/></a>   --%>
                                     <%-- <a href="GetPnsServlet?action=HitungtupoksiServlet3&txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" id="url" onclick="redirect2()"class="current_page_item" target="_parent" title="Target Sasaran SKI">Target</a> --%>
-                                    <a href="tupoksiServlet2?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&_idUnorTambah=<c:out value="${pns.getUnorId()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>" id="urltest" onclick="redirect_testt()"><img src="images/tambah.png"/></a>
+                                    <a href="tupoksiServlet2?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&_idUnorTambah=<c:out value="${pns.getUnorId()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>&sesiontahun=${sesiontahun}" id="urltest" onclick="redirect_testt()"><img src="images/tambah.png"/></a>
                                 </td>
-                                
+
                                 <td>
                                     <%--     <a href="cetakIsi4FaktorServlet?nipnilai2=<c:out value="${pns.getNipBaru()}"/>&target=target" target="_blank" title="Cetak"><img src="images/cetak.png"/></a> --%>
 
@@ -882,7 +906,8 @@
                                 <td>   
                                     &nbsp;  &nbsp; <input type="text" id="tglCetak" name="tglCetak" on maxlength="8" onfocus="clearText2()" onblur="clearText()"  onkeypress="return alertnipnull3(event)"/> 
                                 </td>
-                                <td>DDMMYYYY </td>
+                               
+                                <td> DDMMYYYY</td>
                                 <%--   
                                    <td>
                                        <a href="realisasiBaru2.jsp"><img src="images/cari.png"/></a>
@@ -897,11 +922,11 @@
                 <c:if test="${navigasi_pilihan =='44' }">
                     <div id="menu2">
                         <ul>
-                            <li><a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>" target="_parent" title="Target Sasaran SKI">TARGET</a>
+                            <li><a href="GetPnsServlet?txtNIPBaruB=<c:out value="${pns.getNipBaru()}"/>&pilih_session=<c:out value="${sesiontahun}"/>" target="_parent" title="Target Sasaran SKI">TARGET</a>
                                 <%--   <li><a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>" class="current_page_item" target="_parent" title="Realisasi Capaian SKI">REALISASI</a> --%>
                             <li> <a href="GetPnsServlet?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getId_tupoksi()}"/>" class="current_page_item" target="_parent" title="Realisasi Capaian SKI" id="url" onclick="redirect2K()">REALISASI</a>  
                             <li>
-                                <input type="text" id="session" name="sessionw" /> 
+                                <input type="text" id="sessionw" name="sessionw" value="${sesiontahun}"/> 
                             </li>
                             <li>
                                 <select id="pilih_sessionw"  name="pilih_sessionw" onchange="validasi4W()" >
@@ -963,7 +988,7 @@
                                             <tr bgcolor="#b9c9fe">
 
                                                 <td style="font-weight:normal ; font-size: 12px" width="38" align="center">${(count.index)+1}</td>
-                                                <td  style="font-weight:normal; font-size: 12px" width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
+                                                <td  style="font-weight:normal; font-size: 12px" width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&pilih_session=<c:out value="${sesiontahun}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
                                                 <td style="font-weight:normal; font-size: 12px" width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
                                                 <td style="font-weight:normal; font-size: 12px" width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
                                                 <c:if test="${(listTukesi.getvar_perubahan1())=='u'}">
@@ -1024,8 +1049,8 @@
                                         <c:otherwise>
                                             <tr bgcolor="#e8edff">
 
-                                              <td style="font-weight:normal ; font-size: 12px" width="38" align="center">${(count.index)+1}</td>
-                                                <td  style="font-weight:normal; font-size: 12px" width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
+                                                <td style="font-weight:normal ; font-size: 12px" width="38" align="center">${(count.index)+1}</td>
+                                                <td  style="font-weight:normal; font-size: 12px" width="66" align="center"> <div align="center"><a href ="Isi4FaktorServlet?nipnilaiR=<c:out value="${pns.getNipBaru()}"/>&pilih_session=<c:out value="${sesiontahun}"/>&idTupoksiR=<c:out value="${listTukesi.getId_tupoksi()}"/>">${listTukesi.getId_tupoksi()}</a></div></td>
                                                 <td style="font-weight:normal; font-size: 12px" width="211" align="left">${listTukesi.getNama_tupoksi()}</td>
                                                 <td style="font-weight:normal; font-size: 12px" width="51" align="left">${listTukesi.getangkaKrdt4()}</td>
                                                 <c:if test="${(listTukesi.getvar_perubahan1())=='u'}">
@@ -1089,7 +1114,7 @@
 
                             </table>
                         </div>
-<div>&nbsp;</div>
+                        <div>&nbsp;</div>
                         <div>TUGAS TAMBAHAN</div>
 
 
@@ -1142,7 +1167,7 @@
                         <div>
                             <%-- <a href="tupoksiServlet?txtNIPBaruTB=<c:out value="${pns.getNipBaru()}"/>"><img src="images/tambah.png"/>
                             </a>--%>
-                            <a href="tupoksiServlet2?txtNIPBaruTB=<c:out value="${pns.getNipBaru()}"/>"><img src="/SKPapplication/images/tambah.png"/>
+                            <a href="tupoksiServlet2?txtNIPBaruTB=<c:out value="${pns.getNipBaru()}"/>&pilih_session=<c:out value="${sesiontahun}"/>"><img src="/SKPapplication/images/tambah.png"/>
                             </a>
                         </div>
                         <div>&nbsp;</div>
@@ -1214,9 +1239,11 @@
                                     <td><a href="cetakIsi4FaktorServlet?nipPrestasi=<c:out value="${pns.getNipBaru()}"/>&realisasi2=realisasi2"  target="_blank" id="url4"  onclick="redirect4K()" title="Prestasi"><center><img src="images/cetakprestasi.png"/></center></a></td> 
                                     <td><a target="_blank" id="url3"  onclick="redirect3K()" title="Cetak"><center><img src="/SKPapplication/images/cetak.png"/></center></a></td>
                                     <td>Tanggal Cetak </td>
-                                    <td>&nbsp;&nbsp;&nbsp;<input type="text" id="tglCetakw" name="tglCetakw" on maxlength="8" onfocus="clearText2WW()" onblur="clearTextWW()" onkeypress="return alertnipnull3(event)"/> </td>
+                                    <%--<td>&nbsp;&nbsp;&nbsp;<input type="text" id="tglCetakwx" name="tglCetakwx" on maxlength="8" onfocus="clearText2WW_()" onblur="clearTextWW_()" onkeypress="return alertnipnull3(event)"/> </td>--%>
+                                    <td>&nbsp;  &nbsp; <input type="text" id="tglCetakw" name="tglCetakw" on maxlength="8" onfocus="clearText2WW_()" onblur="clearTextWW_()" onkeypress="return alertnipnull3(event)"/> </td>
+                                    <td>DDMMYYYY</td>    
 
-                                    <td>DDMMYYYY </td>          
+
                                 </tr>
                             </table>
                         </center>
@@ -1224,6 +1251,34 @@
                     </div>
 
                 </c:if>
+                <script language="javascript" type="text/javascript">  
+   
+
+                    function clearTextWW_()
+                    {    
+                                        
+                        var temp = document.getElementById("tglCetakw").value;
+                        //var temp = document.getElementById("tglCetak").value;
+                       
+                        if (temp.length==8){
+                            
+                            var hasil = temp.substring(0, 2) + "-"+temp.substring(2, 4)+ "-"+temp.substring(4, 8);
+                            document.getElementById("tglCetakw").value = hasil;
+                        }
+                    }
+                    function clearText2WW_()
+                    {    
+                                        
+                        var temp = document.getElementById("tglCetakw").value;
+                                        
+                        if (temp.length==10){
+                                           
+                            var hasil = temp.substring(0, 2) + temp.substring(3, 5)+temp.substring(6, 10);
+                            document.getElementById("tglCetakw").value = hasil;
+                        }
+                    }
+                                    
+                </script>
 
                 <c:if test="${navigasi_pilihan =='46' }">
                     <div id="menu2">
@@ -1241,10 +1296,10 @@
                                 <table  align="top" width="173">
 
                                     <tr>
-
-                                        <td style="font-size: 12px ">Nip baru :</td>
-                                        <td colspan="3" style="font-size: 12px "><input type="number"  maxlength="18" id="cariNipMon" name="cariNipMon" onkeypress='validate(event)'/> </td>
-                                        <td><input type="image" src="/SKPapplication/images/cari.png" id="cariNipMon" name="cariNipMon" value="cari"/></td>
+                                    <input type="hidden" name="statusbutton" value="" id="statusbutton" />   
+                                    <td style="font-size: 12px ">Nip baru :</td>
+                                    <td colspan="3" style="font-size: 12px "><input type="number"  maxlength="18" id="cariNipMon" name="cariNipMon" onkeypress='return validate(event)'/> </td>
+                                    <td><input type="image" src="/SKPapplication/images/cari.png" id="cariNipMon" onclick="ButtoncarinipMonitoring()" name="cariNipMon" value="cari"/></td>
 
                                     </tr>
 
@@ -1926,14 +1981,14 @@
                                                     <tr bgcolor="#7FFFD4">
                                                         <td style="font-weight:normal;font-size: 12px" width="150" align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw.getNamaPns()}</div></a></td>
                                                         <td style="font-weight:normal;font-size: 12px" width="50" align="right">${pnsBaw.getRealisasi()}</td>   
-                                                      
+
                                                     </tr>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <tr  bgcolor=#ADFF2F">
                                                         <td style="font-weight:normal;font-size: 12px" width="150" align="left"><a href="GetPnsServlet?action=Monitor&txtNIPBaru=<c:out value="${pnsBaw.getNipBaru()}"/>&idTupoksi=<c:out value="${listTukesi.getIdTupoksi()}"/>&NipAtasan=<c:out value="${nipAtasan}"/>"><div id="merah"> ${pnsBaw.getNamaPns()}</div></a></td>  
-                                                          <td style="font-weight:normal;font-size: 12px" width="50" align="right">${pnsBaw.getRealisasi()}</td>   
-                                                         
+                                                        <td style="font-weight:normal;font-size: 12px" width="50" align="right">${pnsBaw.getRealisasi()}</td>   
+
                                                     </tr>
                                                 </c:otherwise>
                                             </c:choose>
@@ -1979,8 +2034,10 @@
             }
             function clearText()
             {    
+              
                 var temp = document.getElementById("tglCetak").value;
                 if (temp.length==8){
+                    
                     var hasil = temp.substring(0, 2) + "-"+temp.substring(2, 4)+ "-"+temp.substring(4, 8);
                     document.getElementById("tglCetak").value = hasil;
                 }
@@ -2085,7 +2142,7 @@
                 
    
             }
-            function redirect3Test       ()
+            function redirect3Test()
             {
                 var har2="tupoksiServlet2?txtNIPBaru=<c:out value="${pns.getNipBaru()}"/>&_idUnorTambah=<c:out value="${pns.getUnorId()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>";
                 url3test=document.getElementById("url3test");
@@ -2151,7 +2208,7 @@
             <div id="place-nav" >
                 <ul id="nav">
                     <li><a href="#"><div style="font-size: 20px">... </div></a>
-                         <ul>
+                        <ul>
                             <c:if test="${tingkat=='3'}">
                                 <li><a href="NavigasiProfile?nipManajemenPengguna=<c:out value="${sessionScope.NipPnsSession}"/>">Manajemen Pengguna</a></li>
                                 <li><a href="NavigasiProfile?nipPerwakilan=<c:out value="${sessionScope.NipPnsSession}"/>">Entry Data tk. Esl II</a></li>

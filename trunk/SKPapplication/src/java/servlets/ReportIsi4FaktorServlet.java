@@ -184,6 +184,7 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
 
         String baseDir = getBaseDirectory(request);
         String baseDirRevisir = getBaseDirectoryRevisi(request);
+        String baseDirIsi4faktorTargetBulan = getBaseDirectoryisi4faktorTargetBulan(request);
         //String baseDirR = getBaseDirectoryR(request);
         String baseDirU = getBaseDirectoryU(request);
         //   String baseDirSB = getBaseDirectorySB(request);
@@ -194,6 +195,7 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
         String typeReport = (String) request.getAttribute("typeReport");
         String fileName;
         String fileNamRevisi;
+        String fileNamIsi4faktorTargetBulan;
         String fileNameR;
         String fileNameU;
         String fileNameSB;
@@ -383,6 +385,110 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
             } else {
                 getTarget2(request, response);
             }
+        } else if (typeReport.equalsIgnoreCase("report_isi4faktorTargetBulan")) {
+
+            String namaPNScetak = (String) request.getAttribute("namaPNScetak");
+            String nipPNScetak = (String) request.getAttribute("nipPNScetak");
+            String golruPNScetak = (String) request.getAttribute("golruPNScetak");
+            String jabatanPNScetak = (String) request.getAttribute("jabatanPNScetak");
+            String unkerPNScetak = (String) request.getAttribute("unkerPNScetak");
+
+            String unorAtasan = (String) request.getAttribute("unorAtasan");
+            String UnorPnsid = (String) request.getAttribute("UnorPnsid");
+            String InstansiPns = (String) request.getAttribute("InstansiPns");
+            String NipPns = (String) request.getAttribute("NipPns");
+
+            List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
+            jenisReporting = "ISI4FAKTORTARGETBULAN";
+            fileNamIsi4faktorTargetBulan = baseDirIsi4faktorTargetBulan;
+            String tglCetak_ = (String) request.getAttribute("tglCetak");
+
+
+
+            //Map<String, Object> test = new HashMap<String, Object>();
+
+            PnsSkp UnorAts = null;
+            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            } else {
+                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+            }
+
+            String nipPNScetak2 = UnorAts.getNipBaru();
+            String jabatanPNScetak2 = UnorAts.getNamaJabatan();
+            String unkerPNScetak2 = UnorAts.getNamaUnor();
+
+            PnsSkp CetakPns = new GoIndex().getPns(nipPNScetak2);
+            String namaPNScetak2 = CetakPns.getNamaPns();
+
+            String golruPNScetak2 = CetakPns.getNamaGolru() + " / " + CetakPns.getPangkat();
+
+
+
+            List<IsiTargetBulanan> isiTargetBulananCetak = (List<IsiTargetBulanan>) request.getAttribute("isiTargetBulanan");
+
+            String rf = tglskrg.format(Calendar.getInstance().getTime());
+            rf = "02 Januari 2014";
+
+            if (tglCetak_ == null) {
+                rf = "02 Januari 2014";
+
+            } else if (tglCetak_.length() == 10) {
+                rf = tglCetak_;
+
+                validasiString vs = new validasiString();
+                vs.setNamaBulan(rf);
+                String brf = vs.getNamaBulan();
+                rf = rf.substring(0, 2) + " " + brf + " " + rf.substring(6, 10);
+            } else {
+                rf = "02 Januari 2014";
+            }
+            int nomorHitung = 0;
+            double hitnr = 0;
+            String nomorstr;
+
+            Map<String, Object> myMap = new HashMap<String, Object>();
+            TupoksiKeIsi4Faktor TKI4F = new TupoksiKeIsi4Faktor();
+
+            myMap.put("rf", rf);
+            myMap.put("NAMAPNSCETAK", namaPNScetak);
+            myMap.put("NIPPNSCETAK", nipPNScetak);
+            myMap.put("GOLRUPNSCETAK", golruPNScetak);
+            myMap.put("JABATANPNSCETAK", jabatanPNScetak);
+            myMap.put("UNKERPNSCETAK", unkerPNScetak);
+
+            myMap.put("NAMAPNSCETAK2", namaPNScetak2);
+            myMap.put("NIPPNSCETAK2", nipPNScetak2);
+            myMap.put("GOLRUPNSCETAK2", golruPNScetak2);
+            myMap.put("JABATANPNSCETAK2", jabatanPNScetak2);
+            myMap.put("UNKERPNSCETAK2", unkerPNScetak2);
+            if (isiTargetBulananCetak.size() > 0) {
+                for (IsiTargetBulanan tukesiDomain : isiTargetBulananCetak) {
+                      Map<String, Object> test = new HashMap<String, Object>();
+                    nomorHitung = nomorHitung + 1;
+                    nomorstr = Integer.toString(nomorHitung);
+                    test.put("NOMORTUPOKSI", nomorstr);
+                    test.put("NAMATUPOKSI", tukesiDomain.getNamaTupoksi());
+                    test.put("KUANTITAS4", tukesiDomain.getkuantitas_bulan());
+                    test.put("KUALITAS4", tukesiDomain.getkualitas_bulan());
+                    test.put("WAKTU4", tukesiDomain.getwaktu_bulan());
+                    test.put("BIAYA4", tukesiDomain.biaya_bulan());
+                    test.put("BULANKE", tukesiDomain.bulanke());
+                    listResult.add(test);
+                }
+
+                TKI4F = new GoIndex().getTupoksi4(isiTargetBulananCetak.get(0).getid_Isi4faktor());
+               /* test.put("NOMORTUPOKSI", "-");
+                test.put("NAMATUPOKSI", "Target Dalam Setahun");
+                test.put("KUANTITAS4", TKI4F.getKuantitas4());
+                test.put("KUALITAS4", TKI4F.getKualitas4());
+                test.put("WAKTU4", TKI4F.getWaktu4());
+                test.put("BIAYA4", TKI4F.getBiaya4());
+                test.put("BULANKE", TKI4F.getwaktu_label());
+                listResult.add(test);*/
+            }
+            this.generalPDFReports(listResult.toArray(), request, response, myMap, fileNamIsi4faktorTargetBulan);
+
         } else if (typeReport.equalsIgnoreCase("report_isi4faktorRevisi")) {
 
             jenisReporting = "ISI4FAKTORREVISI";
@@ -594,11 +700,11 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
                     }
 
                     /* StringBuilder sb = new StringBuilder();
-                    Graphics g = null;
-                    String s = tukesiDomain.getWaktu4();
-                    Graphics2D g2 = (Graphics2D) g;
-                    AttributedString as = new AttributedString(s);
-                    as.addAttribute(TextAttribute.STRIKETHROUGH, as);*/
+                     Graphics g = null;
+                     String s = tukesiDomain.getWaktu4();
+                     Graphics2D g2 = (Graphics2D) g;
+                     AttributedString as = new AttributedString(s);
+                     as.addAttribute(TextAttribute.STRIKETHROUGH, as);*/
 
                     namatpk = namatpk + tmp2;
                     nomorstr = Integer.toString(nomorHitung);
@@ -783,10 +889,10 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
             List<TupoksiRevisiTarget> tukesiServlet = new ArrayList<TupoksiRevisiTarget>();
 
             /* if (_pilih_session.equals("-")) {
-            tukesiServlet = new GoIndex().getTukesi(UnorPnsid, InstansiPns, NipPns);
-            } else {
-            tukesiServlet = new GoIndex().getTukesiSession(UnorPnsid, InstansiPns, NipPns, _pilih_session);
-            }*/
+             tukesiServlet = new GoIndex().getTukesi(UnorPnsid, InstansiPns, NipPns);
+             } else {
+             tukesiServlet = new GoIndex().getTukesiSession(UnorPnsid, InstansiPns, NipPns, _pilih_session);
+             }*/
 
 
             if (_pilih_session.equals("-")) {
@@ -809,15 +915,15 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
                     realkesiServlet = new GoIndex().getRealkesiRevisi(NipPns);
                 } else {
 
-                    realkesiServlet = new GoIndex().getRealkesiSessionRevisi(ModelLocatorSKP.IdUnorUser, NipPns, _pilih_session);
+                    realkesiServlet = new GoIndex().getRealkesiSessionRevisi(UnorPnsid, NipPns, _pilih_session);
                 }
 
                 /*  if (_pilih_session.equals("-")) {
-                realkesiServlet = new GoIndex().getRealkesi(NipPns);
+                 realkesiServlet = new GoIndex().getRealkesi(NipPns);
                 
-                } else {
-                realkesiServlet = new GoIndex().getRealkesiSession(ModelLocatorSKP.IdUnorUser, NipPns, _pilih_session);
-                }*/
+                 } else {
+                 realkesiServlet = new GoIndex().getRealkesiSession(ModelLocatorSKP.IdUnorUser, NipPns, _pilih_session);
+                 }*/
 
                 //List<TugasTambahan> tugasTambahan = new GoIndex().getTugasTambahanAllList(NipPns);
                 //TugasTambahan tugasTambahan = new GoIndex().getTugasTambahanNotList(NipPns);
@@ -980,7 +1086,7 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
                 if (_pilih_session.equals("-")) {
                     total_skp = new GoIndex().getNilaiAll(NipPns);
                 } else {
-                    total_skp = new GoIndex().getNilaiAllSession(ModelLocatorSKP.IdUnorUser, NipPns, _pilih_session);
+                    total_skp = new GoIndex().getNilaiAllSession(UnorPnsid, NipPns, _pilih_session);
                 }
 
                 myMap.put("TOTAL_SKP", total_skp);
@@ -1261,10 +1367,10 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
             String nilaiSKP = null;
 
             /* if (_pilih_session.equals("-")) {
-            nilaiSKP= new GoIndex().getNilaiAll(nipPns);
-            }else{
-            nilaiSKP = new GoIndex().getNilaiAllSession(nipPns,_pilih_session);
-            }*/
+             nilaiSKP= new GoIndex().getNilaiAll(nipPns);
+             }else{
+             nilaiSKP = new GoIndex().getNilaiAllSession(nipPns,_pilih_session);
+             }*/
 
             if (_pilih_session.equals("-")) {
                 nilaiSKP = new GoIndex().getNilaiAllIdunor(nipPns, unorIdPns);
@@ -1437,6 +1543,12 @@ public class ReportIsi4FaktorServlet extends HttpServlet {
 
     protected static String getBaseDirectoryRevisi(HttpServletRequest request) {
         return request.getSession().getServletContext().getRealPath("/WEB-INF/REPORT/report_isi4faktorRevisi.jasper");
+        // return request.getSession().getServletContext().getRealPath("/WEB-INF/REPORT/report_isi4faktor.jasper");
+        //  return request.getSession().getServletContext().getRealPath("/WEB-INF/REPORT/report_isi4faktor_baru.jasper");
+    }
+
+    protected static String getBaseDirectoryisi4faktorTargetBulan(HttpServletRequest request) {
+        return request.getSession().getServletContext().getRealPath("/WEB-INF/REPORT/report_isi4faktorTargetBulan.jasper");
         // return request.getSession().getServletContext().getRealPath("/WEB-INF/REPORT/report_isi4faktor.jasper");
         //  return request.getSession().getServletContext().getRealPath("/WEB-INF/REPORT/report_isi4faktor_baru.jasper");
     }

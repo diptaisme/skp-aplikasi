@@ -15,14 +15,13 @@ import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
 import javax.imageio.ImageIO;
 import servlets.ModelLocatorSKP;
 
-
 /**
  *
  * @author diptaisme
- * 
+ *
  * ini seperti BUSINESS di framework NCSIS **************
- * 
- * 
+ *
+ *
  */
 public class GoIndex {
 
@@ -51,7 +50,8 @@ public class GoIndex {
         }
         return ipns;
     }
-public List<RealisasiIsi4faktorTupoksi> getRealkesiRevisi(String snippns) {
+
+    public List<RealisasiIsi4faktorTupoksi> getRealkesiRevisi(String snippns) {
         //KONEKSi
         DBConnection dbConn = DBConnection.getInstance();
 
@@ -81,7 +81,8 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiRevisi(String snippns) {
         }
         return Realkesi;
     }
-public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPns, String snippns, String _pilih_session) {
+
+    public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPns, String snippns, String _pilih_session) {
         //KONEKSi
         DBConnection dbConn = DBConnection.getInstance();
 
@@ -111,7 +112,138 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return Realkesi;
     }
+public IsiTargetBulanan getIsiTargetBulananId(String sId) {
+        //KONEKSi
+        DBConnection dbConn = DBConnection.getInstance();
 
+        //DOMAIN
+        IsiTargetBulanan Realkesi = new IsiTargetBulanan();
+
+        //DAO
+        DBqueryIsiTargetBulanan dbQueryrealkesi = new DBqueryIsiTargetBulanan(dbConn.getConnection());
+
+        if (sId== null) {
+            sId= "0";
+        }
+
+        String _snippns = sId;
+
+        try {
+            if (!_snippns.equals("0")) {
+                Realkesi = dbQueryrealkesi.getDBqueryTargetBulanId( _snippns);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return Realkesi;
+    }
+    public List<IsiTargetBulanan> getIsiTargetBulananAll(String sId_Tupoksi, String snip_pns, String sid_isi4faktor) {
+        //KONEKSi
+        DBConnection dbConn = DBConnection.getInstance();
+
+        //DOMAIN
+        List<IsiTargetBulanan> Realkesi = new ArrayList<IsiTargetBulanan>();
+
+        //DAO
+        DBqueryIsiTargetBulanan dbQueryrealkesi = new DBqueryIsiTargetBulanan(dbConn.getConnection());
+
+
+        if (snip_pns == null) {
+            snip_pns = "0";
+        }
+
+        String _snippns = snip_pns;
+
+
+
+        try {
+            if (!_snippns.equals("0")) {
+                Realkesi = dbQueryrealkesi.getDBqueryTargetBulan(sId_Tupoksi, _snippns, sid_isi4faktor);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return Realkesi;
+    }
+
+    public List<IsiTargetBulanan> getIsiTargetBulanke(String sId_Tupoksi, String snip_pns, String sid_isi4faktor, String bulanke) throws SQLException {
+        //KONEKSi
+        DBConnection dbConn = DBConnection.getInstance();
+
+        //DOMAIN
+        List<IsiTargetBulanan> Realkesi = new ArrayList<IsiTargetBulanan>();
+
+        //DAO
+        DBqueryIsiTargetBulanan dbQueryrealkesi = new DBqueryIsiTargetBulanan(dbConn.getConnection());
+
+
+        if (snip_pns == null) {
+            snip_pns = "0";
+        }
+        String _snippns = snip_pns;
+        try {
+            if (!_snippns.equals("0")) {
+                Realkesi = dbQueryrealkesi.getDBqueryTargetBulanke(sId_Tupoksi, _snippns, sid_isi4faktor, bulanke);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return Realkesi;
+    }
+
+    public String getInsertIsiTargetBulanke(String id, String id_isi4faktor, String nip_pns, String id_tupoksi, String kuantitas_bulan, String kualitas_bulan, String waktu_bulan, String biaya_bulan, String bulanke) throws Exception {
+        DBConnection dbConn = DBConnection.getInstance();
+        DBqueryIsiTargetBulanan dBqueryIsiTargetBulanan = new DBqueryIsiTargetBulanan(dbConn.getConnection());
+        String berhasil = "Data Berhasil di Update";
+        try {
+            //getDBqueryinsertrw_unor
+            String maks = "";
+            maks = dBqueryIsiTargetBulanan.makTargetBulananId();
+            id = maks;
+
+            dBqueryIsiTargetBulanan.insertTargetBulanan(id, id_isi4faktor, nip_pns, id_tupoksi, kuantitas_bulan, kualitas_bulan, waktu_bulan, biaya_bulan, bulanke);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+         return berhasil;
+    }
+ public String getUpdateIsiTargetBulanke(String id, String id_isi4faktor, String nip_pns, String id_tupoksi, String kuantitas_bulan, String kualitas_bulan, String waktu_bulan, String biaya_bulan, String bulanke) throws Exception {
+        DBConnection dbConn = DBConnection.getInstance();
+        DBqueryIsiTargetBulanan dBqueryIsiTargetBulanan = new DBqueryIsiTargetBulanan(dbConn.getConnection());
+        try {
+            
+            dBqueryIsiTargetBulanan.updateisitargetbulanan(id, id_isi4faktor, nip_pns, id_tupoksi, kuantitas_bulan, kualitas_bulan, waktu_bulan, biaya_bulan, bulanke);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        String berhasil = "Data Berhasil di Update";
+        return berhasil;
+    }
+ 
+ public String getDeleteIsiTargetBulanke(String id) throws Exception {
+        DBConnection dbConn = DBConnection.getInstance();
+        DBqueryIsiTargetBulanan dBqueryIsiTargetBulanan = new DBqueryIsiTargetBulanan(dbConn.getConnection());
+        try {
+            
+            dBqueryIsiTargetBulanan.DeleteIsiTargetBulanke(id);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        String berhasil = "Data Berhasil di Update";
+        return berhasil;
+    }
     public String getInsertUnor(String idTambahan) throws Exception {
         String idpath = idTambahan;
         String berhasil = "Data Berhasil di Update";
@@ -125,11 +257,11 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
 
         return berhasil;
     }
-    public void getUpdateLogUnor(String nip_baru,String unor_lama,String unor_baru)
-    {
+
+    public void getUpdateLogUnor(String nip_baru, String unor_lama, String unor_baru) {
         DBConnection dbConn = DBConnection.getInstance();
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
-        try { 
+        try {
             //getDBqueryinsertrw_unor
             dBqueryPNS.getDBqueryinsertrw_unor(nip_baru, unor_lama, unor_baru);
         } catch (Exception ex) {
@@ -138,6 +270,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
             dbConn.closeConnection();
         }
     }
+
     public void getUpdateUnorPns(String nipbaru, String AtasanBaru, String UnorBaru, String NamaUnor, String NamaJabatanBaru) {
         DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
@@ -152,6 +285,32 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
             if (!nipBaru.equals("0")) {
                 dBqueryPNS.getDBqueryUpdateUnorPNS(nipBaru, AtasanBaru, UnorBaru, NamaUnor, NamaJabatanBaru);
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+
+    }
+    
+    public void getUpdateJabatanUmumPns(String idjabatan,String nipbaru) {
+        DBConnection dbConn = DBConnection.getInstance();
+        DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
+        try {
+                dBqueryPNS.getDBqueryUpdateJabatanUmumPNS(idjabatan,nipbaru);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+
+    }
+    
+    public void getUpdateJabatanFungPns(String idjabatan,String nipbaru) {
+        DBConnection dbConn = DBConnection.getInstance();
+        DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
+        try {
+                dBqueryPNS.getDBqueryUpdateJabatanFungPNS(idjabatan,nipbaru);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -207,13 +366,13 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return ipns;
     }
-    public List<loginweb> getKewengan(String sid_pns)
-    {
+
+    public List<loginweb> getKewengan(String sid_pns) {
         List<loginweb> kewenagan = new ArrayList<loginweb>();
         DBConnection dbConn = DBConnection.getInstance();
         DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
         try {
-                kewenagan = dBqueryPNS.getlistUser(sid_pns);
+            kewenagan = dBqueryPNS.getlistUser(sid_pns);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -221,6 +380,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return kewenagan;
     }
+
     public PnsSkp getPns(String id) {
         DBConnection dbConn = DBConnection.getInstance();
         PnsSkp ipns = new PnsSkp();
@@ -236,6 +396,21 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
             if (!nipBaru.equals("0")) {
                 ipns = dBqueryPNS.getDBqueryPNSId(nipBaru);
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return ipns;
+    }
+
+    public PnsSkp getPnsNama(String Nama) {
+        DBConnection dbConn = DBConnection.getInstance();
+        PnsSkp ipns = new PnsSkp();
+        ipns = null;
+        DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
+        try {
+            ipns = dBqueryPNS.getDBqueryPNSNama(Nama);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -305,7 +480,12 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
             if (!sId_Tupoksi.equals("0")) {
                 revisi4FaktorTargets = dBqueryRevsi4FaktorTarget.getDBqueryRevsi4FaktorTargetFaktor2Session(sId_Tupoksi, session, snip_pns);
 
+            } else {
+                revisi4FaktorTargets = dBqueryRevsi4FaktorTarget.getDBqueryRevsi4FaktorTargetFaktor2Session(sId_Tupoksi, session, snip_pns);
             }
+
+
+
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -338,38 +518,39 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return revisi4FaktorTargets;
     }
-    public void getubahUser(String username,String password,String nip_baru)
-    {
+
+    public void getubahUser(String username, String password, String nip_baru, String kewenangan_login) {
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
         DBqueryLogin dBqueryLogin = new DBqueryLogin(dbConn.getConnection());
         try {
-            
-                dBqueryLogin.ubahUser(username,password,nip_baru);
-            
+
+            dBqueryLogin.ubahUser(username, password, nip_baru, kewenangan_login);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             dbConn.closeConnection();
         }
-        
+
     }
-    public void gettambahkeweanagan(String username,String password,String kewenangan,String nip_baru)
-    {
+
+    public void gettambahkeweanagan(String username, String password, String kewenangan, String nip_baru) {
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
         DBqueryLogin dBqueryLogin = new DBqueryLogin(dbConn.getConnection());
         try {
-            
-                dBqueryLogin.TambahKewenangan(username,password,kewenangan,nip_baru);
-            
+
+            dBqueryLogin.TambahKewenangan(username, password, kewenangan, nip_baru);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             dbConn.closeConnection();
         }
-        
+
     }
+
     public String getdeleteUser(String idTambahan) {
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
@@ -393,20 +574,20 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return berhasil;
     }
-    public String getdeletekewenagan(String nip_baru,String kewenangan)
-    {
+
+    public String getdeletekewenagan(String nip_baru, String kewenangan) {
         String pesan = null;
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
         DBqueryLogin dBqueryLogin = new DBqueryLogin(dbConn.getConnection());
-        try {  
-          pesan = dBqueryLogin.hapuskewenangan(nip_baru, kewenangan);  
+        try {
+            pesan = dBqueryLogin.hapuskewenangan(nip_baru, kewenangan);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             dbConn.closeConnection();
         }
-        return pesan;    
+        return pesan;
     }
 
     public String getInsertPns(String idTambahan) throws Exception {
@@ -972,7 +1153,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return berhasil;
     }
 
-     public String getHapusRealitaRevisi(String _id_tupoksi, String _nip) {
+    public String getHapusRealitaRevisi(String _id_tupoksi, String _nip) {
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
@@ -995,7 +1176,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return berhasil;
     }
-    
+
     public String getInsertTugasTambahan(String maks, String idTambahan, String jenisTambahan, String nama, String TmtPeriode, String nilai1, String nilai2, String idNip, String hitungtambahan, String nilaitambahan, String koef_kreatifitas) {
         DBConnection dbConn = DBConnection.getInstance();
 
@@ -1226,6 +1407,29 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         try {
             if (!nipBaru.equals("0")) {
                 Realisasi = dBqueryRealisasi.getFormatPenghitunganIsi4FaktorDao(idTupoksi, nipBaru);
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return Realisasi;
+    }
+
+    public RealisasiIsi4faktorTupoksi getFormatPenghitunganSesionIsi4FaktorBusiness(String idTupoksi, String nipRealita, String session) {
+        DBConnection dbConn = DBConnection.getInstance();
+        RealisasiIsi4faktorTupoksi Realisasi = new RealisasiIsi4faktorTupoksi();
+        DBqueryRealisasi dBqueryRealisasi = new DBqueryRealisasi(dbConn.getConnection());
+
+        if (nipRealita == null && idTupoksi == null) {
+            nipRealita = "0";
+        }
+        String nipBaru = nipRealita;
+
+        try {
+            if (!nipBaru.equals("0")) {
+                Realisasi = dBqueryRealisasi.getFormatPenghitungansessionIsi4FaktorDao(idTupoksi, nipBaru, session);
 
             }
         } catch (Exception ex) {
@@ -1651,6 +1855,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return TKI4F;
     }
+
     public TupoksiKeIsi4Faktor getTupoksi4(String inputTupoksi) {
         DBConnection dbConn = DBConnection.getInstance();
         TupoksiKeIsi4Faktor TKI4F = new TupoksiKeIsi4Faktor();
@@ -1696,8 +1901,31 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return RIS4FT;
     }
 
+    public RealisasiIsi4faktorTupoksi getRealkesiSessionNip(String sidnippns, String sidtupoksi, String session) {
+        DBConnection dbConn = DBConnection.getInstance();
+        RealisasiIsi4faktorTupoksi RIS4FT = new RealisasiIsi4faktorTupoksi();
+        DBqueryRealisasiIsi4faktorTupoksi dbqueryRealkesi = new DBqueryRealisasiIsi4faktorTupoksi(dbConn.getConnection());
+
+        if (sidnippns == null) {
+            sidnippns = "0";
+        }
+        String _sidnippns = sidnippns;
+        String _sidtupoksi = sidtupoksi;
+
+        try {
+            if (!_sidnippns.equals("0")) {
+                RIS4FT = dbqueryRealkesi.getDBqueryRealEmpatFaktorTupoksiSesionNip(_sidnippns, _sidtupoksi, session);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return RIS4FT;
+    }
+
     //pak RD --> untuk update
-    public String getsimpanIsiEmpatFaktor(String iNip_id, String idTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String pilih, String waktuL, String _angkaKredit, String _pilih_session, String _getidUnor4jspSesiion) {
+    public String getsimpanIsiEmpatFaktor(String iNip_id, String idTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String pilih, String waktuL, String _angkaKredit, String _pilih_session, String _getidUnor4jspSesiion, String _detailkegiatan) {
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
 
@@ -1722,7 +1950,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         try {
             if (!_idTupoksi.equals("0")) {
                 // dBqueryUpdateTupoksi.updateTupoksi(_iNip_id,_idTupoksi,_ikuantitas4,_ikualitas4,_iWaktu4,_iBiaya, _pilih, _waktuL,_angkaKreditr);
-                dBqueryUpdateTupoksi.updateTupoksi(_iNip_id, _idTupoksi, _ikuantitas4, _ikualitas4, _iWaktu4, _iBiaya, _pilih, _waktuL, _angkaKreditr, s_pilih_session, _getidUnor4jspSesiion4);
+                dBqueryUpdateTupoksi.updateTupoksi(_iNip_id, _idTupoksi, _ikuantitas4, _ikualitas4, _iWaktu4, _iBiaya, _pilih, _waktuL, _angkaKreditr, s_pilih_session, _getidUnor4jspSesiion4, _detailkegiatan);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1732,7 +1960,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return berhasil;
     }
 
-    public String getsimpanIsiEmpatFaktorRevisi(String iNip_id, String idTupoksi, String idisi4faktor, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String pilih, String waktuL, String _angkaKredit, String _pilih_session, String _getidUnor4jspSesiion) throws SQLException {
+    public String getsimpanIsiEmpatFaktorRevisi(String iNip_id, String idTupoksi, String idisi4faktor, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String pilih, String waktuL, String _angkaKredit, String _pilih_session, String _getidUnor4jspSesiion, String _detailkegiatan) throws SQLException {
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
         DBqueryRevsi4FaktorTarget dBqueryRevsi4FaktorTarget = new DBqueryRevsi4FaktorTarget(dbConn.getConnection());
@@ -1759,7 +1987,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         try {
             if (!_idTupoksi.equals("0")) {
                 // dBqueryUpdateTupoksi.updateTupoksi(_iNip_id,_idTupoksi,_ikuantitas4,_ikualitas4,_iWaktu4,_iBiaya, _pilih, _waktuL,_angkaKreditr);
-                dBqueryRevsi4FaktorTarget.insertRevisi4faktorRevisi(maksid,maksrevisi, idisi4faktor, _iNip_id, _getidUnor4jspSesiion4,_idTupoksi, ikuantitas4, ikualitas4, iWaktu4, iBiaya,_angkaKreditr, _pilih, _waktuL,s_pilih_session);
+                dBqueryRevsi4FaktorTarget.insertRevisi4faktorRevisi(maksid, maksrevisi, idisi4faktor, _iNip_id, _getidUnor4jspSesiion4, _idTupoksi, ikuantitas4, ikualitas4, iWaktu4, iBiaya, _angkaKreditr, _pilih, _waktuL, s_pilih_session, _detailkegiatan);
 
 
                 //   insertRevisi4faktorRevisi(String maksId, String maksrevisi, String idisi4faktor, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String iBiaya, String ipilih, String iwaktuL) throws SQLException {
@@ -1887,6 +2115,38 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return berhasil;
     }
 
+    public String getsimpanidRealisasi(String iNip_id, String idTupoksi, String ikuantitasR, String ikualitasR, String iWaktuR, String iBiayaR, String _angkakrdt4t, String _pilih_session, String idrealisasi) {
+        DBConnection dbConn = DBConnection.getInstance();
+        //  isi4faktor Isi4faktor = new isi4faktor();
+
+        String berhasil = "Data Berhasil di Update";
+        DBqueryUpdateTupoksi dBqueryUpdateTupoksi = new DBqueryUpdateTupoksi(dbConn.getConnection());
+        if (idTupoksi == null) {
+            idTupoksi = "0";
+        }
+
+        String _iNip_id = iNip_id;
+        String _idTupoksi = idTupoksi;
+        String _ikuantitasR = ikuantitasR;
+        String _ikualitasR = ikualitasR;
+        String _iWaktuR = iWaktuR;
+        String _iBiayaR = iBiayaR;
+        String _angkakrdt4tR = _angkakrdt4t;
+        String _pilih_sessionR = _pilih_session;
+
+        try {
+            if (!_idTupoksi.equals("0")) {
+                //     dBqueryUpdateTupoksi.updateTupoksiRealisasi(_iNip_id,_idTupoksi,_ikuantitasR,_ikualitasR,_iWaktuR,_iBiayaR,_angkakrdt4tR);
+                dBqueryUpdateTupoksi.updateTupoksiidRealisasi(_iNip_id, _idTupoksi, _ikuantitasR, _ikualitasR, _iWaktuR, _iBiayaR, _angkakrdt4tR, _pilih_sessionR, idrealisasi);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return berhasil;
+    }
+
     public String getsimpanHitungRealisasi(String iNip_id, String idTupoksi, String hitungan, String nilaiC) {
         DBConnection dbConn = DBConnection.getInstance();
         //  isi4faktor Isi4faktor = new isi4faktor();
@@ -1914,8 +2174,35 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return berhasil;
     }
 
+    public String getsimpanHitungSessionRealisasi(String iNip_id, String idTupoksi, String hitungan, String nilaiC, String session) {
+        DBConnection dbConn = DBConnection.getInstance();
+        //  isi4faktor Isi4faktor = new isi4faktor();
+
+        String berhasil = "Data Berhasil di Update";
+        DBqueryUpdateTupoksi dBqueryUpdateTupoksi = new DBqueryUpdateTupoksi(dbConn.getConnection());
+        if (idTupoksi == null) {
+            idTupoksi = "0";
+        }
+
+        String _iNip_id = iNip_id;
+        String _idTupoksi = idTupoksi;
+        String _hitungan = hitungan;
+        String _nilaiC = nilaiC;
+
+        try {
+            if (!_idTupoksi.equals("0")) {
+                dBqueryUpdateTupoksi.updateHitunganSessionRealisasi(_iNip_id, _idTupoksi, _hitungan, _nilaiC, session);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return berhasil;
+    }
+
     //untuk insert
-    public String getInsertIsiEmpatFaktor(String maks, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String ipilih, String waktuL, String iBiaya, String maksR, String ikuantitasR, String ikualitasR, String iWaktuR, String iBiayaR, String penghitungan, String nilaiCapaian, String iBiayanya, String angkakrdtR) {
+    public String getInsertIsiEmpatFaktor(String maks, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String ipilih, String waktuL, String iBiaya, String maksR, String ikuantitasR, String ikualitasR, String iWaktuR, String iBiayaR, String penghitungan, String nilaiCapaian, String iBiayanya, String angkakrdtR, String sesiontahun) {
         DBConnection dbConn = DBConnection.getInstance();
 
         String berhasil = "Data Berhasil di Insert";
@@ -1947,7 +2234,51 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         try {
             if (!_idTupoksi.equals("0")) {
                 String maksHasil = dBqueryUpdateTupoksi.makIsi4faktorId();
-                dBqueryUpdateTupoksi.insertTupoksi(maksHasil, __iNip_id, __UnorIdisert, _idTupoksi, _ikuantitas4, _ikualitas4, _iWaktu4, _iBiaya, _kuantitas_label, _waktu_label);
+                dBqueryUpdateTupoksi.insertTupoksi(maksHasil, __iNip_id, __UnorIdisert, _idTupoksi, _ikuantitas4, _ikualitas4, _iWaktu4, _iBiaya, _kuantitas_label, _waktu_label, sesiontahun);
+                String maksHasilR = dBqueryUpdateTupoksi.makRealisasi();
+                dBqueryUpdateTupoksi.insertRealisasi(maksHasilR, maksHasil, __UnorIdisert, __iNip_id, _idTupoksi, _ikuantitasR, _ikualitasR, _iWaktuR, _iBiayaR, _penghitungan, _nilaiCapaian, _iBiayanya, _angkakrdtR);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return berhasil;
+    }
+
+    public String getInsertTargetBulanan(String maks, String _iNip_id, String UnorIdisert, String IdTupoksi, String ikuantitas4, String ikualitas4, String iWaktu4, String ipilih, String waktuL, String iBiaya, String maksR, String ikuantitasR, String ikualitasR, String iWaktuR, String iBiayaR, String penghitungan, String nilaiCapaian, String iBiayanya, String angkakrdtR, String sesiontahun) {
+        DBConnection dbConn = DBConnection.getInstance();
+
+        String berhasil = "Data Berhasil di Insert";
+        DBqueryUpdateTupoksi dBqueryUpdateTupoksi = new DBqueryUpdateTupoksi(dbConn.getConnection());
+
+        if (IdTupoksi == null) {
+            IdTupoksi = "0";
+        }
+        String _maks = maks;
+        String __iNip_id = _iNip_id;
+        String __UnorIdisert = UnorIdisert;
+        String _idTupoksi = IdTupoksi;
+        String _ikuantitas4 = ikuantitas4;
+        String _ikualitas4 = ikualitas4;
+        String _iWaktu4 = iWaktu4;
+        String _iBiaya = iBiaya;
+        String _maksR = maksR;
+        String _ikuantitasR = ikuantitasR;
+        String _ikualitasR = ikualitasR;
+        String _iWaktuR = iWaktuR;
+        String _iBiayaR = iBiayaR;
+        String _penghitungan = penghitungan;
+        String _nilaiCapaian = nilaiCapaian;
+        String _iBiayanya = iBiayanya;
+        String _kuantitas_label = ipilih;
+        String _waktu_label = waktuL;
+        String _angkakrdtR = angkakrdtR;
+
+        try {
+            if (!_idTupoksi.equals("0")) {
+                String maksHasil = dBqueryUpdateTupoksi.makIsi4faktorId();
+                dBqueryUpdateTupoksi.insertTupoksi(maksHasil, __iNip_id, __UnorIdisert, _idTupoksi, _ikuantitas4, _ikualitas4, _iWaktu4, _iBiaya, _kuantitas_label, _waktu_label, sesiontahun);
                 String maksHasilR = dBqueryUpdateTupoksi.makRealisasi();
                 dBqueryUpdateTupoksi.insertRealisasi(maksHasilR, maksHasil, __UnorIdisert, __iNip_id, _idTupoksi, _ikuantitasR, _ikualitasR, _iWaktuR, _iBiayaR, _penghitungan, _nilaiCapaian, _iBiayanya, _angkakrdtR);
             }
@@ -2197,11 +2528,12 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return berhasil;
 
     }
-    public String getRiwayatUpdateUser(String nama)
-    {
+
+    public String getRiwayatUpdateUser(String nama) {
         return null;
-        
+
     }
+
     public RiwayatAtasanBawahan getSimpanRiwayatAtasan_Bawahan(String s_idAtasani, String s_instansiIdAtasan, String s_UnorIdatasan, String s_instansiIdpnsBawahan, String s_instansiIdunorbawahan) {
         DBConnection dbConn = DBConnection.getInstance();
         RiwayatAtasanBawahan ipns = new RiwayatAtasanBawahan();
@@ -2239,31 +2571,31 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
     }
 
     /*  public unorskp getIdUnorAtasan(String unorAtasan)
-    {
-    DBConnection dbConn = DBConnection.getInstance();
+     {
+     DBConnection dbConn = DBConnection.getInstance();
     
-    String berhasil="Data Berhasil di Update";
-    DBqueryUnor dBqueryunor = new  DBqueryUnor(dbConn.getConnection());
-    
-    
-    try
-    {   
-    dBqueryunor.getDBqueryUnorId( unorAtasan);
+     String berhasil="Data Berhasil di Update";
+     DBqueryUnor dBqueryunor = new  DBqueryUnor(dbConn.getConnection());
     
     
+     try
+     {   
+     dBqueryunor.getDBqueryUnorId( unorAtasan);
     
-    }
-    catch(Exception ex)
-    {
-    ex.printStackTrace();
-    }
-    finally
-    {
-    dbConn.closeConnection();
-    }         
-    return  berhasil;  
     
-    }
+    
+     }
+     catch(Exception ex)
+     {
+     ex.printStackTrace();
+     }
+     finally
+     {
+     dbConn.closeConnection();
+     }         
+     return  berhasil;  
+    
+     }
     
     
      */
@@ -2344,7 +2676,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return ukp;
     }
 
-    public isi4faktor getSamaNipDanTupoksi(String nip_pns, String id_tupoksi) {
+    public isi4faktor getSamaNipDanTupoksi(String nip_pns, String id_tupoksi, String sesiontahun) {
         DBConnection dbConn = DBConnection.getInstance();
         isi4faktor ukp = new isi4faktor();
         DBqueryIsi4Faktor dbqueryCariNipTupoksiDiIsi4Faktor = new DBqueryIsi4Faktor(dbConn.getConnection());
@@ -2357,7 +2689,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
 
         try {
             if (!nipbarupns.equals("0")) {
-                ukp = dbqueryCariNipTupoksiDiIsi4Faktor.getDBqueryCariNipTupoksiDiIsi4Faktor(nipbarupns, tupoksipns);
+                ukp = dbqueryCariNipTupoksiDiIsi4Faktor.getDBqueryCariNipTupoksiDiIsi4Faktor(nipbarupns, tupoksipns, sesiontahun);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -2519,8 +2851,8 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         instansiri instansiobjek = null;
         DbqueryINS dbqueryINS = new DbqueryINS(dbConn.getConnection());
         try {
-                instansiobjek = dbqueryINS.getDBqueryCariINSNip(NipBaru);
-            
+            instansiobjek = dbqueryINS.getDBqueryCariINSNip(NipBaru);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -2528,7 +2860,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return instansiobjek;
     }
-    
+
     public List<instansiri> getCariInstansi(String snamaInstansi) {
         DBConnection dbConn = DBConnection.getInstance();
         List<instansiri> instansies = new ArrayList<instansiri>();
@@ -3140,8 +3472,8 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return pnsBawahan;
     }
-    
-     public List<unorskp> getDBqueryUnorIdEselon(String iunorAtasan) {
+
+    public List<unorskp> getDBqueryUnorIdEselon(String iunorAtasan) {
         DBConnection dbConn = DBConnection.getInstance();
         List<unorskp> eselonids = new ArrayList<unorskp>();
         DBqueryUnor dBqueryUnor = new DBqueryUnor(dbConn.getConnection());
@@ -3152,7 +3484,7 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         try {
             if (!_iunorAtasan.equals("0")) {
 
-                eselonids =dBqueryUnor.getDBqueryUnorIdEselon(_iunorAtasan);
+                eselonids = dBqueryUnor.getDBqueryUnorIdEselon(_iunorAtasan);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -3161,8 +3493,9 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         }
         return eselonids;
     }
-      public List<PnsSkp> getDBqueryUnorIdRekapitulasi(String iunorAtasan, String thnSession) {
-         DBConnection dbConn = DBConnection.getInstance();
+
+    public List<PnsSkp> getDBqueryUnorIdRekapitulasi(String iunorAtasan, String thnSession) {
+        DBConnection dbConn = DBConnection.getInstance();
         List<PnsSkp> pnsBawahan = new ArrayList<PnsSkp>();
         List<PnsSkp> pnsBawahan2 = new ArrayList<PnsSkp>();
         List<PnsSkp> pnsBawahan3 = new ArrayList<PnsSkp>();
@@ -3190,8 +3523,8 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
                 int four = 0;
                 Object[] obj2 = null;
                 ModelLocatorSKP.arraypGcavernip = new ArrayList<String>();
-                ModelLocatorSKP.globalNilaivalTarget=0;
-                ModelLocatorSKP.globalNilainonvalTarget=0;
+                ModelLocatorSKP.globalNilaivalTarget = 0;
+                ModelLocatorSKP.globalNilainonvalTarget = 0;
                 pnsBawahan = dbquerypns.getDBqueryPNSTambahan2(_iunorAtasan);
                 for (PnsSkp ipns2 : pnsBawahan) {
                     one = 0;
@@ -3414,6 +3747,44 @@ public List<RealisasiIsi4faktorTupoksi> getRealkesiSessionRevisi(String unorIdPn
         return kelJabFum;
     }
 
+    public List<jabfum> getListJabatanUmum(String Jabatan) {
+        DBConnection dbConn = DBConnection.getInstance();
+        List<jabfum> kelJabFum = new ArrayList<jabfum>();
+        //jabfung kelJabFung = null;
+        String berhasil = "Data Berhasil di Hapus";
+        DBqueryJabatan dBqueryJabatan = new DBqueryJabatan(dbConn.getConnection());
+        if (Jabatan == null) {
+            Jabatan = "0";
+        }
+        try {
+            if (!Jabatan.equals("0")) {
+                kelJabFum = dBqueryJabatan.getDBqueryListJabatanUmum(Jabatan);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return kelJabFum;
+    }
+    
+    public List<jabfung> getListJabatanFungWithName(String Jabatan) {
+        DBConnection dbConn = DBConnection.getInstance();
+        List<jabfung> kelJabFum = new ArrayList<jabfung>();
+        //jabfung kelJabFung = null;
+        String berhasil = "Data Berhasil di Hapus";
+        DBqueryJabatan dBqueryJabatan = new DBqueryJabatan(dbConn.getConnection());
+       
+        try {           
+                kelJabFum = dBqueryJabatan.getDBqueryListJabatanFungWithName(Jabatan);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return kelJabFum;
+    }
+    
     public kelompokJabatan getKelompokJabatan(String Jabatan) {
         DBConnection dbConn = DBConnection.getInstance();
 

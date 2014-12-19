@@ -120,12 +120,47 @@ public class DBqueryJabatan {
         
     }
      
+     public List<jabfum> getDBqueryListJabatanUmum(String Jabatan) throws SQLException
+    {
+        List<jabfum> listjabatanumum = new ArrayList<jabfum>();
+       //String sql = "SELECT idunor, instansi_id, diatasan_id, eselon_id, nama_unor, nama_jabatan, pemimpin_pns_id FROM unorskp WHERE idunor  ='"+sidUnor+"'";
+        String sql = "SELECT id, nama, cepat_kode from jabfum where nama like '%"+Jabatan+"%'";
+        
+        PreparedStatement pst = this.conn.prepareStatement(sql);
+        jabfum iunor = null;
+        ResultSet rs = pst.executeQuery();
+        while(rs.next())
+        {
+            iunor = new jabfum();
+            iunor.setId(rs.getString(1));
+            iunor.setNama(rs.getString(2));
+            iunor.setCepatKode(rs.getString(3));
+            listjabatanumum.add(iunor);
+        }
+        return listjabatanumum;
+        
+    }
      
-     
-     
-     
-     
-     
+     public List<jabfung> getDBqueryListJabatanFungWithName(String Jabatan) throws SQLException
+    {
+        List<jabfung> listjabatanumum = new ArrayList<jabfung>();
+       //String sql = "SELECT idunor, instansi_id, diatasan_id, eselon_id, nama_unor, nama_jabatan, pemimpin_pns_id FROM unorskp WHERE idunor  ='"+sidUnor+"'";
+        String sql = "SELECT id, nama, cepat_kode from jabfung where nama like '%"+Jabatan+"%'";
+        
+        PreparedStatement pst = this.conn.prepareStatement(sql);
+        jabfung iunor = null;
+        ResultSet rs = pst.executeQuery();
+        while(rs.next())
+        {
+            iunor = new jabfung();
+            iunor.setId(rs.getString(1));
+            iunor.setNama(rs.getString(2));
+            iunor.setCepatKode(rs.getString(3));
+            listjabatanumum.add(iunor);
+        }
+        return listjabatanumum;
+        
+    }
      
       public List<kelompokJabatan> getDBqueryRumpunJabatanAll(String Kelompok) throws SQLException
       {

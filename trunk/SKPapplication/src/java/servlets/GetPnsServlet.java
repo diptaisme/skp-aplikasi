@@ -101,17 +101,30 @@ public class GetPnsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         //String niprealisasi = request.getParameter("niprealisasi");
         String id = request.getParameter("txtNIPBaru"); //mendapatkan NIP, saat di index klik REALISASI menuju ke indexRealisasi
         String idB = request.getParameter("txtNIPBaruB"); //mendapatkan NIP pada KEMBALI isi4faktor
         String idR = request.getParameter("txtNIPBaruReal"); //mendapatkan NIP pada KEMBALI realisasi
         String idRisi = request.getParameter("txtNIPBaruReal"); //mendapatkan NIP pada KEMBALI realisasi
-
+        String sesiontahun = request.getParameter("sesiontahun");
         String idP = request.getParameter("txtNIPBaruPerilaku");
         String _pilih_session = request.getParameter("pilih_session");
+        String menutarget = request.getParameter("menutarget");
+        String sessionrealisasi = request.getParameter("_pilih_session");
         //String periode = request.getParameter("Periode");
-
+        if(_pilih_session != null && !(_pilih_session.equalsIgnoreCase("")))
+        {
+            sesiontahun = _pilih_session;
+            sessionrealisasi = _pilih_session;
+        }
+        else if(sessionrealisasi != null && !(sessionrealisasi.equalsIgnoreCase("")))
+        {
+           _pilih_session = sessionrealisasi; 
+        }
+        else
+        {
+            _pilih_session = sesiontahun;
+        }
         String idNiptambahan = (String) request.getAttribute("idNiptambahan");
         if (_pilih_session == null) {
             _pilih_session = "-";
@@ -151,7 +164,7 @@ public class GetPnsServlet extends HttpServlet {
                             String UnorPns = pns.getUnorId();
                             String InstansiPns = pns.getInstansiId();
                             String NipPns = pns.getNipBaru();
-
+                            
                             PnsSkp UnorAts = null;
                             if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
                                 UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
@@ -167,20 +180,32 @@ public class GetPnsServlet extends HttpServlet {
 
                             List<TupoksiKeIsi4Faktor> tukesiServlet = null;
                             if (_pilih_session.equals("-")) {
-                                tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-                            } else {
+                                //tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+                            } 
+                            else if(sesiontahun != null)
+                            {
+                               tukesiServlet = new GoIndex().getTukesiSession(UnorPns, InstansiPns, NipPns, sesiontahun); 
+                            }
+                            else
+                            {
                                 tukesiServlet = new GoIndex().getTukesiSession(UnorPns, InstansiPns, NipPns, _pilih_session);
                             }
 
 
                             // List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
-
+                            request.setAttribute("sesiontahun", _pilih_session);
                             request.setAttribute("pns", pns);
                             request.setAttribute("UnorAts", UnorAts);
                             request.setAttribute("tukesiServlet", tukesiServlet);
 
                         }
-                         ModelLocatorSKP.navigasiPil = "3";
+                        String vnipInputan = request.getParameter("vnipInputan");
+                        ModelLocatorSKP.navigasiPil = "3";
+                        if(ModelLocatorSKP.inserttupoksipersonal.equalsIgnoreCase("ada"))
+                        {
+                            ModelLocatorSKP.navigasiPil = "1";
+                        }
+                         
                          request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);
                              request.setAttribute("tingkatPengguna", ModelLocatorSKP.levelUser);
             //====================
@@ -205,8 +230,14 @@ public class GetPnsServlet extends HttpServlet {
                             String InstansiPns = pns.getInstansiId();
                             String NipPns = pns.getNipBaru();
 
-                            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-
+                            //PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            PnsSkp UnorAts = null;
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {
+                                  
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                            }
                             List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 
                             List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
@@ -370,8 +401,14 @@ public class GetPnsServlet extends HttpServlet {
                     String UnorPns = pns.getUnorId();
                     String InstansiPns = pns.getInstansiId();
                     String NipPns = pns.getNipBaru();
-                    PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-
+                    //PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                    PnsSkp UnorAts = null;
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {
+                                  
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                            }
                     List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
 
                     request.setAttribute("pns", pns);
@@ -495,8 +532,14 @@ public class GetPnsServlet extends HttpServlet {
             String InstansiPns = pns.getInstansiId();
             String NipPns = pns.getNipBaru();
 
-            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-
+            //PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            PnsSkp UnorAts = null;
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {
+                                  
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                            }
             List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 
             List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
@@ -578,8 +621,14 @@ public class GetPnsServlet extends HttpServlet {
             String InstansiPns = pns.getInstansiId();
             String NipPns = pns.getNipBaru();
 
-            PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-
+            //PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+            PnsSkp UnorAts = null;
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {
+                                  
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                            }
             List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 
             List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
@@ -832,7 +881,7 @@ public class GetPnsServlet extends HttpServlet {
         String id = request.getParameter("txtNIPBaru");
         String action = request.getParameter("action");
         String idTupoksiR = request.getParameter("idTupoksiR");
-
+        String realisasitahun = request.getParameter("_pilih_session");
         //String tupo = request.getParameter("idTupoksi");
         String _pilih_session = request.getParameter("pilih_session");
         String idNiptambahan = (String) request.getAttribute("idNiptambahan");
@@ -875,17 +924,25 @@ public class GetPnsServlet extends HttpServlet {
                 }*/
 
                 if (_pilih_session.equals("-")) {
-                    tukesiServlet = new GoIndex().getDBqueryTupoksiRevisiTarget(idTupoksiR, _pilih_session, NipPns);
+                    //tukesiServlet = new GoIndex().getDBqueryTupoksiRevisiTarget(idTupoksiR, _pilih_session, NipPns);
                 } else {
                     tukesiServlet = new GoIndex().getDBqueryTupoksiRevisiTargetSesion(idTupoksiR, _pilih_session, NipPns);
                 }
                 
                  List<RealisasiIsi4faktorTupoksi> realkesiServlet = new ArrayList<RealisasiIsi4faktorTupoksi>();
                 if (_pilih_session.equals("-")) {
-                    realkesiServlet = new GoIndex().getRealkesiRevisi(id);
+                    //realkesiServlet = new GoIndex().getRealkesiRevisi(id);
                 } else {
-
-                    realkesiServlet = new GoIndex().getRealkesiSessionRevisi(ModelLocatorSKP.IdUnorUser, id, _pilih_session);
+                    if(!UnorPns.equalsIgnoreCase(ModelLocatorSKP.IdUnorUser))
+                    {
+                        realkesiServlet = new GoIndex().getRealkesiSessionRevisi(pns.getUnorId(), id, _pilih_session);
+                    }
+                    else
+                    {
+                       realkesiServlet = new GoIndex().getRealkesiSessionRevisi(ModelLocatorSKP.IdUnorUser, id, _pilih_session); 
+                    }
+                    
+                    
                 }
 
                 //StringBuffer Keterangan = new StringBuffer();
@@ -998,8 +1055,10 @@ public class GetPnsServlet extends HttpServlet {
                 request.setAttribute("pns", pns);
                 request.setAttribute("UnorAts", UnorAts);
                 request.setAttribute("listResult", listResult);
+                request.setAttribute("sesiontahun", _pilih_session);
                 //request.setAttribute("tukesiServlet", tukesiServlet);
                 request.setAttribute("realkesiServlet", realkesiServlet);
+                
             }
 
             getTugasTambahan(request, response);
@@ -1096,7 +1155,7 @@ public class GetPnsServlet extends HttpServlet {
     public void getTusiDariIsiTupoksi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _vnipInputan = request.getParameter("vnipInputan");
         String _pilih_session = request.getParameter("pilih_session");
-        
+        String sesiontahun = request.getParameter("sesiontahun");
         String id = null;
         if (_vnipInputan != null) {
             id = _vnipInputan;
@@ -1113,22 +1172,34 @@ public class GetPnsServlet extends HttpServlet {
         String InstansiPns = pns.getInstansiId();
         String NipPns = pns.getNipBaru();
        
-
-        PnsSkp UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
-        
+        PnsSkp UnorAts = null;
+        UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+        List<TupoksiKeIsi4Faktor> tukesiServlet = null;
          if (_vnipInputan != null) {
           ModelLocatorSKP.nipBaruAtasan = UnorAts.getNipBaru();
            ModelLocatorSKP.loginNipPengguna= _vnipInputan;
             
         }
-
-        List<TupoksiKeIsi4Faktor> tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+         
+                            if (ModelLocatorSKP.nipBaruAtasan == null || ModelLocatorSKP.nipBaruAtasan.equals("") || ModelLocatorSKP.nipBaruAtasan.equals(" ")) {
+                                UnorAts = new GoIndex().getUnorAtasan(unorAtasan);
+                            } else {                    
+                                UnorAts = new GoIndex().getPns(ModelLocatorSKP.nipBaruAtasan);
+                            }
+         if(sesiontahun == null)
+         {
+              //tukesiServlet = new GoIndex().getTukesi(UnorPns, InstansiPns, NipPns);
+         }
+        else
+         {
+              tukesiServlet = new GoIndex().getTukesiSession(UnorPns, InstansiPns, NipPns, sesiontahun);
+         }
 
         request.setAttribute("pns", pns);
         request.setAttribute("UnorAts", UnorAts);
 
         request.setAttribute("tukesiServlet", tukesiServlet);
-
+        request.setAttribute("sesiontahun", sesiontahun);
         //kirim ke jsp lagi
         //RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
             request.setAttribute("navigasiPilihan", ModelLocatorSKP.navigasiPil);

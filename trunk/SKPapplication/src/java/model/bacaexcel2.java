@@ -127,6 +127,7 @@ public String cekdata(String id) throws SQLException
     public void main2( String pathdata) throws Exception, FileNotFoundException, IOException {
         // TODO code application logic here
         //  bacaexcel2 baca = new bacaexcel2();
+        DBConnection dbConn = DBConnection.getInstance();
         String _patData=pathdata;
         File datafile = new File(_patData);
         Workbook w = Workbook.getWorkbook(datafile);
@@ -138,9 +139,7 @@ public String cekdata(String id) throws SQLException
                 String ret = sheet[0].getCell(j, i).getContents();
                 getnilai(j, ret);
             }
-            System.out.println(i);
-
-            DBConnection dbConn = DBConnection.getInstance();
+            System.out.println(i);   
             PnsSkp ipns = new PnsSkp();
             DBqueryPNS dBqueryPNS = new DBqueryPNS(dbConn.getConnection());
             // baca.gettosql();
@@ -160,7 +159,7 @@ public String cekdata(String id) throws SQLException
         }
        else
             {
-                dBqueryPNS.getDBqueryUpdateImportPNS(this.golonganid,this.namagolru,
+                dBqueryPNS.getDBqueryUpdateImportPNS(this.golonganid,this.nip_baru,this.namagolru,
                 this.pangkat,this.unorid,this.namaunor,this.namajabatan,this.diatasanid,
                 this.jenisjabatan,this.jabatan_fungsional,this.jabatan_fungsional_umum);
             }

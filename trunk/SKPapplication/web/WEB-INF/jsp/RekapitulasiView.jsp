@@ -26,12 +26,12 @@
 
                 position: relative;
                 height: 80px;
-                left : -10px;
+                left : 5px;
             }
             #leftside {
 
                 position :  absolute;
-                top : 60px;
+                top : 55px;
                 left : 30px;
                 width : 156px;
                 height : 501px;
@@ -39,15 +39,15 @@
 
             #contentdalam {
                 position :  absolute;
-                top : 110px;
-                left : 200px;
+                top : 55px;
+                left : 160px;
                 width : 1200px;
                 height : 501px;
                
             }
             #contentdalamsub{
                 position :  absolute;
-                top : 50px;
+                top : 65px;
                 left : 1px;
                 width : 1200px;
                 height : 400px;
@@ -85,7 +85,7 @@
                 background: #9999CC;
 
                 font-family: arial;
-                padding-left: 1px;
+                padding-left: 10px;
                 top :0px;
                 text-decoration: none;
 

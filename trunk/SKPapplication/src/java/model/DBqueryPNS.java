@@ -35,6 +35,24 @@ public class DBqueryPNS {
         st.close();
 
     }
+    
+    public void getDBqueryUpdateJabatanUmumPNS(String idjabatan,String nipbaru) throws SQLException {
+
+        String sql = "UPDATE pnsskp SET jabatan_umum = '" + idjabatan + "',jenis_jabatan = '4' WHERE nip_baru = '" + nipbaru + "'";
+        PreparedStatement st = this.conn.prepareStatement(sql);
+        st.executeUpdate(sql);
+        st.close();
+
+    }
+    public void getDBqueryUpdateJabatanFungPNS(String idjabatan,String nipbaru) throws SQLException {
+
+        String sql = "UPDATE pnsskp SET jabatan_fungsional = '" + idjabatan + "',jenis_jabatan = '2' WHERE nip_baru = '" + nipbaru + "'";
+        PreparedStatement st = this.conn.prepareStatement(sql);
+        st.executeUpdate(sql);
+        st.close();
+
+    }
+    
     public void getDBqueryinsertrw_unor(String nip_baru,String unor_lama,String unor_baru) throws SQLException
     {
         String sql = "insert into rw_perubahanunor values ('"+nip_baru+"','"+unor_lama+"','"+unor_baru+"',NOW())";
@@ -42,11 +60,12 @@ public class DBqueryPNS {
         st.executeUpdate(sql);
         st.close();  
     }
-    public void getDBqueryUpdateImportUnor(String diatasan_id, String eselon_id,
+    public void getDBqueryUpdateImportUnor(String unorid,String diatasan_id, String eselon_id,
             String nama_unor, String nama_jabatan, String pemimpin_pns_id) throws SQLException {
         String sql = "update unorskp "
                 + "set diatasan_id = '" + diatasan_id + "',eselon_id = '" + eselon_id + "',nama_unor =  '" + nama_unor + "',nama_jabatan = '" + nama_jabatan + "',"
-                + "pemimpin_pns_id = '" + pemimpin_pns_id + "'";
+                + "pemimpin_pns_id = '" + pemimpin_pns_id + "' "
+                + "where idunor = '"+unorid+"'";
         PreparedStatement st = this.conn.prepareStatement(sql);
         st.executeUpdate(sql);
         st.close();
@@ -63,7 +82,7 @@ public class DBqueryPNS {
         return "tidakada";
     }
 
-    public void getDBqueryUpdateImportPNS(String golonganid, String namagolru,
+    public void getDBqueryUpdateImportPNS(String golonganid, String nip_baru, String namagolru,
             String pangkat, String unorid, String namaunor, String namajabatan,
             String diatasanid, String jenisjabatan, String jabatan_fungsional,
             String jabatan_fungsional_umum) throws SQLException {
@@ -71,7 +90,7 @@ public class DBqueryPNS {
                 + "set golongan_id = '" + golonganid + "',namagolru = '" + namagolru + "',pangkat = '" + pangkat + "',"
                 + "unorid = '" + unorid + "',namaunor = '" + namaunor + "',namajabatan = '" + namajabatan + "',diatasanid = '" + jenisjabatan + "',"
                 + "jabatan_fungsional = '" + jabatan_fungsional + "',jabatan_umum = '" + jabatan_fungsional_umum + "'"
-                + "";
+                + "where nip_baru = '"+nip_baru+"'";
         PreparedStatement st = this.conn.prepareStatement(sql);
         st.executeUpdate(sql);
         st.close();
@@ -215,6 +234,54 @@ public class DBqueryPNS {
         return ipns;
     }
 
+    public PnsSkp getDBqueryPNSNama(String Nama) throws SQLException {
+        String sql2 = "SELECT idpns, nip_lama, nip_baru, namapns, golongan_id, namagolru, pangkat, unorid, namaunor, namajabatan, diatasanid, instansi_id, jenis_jabatan, JABATAN_FUNGSIONAL, JABATAN_UMUM FROM pnsskp WHERE namapns like '%" + Nama + "%' ";
+        PreparedStatement pst2 = this.conn.prepareStatement(sql2);
+        PnsSkp ipns = null;
+        ResultSet rs = pst2.executeQuery();
+        if (rs.next()) {
+            ipns = new PnsSkp();
+            ipns.setIdPns(rs.getString(1));
+            ipns.setNipLama(rs.getString(2));
+            ipns.setNipBaru(rs.getString(3));
+            ipns.setNamaPns(rs.getString(4));
+            ipns.setGolonganId(rs.getString(5));
+            ipns.setNamaGolru(rs.getString(6));
+            ipns.setPangkat(rs.getString(7));
+            ipns.setUnorId(rs.getString(8));
+            ipns.setNamaUnor(rs.getString(9));
+            ipns.setNamaJabatan(rs.getString(10));
+            ipns.setInstansiId(rs.getString(12));
+            ipns.setjnsjbtn_id(rs.getString(13));
+            ipns.setJabatanFungsionalId(rs.getString(14));
+            ipns.setJabatanUmumId(rs.getString(15));
+            ipns.setDiAtasanId(rs.getString(11));
+            String x = ipns.getNipBaru();
+            String Struktural = ipns.getUnorId();
+            String Fungsional = ipns.getJabatanFungsionalId();
+            String Umum = ipns.getJabatanUmumId();
+            String NamaJabatan;
+            String a = ipns.getjnsjbtn_id();
+            if (a.equals("1")) //struktural
+            {
+                NamaJabatan = getStruktural(Struktural);
+                ipns.setNamaJabatan(NamaJabatan);
+            } else if (a.equals("2")) // fungsional tertentu
+            {
+                NamaJabatan = getFungsional(Fungsional);
+                ipns.setNamaJabatan(NamaJabatan);
+            } else if (a.equals("4")) // fungsional umum
+            {
+                NamaJabatan = getUmum(Umum);
+                ipns.setNamaJabatan(NamaJabatan);
+
+            } else {
+                ipns.setNamaJabatan("RANGKAP");
+            }
+        }
+        return ipns;
+    }
+    
     public String getDBqueryPNSnamaJabfum(String sid_pns) throws SQLException {
         String sql2 = "SELECT nipbaru, namajabfum FROM jabfum_bkn WHERE nipbaru = '" + sid_pns + "' ";
         PreparedStatement pst2 = this.conn.prepareStatement(sql2);

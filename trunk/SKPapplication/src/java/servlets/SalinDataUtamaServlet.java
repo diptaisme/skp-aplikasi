@@ -327,10 +327,9 @@ public class SalinDataUtamaServlet extends HttpServlet {
                 }
                 
             }
-               
-            String destination = "/PengambilanFhoto.jsp?nip="+nipPns;
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
-		rd.forward(request, response);
+            RequestDispatcher dis = null;
+            dis = request.getRequestDispatcher("/WEB-INF/jsp/indexloginBaru.jsp");
+            dis.include(request, response);
         }
           
         

@@ -6,6 +6,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.GoIndex;
+import model.IsiTargetBulanan;
 import model.PnsSkp;
 
 /**
@@ -72,7 +74,7 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
         //processRequest(request, response);
 
         String id = request.getParameter("nipnilai2");
-         String idRevisi = request.getParameter("nipnilaiRevisi");
+        String idRevisi = request.getParameter("nipnilaiRevisi");
         String idR = request.getParameter("nipnilai2R");
         String idU = request.getParameter("nipnilai2U");
         String idSB = request.getParameter("nipnilai2SB");
@@ -83,11 +85,13 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
         String tglCetak = request.getParameter("tglCetak");
 
 
+        String idTargetBulan = request.getParameter("idIsi4faktorBulan");
+
         String pilihSession = request.getParameter("pilih_session");
         String nipatasanMonitoringCetak = request.getParameter("nipatasanMonitoringCetak");
         String nipatasanMonitoringLaporan = request.getParameter("nipatasanMonitoringLaporan");
 
-        if ((id != null && !"".equals(id) && !" ".equals(id)) || (idRevisi != null) || (nipatasanMonitoringCetak != null) || (idR != null && !"".equals(idR) && !" ".equals(idR)) || (idU != null && !"".equals(idU) && !" ".equals(idU)) || (idSB != null && !"".equals(idSB) && !" ".equals(idSB)) || (idP != null && !"".equals(idP) && !" ".equals(idP))) {
+        if ((id != null && !"".equals(id) && !" ".equals(id))|| (idTargetBulan !=null) || (idRevisi != null) || (nipatasanMonitoringCetak != null) || (idR != null && !"".equals(idR) && !" ".equals(idR)) || (idU != null && !"".equals(idU) && !" ".equals(idU)) || (idSB != null && !"".equals(idSB) && !" ".equals(idSB)) || (idP != null && !"".equals(idP) && !" ".equals(idP))) {
             if (id != null) {
                 idp = id;
                 PnsSkp pnsp = new GoIndex().getPns(idp);
@@ -99,7 +103,7 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
 
                 PnsSkp cetakPns = new GoIndex().getPns(id);
 
-               
+
                 //***************CETAK PNS
                 String namaPNScetak = cetakPns.getNamaPns();
                 String nipPNScetak = cetakPns.getNipBaru();
@@ -137,6 +141,8 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
 
                 RequestDispatcher dis = getServletContext().getRequestDispatcher("/ReportIsi4FaktorServlet?etst=test");
                 dis.forward(request, response);
+            } else if (idTargetBulan != null) {
+                getUserMasuk(request, response);
             } else if (idRevisi != null) {
                 idp = idRevisi;
                 PnsSkp pnsp = new GoIndex().getPns(idp);
@@ -148,7 +154,7 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
 
                 PnsSkp cetakPns = new GoIndex().getPns(idp);
 
-               
+
                 //***************CETAK PNS
                 String namaPNScetak = cetakPns.getNamaPns();
                 String nipPNScetak = cetakPns.getNipBaru();
@@ -386,6 +392,84 @@ public class cetakIsi4FaktorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+    }
+
+    private void getUserMasuk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String target = request.getParameter("target");
+        String realisasi = request.getParameter("realisasi");
+        String tglCetak = request.getParameter("tglCetak");
+        //  String nipBaru = request.getParameter("nipBaru");
+        List<IsiTargetBulanan> isiTargetBulanan = new ArrayList<IsiTargetBulanan>();
+
+        String idTargetBulan = request.getParameter("idIsi4faktorBulan");
+        String idtupoksidiSesiion = request.getParameter("idtupoksidiSesiion_");
+          String NipPnsSession = (String) session.getAttribute("NipPnsSession");
+
+
+        String pilihSession = request.getParameter("pilih_session");
+        String nipatasanMonitoringCetak = request.getParameter("nipatasanMonitoringCetak");
+        String nipatasanMonitoringLaporan = request.getParameter("nipatasanMonitoringLaporan");
+        //   String idTargetBulan = request.getParameter("idIsi4faktorBulan");
+        String nipBulan = request.getParameter("nipBaruTargetBulan");
+
+        idp = nipBulan;
+        
+         String iNip_id = null;
+                if (ModelLocatorSKP.loginNipPengguna != null) {
+                    iNip_id = ModelLocatorSKP.loginNipPengguna;
+                } else {
+                    iNip_id = NipPnsSession;
+                }
+              idp =   iNip_id; 
+      //  PnsSkp pnsp = new GoIndex().getPns( iNip_id);
+      //  request.setAttribute("pnsp", pnsp);
+
+        session = request.getSession();
+        cetak = "t";
+        session.setAttribute("CeTaK", cetak);
+
+        PnsSkp cetakPns = new GoIndex().getPns(idp);
+
+        String namaPNScetak = cetakPns.getNamaPns();
+        String nipPNScetak = cetakPns.getNipBaru();
+        String golruPNScetak = cetakPns.getNamaGolru();
+        golruPNScetak = cetakPns.getNamaGolru() + " / " + cetakPns.getPangkat();
+        String jabatanPNScetak = cetakPns.getNamaJabatan();
+        String unkerPNScetak = cetakPns.getNamaUnor();
+
+        String unorAtasan = cetakPns.getDiAtasanId();
+        String UnorPnsid = cetakPns.getUnorId();
+        String InstansiPns = cetakPns.getInstansiId();
+        String NipPns = cetakPns.getNipBaru();
+        String typeReport;
+        // if (){
+        // typeReport ="report_isi4faktor";
+        // }else
+        // {
+        typeReport = "report_isi4faktorTargetBulan";
+        // }
+
+        request.setAttribute("typeReport", typeReport);
+
+        request.setAttribute("namaPNScetak", namaPNScetak);
+        request.setAttribute("nipPNScetak", nipPNScetak);
+        request.setAttribute("golruPNScetak", golruPNScetak);
+        request.setAttribute("jabatanPNScetak", jabatanPNScetak);
+        request.setAttribute("unkerPNScetak", unkerPNScetak);
+
+        request.setAttribute("unorAtasan", unorAtasan);
+        request.setAttribute("UnorPnsid", UnorPnsid);
+        request.setAttribute("InstansiPns", InstansiPns);
+        request.setAttribute("NipPns", NipPns);
+        request.setAttribute("_pilih_session", pilihSession);
+        request.setAttribute("tglCetak", tglCetak);
+
+        isiTargetBulanan = new GoIndex().getIsiTargetBulananAll(idtupoksidiSesiion, idp, idTargetBulan);
+        request.setAttribute("isiTargetBulanan", isiTargetBulanan);
+
+        RequestDispatcher dis = getServletContext().getRequestDispatcher("/ReportIsi4FaktorServlet?etst=test");
+        dis.forward(request, response);
     }
 
     /**

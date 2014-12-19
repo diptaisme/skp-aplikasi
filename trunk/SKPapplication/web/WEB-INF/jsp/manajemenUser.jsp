@@ -49,21 +49,21 @@
 
                 position: relative;
                 height: 80px;
-                left : -20px;
+                left : 0px;
             }
             #leftside {
 
                 position :  absolute;
-                top : 60px;
-                left : 50px;
+                top : 55px;
+                left : 25px;
                 width : 156px;
                 height : 501px;
             }
 
             #content {
                 position :  absolute;
-                top : 115px;
-                left : 200px;
+                top : 75px;
+                left : 170px;
                 width : 1300px;
                 height : 501px;
 
@@ -72,7 +72,7 @@
 
             #metw {
                 position: relative;
-                width: 930px;
+                width: 955px;
                 height: 30px;
                 background: #9999CC;
                 left : 1px;
@@ -173,7 +173,7 @@
 
                                         <td align="left">
                                             <c:if test="${userkewenagan eq 'ada' }"> 
-                                                <c:out value="${userkewenagan}"/>
+                                                
                                             </c:if>
                                             <span class="style3">     
                                                 USERNAME 
@@ -203,12 +203,17 @@
                                         <td><div align="left"><span class="style3">8</span></div></td>
                                         <td><div align="left"><span class="style3">KEWENANGAN</span></div></td>
                                         <td>
-                                            <select name="kewenangan" id="kewenangan" ${cocok}>
-                                                <option value="user">Operator Tugas Jabatan</option>
-                                                <option value="operator">Operator SKP Seluruh</option>
-                                                <option value="Perwakilan_user">Operator SKP Personal</option>
+                                             
+    
+<select name="kewenanganuser1" id="kewenanganuser1" ${cocok}>
+                                                <option name="kewenaganuser1" ><c:out value="${kewenaganuser1}"/></option>
+                                                <option value="operator">Operator Tugas Jabatan</option>
+                                                <option value="Perwakilan_user">Operator SKP Seluruh</option>
+                                                <option value="user">Operator SKP Personal</option>
                                                 <option value="administrator">Administrator</option>                                                
                                             </select>
+
+
                                         </td>
                                     </tr>
                                     <tr>

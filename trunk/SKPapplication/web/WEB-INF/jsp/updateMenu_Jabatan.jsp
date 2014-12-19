@@ -14,7 +14,15 @@
         <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" type="text/css" href="/SKPapplication/css/style2.css" />
-
+        
+        <script type="text/javascript">
+        function ubahidjabform2 (){
+        var vbiaya4text =document.getElementById("pilihubahjabatan");
+        var ddtk = vbiaya4text.options[vbiaya4text.selectedIndex].value;
+        document.getElementById("idubahjabatan").value = ddtk;
+        };
+        </script>
+             
         <style type="text/css"> 
 
             #page2Lokal{
@@ -30,7 +38,7 @@
             }
 
             #page2Lokal2{
-                width: 650px;
+                width: 700px;
                 position: absolute;               
                 background: #BDE1F1;
                 margin-top : 40px;
@@ -91,9 +99,6 @@
                     </ul>
                     <br class="clearfix" />
                 </div>
-
-
-
                 <div id="page2Lokal2">
 
                     <table width="619" border="0">
@@ -130,27 +135,33 @@
                     <form name="form2" method="post" action="referensiInstansiServlet">
                         <table> 
                             <tr>
-                                <td>Cari Unit Kerja ...: </td>
-                                <td> <input name="updateUnor" type="text" size="75"/></td>
+                                <td>Jenis Jabatan</td>
+                                
+                                <td>
+                                    <input type="text" id="idubahjabatan" name="idubahjabatan" value="${sesiontahun}" hidden/>
+                                    <select id="pilihubahjabatan" name="pilihubahjabatan" onchange="ubahidjabform2()">
+                                        <option value="2">Fungsional Tertentu</option>  
+                                        <option value="4">Fungsional Umum</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cari Jabatan ...: </td>
+                                <td> <input name="UpdateJabatan" type="text" size="75"/></td>
                                 <td> <input name="cariUnorUpdate" type="Submit" value="CARI" /> </td>
                                 <td>  <input  type="hidden"  name="idnip" value="${pns.getNipBaru()}"/> </td>
                                 <td> <input  type="hidden"  name="instansi" value="${pns.getInstansiId()}"/> </td>
-
-                            </tr>
+                            </tr>    
                         </table>
-
                     </form>
                 </div>
                 <div id="page2Lokal">
                     <div style="overflow: auto">	
                         <table width="610" border="0" align="left" >
                             <thead>
-
-
-
-                                <tr>
+      <tr>
                                     <th width="10" style="background-color: darkorange">No.</th>
-                                    <th style="background-color: darkorange">NAMA UNIT ORGANISASI</th>
+                                    <th style="background-color: darkorange">CEPAT KODE</th>
 
                                     <th style="background-color: darkorange">NAMA JABATAN</th>
                                 </tr>
@@ -160,12 +171,11 @@
                             <c:forEach var="listUnories" items="${unories}" varStatus="count">
                                 <tr>
                                     <td style="background-color: #ffcc99"width="10"><div align="center">${(count.index)+1}</div></td>
-
+                                    <td style="background-color: #ffcc99"width="10"><div align="center">${listUnories.getCepatKode()}</div></td>
                                     <td style="background-color: #ffcc99" width="300">
-                                        <a href="referensiInstansiServlet?&idUnorBaru=<c:out value="${listUnories.getIdUnor()}"/>&nipBaru=<c:out value="${pns.getNipBaru()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>&diatasanId=<c:out value="${listUnories.getDiAtasanId()}"/>&namaUnorL=<c:out value="${listUnories.getNamaUnor()}"/>&jenisStatus=<c:out value="updateUnorAtasan"/>"> ${listUnories.getNamaUnor()}</a>
+                                        <a href="referensiInstansiServlet?&idJabatan=<c:out value="${listUnories.getId()}"/>&nipBaru=<c:out value="${pns.getNipBaru()}"/>&jenis=<c:out value="${pns.getjnsjbtn_id()}"/>&namaJabatan=<c:out value="${listUnories.getNama()}"/>&jenisjabatanidubah=${jenisjabatanidubah}&UbahJabatan=updateJabatan"> ${listUnories.getNama()}</a>
                                     </td>
                                     <%-- <td>${listUnories.getNamaJabatan()}</td> --%>
-                                    <td style="background-color: #ffcc99"width="300">${listUnories.getNamaJabatan()}</td>
                                     <%--<td><a href="referensiInstansiServlet?&idInstkode=<c:out value="${listInstansies.getIdInstansi()}"/>&namaInstansiL=<c:out value="${listInstansies.getNamaInstansi()}"/>">${listInstansies.getNamaInstansi()}</a></td>--%>
                                 </tr>
                             </c:forEach>
@@ -173,12 +183,6 @@
                         </table>
                     </div>
                 </div>
-
-
-
-
-
-
             </div>
         </div>
     </body>

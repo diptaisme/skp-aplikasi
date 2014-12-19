@@ -172,11 +172,12 @@
     </head>
     <body>
         <div id="slideshow">
-            <div id="foobar">   
+            <div id="foobar1">   
                 <div id="col2">
-                    <div class="viewer">        <div class="reel"> 
-                            <div class="slide">                     <img src="images/sweet-white-blue-swirl-powerpoint-backgrounds.1440x300.jpg" width="1200" height="100" alt=""  /> <span></span>
-                            </div><div class="slide">                <img src="images/Abstract Blue backgrounds 3.1440x300.jpg" width="1200" height="100" alt="" /> <span></span>
+                    <div class="viewer1">        <div class="reel"> 
+                            <div class="slide1">                    
+          <img src="images/sweet-white-blue-swirl-powerpoint-backgrounds.1440x300.jpg" width="1180" height="100" alt=""  /> <span></span>
+                            </div><div class="slide1">                 <span></span>
                             </div></div></div></div></div>
 
 
@@ -193,7 +194,7 @@
                     </td>
                 </tr>
                 <tr><td>
-                        DIREKTORAT PENGOLAHAN DATA BKN
+                        BADAN KEPEGAWAIAN NEGARA
                     </td></tr>
 
             </table>
@@ -203,7 +204,7 @@
         
         <div id="headermetting" > 
             <div id='sol'>
-                <td  width="500" >  <img src="images/cetak.jpg" width="160" height="105"/>    </td>
+                 <td  width="500" >  <%--<img src="images/cetak.jpg" width="160" height="105"/> --%>   </td> 
             </div>
         </div>
         <div id="slideText">
@@ -211,31 +212,7 @@
             
         </div>
 
-        <script type="text/javascript">
-                        
-            $('#foobar').slidertron({
-                viewerSelector: '.viewer',
-                reelSelector: '.viewer .reel',
-                slidesSelector: '.viewer .reel .slide',
-                advanceDelay: 3000,
-                speed: 'slow'
-            });
-            
-            $(function () {
-                var $element = $('#sol');
-                function fadeInOut () {
-                    $element.fadeIn(1000, function () {
-                        $element.fadeOut(1500, function () {
-                            $element.fadeIn(1500, function () {
-                                setTimeout(fadeInOut, 500);
-                            });
-                        });
-                    });
-                }
-
-                fadeInOut();
-            });
-        </script>
+        
 
     </body>
 </html>

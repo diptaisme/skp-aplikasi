@@ -24,7 +24,7 @@
 
                 position: relative;
                 height: 80px;
-                left : -30px;
+                left : 10px;
             }
             #leftside {
 

@@ -117,7 +117,7 @@ public class bacaexcel1 {
                     dbConn.closeConnection();
                 }
             } else {
-                dBqueryPNS.getDBqueryUpdateImportUnor(this.diatasan_id, this.eselon_id,
+                dBqueryPNS.getDBqueryUpdateImportUnor(this.id_unor,this.diatasan_id, this.eselon_id,
                         this.nama_unor, this.nama_jabatan, this.pemimpin_pns_id);
             }
         }

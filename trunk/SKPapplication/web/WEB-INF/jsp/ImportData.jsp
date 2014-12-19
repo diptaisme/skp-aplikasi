@@ -40,28 +40,28 @@
 
                 position: relative;
                 height: 80px;
-                left : -50px;
+                left : -35px;
             }
             #leftside {
 
                 position :  absolute;
-                top : 60px;
-                left : 10px;
+                top : 55px;
+                left : 30px;
                 width : 156px;
                 height : 501px;
             }
 
             #contentdalam {
                 position :  absolute;
-                top : 110px;
-                left : 170px;
+                top : 60px;
+                left : 160px;
                 width : 1200px;
                 height : 501px;
                 overflow: auto;
             }
             #contentdalamsub{
                 position :  absolute;
-                top : 50px;
+                top : 70px;
                 left : 1px;
                 width : 1200px;
                 height : 500px;
@@ -70,7 +70,7 @@
             #contentdalamsubajak{
                 position :  absolute;
                 top : 10px;
-                left : 500px;
+                left : 530px;
                 width : 500px;
                 height : 500px;
                 overflow: auto;
@@ -94,7 +94,7 @@
 
             #met {
                 position: relative;
-                width: 960px;
+                width: 990px;
                 height: 40px;
                 background: #9999CC;
 

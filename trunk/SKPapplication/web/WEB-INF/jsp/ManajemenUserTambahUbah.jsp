@@ -57,6 +57,7 @@
                 document.getElementById("usernameinputan").value = "";
                 document.getElementById("passwordinputan").value = "";
             }
+            
  
         </script>
 
@@ -70,17 +71,16 @@
                 left : -20px;
             }
             #leftside {
-
                 position :  absolute;
-                top : 60px;
-                left : 20px;
+                top : 55px;
+                left : 35px;
                 width : 156px;
                 height : 501px;
             }
 
             #content {
                 position :  absolute;
-                top : 115px;
+                top : 85px;
                 left : 200px;
                 width : 1300px;
                 height : 501px;
@@ -194,12 +194,11 @@
                             <td class="table1" align="center">3</td>
                             <td class="table1" align="center">Kewenangan</td>
                             <td class="table2">
-                                <select name="kewenangan" nama="kewenangan" >
-                                                <option value="user">Operator Tugas Jabatan</option>
-                                                <option value="operator">Operator SKP Seluruh</option>
-                                                <option value="Perwakilan_user">Operator SKP Personal</option>
-                                                <option value="administrator">Administrator</option>
-                                                
+                                <select id="kewenangan" name="kewenangan">
+                                    <option value="operator">Operator Tugas Jabatan</option>
+                                    <option value="Perwakilan_user">Operator SKP Seluruh</option>
+                                    <option value="user">Operator SKP Personal</option>
+                                    <option value="administrator">Administrator</option>
                                  </select>
                             </td>    
                             <td></td>
@@ -207,7 +206,6 @@
                             <tr>
                                 <td colspan="3" class="table1">
                                     <input type="submit" name="param" value="ubah"></input>        
-                                    <!--<input type="submit" name="param" value="TambahKewenangan"></input> -->
                                     
                                 </td>
                         </tr> 

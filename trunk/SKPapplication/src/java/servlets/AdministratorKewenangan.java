@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.GoIndex;
+import model.PnsSkp;
 import model.loginweb;
 
 /**
@@ -84,11 +85,14 @@ public class AdministratorKewenangan extends HttpServlet {
            String username = request.getParameter("usernameinputan");
            String password = request.getParameter("passwordinputan");
            String nip_baru = request.getParameter("nip_baru");
-           new GoIndex().getubahUser(username, password, nip_baru);
+           String kewenangan = request.getParameter("kewenangan");
+           new GoIndex().getubahUser(username, password, nip_baru,kewenangan);
+           PnsSkp pns = new GoIndex().getPns(nip_baru);
            loginweb lw = new GoIndex().getSudahAdaUser(nip_baru);
            request.setAttribute("username", lw.getusername_login());
            request.setAttribute("password", lw.getpassword_login());
            request.setAttribute("nip", nip_baru);
+           request.setAttribute("kewenangan", lw.getkewenangan_login());
            dis = request.getRequestDispatcher("/WEB-INF/jsp/ManajemenUserTambahUbah.jsp");
            dis.forward(request, response);
         }
