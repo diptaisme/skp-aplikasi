@@ -648,11 +648,11 @@ public class DBqueryRealisasi
                 double icapaian;
                 if (ibiaya4 == 0 || ibiayaR == 0 || "-".equals(biaya4) || "-".equals(biayaR) || biaya4 == null || biayaR == null)
                 {
-                    icapaian = dpenghitungan/3.0;
+                    icapaian = dpenghitunganDalam/3.0;
                 }
                 else
                 {
-                    icapaian = dpenghitungan/4.0;
+                    icapaian = dpenghitunganDalam/4.0;
                 }
                // String capaian = Double.toString(icapaian);
                 
